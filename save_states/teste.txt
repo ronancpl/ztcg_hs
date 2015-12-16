@@ -1,0 +1,25 @@
+CHARACTER
+Link
+280
+280
+HAND
+Ocarina of Time
+Ocarina of Time
+Rauru
+Great Dekus Bless
+Deku Seeds Bag
+Larva Gohma
+Magic Beans
+GRAVEYARD
+LVL_CARDS
+Lizalfos
+Ocarina of Time
+Lizalfos
+Like-Like
+Poe Sisters
+EQUIPS
+MONSTERS
+Lizalfos
+Dead Hand
+Lizalfos
+FIELD
