@@ -24,14 +24,14 @@ void deku_seeds_bag_lvacao(int id_acao,struct Card **buffer,bool *fim_de_jogo,in
 
     if(cont == 0) return;
     not_prevent = LancaMoeda(id_acao,buffer,fim_de_jogo,rolagem,sbox,selecao,roll_bar,prompt,fundo_carta,fundo_menu,deck_meio,deck_cheio,apontador,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    Attack(id_acao,!not_prevent,false,buffer,fim_de_jogo,rolagem,ko,0,1,0,sbox,jogador,adversario,jogador->mesa->character,20*cont,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    Attack(id_acao,!not_prevent,false,buffer,fim_de_jogo,rolagem,ko,0,1,0,sbox,jogador,adversario,jogador->mesa->character,NULL,20*cont,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
 }
 
 void twinrova_acao1(int id_acao,struct Card **buffer,bool *fim,struct CARD *card_twinrova,int *rolagem,bool *ko,struct StatusBox_bitmaps *sbox,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *coin_prompt,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,ALLEGRO_BITMAP *pont,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,ALLEGRO_BITMAP *prompt,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
     bool resultado;
 
     printf("TR acao (%d pontos) ",card_twinrova->var_monster->twinrova_cont);
-    Attack(id_acao,true,false,buffer,fim,rolagem,ko,2,0,0,sbox,jogador,adversario,card_twinrova,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,pont,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    Attack(id_acao,true,false,buffer,fim,rolagem,ko,2,0,0,sbox,jogador,adversario,card_twinrova,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,pont,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
 
     printf("1 ");
     resultado = LancaMoeda(id_acao,buffer,fim,rolagem,sbox,selecao,roll_bar,coin_prompt,fundo_carta,fundo_menu,deck_meio,deck_cheio,pont,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
@@ -39,7 +39,7 @@ void twinrova_acao1(int id_acao,struct Card **buffer,bool *fim,struct CARD *card
         card_twinrova->var_monster->twinrova_cont++;
         if(card_twinrova->var_monster->twinrova_cont == 3) {
             card_twinrova->var_monster->twinrova_cont = 0;
-            Attack(id_acao,true,false,buffer,fim,rolagem,ko,2,0,0,sbox,jogador,adversario,card_twinrova,120,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,pont,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+            Attack(id_acao,true,false,buffer,fim,rolagem,ko,2,0,0,sbox,jogador,adversario,card_twinrova,NULL,120,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,pont,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
         }
     }
     else {
@@ -50,14 +50,14 @@ void twinrova_acao1(int id_acao,struct Card **buffer,bool *fim,struct CARD *card
 
 bool princess_zelda_acao2(int id_acao,struct Card **buffer,bool *fim_de_jogo,int *rolagem,bool *ko,struct StatusBox_bitmaps *sbox,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *prompt,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,ALLEGRO_BITMAP *bmp,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
     if(ElaboraPrompt("USE Magic Blast?","10 damage to monsters, 20 damage to character.",NULL,NULL,"Yes","No",250,523,315,id_acao,buffer,fim_de_jogo,rolagem,sbox,selecao,roll_bar,fundo_carta,fundo_menu,prompt,deck_meio,deck_cheio,bmp,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer)) {
-        if(adversario->mesa->monstro1 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,1,1,sbox,jogador,adversario,jogador->mesa->character,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        if(adversario->mesa->monstro2 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,1,2,sbox,jogador,adversario,jogador->mesa->character,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        if(adversario->mesa->monstro3 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,1,3,sbox,jogador,adversario,jogador->mesa->character,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        if(adversario->mesa->monstro4 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,1,4,sbox,jogador,adversario,jogador->mesa->character,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        if(adversario->mesa->monstro5 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,1,5,sbox,jogador,adversario,jogador->mesa->character,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        if(adversario->mesa->monstro6 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,1,6,sbox,jogador,adversario,jogador->mesa->character,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        if(adversario->mesa->monstro7 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,1,7,sbox,jogador,adversario,jogador->mesa->character,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,1,0,sbox,jogador,adversario,jogador->mesa->character,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        if(adversario->mesa->monstro1 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,1,1,sbox,jogador,adversario,jogador->mesa->character,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        if(adversario->mesa->monstro2 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,1,2,sbox,jogador,adversario,jogador->mesa->character,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        if(adversario->mesa->monstro3 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,1,3,sbox,jogador,adversario,jogador->mesa->character,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        if(adversario->mesa->monstro4 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,1,4,sbox,jogador,adversario,jogador->mesa->character,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        if(adversario->mesa->monstro5 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,1,5,sbox,jogador,adversario,jogador->mesa->character,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        if(adversario->mesa->monstro6 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,1,6,sbox,jogador,adversario,jogador->mesa->character,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        if(adversario->mesa->monstro7 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,1,7,sbox,jogador,adversario,jogador->mesa->character,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,1,0,sbox,jogador,adversario,jogador->mesa->character,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
 
         return(true);
     }
@@ -66,27 +66,27 @@ bool princess_zelda_acao2(int id_acao,struct Card **buffer,bool *fim_de_jogo,int
 
 void bongobongo_acao2(int id_acao,struct Card **buffer,bool *fim_de_jogo,int *rolagem,bool *ko,struct StatusBox_bitmaps *sbox,struct Player *jogador,struct Player *adversario,struct CARD *atacante,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,ALLEGRO_BITMAP *fundo,ALLEGRO_BITMAP *prompt,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,ALLEGRO_BITMAP *bmp,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
     if(ElaboraPrompt("USE Earthquake?","20 damage to monsters, 20 damage to character.",NULL,NULL,"Yes","No",250,523,315,id_acao,buffer,fim_de_jogo,rolagem,sbox,selecao,roll_bar,fundo_carta,fundo_menu,prompt,deck_meio,deck_cheio,bmp,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer)) {
-        if(adversario->mesa->monstro1 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,0,1,sbox,jogador,adversario,atacante,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        if(adversario->mesa->monstro2 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,0,2,sbox,jogador,adversario,atacante,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        if(adversario->mesa->monstro3 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,0,3,sbox,jogador,adversario,atacante,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        if(adversario->mesa->monstro4 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,0,4,sbox,jogador,adversario,atacante,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        if(adversario->mesa->monstro5 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,0,5,sbox,jogador,adversario,atacante,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        if(adversario->mesa->monstro6 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,0,6,sbox,jogador,adversario,atacante,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        if(adversario->mesa->monstro7 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,0,7,sbox,jogador,adversario,atacante,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,0,0,sbox,jogador,adversario,atacante,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        if(adversario->mesa->monstro1 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,0,1,sbox,jogador,adversario,atacante,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        if(adversario->mesa->monstro2 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,0,2,sbox,jogador,adversario,atacante,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        if(adversario->mesa->monstro3 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,0,3,sbox,jogador,adversario,atacante,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        if(adversario->mesa->monstro4 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,0,4,sbox,jogador,adversario,atacante,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        if(adversario->mesa->monstro5 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,0,5,sbox,jogador,adversario,atacante,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        if(adversario->mesa->monstro6 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,0,6,sbox,jogador,adversario,atacante,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        if(adversario->mesa->monstro7 != NULL) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,0,7,sbox,jogador,adversario,atacante,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,3,0,0,sbox,jogador,adversario,atacante,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     }
 }
 
 bool king_zora_acao3(int id_acao,struct Card **buffer,bool *fim_de_jogo,int *rolagem,bool *ko,struct StatusBox_bitmaps *sbox,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *prompt,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,ALLEGRO_BITMAP *apontador,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
     bool ativo = false;
 
-    ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,1,1,0,sbox,jogador,adversario,jogador->mesa->character,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    ativo = (Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,2,1,0,sbox,jogador,adversario,jogador->mesa->character,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer) || ativo);
+    ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,1,1,0,sbox,jogador,adversario,jogador->mesa->character,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    ativo = (Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,2,1,0,sbox,jogador,adversario,jogador->mesa->character,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer) || ativo);
     return(ativo);
 }
 
 void phantom_ganon_acao(struct Card **buffer,bool *fim_de_jogo,int *rolagem,bool *ko,struct StatusBox_bitmaps *sbox,struct Player *jogador,struct Player *adversario,struct CARD *atacante,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,ALLEGRO_BITMAP *fundo,ALLEGRO_BITMAP *prompt,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,ALLEGRO_BITMAP *bmp,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
-    if(jogador->level >= 90 && jogador->earth_ic >= 3) Attack(-1,true,false,buffer,fim_de_jogo,rolagem,ko,0,0,0,sbox,jogador,adversario,atacante,80,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    if(jogador->level >= 90 && jogador->earth_ic >= 3) Attack(-1,true,false,buffer,fim_de_jogo,rolagem,ko,0,0,0,sbox,jogador,adversario,atacante,NULL,80,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
 }
 
 void gohma_acao(struct Card **buffer,bool *fim,int *rolagem,struct StatusBox_bitmaps *sbox,ALLEGRO_BITMAP *prompt,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,ALLEGRO_BITMAP *pont,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
@@ -214,6 +214,60 @@ void leever_acao(int id_acao,struct Card **buffer,bool *fim,int *rolagem,ALLEGRO
     }
 }
 
+void bari_acao(int id_acao,struct Card **buffer,bool *fim,int *rolagem,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,ALLEGRO_BITMAP *pont,ALLEGRO_BITMAP *prompt,struct StatusBox_bitmaps *sbox,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
+    struct Deck *card;
+    int slot;
+
+    if(VerificaCardPorNome(BIRI,jogador->deck)) {
+        if(ElaboraPrompt("SPAWN Biri?","Bari was destroyed.",NULL,NULL,"Yes","No",250,523,315,id_acao,buffer,fim,rolagem,sbox,selecao,roll_bar,fundo_carta,fundo_menu,prompt,deck_meio,deck_cheio,pont,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer)) {
+            card = RetiraCardPorNome(BIRI,&(jogador->deck));
+
+            slot = RetornaProxSlotVazio(jogador);
+
+            ColocaCardNaBaseDeck(&(jogador->hand),card);
+            SpawnX(id_acao,true,buffer,fim,rolagem,sbox,jogador,adversario,999,display,prompt,selecao,roll_bar,pont,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+
+            printf("slot: %d\n",slot);
+            switch(slot) {
+            case 1:
+                jogador->mesa->monstro1->HP = 20;
+                jogador->mesa->monstro1->var_monster->biri_bool = true;
+                break;
+
+            case 2:
+                jogador->mesa->monstro2->HP = 20;
+                jogador->mesa->monstro2->var_monster->biri_bool = true;
+                break;
+
+            case 3:
+                jogador->mesa->monstro3->HP = 20;
+                jogador->mesa->monstro3->var_monster->biri_bool = true;
+                break;
+
+            case 4:
+                jogador->mesa->monstro4->HP = 20;
+                jogador->mesa->monstro4->var_monster->biri_bool = true;
+                break;
+
+            case 5:
+                jogador->mesa->monstro5->HP = 20;
+                jogador->mesa->monstro5->var_monster->biri_bool = true;
+                break;
+
+            case 6:
+                jogador->mesa->monstro6->HP = 20;
+                jogador->mesa->monstro6->var_monster->biri_bool = true;
+                break;
+
+            case 7:
+                jogador->mesa->monstro7->HP = 20;
+                jogador->mesa->monstro7->var_monster->biri_bool = true;
+                break;
+            }
+        }
+    }
+}
+
 void shadow_merge_play_monster(struct Card **buffer,bool *fim_de_jogo,int *rolagem,struct StatusBox_bitmaps *sbox,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *prompt,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *apontador,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
     struct Deck *alvo,*aux,*aux2,*retorna_card = NULL;
 
@@ -266,7 +320,7 @@ bool golden_gauntlets_lvacao(int id_acao,struct Card **buffer,struct CARD *card_
     if(adversario->mesa->monstro6 != NULL) damage += 20;
     if(adversario->mesa->monstro7 != NULL) damage += 20;
 
-    return(Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,damage,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer));
+    return(Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,NULL,damage,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer));
 }
 
 bool impa_acao3(int id_acao,struct Card **buffer,bool *fim,int *rolagem,struct StatusBox_bitmaps *sbox,ALLEGRO_BITMAP *prompt,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,ALLEGRO_BITMAP *pont,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
@@ -389,7 +443,7 @@ bool impa_acao3(int id_acao,struct Card **buffer,bool *fim,int *rolagem,struct S
     if(slot != NULL) {
         ativo = true;
         slot->turn_cooldown = 3;
-        Attack(-1,false,false,buffer,fim,rolagem,&ko,4,0,0,sbox,adversario,jogador,NULL,30,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,pont,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        Attack(-1,false,false,buffer,fim,rolagem,&ko,4,0,0,sbox,adversario,jogador,NULL,NULL,30,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,pont,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     }
 
     aux = lista;
@@ -407,7 +461,7 @@ bool impa_acao3(int id_acao,struct Card **buffer,bool *fim,int *rolagem,struct S
 void mirror_shield_counter(struct CARD *equip,struct Card **buffer,bool *fim_de_jogo,int *rolagem,bool *ko,struct StatusBox_bitmaps *sbox,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *prompt,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,ALLEGRO_BITMAP *bmp,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
     if(equip != NULL && equip->var_equip->mirror_shield_cont >= 3) {
         printf("COUNTER: mirror shield with %d dmg.\n",equip->var_equip->mirror_shield_dmg);
-        Attack(-1,true,false,buffer,fim_de_jogo,rolagem,ko,0,3,0,sbox,jogador,adversario,equip,equip->var_equip->mirror_shield_dmg,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        Attack(-1,true,false,buffer,fim_de_jogo,rolagem,ko,0,3,0,sbox,jogador,adversario,equip,NULL,equip->var_equip->mirror_shield_dmg,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
 
         equip->var_equip->mirror_shield_cont = 0;
         equip->var_equip->mirror_shield_dmg = 0;
@@ -417,8 +471,8 @@ void mirror_shield_counter(struct CARD *equip,struct Card **buffer,bool *fim_de_
 bool channeled_strike_lvacao(int id_acao,struct Card **buffer,bool *fim_de_jogo,int *rolagem,bool *ko,struct StatusBox_bitmaps *sbox,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *prompt,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,ALLEGRO_BITMAP *bmp,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
     bool ativo = false;
 
-    ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,0,1,0,sbox,jogador,adversario,jogador->mesa->character,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    ativo = (Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,2,1,0,sbox,jogador,adversario,jogador->mesa->character,30,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer) || ativo);
+    ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,0,1,0,sbox,jogador,adversario,jogador->mesa->character,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    ativo = (Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,2,1,0,sbox,jogador,adversario,jogador->mesa->character,NULL,30,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer) || ativo);
     return(ativo);
 }
 
@@ -473,6 +527,7 @@ void RecuperaEquipStats(struct CARD **card,struct Card **buffer,bool *fim,bool *
         else if((*card)->origem->colecao == FAIRY_SLINGSHOT) (*card)->var_equip->fairy_slingshot_cont = 1;
         else if((*card)->origem->colecao == SKULL_MASK) (*card)->var_equip->skull_mask_cont = 1;
         else if((*card)->origem->colecao == BOOMERANG) (*card)->var_equip->boomerang_cont = 1;
+        else if((*card)->origem->colecao == GIANTS_KNIFE) (*card)->var_equip->giants_knife_cont = 2;
         else if((*card)->origem->colecao == SILVER_GAUNTLETS) (*card)->var_equip->silver_gauntlets_cont = 1;
         else if((*card)->origem->colecao == GOLDEN_GAUNTLETS) (*card)->var_equip->golden_gauntlets_cont = 1;
         else if((*card)->origem->colecao == HOOKSHOT) hookshot_acao(-1,buffer,fim,rolagem,sbox,selecao,roll_bar,fundo_carta,fundo_menu,prompt,deck_meio,deck_cheio,pont,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);

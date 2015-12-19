@@ -301,6 +301,10 @@ void ListaColecao(struct ListaCards ***lista,struct COLECAO *colecao,int **total
     ListaCard(aux,total,colecao->mystic_spell);
     ListaCard(aux,total,colecao->great_fairys_bless);
     ListaCard(aux,total,colecao->keese);
+    ListaCard(aux,total,colecao->fairy_bow);
+    ListaCard(aux,total,colecao->giants_knife);
+    ListaCard(aux,total,colecao->bari);
+    ListaCard(aux,total,colecao->biri);
 
     for(i = 0;i < 8;i++) (aux[i])->prox = NULL;
 
@@ -2771,6 +2775,13 @@ void Desenha_MS_contador(struct CARD *mirror_shield,ALLEGRO_FONT *font,int x,int
     else al_draw_textf(font,al_map_rgb(178,34,34), x + 22, y + 60, 0,"%d", mirror_shield->var_equip->mirror_shield_dmg);
 }
 
+void DesenhaEquipStats(struct CARD *equip,int x,int y,bool ehJogador,struct Player *jogador,ALLEGRO_COLOR color,ALLEGRO_FONT *font2) {
+    if(equip->qte_associado != 0) al_draw_textf(font2,color, x + 22, y + 60, 0,"%d", equip->qte_associado);
+    else if(equip->var_equip->mirror_shield_cont > 0) Desenha_MS_contador(equip,font2,x,y);
+    else if(equip->origem->colecao == GIANTS_KNIFE) al_draw_textf(font2,color, x + 22, y + 60, 0,"%d", 4 - equip->var_equip->giants_knife_uses);
+    else if(ehJogador && equip->origem->colecao == IRON_BOOTS && jogador->var_tactic->iron_boots_cont > 0) al_draw_textf(font2,color, x + 22, y + 60, 0,"%d", jogador->var_tactic->iron_boots_cont);
+}
+
 //GRAVEYARD deveria atuar como uma PILHA, nao uma LISTA!
 void AtualizaMesa(bool refresh,char *texto,int hab_atual,int modo,int level,struct Card **buffer,bool *fim_de_jogo,struct StatusBox_bitmaps *sbox,ALLEGRO_BITMAP *prompt,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,ALLEGRO_BITMAP *fundo,ALLEGRO_BITMAP *pont,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse1,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer,int *rolagem,struct Coordenadas *lista,int elemento_ataque,int origem_ataque,int restricoes,int ataque_gerado,int *defesa_gerada, struct CARD *atacante) {
     /*
@@ -2844,56 +2855,49 @@ void AtualizaMesa(bool refresh,char *texto,int hab_atual,int modo,int level,stru
         player->equip1->PosicaoX = 300;
         player->equip1->PosicaoY = 110;
 
-        if(player->equip1->qte_associado != 0) al_draw_textf(font2,color, 300 + 22, 110 + 60, 0,"%d", player->equip1->qte_associado);
-        else if(player->equip1->var_equip->mirror_shield_cont > 0) Desenha_MS_contador(player->equip1,font2,300,110);
+        DesenhaEquipStats(player->equip1,300,110,false,adversario,color,font2);
     }
     if(player->equip2 != NULL) {
         al_draw_scaled_bitmap(player->equip2->origem->bmp,0,0,240,360,355,110,50,75,0);
         player->equip2->PosicaoX = 355;
         player->equip2->PosicaoY = 110;
 
-        if(player->equip2->qte_associado != 0) al_draw_textf(font2,color, 355 + 22, 110 + 60, 0,"%d", player->equip2->qte_associado);
-        else if(player->equip2->var_equip->mirror_shield_cont > 0) Desenha_MS_contador(player->equip2,font2,355,110);
+        DesenhaEquipStats(player->equip2,355,110,false,adversario,color,font2);
     }
     if(player->equip3 != NULL) {
         al_draw_scaled_bitmap(player->equip3->origem->bmp,0,0,240,360,410,110,50,75,0);
         player->equip3->PosicaoX = 410;
         player->equip3->PosicaoY = 110;
 
-        if(player->equip3->qte_associado != 0) al_draw_textf(font2,color, 410 + 22, 110 + 60, 0,"%d", player->equip3->qte_associado);
-        else if(player->equip3->var_equip->mirror_shield_cont > 0) Desenha_MS_contador(player->equip3,font2,410,110);
+        DesenhaEquipStats(player->equip3,410,110,false,adversario,color,font2);
     }
     if(player->equip4 != NULL) {
         al_draw_scaled_bitmap(player->equip4->origem->bmp,0,0,240,360,465,110,50,75,0);
         player->equip4->PosicaoX = 465;
         player->equip4->PosicaoY = 110;
 
-        if(player->equip4->qte_associado != 0) al_draw_textf(font2,color, 465 + 22, 110 + 60, 0,"%d", player->equip4->qte_associado);
-        else if(player->equip4->var_equip->mirror_shield_cont > 0) Desenha_MS_contador(player->equip4,font2,465,110);
+        DesenhaEquipStats(player->equip4,465,110,false,adversario,color,font2);
     }
     if(player->equip5 != NULL) {
         al_draw_scaled_bitmap(player->equip5->origem->bmp,0,0,240,360,520,110,50,75,0);
         player->equip5->PosicaoX = 520;
         player->equip5->PosicaoY = 110;
 
-        if(player->equip5->qte_associado != 0) al_draw_textf(font2,color, 520 + 22, 110 + 60, 0,"%d", player->equip5->qte_associado);
-        else if(player->equip5->var_equip->mirror_shield_cont > 0) Desenha_MS_contador(player->equip5,font2,520,110);
+        DesenhaEquipStats(player->equip5,520,110,false,adversario,color,font2);
     }
     if(player->equip6 != NULL) {
         al_draw_scaled_bitmap(player->equip6->origem->bmp,0,0,240,360,575,110,50,75,0);
         player->equip6->PosicaoX = 575;
         player->equip6->PosicaoY = 110;
 
-        if(player->equip6->qte_associado != 0) al_draw_textf(font2,color, 575 + 22, 110 + 60, 0,"%d", player->equip6->qte_associado);
-        else if(player->equip6->var_equip->mirror_shield_cont > 0) Desenha_MS_contador(player->equip6,font2,575,110);
+        DesenhaEquipStats(player->equip6,575,110,false,adversario,color,font2);
     }
     if(player->equip7 != NULL) {
         al_draw_scaled_bitmap(player->equip7->origem->bmp,0,0,240,360,630,110,50,75,0);
         player->equip7->PosicaoX = 630;
         player->equip7->PosicaoY = 110;
 
-        if(player->equip7->qte_associado != 0) al_draw_textf(font2,color, 630 + 22, 110 + 60, 0,"%d", player->equip7->qte_associado);
-        else if(player->equip7->var_equip->mirror_shield_cont > 0) Desenha_MS_contador(player->equip7,font2,630,110);
+        DesenhaEquipStats(player->equip7,630,110,false,adversario,color,font2);
     }
     if(player->monstro1 != NULL) {
         al_draw_scaled_bitmap(player->monstro1->origem->bmp,0,0,240,360,300,190,50,75,0);
@@ -2960,9 +2964,7 @@ void AtualizaMesa(bool refresh,char *texto,int hab_atual,int modo,int level,stru
         player->equip1->PosicaoX = 300;
         player->equip1->PosicaoY = 350;
 
-        if(player->equip1->qte_associado != 0) al_draw_textf(font2,color, 300 + 22, 350 + 60, 0,"%d", player->equip1->qte_associado);
-        else if(player->equip1->origem->colecao == IRON_BOOTS && jogador->var_tactic->iron_boots_cont > 0) al_draw_textf(font2,color, 300 + 22, 350 + 60, 0,"%d", jogador->var_tactic->iron_boots_cont);
-        else if(player->equip1->var_equip->mirror_shield_cont > 0) Desenha_MS_contador(player->equip1,font2,300,350);
+        DesenhaEquipStats(player->equip1,300,350,true,jogador,color,font2);
     }
 
     if(player->equip2 != NULL) {
@@ -2970,48 +2972,42 @@ void AtualizaMesa(bool refresh,char *texto,int hab_atual,int modo,int level,stru
         player->equip2->PosicaoX = 355;
         player->equip2->PosicaoY = 350;
 
-        if(player->equip2->qte_associado != 0) al_draw_textf(font2,color, 355 + 22, 350 + 60, 0,"%d", player->equip2->qte_associado);
-        else if(player->equip2->var_equip->mirror_shield_cont > 0) Desenha_MS_contador(player->equip2,font2,355,350);
+        DesenhaEquipStats(player->equip2,355,350,true,jogador,color,font2);
     }
     if(player->equip3 != NULL) {
         al_draw_scaled_bitmap(player->equip3->origem->bmp,0,0,240,360,410,350,50,75,0);
         player->equip3->PosicaoX = 410;
         player->equip3->PosicaoY = 350;
 
-        if(player->equip3->qte_associado != 0) al_draw_textf(font2,color, 410 + 22, 350 + 60, 0,"%d", player->equip3->qte_associado);
-        else if(player->equip3->var_equip->mirror_shield_cont > 0) Desenha_MS_contador(player->equip3,font2,410,350);
+        DesenhaEquipStats(player->equip3,410,350,true,jogador,color,font2);
     }
     if(player->equip4 != NULL) {
         al_draw_scaled_bitmap(player->equip4->origem->bmp,0,0,240,360,465,350,50,75,0);
         player->equip4->PosicaoX = 465;
         player->equip4->PosicaoY = 350;
 
-        if(player->equip4->qte_associado != 0) al_draw_textf(font2,color, 465 + 22, 350 + 60, 0,"%d", player->equip4->qte_associado);
-        else if(player->equip4->var_equip->mirror_shield_cont > 0) Desenha_MS_contador(player->equip4,font2,465,350);
+        DesenhaEquipStats(player->equip4,465,350,true,jogador,color,font2);
     }
     if(player->equip5 != NULL) {
         al_draw_scaled_bitmap(player->equip5->origem->bmp,0,0,240,360,520,350,50,75,0);
         player->equip5->PosicaoX = 520;
         player->equip5->PosicaoY = 350;
 
-        if(player->equip5->qte_associado != 0) al_draw_textf(font2,color, 520 + 22, 350 + 60, 0,"%d", player->equip5->qte_associado);
-        else if(player->equip5->var_equip->mirror_shield_cont > 0) Desenha_MS_contador(player->equip5,font2,520,350);
+        DesenhaEquipStats(player->equip5,520,350,true,jogador,color,font2);
     }
     if(player->equip6 != NULL) {
         al_draw_scaled_bitmap(player->equip6->origem->bmp,0,0,240,360,575,350,50,75,0);
         player->equip6->PosicaoX = 575;
         player->equip6->PosicaoY = 350;
 
-        if(player->equip6->qte_associado != 0) al_draw_textf(font2,color, 575 + 22, 350 + 60, 0,"%d", player->equip6->qte_associado);
-        else if(player->equip6->var_equip->mirror_shield_cont > 0) Desenha_MS_contador(player->equip6,font2,575,350);
+        DesenhaEquipStats(player->equip6,575,350,true,jogador,color,font2);
     }
     if(player->equip7 != NULL) {
         al_draw_scaled_bitmap(player->equip7->origem->bmp,0,0,240,360,630,350,50,75,0);
         player->equip7->PosicaoX = 630;
         player->equip7->PosicaoY = 350;
 
-        if(player->equip7->qte_associado != 0) al_draw_textf(font2,color, 630 + 22, 350 + 60, 0,"%d", player->equip7->qte_associado);
-        else if(player->equip7->var_equip->mirror_shield_cont > 0) Desenha_MS_contador(player->equip7,font2,630,350);
+        DesenhaEquipStats(player->equip7,630,350,true,jogador,color,font2);
     }
     if(player->monstro1 != NULL) {
         al_draw_scaled_bitmap(player->monstro1->origem->bmp,0,0,240,360,300,270,50,75,0);
@@ -3771,6 +3767,15 @@ void DestroyCard(struct Deck *card,struct Player *jogador,struct Player *adversa
     }
 }
 
+void ForceDestroyCard(struct CARD **card, struct Player *jogador,struct Player *adversario) {
+    struct Deck *aux;
+
+    aux = (struct Deck *)malloc(sizeof(struct Deck));
+    aux->card = *card;
+    DestroyCard(aux,jogador,adversario);
+    *card = NULL;
+}
+
 void DiscardCard(int id_acao,struct Card **buffer,bool *fim,struct StatusBox_bitmaps *sbox,ALLEGRO_BITMAP *prompt,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,ALLEGRO_BITMAP *apontador,int *rolagem,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
     bool toggle = false;
     struct Coordenadas *lista,*aux,*aux2 = NULL;
@@ -3838,18 +3843,19 @@ void RevelaCarta(char *msg,struct CARD *card,int id_acao,struct Card **buffer,bo
     AtualizaMesa(true,NULL,id_acao,-1,0,buffer,fim,sbox,prompt,select_card,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,pont,jogador,adversario,display,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer,rolagem,NULL,-1,-1,0,-1,NULL,NULL);
 }
 
-void DiscardRandomCard(int id_acao,struct Card **buffer,bool *fim,struct StatusBox_bitmaps *sbox,ALLEGRO_BITMAP *prompt,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,ALLEGRO_BITMAP *apontador,int *rolagem,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
+bool DiscardRandomCard(struct Deck *deck,int id_acao,struct Card **buffer,bool *fim,struct StatusBox_bitmaps *sbox,ALLEGRO_BITMAP *prompt,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,ALLEGRO_BITMAP *apontador,int *rolagem,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
     struct Deck *aux3,*aux4 = NULL;
-    int aleatorio;
+    int aleatorio,cont = 0;
 
-    if(jogador->hand->quantidade == 0) return;
+    while(aux3->prox != NULL) {
+        aux3 = aux3->prox;
+        cont++;
+    }
+    if(cont == 0) return(false);
 
+    aleatorio = rand() % cont;
 
-    //UTILIZAR menu de cards para escolher card a ser deletado? Nao, pois nao poder haver a opcao de ignorar deletar card!
-
-    aleatorio = rand() % jogador->hand->quantidade;
-
-    aux3 = jogador->hand->inicio;
+    aux3 = deck;
     while(aleatorio > 0) {
         aux4 = aux3;
         aux3 = aux3->prox;
@@ -3861,14 +3867,54 @@ void DiscardRandomCard(int id_acao,struct Card **buffer,bool *fim,struct StatusB
     if(aux4 != NULL) aux4->prox = aux3->prox;   //aux3: card a descartar.
     else {
         aux4 = aux3->prox;
-        jogador->hand->inicio = aux4;
+        deck = aux4;
     }
 
     DestroyCard(aux3,jogador,adversario);
-    jogador->hand->quantidade--;
 
     AtualizaMesa(true,NULL,id_acao,-1,0,buffer,fim,sbox,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,apontador,jogador,adversario,display,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer,rolagem,NULL,-1,-1,0,-1,NULL,NULL);
     //al_rest(0.15);
+    return(true);
+}
+
+bool DiscardRandomAssocCard(CardAssociado deck,int id_acao,struct Card **buffer,bool *fim,struct StatusBox_bitmaps *sbox,ALLEGRO_BITMAP *prompt,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,ALLEGRO_BITMAP *apontador,int *rolagem,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
+    CardAssociado aux3,aux4 = NULL;
+    int aleatorio,cont = 0;
+
+    aux3 = deck;
+    while(aux3->prox != NULL) {
+        aux3 = aux3->prox;
+        cont++;
+    }
+    if(cont == 0) return(false);
+
+    aleatorio = rand() % cont;
+
+    aux3 = deck;
+    while(aleatorio > 0) {
+        aux4 = aux3;
+        aux3 = aux3->prox;
+        aleatorio--;
+    }
+
+    RevelaCarta("RANDOMLY discarded:",aux3->deck->card,id_acao,buffer,fim,sbox,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,apontador,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer,rolagem);
+
+    if(aux4 != NULL) aux4->prox = aux3->prox;   //aux3: card a descartar.
+    else {
+        aux4 = aux3->prox;
+        deck = aux4;
+    }
+
+    DestroyCard(aux3->deck,jogador,adversario);
+    free(aux3);
+
+    AtualizaMesa(true,NULL,id_acao,-1,0,buffer,fim,sbox,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,apontador,jogador,adversario,display,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer,rolagem,NULL,-1,-1,0,-1,NULL,NULL);
+    //al_rest(0.15);
+    return(true);
+}
+
+void DiscardRandomHandCard(int id_acao,struct Card **buffer,bool *fim,struct StatusBox_bitmaps *sbox,ALLEGRO_BITMAP *prompt,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,ALLEGRO_BITMAP *apontador,int *rolagem,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
+    if(DiscardRandomCard(jogador->hand->inicio,id_acao,buffer,fim,sbox,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,jogador,adversario,display,fundo,font,font2,color,apontador,rolagem,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer)) jogador->hand->quantidade--;
 }
 
 void OlhaCarta(int id_acao,struct Card **buffer,bool *fim,struct StatusBox_bitmaps *sbox,ALLEGRO_BITMAP *prompt,ALLEGRO_BITMAP *select_card,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,ALLEGRO_BITMAP *pont,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer,int *rolagem) {    //OK!
@@ -4191,6 +4237,10 @@ bool GLpresente(struct Player *jogador) {
 #include "../cards/headers/mystic_spell.c"
 #include "../cards/headers/great_fairys_bless.c"
 #include "../cards/headers/keese.c"
+#include "../cards/headers/fairy_bow.c"
+#include "../cards/headers/giants_knife.c"
+#include "../cards/headers/bari.c"
+#include "../cards/headers/biri.c"
 
 void RecuperaZeroHP(bool *fim,struct Player *adversario) {
     if(*fim == true) return;
@@ -4367,6 +4417,11 @@ bool ehMonstro(struct CARD *card) {
     else return(false);
 }
 
+bool ehCharacter(struct CARD *card) {
+    if(card->origem->character != NULL) return(true);
+    else return(false);
+}
+
 bool Possui_mobslot(struct Player *jogador) {
     if(jogador->mesa->monstro1 == NULL) return(true);
     if(jogador->mesa->monstro2 == NULL) return(true);
@@ -4434,6 +4489,11 @@ void EquipBuff(bool *usa_weapon,int id_acao,bool aplicavel,struct CARD *atacante
             *damage = *damage + 10;
             printf("BUFF: GOLDEN SCALE\n");
         }
+        else if(card->origem->colecao == FAIRY_BOW && atacante != NULL && ehCharacter(atacante)) {
+            *damage = *damage + 10;
+            printf("BUFF: FAIRY BOW\n");
+        }
+
         else if(card->var_equip->master_sword_cont > 0 && atacante->origem->character != NULL && aplicavel == true) master_sword_acao(usa_weapon,id_acao,buffer,fim_de_jogo,card,damage,rolagem,sbox,selecao,roll_bar,fundo_carta,fundo_menu,prompt,deck_meio,deck_cheio,bmp,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
         else if(card->var_equip->skull_mask_cont > 0 && atacante->origem->character != NULL && aplicavel == true) skull_mask_acao(id_acao,buffer,fim_de_jogo,card,damage,rolagem,sbox,selecao,roll_bar,fundo_carta,fundo_menu,prompt,deck_meio,deck_cheio,bmp,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
         else if(card->var_equip->fairy_slingshot_cont > 0 && atacante->origem->character != NULL && aplicavel == true) fairy_slingshot_acao(usa_weapon,id_acao,buffer,fim_de_jogo,card,damage,rolagem,sbox,selecao,roll_bar,fundo_carta,fundo_menu,prompt,deck_meio,deck_cheio,bmp,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
@@ -4441,6 +4501,7 @@ void EquipBuff(bool *usa_weapon,int id_acao,bool aplicavel,struct CARD *atacante
         else if(card->var_equip->golden_gauntlets_cont > 0 && atacante->origem->character != NULL && aplicavel == true && jogador->var_tactic->_1trl_gauntlet_cont == 0) golden_gauntlets_acao(id_acao,buffer,fim_de_jogo,card,damage,rolagem,sbox,selecao,roll_bar,fundo_carta,fundo_menu,prompt,deck_meio,deck_cheio,bmp,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
         else if(card->var_equip->bomb_cont > 0 && atacante->origem->character != NULL && aplicavel == true) bomb_acao(usa_weapon,id_acao,buffer,fim_de_jogo,card,damage,rolagem,sbox,selecao,roll_bar,fundo_carta,fundo_menu,prompt,deck_meio,deck_cheio,bmp,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
         else if(card->var_equip->boomerang_cont > 0 && atacante->origem->character != NULL && aplicavel == true) boomerang_acao(usa_weapon,id_acao,buffer,fim_de_jogo,card,damage,rolagem,sbox,selecao,roll_bar,fundo_carta,fundo_menu,prompt,deck_meio,deck_cheio,bmp,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        else if(card->var_equip->giants_knife_cont > 0 && atacante->origem->character != NULL && aplicavel == true) giants_knife_acao(usa_weapon,id_acao,buffer,fim_de_jogo,card,damage,rolagem,sbox,selecao,roll_bar,fundo_carta,fundo_menu,prompt,deck_meio,deck_cheio,bmp,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
         else if(card->var_equip->magic_beans_bool == true && atacante->origem->character != NULL) {
             *damage = *damage + 10;
             printf("BUFF: MAGIC BEANS\n");
@@ -4673,6 +4734,9 @@ int BalanceamentoAtaque(bool *usa_weapon,int id_acao,bool aplicavel,struct Card 
         damage += (30*atacante->var_monster->giant_leever_bool);
         if(atacante->var_monster->giant_leever_bool > 0) printf("BUFF: GIANT LEEVER CALL\n");
 
+        damage += (30*atacante->var_monster->biri_bool);
+        if(atacante->var_monster->biri_bool > 0) printf("BUFF: BIRI CALL\n");
+
         damage += (20*atacante->var_monster->rage_buff_bool);
         if(atacante->var_monster->rage_buff_bool > 0) printf("BUFF: RAGE BUFF\n");
 
@@ -4808,10 +4872,10 @@ int BalanceamentoAtaque(bool *usa_weapon,int id_acao,bool aplicavel,struct Card 
             printf("BUFF: GERUDO GUARD\n");
         }
 
-        if(jogador->var_tactic->blue_potion_cont > 0) {
+        /* if(jogador->var_tactic->blue_potion_cont > 0) {
             damage += (10 * jogador->var_tactic->blue_potion_cont);
             printf("BUFF: BLUE POTION x %d\n",jogador->var_tactic->blue_potion_cont);
-        }
+        } */
 
         if(jogador->var_tactic->char_withdrawal_cont > 0) {
             damage += (10*jogador->var_tactic->char_withdrawal_cont);
@@ -5077,7 +5141,7 @@ void EsvaziaBuffs(struct CARD *card) {
     card->buff_list = aux;
 }
 
-bool Attack(int id_acao,bool prevent,bool counter,struct Card **buffer,bool *fim_de_jogo,int *rolagem,bool *ko,int restricoes,int origem_ataque,int monstro_fixo,struct StatusBox_bitmaps *sbox,struct Player *jogador,struct Player *adversario,struct CARD *atacante,int dano_inicial,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *prompt,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,ALLEGRO_BITMAP *bmp,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {  //INCOMPLETAS funcoes interiores
+bool Attack(int id_acao,bool prevent,bool counter,struct Card **buffer,bool *fim_de_jogo,int *rolagem,bool *ko,int restricoes,int origem_ataque,int monstro_fixo,struct StatusBox_bitmaps *sbox,struct Player *jogador,struct Player *adversario,struct CARD *atacante,struct CARD **alvo,int dano_inicial,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *prompt,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,ALLEGRO_BITMAP *bmp,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {  //INCOMPLETAS funcoes interiores
     //BOOL KO tem funcao unica para char. act HURRICANE!
     //ALTERAR CONFERE ATK E DEF!
 
@@ -5087,7 +5151,7 @@ bool Attack(int id_acao,bool prevent,bool counter,struct Card **buffer,bool *fim
         1- Character Action
         2- Tactic
         3- Equip
-        4- N/A (usado por DestroyMonster)
+        4- N/A (usado por DestroyMonster + DOTs)
 
     RESTRICOES:
         0- Sem limites
@@ -5393,6 +5457,8 @@ bool Attack(int id_acao,bool prevent,bool counter,struct Card **buffer,bool *fim
 
     printf("hmmm... ");
     printf("HP atual: %d\t\tDano total: %d\n",monstro->HP,damage);
+    if(alvo != NULL) *alvo = monstro;
+
     final = monstro->HP - damage;
     if(final > monstro->HP) final = monstro->HP;
     else if(final < 0) final = 0;
@@ -5450,16 +5516,16 @@ bool Attack(int id_acao,bool prevent,bool counter,struct Card **buffer,bool *fim
             if(monstro->turn_silenced == 0) {
                 bool ko2 = false;
                 if(monstro->origem->colecao == BABY_DODONGO) {
-                    if(jogador->mesa->monstro1 != NULL) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,3,0,1,sbox,adversario,jogador,monstro,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-                    if(jogador->mesa->monstro2 != NULL) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,3,0,2,sbox,adversario,jogador,monstro,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-                    if(jogador->mesa->monstro3 != NULL) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,3,0,3,sbox,adversario,jogador,monstro,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-                    if(jogador->mesa->monstro4 != NULL) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,3,0,4,sbox,adversario,jogador,monstro,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-                    if(jogador->mesa->monstro5 != NULL) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,3,0,5,sbox,adversario,jogador,monstro,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-                    if(jogador->mesa->monstro6 != NULL) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,3,0,6,sbox,adversario,jogador,monstro,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-                    if(jogador->mesa->monstro7 != NULL) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,3,0,7,sbox,adversario,jogador,monstro,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-                    Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,3,0,0,sbox,adversario,jogador,monstro,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+                    if(jogador->mesa->monstro1 != NULL) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,3,0,1,sbox,adversario,jogador,monstro,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+                    if(jogador->mesa->monstro2 != NULL) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,3,0,2,sbox,adversario,jogador,monstro,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+                    if(jogador->mesa->monstro3 != NULL) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,3,0,3,sbox,adversario,jogador,monstro,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+                    if(jogador->mesa->monstro4 != NULL) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,3,0,4,sbox,adversario,jogador,monstro,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+                    if(jogador->mesa->monstro5 != NULL) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,3,0,5,sbox,adversario,jogador,monstro,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+                    if(jogador->mesa->monstro6 != NULL) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,3,0,6,sbox,adversario,jogador,monstro,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+                    if(jogador->mesa->monstro7 != NULL) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,3,0,7,sbox,adversario,jogador,monstro,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+                    Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,3,0,0,sbox,adversario,jogador,monstro,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
                 }
-                else if(monstro->origem->colecao == SHABOM) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,0,0,0,sbox,adversario,jogador,monstro,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+                else if(monstro->origem->colecao == SHABOM) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,&ko2,0,0,0,sbox,adversario,jogador,monstro,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
                 else if(monstro->origem->colecao == BUSINESS_SCRUB) business_scrub_acao(id_acao,buffer,fim_de_jogo,rolagem,sbox,adversario,jogador,display,prompt,selecao,roll_bar,bmp,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
             }
 
@@ -5496,6 +5562,7 @@ bool Attack(int id_acao,bool prevent,bool counter,struct Card **buffer,bool *fim
             adversario->var_tactic->rauru_cont++;   //conta qte de monstros destruidos no turno.
 
             if(aux->card->origem->colecao == LEEVER && aux->card->turn_silenced == 0) adversario->var_tactic->giant_leever_call_bool = true;
+            else if(aux->card->origem->colecao == BARI && aux->card->turn_silenced == 0) adversario->var_tactic->biri_call_bool = true;
             else if(monstro->origem->colecao == BIG_DEKU_BABA && aux->card->turn_silenced == 0) big_deku_baba_acao(buffer,fim_de_jogo,rolagem,sbox,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,bmp,adversario,jogador,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
 
             if(atacante != NULL && atacante->origem->colecao == BEAMOS && atacante->turn_silenced == 0) DrawCard(id_acao,buffer,fim_de_jogo,rolagem,sbox,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,bmp,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
@@ -5516,15 +5583,23 @@ bool Attack(int id_acao,bool prevent,bool counter,struct Card **buffer,bool *fim
         if(counter == false && restricoes != 4) {
             //COUNTER-ATTACKs: ocorrem somente se o ataque original ja nao for counter.
 
-            if(monstro->origem->colecao == BIGOCTO && monstro->turn_silenced == 0 && damage > 0) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,ko,0,0,0,sbox,adversario,jogador,monstro,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+            if(monstro->origem->colecao == BIGOCTO && monstro->turn_silenced == 0 && damage > 0) Attack(-1,true,true,buffer,fim_de_jogo,rolagem,ko,0,0,0,sbox,adversario,jogador,monstro,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
             else if(monstro->origem->colecao == TAILPASARAN && origem_ataque == 0 && monstro->turn_silenced == 0) {
                 slot_atacante = BuscaAtacante(jogador,atacante);
-                Attack(-1,true,true,buffer,fim_de_jogo,rolagem,ko,3,0,slot_atacante,sbox,adversario,jogador,monstro,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+                Attack(-1,true,true,buffer,fim_de_jogo,rolagem,ko,3,0,slot_atacante,sbox,adversario,jogador,monstro,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+            }
+            else if(monstro->origem->colecao == BARI && origem_ataque == 0 && monstro->turn_silenced == 0) {
+                slot_atacante = BuscaAtacante(jogador,atacante);
+                Attack(-1,true,true,buffer,fim_de_jogo,rolagem,ko,3,0,slot_atacante,sbox,adversario,jogador,monstro,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+            }
+            else if(monstro->origem->colecao == BIRI && origem_ataque == 0 && monstro->turn_silenced == 0) {
+                slot_atacante = BuscaAtacante(jogador,atacante);
+                Attack(-1,true,true,buffer,fim_de_jogo,rolagem,ko,3,0,slot_atacante,sbox,adversario,jogador,monstro,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
             }
             else if(monstro->origem->colecao == POE_SISTERS && monstro->HP <= 20 && monstro->turn_silenced == 0) {
                 slot_atacante = BuscaAtacante(jogador,atacante);
                 printf("Detectou slot %d\n",slot_atacante);
-                Attack(-1,true,true,buffer,fim_de_jogo,rolagem,ko,3,0,slot_atacante,sbox,adversario,jogador,monstro,30,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+                Attack(-1,true,true,buffer,fim_de_jogo,rolagem,ko,3,0,slot_atacante,sbox,adversario,jogador,monstro,NULL,30,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
             }
         }
 
@@ -5589,13 +5664,13 @@ void DestroyMonster(int id_acao,struct Card **buffer,int *rolagem,struct StatusB
 
     escolhido = MenuCards("DESTROY a monster...",true,menu,fim_de_jogo,jogador,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,fundo,font2,font,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     if(escolhido != NULL) {
-        if(escolhido->card == adversario->mesa->monstro1) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,4,1,sbox,jogador,adversario,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        else if(escolhido->card == adversario->mesa->monstro2) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,4,2,sbox,jogador,adversario,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        else if(escolhido->card == adversario->mesa->monstro3) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,4,3,sbox,jogador,adversario,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        else if(escolhido->card == adversario->mesa->monstro4) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,4,4,sbox,jogador,adversario,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        else if(escolhido->card == adversario->mesa->monstro5) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,4,5,sbox,jogador,adversario,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        else if(escolhido->card == adversario->mesa->monstro6) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,4,6,sbox,jogador,adversario,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        else Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,4,7,sbox,jogador,adversario,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        if(escolhido->card == adversario->mesa->monstro1) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,4,1,sbox,jogador,adversario,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        else if(escolhido->card == adversario->mesa->monstro2) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,4,2,sbox,jogador,adversario,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        else if(escolhido->card == adversario->mesa->monstro3) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,4,3,sbox,jogador,adversario,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        else if(escolhido->card == adversario->mesa->monstro4) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,4,4,sbox,jogador,adversario,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        else if(escolhido->card == adversario->mesa->monstro5) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,4,5,sbox,jogador,adversario,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        else if(escolhido->card == adversario->mesa->monstro6) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,4,6,sbox,jogador,adversario,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        else Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,4,7,sbox,jogador,adversario,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     }
 
     Menu_Finaliza(menu);
@@ -5620,7 +5695,7 @@ void EfetuaDOT_slot(struct CARD *card,int slot,struct Card **buffer,bool *fim_de
 
     aux = card->dot_list;
     while(aux->prox != NULL && MonstroEmSlot(adversario,slot)) {
-        Attack(-1,false,true,buffer,fim_de_jogo,rolagem,&ko,4,0,slot,sbox,jogador,adversario,NULL,aux->dot,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        Attack(-1,false,true,buffer,fim_de_jogo,rolagem,&ko,4,4,slot,sbox,jogador,adversario,NULL,NULL,aux->dot,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
         aux->turns_left--;
 
         if(aux->turns_left == 0) {
@@ -5696,21 +5771,21 @@ void ChargePass(int id_acao,struct Card **buffer,bool *fim_de_jogo,int *rolagem,
     bool ko = false;
 
     //aplica-se como DOT(4), nao TACTIC(3), pq intencao eh destruir o alvo, e nao danifica-lo.
-    if(adversario->mesa->monstro1 != NULL && strcmp(adversario->mesa->monstro1->origem->elemento,elemento) != 0 && !EhBoss(adversario->mesa->monstro1)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,1,sbox,jogador,adversario,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    if(adversario->mesa->monstro2 != NULL && strcmp(adversario->mesa->monstro2->origem->elemento,elemento) != 0 && !EhBoss(adversario->mesa->monstro2)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,2,sbox,jogador,adversario,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    if(adversario->mesa->monstro3 != NULL && strcmp(adversario->mesa->monstro3->origem->elemento,elemento) != 0 && !EhBoss(adversario->mesa->monstro3)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,3,sbox,jogador,adversario,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    if(adversario->mesa->monstro4 != NULL && strcmp(adversario->mesa->monstro4->origem->elemento,elemento) != 0 && !EhBoss(adversario->mesa->monstro4)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,4,sbox,jogador,adversario,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    if(adversario->mesa->monstro5 != NULL && strcmp(adversario->mesa->monstro5->origem->elemento,elemento) != 0 && !EhBoss(adversario->mesa->monstro5)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,5,sbox,jogador,adversario,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    if(adversario->mesa->monstro6 != NULL && strcmp(adversario->mesa->monstro6->origem->elemento,elemento) != 0 && !EhBoss(adversario->mesa->monstro6)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,6,sbox,jogador,adversario,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    if(adversario->mesa->monstro7 != NULL && strcmp(adversario->mesa->monstro7->origem->elemento,elemento) != 0 && !EhBoss(adversario->mesa->monstro7)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,7,sbox,jogador,adversario,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    if(adversario->mesa->monstro1 != NULL && strcmp(adversario->mesa->monstro1->origem->elemento,elemento) != 0 && !EhBoss(adversario->mesa->monstro1)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,1,sbox,jogador,adversario,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    if(adversario->mesa->monstro2 != NULL && strcmp(adversario->mesa->monstro2->origem->elemento,elemento) != 0 && !EhBoss(adversario->mesa->monstro2)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,2,sbox,jogador,adversario,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    if(adversario->mesa->monstro3 != NULL && strcmp(adversario->mesa->monstro3->origem->elemento,elemento) != 0 && !EhBoss(adversario->mesa->monstro3)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,3,sbox,jogador,adversario,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    if(adversario->mesa->monstro4 != NULL && strcmp(adversario->mesa->monstro4->origem->elemento,elemento) != 0 && !EhBoss(adversario->mesa->monstro4)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,4,sbox,jogador,adversario,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    if(adversario->mesa->monstro5 != NULL && strcmp(adversario->mesa->monstro5->origem->elemento,elemento) != 0 && !EhBoss(adversario->mesa->monstro5)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,5,sbox,jogador,adversario,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    if(adversario->mesa->monstro6 != NULL && strcmp(adversario->mesa->monstro6->origem->elemento,elemento) != 0 && !EhBoss(adversario->mesa->monstro6)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,6,sbox,jogador,adversario,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    if(adversario->mesa->monstro7 != NULL && strcmp(adversario->mesa->monstro7->origem->elemento,elemento) != 0 && !EhBoss(adversario->mesa->monstro7)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,7,sbox,jogador,adversario,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
 
-    if(jogador->mesa->monstro1 != NULL && strcmp(jogador->mesa->monstro1->origem->elemento,elemento) != 0 && !EhBoss(jogador->mesa->monstro1)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,1,sbox,adversario,jogador,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    if(jogador->mesa->monstro2 != NULL && strcmp(jogador->mesa->monstro2->origem->elemento,elemento) != 0 && !EhBoss(jogador->mesa->monstro2)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,2,sbox,adversario,jogador,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    if(jogador->mesa->monstro3 != NULL && strcmp(jogador->mesa->monstro3->origem->elemento,elemento) != 0 && !EhBoss(jogador->mesa->monstro3)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,3,sbox,adversario,jogador,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    if(jogador->mesa->monstro4 != NULL && strcmp(jogador->mesa->monstro4->origem->elemento,elemento) != 0 && !EhBoss(jogador->mesa->monstro4)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,4,sbox,adversario,jogador,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    if(jogador->mesa->monstro5 != NULL && strcmp(jogador->mesa->monstro5->origem->elemento,elemento) != 0 && !EhBoss(jogador->mesa->monstro5)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,5,sbox,adversario,jogador,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    if(jogador->mesa->monstro6 != NULL && strcmp(jogador->mesa->monstro6->origem->elemento,elemento) != 0 && !EhBoss(jogador->mesa->monstro6)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,6,sbox,adversario,jogador,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    if(jogador->mesa->monstro7 != NULL && strcmp(jogador->mesa->monstro7->origem->elemento,elemento) != 0 && !EhBoss(jogador->mesa->monstro7)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,7,sbox,adversario,jogador,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    if(jogador->mesa->monstro1 != NULL && strcmp(jogador->mesa->monstro1->origem->elemento,elemento) != 0 && !EhBoss(jogador->mesa->monstro1)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,1,sbox,adversario,jogador,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    if(jogador->mesa->monstro2 != NULL && strcmp(jogador->mesa->monstro2->origem->elemento,elemento) != 0 && !EhBoss(jogador->mesa->monstro2)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,2,sbox,adversario,jogador,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    if(jogador->mesa->monstro3 != NULL && strcmp(jogador->mesa->monstro3->origem->elemento,elemento) != 0 && !EhBoss(jogador->mesa->monstro3)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,3,sbox,adversario,jogador,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    if(jogador->mesa->monstro4 != NULL && strcmp(jogador->mesa->monstro4->origem->elemento,elemento) != 0 && !EhBoss(jogador->mesa->monstro4)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,4,sbox,adversario,jogador,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    if(jogador->mesa->monstro5 != NULL && strcmp(jogador->mesa->monstro5->origem->elemento,elemento) != 0 && !EhBoss(jogador->mesa->monstro5)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,5,sbox,adversario,jogador,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    if(jogador->mesa->monstro6 != NULL && strcmp(jogador->mesa->monstro6->origem->elemento,elemento) != 0 && !EhBoss(jogador->mesa->monstro6)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,6,sbox,adversario,jogador,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    if(jogador->mesa->monstro7 != NULL && strcmp(jogador->mesa->monstro7->origem->elemento,elemento) != 0 && !EhBoss(jogador->mesa->monstro7)) Attack(id_acao,false,false,buffer,fim_de_jogo,rolagem,&ko,4,2,7,sbox,adversario,jogador,NULL,NULL,999,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
 
     (*contador)++;
 }
@@ -5728,7 +5803,7 @@ void MonsterActions_AposTactic(struct CARD *monstro,int lado,int id_acao,struct 
 }
 
 void play_card_slot(struct CARD *card,int id_acao,struct Card **buffer,bool *fim_de_jogo,int *rolagem,bool *ko,struct StatusBox_bitmaps *sbox,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *prompt,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,ALLEGRO_BITMAP *bmp,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
-    if(card->origem->colecao == IRON_KNUCKLES) Attack(-1,true,false,buffer,fim_de_jogo,rolagem,ko,0,0,0,sbox,adversario,jogador,card,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    if(card->origem->colecao == IRON_KNUCKLES) Attack(-1,true,false,buffer,fim_de_jogo,rolagem,ko,0,0,0,sbox,adversario,jogador,card,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,bmp,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
 
 }
 
@@ -5760,7 +5835,7 @@ void PlayTactic(int id_acao,struct Deck *aux,struct Card **buffer,bool *fim,int 
         jogador->var_tactic->bless_of_triforce_cont += 1;
     }
     else if(aux->card->origem->colecao == SKULLTULAS_AMBUSH) {
-        skulltulas_ambush_acao(id_acao,buffer,fim,rolagem,sbox,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,apontador,jogador,adversario,display,fundo,font,font2,color,prompt,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        skulltulas_ambush_acao(aux->card,id_acao,buffer,fim,rolagem,sbox,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,apontador,jogador,adversario,display,fundo,font,font2,color,prompt,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     }
     else if(aux->card->origem->colecao == HEART_PIECE) {
         heart_piece_acao(id_acao,buffer,fim,rolagem,sbox,selecao,roll_bar,fundo_carta,fundo_menu,prompt,deck_meio,deck_cheio,apontador,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
@@ -5775,7 +5850,7 @@ void PlayTactic(int id_acao,struct Deck *aux,struct Card **buffer,bool *fim,int 
         EscolheCardDoDeck(id_acao,buffer,fim,rolagem,sbox,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,apontador,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     }
     else if(aux->card->origem->colecao == BOMB_RAIN) {
-        bomb_rain_acao(id_acao,buffer,fim,rolagem,sbox,jogador,adversario,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        bomb_rain_acao(aux->card,id_acao,buffer,fim,rolagem,sbox,jogador,adversario,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     }
     else if(aux->card->origem->colecao == FAIRYS_AID) {
         fairys_aid_acao(id_acao,buffer,fim,rolagem,sbox,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,apontador,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
@@ -6071,6 +6146,7 @@ void WearEquipment(struct Deck *aux,struct Card **buffer,bool *fim,int *rolagem,
     else if(aux->card->origem->colecao == FAIRY_SLINGSHOT) aux->card->var_equip->fairy_slingshot_cont = 1;
     else if(aux->card->origem->colecao == SKULL_MASK) aux->card->var_equip->skull_mask_cont = 1;
     else if(aux->card->origem->colecao == BOOMERANG) aux->card->var_equip->boomerang_cont = 1;
+    else if(aux->card->origem->colecao == GIANTS_KNIFE) {aux->card->var_equip->giants_knife_cont = 2; aux->card->var_equip->giants_knife_uses = 0;}
     else if(aux->card->origem->colecao == SILVER_GAUNTLETS) aux->card->var_equip->silver_gauntlets_cont = 1;
     else if(aux->card->origem->colecao == GOLDEN_GAUNTLETS) aux->card->var_equip->golden_gauntlets_cont = 1;
     else if(aux->card->origem->colecao == ZORAS_SAPPHIRE) zoras_sapphire_acao(jogador,adversario);
@@ -6276,7 +6352,7 @@ bool LocateX(bool locked,int id_acao,struct Card **buffer,bool *fim,int *rolagem
 
 void SlotMonsterTurn(int id_acao,struct Card **buffer,struct CARD *card,bool *fim_de_jogo,int *rolagem,bool *ko,struct StatusBox_bitmaps *sbox,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,ALLEGRO_BITMAP *selecao,ALLEGRO_BITMAP *roll_bar,ALLEGRO_BITMAP *fundo_carta,ALLEGRO_BITMAP *fundo_menu,ALLEGRO_BITMAP *deck_meio,ALLEGRO_BITMAP *deck_cheio,ALLEGRO_BITMAP *fundo,ALLEGRO_BITMAP *prompt,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,ALLEGRO_BITMAP *apontador,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
     if(*fim_de_jogo == true) return;
-    if(Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,0,0,0,sbox,jogador,adversario,card,card->attack,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer)) card->var_monster->qte_ataques++;
+    if(Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,0,0,0,sbox,jogador,adversario,card,NULL,card->attack,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer)) card->var_monster->qte_ataques++;
     //else al_rest(0.15);
 }
 
@@ -6388,10 +6464,10 @@ void AplicaSpawnEffects(int id_acao,struct Card **buffer,bool *fim_de_jogo,int *
         if(slot->origem->colecao == TWINROVA) slot->var_monster->twinrova_cont = 0;
         else if(slot->origem->colecao == LIZALFOS) slot->var_monster->lizalfos_cont = 0;
         else if(slot->origem->colecao == DEAD_HAND) slot->var_monster->dead_hand_cont = 2;
-        else if(slot->origem->colecao == GUAY && slot->turn_silenced == 0) Attack(id_acao,true,true,buffer,fim_de_jogo,rolagem,&ko,0,0,0,sbox,jogador,adversario,slot,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        else if(slot->origem->colecao == TAILPASARAN && slot->turn_silenced == 0) Attack(id_acao,true,true,buffer,fim_de_jogo,rolagem,&ko,0,0,0,sbox,jogador,adversario,slot,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        else if(slot->origem->colecao == STINGER && slot->turn_silenced == 0) Attack(id_acao,true,true,buffer,fim_de_jogo,rolagem,&ko,0,0,0,sbox,jogador,adversario,slot,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        else if(slot->origem->colecao == PEAHAT && slot->turn_silenced == 0) Attack(id_acao,true,true,buffer,fim_de_jogo,rolagem,&ko,0,0,0,sbox,jogador,adversario,slot,30,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        else if(slot->origem->colecao == GUAY && slot->turn_silenced == 0) Attack(id_acao,true,true,buffer,fim_de_jogo,rolagem,&ko,0,0,0,sbox,jogador,adversario,slot,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        else if(slot->origem->colecao == TAILPASARAN && slot->turn_silenced == 0) Attack(id_acao,true,true,buffer,fim_de_jogo,rolagem,&ko,0,0,0,sbox,jogador,adversario,slot,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        else if(slot->origem->colecao == STINGER && slot->turn_silenced == 0) Attack(id_acao,true,true,buffer,fim_de_jogo,rolagem,&ko,0,0,0,sbox,jogador,adversario,slot,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        else if(slot->origem->colecao == PEAHAT && slot->turn_silenced == 0) Attack(id_acao,true,true,buffer,fim_de_jogo,rolagem,&ko,0,0,0,sbox,jogador,adversario,slot,NULL,30,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
         else if(slot->origem->colecao == REDEAD && slot->turn_silenced == 0) redead_acao(slot,id_acao,buffer,fim_de_jogo,rolagem,sbox,jogador,adversario,display,prompt,selecao,roll_bar,apontador,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
         else if(slot->origem->colecao == FREEZARD && slot->turn_silenced == 0) freezard_acao(id_acao,buffer,rolagem,sbox,selecao,roll_bar,prompt,fim_de_jogo,fundo_carta,fundo_menu,deck_meio,deck_cheio,jogador,adversario,display,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
 
@@ -6526,7 +6602,7 @@ bool SpawnX(int id_acao,bool ultimoCard,struct Card **buffer,bool *fim_de_jogo,i
         if(adversario->mesa->equip7 != NULL && adversario->mesa->equip7->origem->colecao == MASK_OF_TRUTH) mask_of_truth_acao(buffer,fim_de_jogo,sbox,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,apontador,adversario,jogador,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer,rolagem);
 
         ativo = true;
-        printf("OK\n");
+        printf("(summon) OK\n");
     }
 
     return(ativo);
@@ -6701,7 +6777,7 @@ void EfeitoInicial(struct Card **buffer,bool *fim,int *rolagem,ALLEGRO_BITMAP *s
     jogador->var_tactic->tidal_strike_bool = false;
     jogador->var_tactic->mido_bool = false;
     jogador->var_tactic->princess_ruto_bool = false;
-    jogador->var_tactic->blue_potion_cont = 0;
+    //jogador->var_tactic->blue_potion_cont = 0;
 
     jogador->var_tactic->channeled_strike_charged_cont = jogador->var_tactic->channeled_strike_cont;
     jogador->var_tactic->channeled_strike_cont = 0;
@@ -6823,12 +6899,6 @@ void EfeitoInicio(struct Card **buffer,bool *fim,struct StatusBox_bitmaps *sbox,
     adversario->var_tactic->rauru_cont = 0;
     adversario->global_silence = false;
 
-    if(jogador->var_tactic->giant_leever_call_bool == true) {
-        printf("Detectou CALL\n");
-        leever_acao(-1,buffer,fim,rolagem,selecao,roll_bar,fundo_menu,fundo_carta,deck_meio,deck_cheio,pont,prompt,sbox,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        jogador->var_tactic->giant_leever_call_bool = false;
-    }
-
     if(gerudo_guard_acao(adversario)) jogador->var_tactic->gerudo_guard_bool = true;
     else jogador->var_tactic->gerudo_guard_bool = false;
 
@@ -6862,6 +6932,7 @@ void EfeitoInicio(struct Card **buffer,bool *fim,struct StatusBox_bitmaps *sbox,
     RecuperaMonsterStats(false,adversario->mesa->monstro7,buffer,fim,sbox,adversario,jogador,rolagem,prompt,selecao,roll_bar,fundo_carta,deck_meio,deck_cheio,pont,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
 
     jogador->var_tactic->bless_of_triforce_cont = 0;
+    RecuperaMonsterHP(jogador);
 
     printf("1 ");
     if(jogador->mesa->field != NULL) VerificaField(jogador->mesa->field,jogador,adversario);
@@ -6978,8 +7049,19 @@ void EfeitoInicio(struct Card **buffer,bool *fim,struct StatusBox_bitmaps *sbox,
     mirror_shield_counter(jogador->mesa->equip5,buffer,fim,rolagem,&ko,sbox,jogador,adversario,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,pont,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     mirror_shield_counter(jogador->mesa->equip6,buffer,fim,rolagem,&ko,sbox,jogador,adversario,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,pont,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     mirror_shield_counter(jogador->mesa->equip7,buffer,fim,rolagem,&ko,sbox,jogador,adversario,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,pont,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-
     printf("OK!\n");
+
+    if(jogador->var_tactic->giant_leever_call_bool == true) {
+        printf("Detectou GIANT LEEVER CALL\n");
+        leever_acao(-1,buffer,fim,rolagem,selecao,roll_bar,fundo_menu,fundo_carta,deck_meio,deck_cheio,pont,prompt,sbox,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        jogador->var_tactic->giant_leever_call_bool = false;
+    }
+
+    if(jogador->var_tactic->biri_call_bool == true) {
+        printf("Detectou BIRI CALL\n");
+        bari_acao(-1,buffer,fim,rolagem,selecao,roll_bar,fundo_menu,fundo_carta,deck_meio,deck_cheio,pont,prompt,sbox,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        jogador->var_tactic->biri_call_bool = false;
+    }
 }
 
 void mb_acao(struct CARD *equip,struct Card **buffer,bool *fim_de_jogo,int *rolagem,struct StatusBox_bitmaps *sbox,struct ALLEGRO_BITMAP *prompt,struct ALLEGRO_BITMAP *selecao,struct ALLEGRO_BITMAP *roll_bar,struct ALLEGRO_BITMAP *fundo_carta,struct ALLEGRO_BITMAP *fundo_menu,struct ALLEGRO_BITMAP *deck_meio,struct ALLEGRO_BITMAP *deck_cheio,struct ALLEGRO_BITMAP *apontador,struct Player *jogador,struct Player *adversario,ALLEGRO_DISPLAY *display,struct ALLEGRO_BITMAP *fundo,ALLEGRO_FONT *font,ALLEGRO_FONT *font2,ALLEGRO_COLOR color,bool *sair,int *posX,int *posY,int *dltZ,bool *mouse,bool *mouse2,bool *mouse_lado,int *keychar,bool *repete_keychar,ALLEGRO_EVENT_QUEUE *event_queue,ALLEGRO_TIMER *keyb_press_timer,ALLEGRO_TIMER *mouse_press_timer) {
@@ -7013,8 +7095,6 @@ void EfeitoFinal(int id_acao,struct Card **buffer,bool *fim_de_jogo,int *rolagem
     malon_acao(jogador->mesa->monstro5,id_acao,buffer,fim_de_jogo,rolagem,sbox,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,apontador,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     malon_acao(jogador->mesa->monstro6,id_acao,buffer,fim_de_jogo,rolagem,sbox,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,apontador,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     malon_acao(jogador->mesa->monstro7,id_acao,buffer,fim_de_jogo,rolagem,sbox,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,apontador,jogador,adversario,display,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-
-    RecuperaMonsterHP(jogador);
 }
 
 //NUNCA FOI APLICADA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -7139,32 +7219,32 @@ bool DetectaAcao(char *acao,int id_acao,struct Card **buffer,struct CARD *card_o
     else if(strcmp(str,"Assistance ") == 0) jogador->var_tactic->assistance_cont += 1;
     else if(strcmp(str,"Skulltulas Wrath ") == 0) jogador->var_tactic->skullwalltula_cont += 1;
 
-    else if(strcmp(str,"Thrust ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);  //lista de acoes
-    else if(strcmp(str,"Stab ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    else if(strcmp(str,"Silent Stab ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    else if(strcmp(str,"Headbutt ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    else if(strcmp(str,"Shadow Blast ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    else if(strcmp(str,"Bubble Shot ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    else if(strcmp(str,"Thrust ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);  //lista de acoes
+    else if(strcmp(str,"Stab ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    else if(strcmp(str,"Silent Stab ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    else if(strcmp(str,"Headbutt ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    else if(strcmp(str,"Shadow Blast ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    else if(strcmp(str,"Bubble Shot ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,NULL,10,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
 
-    else if(strcmp(str,"Flash Stab ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    else if(strcmp(str,"Burning Flames ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    else if(strcmp(str,"Devastating Strike ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,30,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    else if(strcmp(str,"Flash Stab ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    else if(strcmp(str,"Burning Flames ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    else if(strcmp(str,"Devastating Strike ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,NULL,30,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     else if(strcmp(str,"Hurricane ") == 0) {
-        ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-        while(ko == true) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        while(ko == true) Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     }
     else if(strcmp(str,"Shadow Rip ") == 0) ativo = bomb_bag_lvacao(id_acao,buffer,fim_de_jogo,rolagem,&ko,sbox,jogador,adversario,card_origem,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    //else if(strcmp(str,"Slash ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    else if(strcmp(str,"Spin Attack ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    else if(strcmp(str,"Goron Barrage ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    else if(strcmp(str,"Concussive Beam ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,30,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    //else if(strcmp(str,"Slash ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    else if(strcmp(str,"Spin Attack ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    else if(strcmp(str,"Goron Barrage ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    else if(strcmp(str,"Concussive Beam ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,NULL,30,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
 
-    else if(strcmp(str,"Airwave ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,1,1,0,sbox,jogador,adversario,card_origem,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    else if(strcmp(str,"Bright Strike ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,1,1,0,sbox,jogador,adversario,card_origem,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    else if(strcmp(str,"Airwave ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,1,1,0,sbox,jogador,adversario,card_origem,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    else if(strcmp(str,"Bright Strike ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,1,1,0,sbox,jogador,adversario,card_origem,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
 
-    else if(strcmp(str,"Flash Strike ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,2,1,0,sbox,jogador,adversario,card_origem,30,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    else if(strcmp(str,"Gerudo Assault ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,2,1,0,sbox,jogador,adversario,card_origem,40,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
-    else if(strcmp(str,"Air Strike ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    else if(strcmp(str,"Flash Strike ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,2,1,0,sbox,jogador,adversario,card_origem,NULL,30,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    else if(strcmp(str,"Gerudo Assault ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,2,1,0,sbox,jogador,adversario,card_origem,NULL,40,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    else if(strcmp(str,"Air Strike ") == 0) ativo = Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,card_origem,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
 
     else if(strcmp(str,"Summon X ") == 0) ativo = SpawnX(id_acao,false,buffer,fim_de_jogo,rolagem,sbox,jogador,adversario,jogador->level,display,prompt,selecao,roll_bar,apontador,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     else if(strcmp(str,"Summon 60 ") == 0) ativo = SpawnX(id_acao,false,buffer,fim_de_jogo,rolagem,sbox,jogador,adversario,60,display,prompt,selecao,roll_bar,apontador,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
@@ -7177,6 +7257,7 @@ bool DetectaAcao(char *acao,int id_acao,struct Card **buffer,struct CARD *card_o
     else if(strcmp(str,"Rapid Action X ") == 0) ativo = RapidActionX(id_acao,buffer,fim_de_jogo,rolagem,sbox,NULL,jogador,adversario,jogador->level,display,prompt,selecao,roll_bar,apontador,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
 
     else if(strcmp(str,"Equip 40 ") == 0) ativo = EquipX(buffer,fim_de_jogo,rolagem,0,id_acao,sbox,jogador,adversario,40,display,prompt,selecao,roll_bar,apontador,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+    else if(strcmp(str,"Equip 60 ") == 0) ativo = EquipX(buffer,fim_de_jogo,rolagem,0,id_acao,sbox,jogador,adversario,60,display,prompt,selecao,roll_bar,apontador,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     else if(strcmp(str,"Equip 70 ") == 0) ativo = EquipX(buffer,fim_de_jogo,rolagem,0,id_acao,sbox,jogador,adversario,70,display,prompt,selecao,roll_bar,apontador,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     else if(strcmp(str,"Equip X ") == 0) ativo = EquipX(buffer,fim_de_jogo,rolagem,0,id_acao,sbox,jogador,adversario,jogador->level,display,prompt,selecao,roll_bar,apontador,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     else if(strcmp(str,"Gear Up ") == 0) ativo = EquipX(buffer,fim_de_jogo,rolagem,1,id_acao,sbox,jogador,adversario,jogador->level,display,prompt,selecao,roll_bar,apontador,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);

@@ -24,6 +24,7 @@ struct VariaveisMONSTER {
     bool spike_bool;
     bool baby_dodongo_bool;
     bool giant_leever_bool;
+    bool biri_bool;
 
     bool big_poe_bool;
     bool dead_hand_bool;
@@ -63,7 +64,7 @@ struct VariaveisTACTIC {
 
     short int buff_cont;
     short int rauru_cont;
-    short int blue_potion_cont;
+    //short int blue_potion_cont;
     short int assistance_cont;
     short int skullwalltula_cont;
 
@@ -74,17 +75,20 @@ struct VariaveisTACTIC {
     bool ganondorf_bool;
     bool princess_ruto_bool;
     bool giant_leever_call_bool;
+    bool biri_call_bool;
 };
 
 struct VariaveisEQUIP {
     int mirror_shield_dmg;
     int mirror_shield_cont;
     int bomb_dmg;
+    int giants_knife_uses;
 
     int master_sword_cont;
     int fairy_slingshot_cont;
     int skull_mask_cont;
     int boomerang_cont;
+    int giants_knife_cont;
     int silver_gauntlets_cont;
     int golden_gauntlets_cont;
     int bomb_cont;

@@ -153,6 +153,10 @@ int ConverteNomeParaId(char *nome,struct COLECAO *colecao) {
     else if(strcmp(nome,"Mystic Spell") == 0) card = colecao->mystic_spell->colecao;
     else if(strcmp(nome,"Great Fairys Bless") == 0) card = colecao->great_fairys_bless->colecao;
     else if(strcmp(nome,"Keese") == 0) card = colecao->keese->colecao;
+    else if(strcmp(nome,"Fairy Bow") == 0) card = colecao->fairy_bow->colecao;
+    else if(strcmp(nome,"Giants Knife") == 0) card = colecao->giants_knife->colecao;
+    else if(strcmp(nome,"Bari") == 0) card = colecao->bari->colecao;
+    else if(strcmp(nome,"Biri") == 0) card = colecao->biri->colecao;
 
     else {
         card = -1;
@@ -317,6 +321,10 @@ void CarregaCard(int id,struct Card **card_carregado,struct COLECAO *colecao) {
     else if(id == MYSTIC_SPELL) card = colecao->mystic_spell;
     else if(id == GREAT_FAIRYS_BLESS) card = colecao->great_fairys_bless;
     else if(id == KEESE) card = colecao->keese;
+    else if(id == FAIRY_BOW) card = colecao->fairy_bow;
+    else if(id == GIANTS_KNIFE) card = colecao->giants_knife;
+    else if(id == BARI) card = colecao->bari;
+    else if(id == BIRI) card = colecao->biri;
 
 //    else if(id == ) card->origem = colecao-;
     //VAI CARREGAR NO JOGOS TODOS OS CARDS QUE TIVEREM O NOME CORRESPONDENTE!
@@ -511,14 +519,14 @@ void Equip_CharAction(struct CARD *equip,struct Card **buffer,bool *fim_de_jogo,
             printf("ATTACK: purple poe remnant\n");
             val = TotalMobsEmCampo(jogador,adversario,1);
 
-            if(val > 0) Attack(-1,true,false,buffer,fim_de_jogo,rolagem,ko,0,1,0,sbox,jogador,adversario,jogador->mesa->character,20*val,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,pont,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+            if(val > 0) Attack(-1,true,false,buffer,fim_de_jogo,rolagem,ko,0,3,0,sbox,jogador,adversario,equip,NULL,20*val,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,pont,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
         }
 
         else if(equip->origem->colecao == GREEN_POE_REMNANT) {
             printf("ATTACK: green poe remnant\n");
             val = TotalEquipsEmCampo(jogador,adversario,1);
 
-            if(val > 0) Attack(-1,true,false,buffer,fim_de_jogo,rolagem,ko,0,1,0,sbox,jogador,adversario,jogador->mesa->character,10*val,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,pont,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+            if(val > 0) Attack(-1,true,false,buffer,fim_de_jogo,rolagem,ko,0,3,0,sbox,jogador,adversario,equip,NULL,10*val,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,pont,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
         }
     }
 }
@@ -555,7 +563,7 @@ void CharacterActions(struct Card **buffer,bool *fim_de_jogo,int *rolagem,struct
 
     for(cont = 0; cont < jogador->var_tactic->channeled_strike_cont; cont++) {
         printf("ATTACK: channeled strike\n");
-        Attack(-1,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,jogador->mesa->character,30,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,pont,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        Attack(-1,true,false,buffer,fim_de_jogo,rolagem,&ko,0,1,0,sbox,jogador,adversario,jogador->mesa->character,NULL,30,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,pont,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
     }
 
     Equip_CharAction(jogador->mesa->equip1,buffer,fim_de_jogo,rolagem,&ko,sbox,selecao,roll_bar,prompt,jogador,adversario,fundo,fundo_carta,fundo_menu,deck_meio,deck_cheio,pont,display,font,font2,color,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
@@ -590,7 +598,7 @@ void MonsterActions(int id_acao,struct Card **buffer,bool *ko,int modo,struct CA
             int peahat_cont = jogador->wind_ic;
 
             while(peahat_cont > 0) {
-                Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,0,0,0,sbox,jogador,adversario,monstro,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+                Attack(id_acao,true,false,buffer,fim_de_jogo,rolagem,ko,0,0,0,sbox,jogador,adversario,monstro,NULL,20,display,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,fundo,font,font2,color,apontador,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
                 peahat_cont--;
             }
         }
@@ -931,6 +939,7 @@ struct CARD *CarregaCARD(bool dono,int nome_card,struct COLECAO *colecao) {
         card->var_monster->bless_of_triforce_buff_cont = 0;
         card->var_monster->spike_bool = true;
         card->var_monster->giant_leever_bool = false;
+        card->var_monster->biri_bool = false;
     }
     else if(strcmp(card->origem->tipo,"Equipment") == 0) card->var_equip = (struct VariaveisEQUIP *)calloc(1,sizeof(struct VariaveisEQUIP));
     else if(strcmp(card->origem->tipo,"Character") == 0) {
@@ -1000,6 +1009,7 @@ void IniciaDados(FILE *arq,struct COLECAO *colecao,struct PROFILE *profile1,stru
     player1->var_tactic->fairy_fountain_cont = 0;
     player1->var_tactic->horse_riding_turn_cont = 0;
     player1->var_tactic->giant_leever_call_bool = false;
+    player1->var_tactic->biri_call_bool = false;
     player1->prevent_damage = 0;
     player1->prevent_any_damage = 0;
     player1->turn_away = 0;

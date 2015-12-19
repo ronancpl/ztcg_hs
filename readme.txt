@@ -23,3 +23,5 @@ ao final da compilação.
 Refira-se ao arquivo "monografia.pdf" no diretório './docs'.
 
 Divirta-se!
+
+generated compiler command line: "mingw32-g++.exe -LC:\CodeBlocks\MinGW\lib -LC:\CodeBlocks\MinGW\allegro5\lib -o C:\project_itcg\main.exe C:\project_itcg\main.o   C:\CodeBlocks\MinGW\lib\libgdi32.a C:\CodeBlocks\MinGW\allegro5\lib\liballegro-5.0.10-monolith-mt.a"

@@ -478,4 +478,29 @@ void LiberaEstruturaCardsAssociados(struct CARD *card) {
     card->qte_associado -= i;
 }
 
+int RetornaMonsterSlot(struct Player *jogador,struct CARD *card) {
+    if(card == jogador->mesa->monstro1) return(1);
+    if(card == jogador->mesa->monstro2) return(2);
+    if(card == jogador->mesa->monstro3) return(3);
+    if(card == jogador->mesa->monstro4) return(4);
+    if(card == jogador->mesa->monstro5) return(5);
+    if(card == jogador->mesa->monstro6) return(6);
+    if(card == jogador->mesa->monstro7) return(7);
+
+    if(card == jogador->mesa->character) return(0);
+    return(-1);
+}
+
+int RetornaProxSlotVazio(struct Player *jogador) {
+    if(jogador->mesa->monstro1 == NULL) return(1);
+    else if(jogador->mesa->monstro2 == NULL) return(2);
+    else if(jogador->mesa->monstro3 == NULL) return(3);
+    else if(jogador->mesa->monstro4 == NULL) return(4);
+    else if(jogador->mesa->monstro5 == NULL) return(5);
+    else if(jogador->mesa->monstro6 == NULL) return(6);
+    else if(jogador->mesa->monstro7 == NULL) return(7);
+
+    return(-1);
+}
+
 #endif // ESTRUTURA_UTIL_C_INCLUDED

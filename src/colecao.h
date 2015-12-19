@@ -151,6 +151,10 @@ struct COLECAO {
     struct Card *mystic_spell;
     struct Card *great_fairys_bless;
     struct Card *keese;
+    struct Card *fairy_bow;
+    struct Card *giants_knife;
+    struct Card *bari;
+    struct Card *biri;
 
     int quantidade;
 };
@@ -305,6 +309,10 @@ enum {
     MYSTIC_SPELL,
     GREAT_FAIRYS_BLESS,
     KEESE,
+    FAIRY_BOW,
+    GIANTS_KNIFE,
+    BARI,
+    BIRI,
 
     UNDEFINED
 };

@@ -85,6 +85,7 @@ void RecuperaMonsterStats(bool modo,struct CARD *card,struct Card **buffer,bool 
             if(jogador->global_silence == true && card->turn_silenced == 0) card->turn_silenced += 1;
 
             card->var_monster->giant_leever_bool = false;
+            card->var_monster->biri_bool = false;
             card->var_monster->spawn_bool = false;
             card->var_monster->pierre_cont = 0;
             card->var_monster->bomb_bag_bonus_dmg_cont = 0;

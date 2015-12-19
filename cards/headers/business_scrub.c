@@ -51,7 +51,7 @@ void business_scrub_acao(int id_acao,struct Card **buffer,bool *fim,int *rolagem
     }
 
     for(i = 0;i < tactics;i++)
-        DiscardRandomCard(id_acao,buffer,fim,sbox,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,adversario,jogador,display,fundo,font,font2,color,apontador,rolagem,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
+        DiscardRandomHandCard(id_acao,buffer,fim,sbox,prompt,selecao,roll_bar,fundo_carta,fundo_menu,deck_meio,deck_cheio,adversario,jogador,display,fundo,font,font2,color,apontador,rolagem,sair,posX,posY,dltZ,mouse,mouse2,mouse_lado,keychar,repete_keychar,event_queue,keyb_press_timer,mouse_press_timer);
 }
 
 #endif // BUSINESS_SCRUB_H_INCLUDED

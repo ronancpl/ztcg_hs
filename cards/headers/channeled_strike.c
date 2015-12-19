@@ -12,7 +12,7 @@ void channeled_strike(struct Card *card) {
         card->str_concat = "Earth - Tactic - Skill\0";
 
         card->tactic = (struct tactic *)malloc(sizeof(struct tactic));
-        card->tactic->acao = "At your next turn, get +10 damage with all your character actions. If a Weapon is equipped, at the end of your character actions phase get an additional attack instance of 30 damage to a character or monster.\0";
+        card->tactic->acao = "At your next turn, get +10 damage with all your character actions. If a Weapon is equipped, at the end of your character actions phase get an additional character attack instance of 30 damage to a character or monster.\0";
         card->tactic->level = 40;
 
         card->boss = NULL;

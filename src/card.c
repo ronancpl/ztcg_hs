@@ -2462,6 +2462,10 @@ void DescarregaCartas(struct COLECAO *colecao) {
     free(colecao->mystic_spell);
     free(colecao->great_fairys_bless);
     free(colecao->keese);
+    free(colecao->fairy_bow);
+    free(colecao->giants_knife);
+    free(colecao->bari);
+    free(colecao->biri);
 
     free(colecao);
 }
@@ -2621,6 +2625,10 @@ void CarregaCartas(struct COLECAO **lista,ALLEGRO_FONT *font) {
     colecao->mystic_spell = (struct Card *)malloc(sizeof(struct Card));
     colecao->great_fairys_bless = (struct Card *)malloc(sizeof(struct Card));
     colecao->keese = (struct Card *)malloc(sizeof(struct Card));
+    colecao->fairy_bow = (struct Card *)malloc(sizeof(struct Card));
+    colecao->giants_knife = (struct Card *)malloc(sizeof(struct Card));
+    colecao->bari = (struct Card *)malloc(sizeof(struct Card));
+    colecao->biri = (struct Card *)malloc(sizeof(struct Card));
 
     link(colecao->link);
     great_dekus_bless(colecao->great_dekus_bless);
@@ -2771,6 +2779,10 @@ void CarregaCartas(struct COLECAO **lista,ALLEGRO_FONT *font) {
     mystic_spell(colecao->mystic_spell);
     great_fairys_bless(colecao->great_fairys_bless);
     keese(colecao->keese);
+    fairy_bow(colecao->fairy_bow);
+    giants_knife(colecao->giants_knife);
+    bari(colecao->bari);
+    biri(colecao->biri);
 
     EscreveTextoCard(colecao->link,font);
     EscreveTextoCard(colecao->great_dekus_bless,font);
@@ -2921,6 +2933,10 @@ void CarregaCartas(struct COLECAO **lista,ALLEGRO_FONT *font) {
     EscreveTextoCard(colecao->mystic_spell,font);
     EscreveTextoCard(colecao->great_fairys_bless,font);
     EscreveTextoCard(colecao->keese,font);
+    EscreveTextoCard(colecao->fairy_bow,font);
+    EscreveTextoCard(colecao->giants_knife,font);
+    EscreveTextoCard(colecao->bari,font);
+    EscreveTextoCard(colecao->biri,font);
 
     printf("Carregando Cards OK!\n");
 }
