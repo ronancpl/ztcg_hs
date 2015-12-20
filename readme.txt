@@ -2,24 +2,27 @@
 
 1) Disclaimer
 
-Este TCG È baseado no best-seller The Legend of ZeldaÆ: Ocarina of TimeÆ, da NintendoÆ.
-Imagens e nomes ìemprestadosî s„o creditados aos seus respectivos donos.
+Este TCG √© baseado no best-seller The Legend of Zelda¬Æ: Ocarina of Time¬Æ, da Nintendo¬Æ.
+Imagens e nomes ‚Äúemprestados‚Äù s√£o creditados aos seus respectivos donos.
 
-2) Como rodar em sua m·quina
+2) Como rodar em sua m√°quina
 
-Para rodar, È necess·rio baixar a vers„o 5.0.10 (momento da escrita) do Allegro.
+  EDITADO: o jogo pode ser rodado normalmente sem a instala√ß√£o do Allegro (instala√ß√£o ainda √©
+  necess√°ria para COMPILAR), basta possuir o arquivo "allegro-5.0.10-monolith-mt.dll".
+
+Para rodar, √© necess√°rio baixar a vers√£o 5.0.10 (momento da escrita) do Allegro.
 
 Refira-se ao link abaixo (visitado em 15/12/2015):
 https://sites.google.com/a/liesenberg.biz/cjogos/home/software/ambiente-code-blocks-allegro-5
 
 3) Compilando o programa
 
-Para compilar, acesse o CodeBlocks (recomendo a vers„o 13.12) com o Allegro j· instalado, abra
-o arquivo "main.c" e compile-o. O programa final deve ser gerado no diretÛrio-raiz do projeto
-ao final da compilaÁ„o.
+Para compilar, acesse o CodeBlocks (recomendo a vers√£o 13.12) com o Allegro j√° instalado, abra
+o arquivo "main.c" e compile-o. O programa final deve ser gerado no diret√≥rio-raiz do projeto
+ao final da compila√ß√£o.
 
 4) Maiores detalhes
 
-Refira-se ao arquivo "monografia.pdf" no diretÛrio './docs'.
+Refira-se ao arquivo "monografia.pdf" no diret√≥rio './docs'.
 
 Divirta-se!
