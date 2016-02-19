@@ -12,11 +12,12 @@ Extract the ZIP folder and run "main.exe".
 
 3) Game Patches
 
-v1.0: implementation of the 200 cards completed, full set.
-v1.1: redesign of StatusBox UI.
-v1.2: redesign of Card List.
-v1.2: redesign of Deck Build.
-v1.3: included profile level system, end-match mechanics (such loot and exp gain).
+v1.0:  implementation of the 200 cards completed, full set.
+v1.1:  redesign of StatusBox UI.
+v1.2:  redesign of Card List.
+v1.2:  redesign of Deck Build.
+v1.3:  included profile level system (PLS), end-match mechanics (such loot and exp gain).
+v1.4:  included game log mechanics, corrected some quirks with PLS and game chat.
 
 4) More Details
 Refer to the file "monografia.pdf" at 'docs' (pt-br).
