@@ -18,6 +18,8 @@ v1.2:  redesign of Card List.
 v1.2:  redesign of Deck Build.
 v1.3:  included profile level system (PLS), end-match mechanics (such loot and exp gain).
 v1.4:  included game log mechanics, corrected some quirks with PLS and game chat.
+v1.5:  included in-game build mechanics (UI that keeps track of available character actions).
+V1.6:  included equip bonus screen (UI that permits toggling between equipped bonus to each attack).
 
 4) More Details
 Refer to the file "monografia.pdf" at 'docs' (pt-br).
