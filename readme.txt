@@ -20,8 +20,11 @@ v1.4:  included game log mechanics, corrected some quirks with PLS and game chat
 v1.5:  included in-game build mechanics (UI that keeps track of available character actions).
 V1.6:  included equip bonus screen (UI that permits toggling between equipped bonus to each attack).
 V1.6a: in-game display for Play Tactic, minor game patches and card rebalances.
+V1.6b: redesigned rulebook (ztcg_rules.pdf at docs), minor game patches and card rebalances.
 
 4) More Details
+Game rules: "ztcg_rules.pdf" at 'docs'.
+
 Refer to the file "monografia.pdf" at 'docs' (pt-br).
 Check the other files at 'docs' folder for more info.
 
