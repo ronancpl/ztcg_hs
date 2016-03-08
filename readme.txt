@@ -1,4 +1,7 @@
 ﻿---- Zelda Trading Card Game : Hyrule Showdown V1.0 -------
+By Ronan C. P. Lana
+Undergraduate @ DCC-UFMG
+Email: rcpl2010@gmail.com
 
 1) Disclaimer
 
