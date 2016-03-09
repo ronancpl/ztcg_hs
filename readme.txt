@@ -25,6 +25,7 @@ v1.6:  included equip bonus screen (UI that permits toggling between equipped bo
 v1.6a: in-game display for Play Tactic, minor game patches and card rebalances.
 v1.6b: redesigned rulebook (ztcg_rules.pdf at docs), minor game patches and card rebalances.
 v1.7:  included Attack Equipment mechanics.
+v1.8:  included Deck Generator mechanics (allows to randomically make a deck based on player preferences).
 
 4) More Details
 Game rules: "ztcg_rules.pdf" at 'docs'.
