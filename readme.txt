@@ -28,6 +28,7 @@ v1.7:  included Attack Equipment mechanics.
 v1.8:  included Deck Generator mechanics (allows to randomically make a deck based on player preferences).
 v1.8a: added G. Info, G. Log and Build Info tabs at in-game screen, minor game patches and card rebalances.
 v1.8b: minor game patches.
+v1.8c: minor game patches and card rebalances.
 
 4) More Details
 Game rules: "ztcg_rules.pdf" at 'docs'.
