@@ -30,6 +30,7 @@ v1.8a: added G. Info, G. Log and Build Info tabs at in-game screen, minor game p
 v1.8b: minor game patches.
 v1.8c: minor game patches and card rebalances.
 v1.8d: added rulebook info.
+v1.8e: minor game patches.
 
 4) More Details
 Game rules: "ztcg_rules.pdf" at 'docs'.
