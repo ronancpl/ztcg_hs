@@ -6,7 +6,7 @@ Email: rcpl2010@gmail.com
 1) Disclaimer
 
 This TCG is themed around Nintendo®'s best-seller "The Legend of Zelda®: Ocarina of Time®".
-Card images, names and theme concepts are "borrowed", and therefore these are copyright of
+Card images, names and theme concepts are "borrowed", and therefore these are property of
 their respective staff.
 
 2) Running on your machine
@@ -29,6 +29,7 @@ v1.8:  included Deck Generator mechanics (allows to randomically make a deck bas
 v1.8a: added G. Info, G. Log and Build Info tabs at in-game screen, minor game patches and card rebalances.
 v1.8b: minor game patches.
 v1.8c: minor game patches and card rebalances.
+v1.8d: added rulebook info.
 
 4) More Details
 Game rules: "ztcg_rules.pdf" at 'docs'.
