@@ -1,7 +1,7 @@
 <!--
- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Mar 29, 2016 - 11:14 PM  
+ This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Mar 29, 2016 - 11:38 PM  
 -->
-<feature_model name="Maquina Votacao">
+<feature_model name="Urna">
 <meta>
 <data name="description"/>
 <data name="creator"/>
@@ -15,9 +15,9 @@
 <data name="reference"/>
 </meta>
 <feature_tree>
-:r Maquina Votacao(_r) :m Urna(_r_1) :m Administrador(_r_1_2) :m Informa Senha(_r_1_2_6) :m Inicializa Votacao(_r_1_2_6_7) :m Termina Votacao(_r_1_2_6_8) :o Define Conjunto de Votacao(_r_1_2_6_9) :m Senha(_r_1_2_36) :m Eleitor(_r_1_3) :m Informa Credencial(_r_1_3_10) :g (_r_1_3_10_12) [1,1] : Voto(_r_1_3_10_12_13) : Branco(_r_1_3_10_12_14) : Nulo(_r_1_3_10_12_15) :m Apresenta Dado(_r_1_3_10_16) :m Nome Eleitor(_r_1_3_10_16_17) :m Identificador Eleitor(_r_1_3_10_16_19) :m Peso de voto(_r_1_3_25) :m Credencial(_r_1_3_26) :m Fim Votacao(_r_1_31) :m Candidato(_r_1_31_32) :m Nome(_r_1_31_32_33) :m Numero Votos(_r_1_31_32_34) :m Vaga Concorrida(_r_1_31_32_35)
+:r Urna(_r) :m Administrador(_r_1) :m Informar Senha(_r_1_2) :m Inicializa Votacao(_r_1_2_3) :m Termina Votacao(_r_1_2_4) :o Define Lista Votacao(_r_1_2_6) :m Senha(_r_1_7) :m Eleitor(_r_8) :m Peso Voto(_r_8_9) :m Credencial(_r_8_10) :m Informar Credencial(_r_8_12) :g (_r_8_12_13) [1,1] : Voto(_r_8_12_13_14) : Nulo(_r_8_12_13_15) : Branco(_r_8_12_13_16) :m Apresenta Dados(_r_8_23) :m Identificador Credencial(_r_8_23_25) :m Nome(_r_8_23_26) :m Maquina Votacao(_r_17) :m Termino Votacao(_r_17_18) :m Candidato(_r_17_18_19) :m Numero Votos(_r_17_18_21) :m Vaga Concorrida(_r_17_18_22) :m Computa Votacao(_r_17_27)
 </feature_tree>
 <constraints>
-constraint_1:_r_1_3_10 or _r_1_3_26 constraint_3:_r_1_2_6 or _r_1_2_36
+constraint_1:_r_8_12_13_14 or _r_17_27 constraint_2:_r_1_2 or _r_1_7 constraint_3:_r_8_10 or _r_8_12
 </constraints>
 </feature_model>
