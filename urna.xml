@@ -1,0 +1,23 @@
+<!--
+ This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Mar 29, 2016 - 11:14 PM  
+-->
+<feature_model name="Maquina Votacao">
+<meta>
+<data name="description"/>
+<data name="creator"/>
+<data name="address"/>
+<data name="email"/>
+<data name="phone"/>
+<data name="website"/>
+<data name="organization"/>
+<data name="department"/>
+<data name="date"/>
+<data name="reference"/>
+</meta>
+<feature_tree>
+:r Maquina Votacao(_r) :m Urna(_r_1) :m Administrador(_r_1_2) :m Informa Senha(_r_1_2_6) :m Inicializa Votacao(_r_1_2_6_7) :m Termina Votacao(_r_1_2_6_8) :o Define Conjunto de Votacao(_r_1_2_6_9) :m Senha(_r_1_2_36) :m Eleitor(_r_1_3) :m Informa Credencial(_r_1_3_10) :g (_r_1_3_10_12) [1,1] : Voto(_r_1_3_10_12_13) : Branco(_r_1_3_10_12_14) : Nulo(_r_1_3_10_12_15) :m Apresenta Dado(_r_1_3_10_16) :m Nome Eleitor(_r_1_3_10_16_17) :m Identificador Eleitor(_r_1_3_10_16_19) :m Peso de voto(_r_1_3_25) :m Credencial(_r_1_3_26) :m Fim Votacao(_r_1_31) :m Candidato(_r_1_31_32) :m Nome(_r_1_31_32_33) :m Numero Votos(_r_1_31_32_34) :m Vaga Concorrida(_r_1_31_32_35)
+</feature_tree>
+<constraints>
+constraint_1:_r_1_3_10 or _r_1_3_26 constraint_3:_r_1_2_6 or _r_1_2_36
+</constraints>
+</feature_model>
