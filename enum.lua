@@ -1,5 +1,11 @@
 myenum =
 {
+    -- feel free to add your new enumerators at the END of this list, at the assigned mod area.
+
+    -- ###############################
+    -- ## DO NOT MODIFY THESE ENUMS ##
+    -- ###############################
+
     {"ZTCG_CARD" , 0},
 
     {"MOB", 0},
@@ -10,6 +16,7 @@ myenum =
     {"JRBOSS"},
     {"BOSS"},
 
+    -- ZTCG_TYPE
     {"TYPE_MOB", 0},
     {"TYPE_EQP"},
     {"TYPE_ACT"},
@@ -28,6 +35,7 @@ myenum =
     {"DARK"},
     {"LIGHT"},
 
+    -- ZTCG_ELEMENT
     {"ELEM_EARTH", 0},
     {"ELEM_WIND"},
     {"ELEM_FIRE"},
@@ -36,16 +44,35 @@ myenum =
     {"ELEM_LIGHT"},
     {"ELEM_ANY"},       -- a FLAG, NOT a card-element
 
-    -- game comparator mode
+    -- ZTCG_CALL
+    {"CALL_ACTION", 0},
+    {"CALL_CHAR_ACTION1"},
+    {"CALL_CHAR_ACTION2"},
+    {"CALL_CHAR_ACTION3"},
+
+    -- ZTCG_COLORID
+    {"COLOR_BLUE", 0},
+    {"COLOR_RED"},
+    {"COLOR_GREEN"},
+    {"COLOR_GOLD"},
+    {"COLOR_SILVER"},
+    {"COLOR_WHITE"},
+    {"COLOR_BLACK"},
+
+    -- ZTCG_COMPARATOR
     {"LESSER", 0},
     {"GREATER"},
 
-    -- player actor mode
+    -- ZTCG_PREVENTTYPE --
+    {"PREVENT_ANY", 0},
+    {"PREVENT_CHARONLY"},
+
+    -- ZTCG_PLAYERMODE
     {"ANY_PLAYER", 0},
     {"ONLY_PLAYER"},
     {"ONLY_ADVSRY"},
 
-    -- recover mode
+    -- ZTCG_RECOVERTYPE
     {"RECOVER_ANY", -1},
     {"RECOVER_MOB"},
     {"RECOVER_EQP"},
@@ -53,21 +80,22 @@ myenum =
     {"RECOVER_FLD"},
     {"RECOVER_TOP"},
 
-    -- attack's source type
+    -- ZTCG_ATKSRC
     {"ATKSRC_MOB", 0},
     {"ATKSRC_CHA"},
     {"ATKSRC_ACT"},
     {"ATKSRC_EQP"},
     {"ATKSRC_NIL"},
 
-    -- attack's restrictions
+    -- ZTCG_ATKRES
     {"ATKRES_NIL", 0},
     {"ATKRES_DONT_HIT_CHAR"},
     {"ATKRES_DONT_HIT_MOBS"},
-    {"ATKRES_FIXED_ON_SLOT"},
+    {"ATKRES_FIXED_SLOT"},
+    {"ATKRES_FIXED_SLOT_DAMAGE"},
     {"ATKRES_FIXED_DAMAGE"},
 
-    -- target slot
+    -- ZTCG_FIXEDTARGET
     {"SLOT_CHAR", 0},
     {"SLOT_MOB1"},
     {"SLOT_MOB2"},
@@ -77,53 +105,58 @@ myenum =
     {"SLOT_MOB6"},
     {"SLOT_MOB7"},
 
-    -- prevent / counter
+    -- ZTCG_PREVENT
     {"NO_EFFECT", 0},
     {"PREVENT_ATTACK"},
+
+    -- ZTCG_COUNTER
+    {"NO_COUNTER", 0},
     {"COUNTER_ATTACK", 1},
 
-    -- focus mobs/char - Global Attacks
+    -- ZTCG_GLOBALMODE
     {"GLOBAL_HITCHAR", 0},
     {"GLOBAL_HITMOBS"},
 
-    -- peek card list
+    -- ZTCG_PEEK
     {"CARDLIST_HIDE", 0},
     {"CARDLIST_PEEK"},
 
-    -- deck orientation - top/bottom
+    -- ZTCG_DECKORIENT
     {"DECK_TOP", 0},
     {"DECK_BOTTOM"},
 
-    -- move cards from a deck to another
+    -- ZTCG_DECKMOVE
     {"TAKE_BYNAME", 0},
     {"TAKE_CARDID"},
     {"TAKE_NEXT"},
     {"PUT_TOP"},
     {"PUT_BOTTOM"},
 
-    -- play card effects
+    -- ZTCG_SUMMONMODE
     {"PLAY_NORMALSUMMON", 0},
     {"PLAY_SCOUTSUMMON"},
     {"PLAY_FORCESUMMON"},
 
+    -- ZTCG_EQUIPMODE
     {"PLAY_NORMALEQUIP", 0},
     {"PLAY_GEARUPEQUIP"},
 
+    -- ZTCG_LOCATEMODE
     {"PLAY_NORMALFIELD", 0},
     {"PLAY_FIRSTCARDFIELD"},    --NOTE: this only plays a field if the first card of the hand is a FIELD-type.
 
-    --
+    -- ZTCG_AURAMODE
     {"GLOBALAURA_PASS_PLAYER", 1},
     {"GLOBALAURA_PASS_ADVSRY"},
     {"GLOBALAURA_BOTH_PLAYERS"},
 
-    -- deck type
+    -- ZTCG_DECKTYPE
     {"DECK_HAND", 0},
     {"DECK_DECK"},
     {"DECK_GRAV"},
     {"DECK_CARD"},
 
-    -- table slot
+    -- ZTCG_TABLESLOTID
     {"SLOT_PLAYERCHAR", 0},
     {"SLOT_PLAYERMOB1"},
     {"SLOT_PLAYERMOB2"},
@@ -157,7 +190,183 @@ myenum =
     {"SLOT_ADVSRYEQP7"},
     {"SLOT_ADVSRYFLD"},
 
-    -- ZTCG card ids --
+    -- ZTCG_TARGETTYPE --
+    {"ATTACKED_CHAR", 0},
+    {"ATTACKED_MOB"},
+
+    -- ZTCG_SBOXTYPE --
+    {"SBOX_MOB", 0},
+    {"SBOX_CHAR"},
+    {"SBOX_EQUIP"},
+
+    -- ZTCG_FILTER --
+    {"NO_FILTER", 0},
+    {"USE_FILTER"},
+
+    -- ZTCG_GAMEHUBTYPE --
+    {"IS_P2", 0},
+    {"IS_P1"},
+
+    -- ZTCG_PLAYERTYPE --
+    {"IS_ADVSRY", 0},
+    {"IS_PLAYER"},
+
+    -- ZTCG_ATTACKSTATE --
+    {"THINK_ATTACK", 0},
+    {"APPLY_ATTACK"},
+
+    -- ZTCG_REMOVETYPE --
+    {"IS_DESTROYED", 0},
+    {"IS_DISCARDED"},
+
+    -- ZTCG FLAGS index --
+    {"ZTCG_COMPARATOR", 0},
+    {"ZTCG_PLAYERMODE"},
+    {"ZTCG_RECOVERTYPE"},
+    {"ZTCG_ATKSRC"},
+    {"ZTCG_ATKRES"},
+    {"ZTCG_FIXEDTARGET"},
+    {"ZTCG_PREVENT"},
+    {"ZTCG_COUNTER"},
+    {"ZTCG_GLOBALMODE"},
+    {"ZTCG_PEEK"},
+    {"ZTCG_DECKORIENT"},
+    {"ZTCG_DECKMOVE"},
+    {"ZTCG_SUMMONMODE"},
+    {"ZTCG_EQUIPMODE"},
+    {"ZTCG_LOCATEMODE"},
+    {"ZTCG_AURAMODE"},
+    {"ZTCG_DECKTYPE"},
+    {"ZTCG_TARGETTYPE"},
+    {"ZTCG_SBOXTYPE"},
+    {"ZTCG_FILTER"},
+    {"ZTCG_GAMEHUBTYPE"},
+    {"ZTCG_PLAYERTYPE"},
+    {"ZTCG_ATTACKSTATE"},
+    {"ZTCG_REMOVETYPE"},
+
+    -- ZTCG_POINTCUTID --
+    {"preventTargetCharacter", 1},
+    {"preventTargetMob"},
+    {"preventTargetEquip"},
+    {"hasStunDebuff"},
+    {"onGetTargeted"},
+    {"onEquipBuff"},
+    {"renderCardCounter"},
+    {"undoBuffs"},
+    {"applyBuffs"},
+    {"onSelectMenu"},
+    {"onSelectMenuCard"},
+    {"onOpponentSelectMenuCard"},
+    {"onRefresh"},
+    {"onRefreshCard"},
+    {"onOpponentRefreshCard"},
+    {"onPickCardOrder"},
+    {"onOpponentPickCardOrder"},
+    {"onRecover"},
+    {"onRecoverCard"},
+    {"onOpponentRecoverCard"},
+    {"onThrowCoin"},
+    {"onOpponentThrowCoin"},
+    {"onThrowCoinFixed"},
+    {"onOpponentThrowCoinFixed"},
+    {"onPrompt"},
+    {"onOpponentPrompt"},
+    {"onInterceptDrawCard"},
+    {"onOpponentInterceptDrawCard"},
+    {"onDraw"},
+    {"onDrawCard"},
+    {"onOpponentDrawCard"},
+    {"onMoveToDiscardPile"},
+    {"onCardMovedToDiscardPile"},
+    {"onOpponentCardMovedToDiscardPile"},
+    {"onDestroy"},
+    {"onCardDestroyed"},
+    {"onOpponentCardDestroyed"},
+    {"onDiscard"},
+    {"onDiscardCard"},
+    {"onOpponentDiscardCard"},
+    {"onReveal"},
+    {"onRevealCard"},
+    {"onOpponentRevealCard"},
+    {"onRandomDiscard"},
+    {"onRandomDiscardCard"},
+    {"onOpponentRandomDiscardCard"},
+    {"onPeek"},
+    {"onPeekCard"},
+    {"onOpponentPeekCard"},
+    {"onReceiveStun"},
+    {"onReceiveStunCard"},
+    {"onOpponentReceiveStunCard"},
+    {"onReceiveSilence"},
+    {"onReceiveSilenceCard"},
+    {"onOpponentReceiveSilenceCard"},
+    {"onDestroyOpponentEquipment"},
+    {"onDestroyedEquipment"},
+    {"onCalcAttack"},
+    {"onCalcAttackCard"},
+    {"onOpponentCalcAttackCard"},
+    {"onCalcDefense"},
+    {"onCalcDefenseCard"},
+    {"onOpponentCalcDefenseCard"},
+    {"onStartAttack"},
+    {"onOpponentStartAttack"},
+    {"onExecuteNormalAttack"},
+    {"onReceiveNormalAttack"},
+    {"onAttackOpponentMobDestroyed"},
+    {"onAttackMobDestroyed"},
+    {"onExecuteAttackAndDestroyed"},
+    {"onReceiveAttackAndDestroyed"},
+    {"onApplyCounterAttack"},
+    {"onExecuteAttackAndSurvived"},
+    {"onReceiveAttackAndSurvived"},
+    {"onExecuteAttack"},
+    {"onReceiveAttack"},
+    {"onPlayCard"},
+    {"onOpponentPlayCard"},
+    {"onThinkAction"},
+    {"onPlayAction"},
+    {"onOpponentPlayAction"},
+    {"onThinkEquipment"},
+    {"onPlayEquipment"},
+    {"onOpponentPlayEquipment"},
+    {"onDestroyField"},
+    {"onOpponentDestroyField"},
+    {"onThinkField"},
+    {"onPlayField"},
+    {"onOpponentPlayField"},
+    {"onInitMob"},
+    {"onInterceptPlayMob"},
+    {"onInterceptOpponentPlayMob"},
+    {"onThinkMob"},
+    {"onPlayMob"},
+    {"onOpponentPlayMob"},
+    {"onStartTurn"},
+    {"onOpponentStartTurn"},
+    {"onStartCharacterActions"},
+    {"onOpponentStartCharacterActions"},
+    {"onRecoverStats"},
+    {"onReactivateCardEffects"},
+    {"onOpponentReactivateCardEffects"},
+    {"onStartCharacterActions2"},
+    {"onOpponentStartCharacterActions2"},
+    {"onEndTurn"},
+    {"onOpponentEndTurn"},
+    {"onInterceptCharacterAction"},
+    {"onOpponentInterceptCharacterAction"},
+    {"onLevelActionTrigger"},
+    {"onLevelUp"},
+    {"onOpponentLevelUp"},
+    {"afterLevelUp"},
+    {"afterOpponentLevelUp"},
+    {"afterApplyCharacterAction"},
+    {"afterOpponentApplyCharacterAction"},
+    {"afterCharacterActions"},
+    {"afterOpponentCharacterActions"},
+    {"onActivateMobEffect"},
+    {"onRecoverMobStats"},
+
+    -- ZTCG_CARDID --
     {"LINK", 1},
     {"GREAT_DEKUS_BLESS"},
     {"GOHMA"},
@@ -358,6 +567,17 @@ myenum =
     {"POE_COLLECTOR"},
     {"STALCHILD"},
     {"SHEIK"},
+
+    -- ###############################
+    -- ## DO NOT MODIFY THESE ENUMS ##
+    -- ###############################
+
+    -- \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/
+
+    -- you can insert your enums here
+    {"ZTCG_DUMMY", -1},
+
+    -- /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\
 
     {"ZTCG_UNDEFINED" , -1}
 }
