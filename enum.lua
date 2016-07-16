@@ -1,4 +1,4 @@
-myenum =
+ztcg_enum =
 {
     -- feel free to add your new enumerators at the END of this list, at the assigned mod area.
 
@@ -106,12 +106,12 @@ myenum =
     {"SLOT_MOB7"},
 
     -- ZTCG_PREVENT
-    {"NO_EFFECT", 0},
+    {"NO_PREVENT", 0},
     {"PREVENT_ATTACK"},
 
     -- ZTCG_COUNTER
     {"NO_COUNTER", 0},
-    {"COUNTER_ATTACK", 1},
+    {"COUNTER_ATTACK"},
 
     -- ZTCG_GLOBALMODE
     {"GLOBAL_HITCHAR", 0},
@@ -574,8 +574,10 @@ myenum =
 
     -- \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/
 
-    -- you can insert your enums here
+    -- you can insert new enums here, usable in your own files
+
     {"ZTCG_DUMMY", -1},
+    {"ZTCG_ZERO"},      -- value of the next integer
 
     -- /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\
 

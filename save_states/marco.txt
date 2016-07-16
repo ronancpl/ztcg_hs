@@ -1,0 +1,24 @@
+CHARACTER
+Dark Link
+160
+280
+HAND
+Skull Mask
+Skulltulas Ambush
+GRAVEYARD
+LVL_CARDS
+Silver Gauntlets
+Skull Mask
+Zoras Sapphire
+Ganons Castle
+Lake Hylia
+Hookshot
+Skull Mask
+Moblin
+Bigocto
+Octorok
+Cursed Villager
+EQUIPS
+Hookshot
+MONSTERS
+FIELD
