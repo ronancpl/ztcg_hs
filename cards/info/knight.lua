@@ -40,21 +40,17 @@ ZTCG_CARD
     end
 
     function onActivateCharacterAction2(player)
-        local deck = getPlayerDeck(player, "DECK_HAND")
-        local card_list = getDataFromDeck(deck)
-
-        local board_card = getCARD(card_list)
-        print("Card", getNameFromCARD(board_card), "on slot ", getSlotIdFromCARD(player,board_card))
-
-        local aa = getSourceCARD()
-        print("Card", getNameFromCARD(aa), "on slot ", getSlotIdFromCARD(player,aa))
+        destroySelf(player,"SLOT_ADVSRYMOB1")
     end
 
     function onActivateCharacterAction3(player)
-        sendPlayerAway(player,"IS_PLAYER",4)
-        sendPlayerAway(player,"IS_ADVSRY",2)
-    end
+        local atkr = getSourceCARD();
 
-    --struct CARD *card = getCardPointer(int pos)
+        if(throwCoin(player)) then
+            attackGlobal("GLOBAL_HITMOBS", player, atkr, 999, "ATKSRC_NIL", "PREVENT_ATTACK", "COUNTER_ATTACK", "USE_FILTER", 0, 10, 20, "TYPE_MOB", "ELEM_EARTH | ELEM_WIND", 0)
+        else
+            attackGlobal("GLOBAL_HITCHAR", player, atkr, 999, "ATKSRC_NIL", "PREVENT_ATTACK", "COUNTER_ATTACK", "USE_FILTER", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_CHAR | TYPE_MOB", "ELEM_WATER | ELEM_EARTH", "ZTCG_NIL")
+        end
+    end
 
 }

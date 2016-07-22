@@ -33,7 +33,8 @@ v1.8d: added rulebook info.
 v1.8e: minor game patches.
 v1.9:  data structures have been changed, to accomodate the new WIP feature: Card Editor API. Minor game patches.
 v1.9a: card Editor API embedded and ready to use, examples provided, tests under progress. Minor game patches.
-v1.9b: card Editor API updated, tests under progress.
+v1.9b: minor card Editor API bug fixes.
+v1.9c: more card Editor API bug fixes.
 
 4) More Details
 Game rules: "ztcg_rules.pdf" at 'docs'.

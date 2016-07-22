@@ -567,10 +567,15 @@ ztcg_enum =
     {"POE_COLLECTOR"},
     {"STALCHILD"},
     {"SHEIK"},
+    -- {"NEW_CARDS"},
+    -- new cards created can be listed here.
+
+    {"ZTCG_DONTCARE", -1},
 
     -- ###############################
     -- ## DO NOT MODIFY THESE ENUMS ##
     -- ###############################
+
 
     -- \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/
 
