@@ -19,38 +19,57 @@ ZTCG_CARD
 
         LVL_ACTION
         {
-            "LEVEL" "10"
-            "ATTRB" "0"
+            "LEVEL" "30"
+            "ATTRB" "2"
             "TEXT" "Slash - Do 20 damage to a character or monster."
         }
 
         LVL_ACTION
         {
-            "LEVEL" "10"
-            "ATTRB" "0"
-            "TEXT" "Graal Blessings - Grant all LIGHT mobs with +10 ATK and +20 HP."
+            "LEVEL" "60"
+            "ATTRB" "3"
+            "TEXT" "Graal Blessings - Grant all LIGHT mobs with +10 ATK and +10 HP."
         }
 
         "HP" "240"
     }
 
     function onActivateCharacterAction1(player)
-        -- every character should have a draw card effect.
+        -- every character should have a draw card effect as a basic skill.
         drawCard(player);
     end
 
     function onActivateCharacterAction2(player)
-        destroySelf(player,"SLOT_ADVSRYMOB1")
+        local attacker = getSourceCARD()    -- this card
+        attack(player, attacker, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_DONTCARE", "ENABLE_PREVENT", "IS_STARTER")
+    end
+
+    function onPlayMob(player)
+        -- aura only takes effect if character is LEVEL 60+ and has 3+ LIGHT-type cards under it.
+        if(not matchRequirements(player, 60, 3, "ELEM_LIGHT")) then return end
+
+        local src = getSourceCARD()
+        local mob_played = getCardPointer(0)
+
+        applyTargetBonus(player,mob_played,src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_LIGHT", "ZTCG_NIL")
+    end
+
+    function undoBuffs(player)
+        if(not matchRequirements(player, 60, 3, "ELEM_LIGHT")) then return end
+
+        local src = getSourceCARD()
+        removeAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_LIGHT", "ZTCG_NIL")
+    end
+
+    function applyBuffs(player)
+        if(not matchRequirements(player, 60, 3, "ELEM_LIGHT")) then return end
+
+        local src = getSourceCARD()
+        applyAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_LIGHT", "ZTCG_NIL")
     end
 
     function onActivateCharacterAction3(player)
-        local atkr = getSourceCARD();
-
-        if(throwCoin(player)) then
-            attackGlobal("GLOBAL_HITMOBS", player, atkr, 999, "ATKSRC_NIL", "PREVENT_ATTACK", "COUNTER_ATTACK", "USE_FILTER", 0, 10, 20, "TYPE_MOB", "ELEM_EARTH | ELEM_WIND", 0)
-        else
-            attackGlobal("GLOBAL_HITCHAR", player, atkr, 999, "ATKSRC_NIL", "PREVENT_ATTACK", "COUNTER_ATTACK", "USE_FILTER", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_CHAR | TYPE_MOB", "ELEM_WATER | ELEM_EARTH", "ZTCG_NIL")
-        end
+        -- aura effect: "applyBuffs" , "undoBuffs" , "onPlayMob"
     end
 
 }

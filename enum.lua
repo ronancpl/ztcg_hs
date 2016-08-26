@@ -68,9 +68,9 @@ ztcg_enum =
     {"PREVENT_CHARONLY"},
 
     -- ZTCG_PLAYERMODE
-    {"ANY_PLAYER", 0},
+    {"ONLY_ADVSRY", 1},
     {"ONLY_PLAYER"},
-    {"ONLY_ADVSRY"},
+    {"ANY_PLAYER"},
 
     -- ZTCG_RECOVERTYPE
     {"RECOVER_ANY", -1},
@@ -106,12 +106,12 @@ ztcg_enum =
     {"SLOT_MOB7"},
 
     -- ZTCG_PREVENT
-    {"NO_PREVENT", 0},
-    {"PREVENT_ATTACK"},
+    {"DISABLE_PREVENT", 0},
+    {"ENABLE_PREVENT"},
 
     -- ZTCG_COUNTER
-    {"NO_COUNTER", 0},
-    {"COUNTER_ATTACK"},
+    {"IS_STARTER", 0},
+    {"IS_COUNTER"},
 
     -- ZTCG_GLOBALMODE
     {"GLOBAL_HITCHAR", 0},
@@ -144,6 +144,12 @@ ztcg_enum =
     -- ZTCG_LOCATEMODE
     {"PLAY_NORMALFIELD", 0},
     {"PLAY_FIRSTCARDFIELD"},    --NOTE: this only plays a field if the first card of the hand is a FIELD-type.
+
+    -- ZTCG_PLAYCARDMODE
+    {"PLAY_MOB", 0},
+    {"PLAY_EQUIP"},
+    {"PLAY_ACTION"},
+    {"PLAY_FIELD"},
 
     -- ZTCG_AURAMODE
     {"GLOBALAURA_PASS_PLAYER", 1},
@@ -219,6 +225,15 @@ ztcg_enum =
     {"IS_DESTROYED", 0},
     {"IS_DISCARDED"},
 
+    -- ZTCG_BLOCKAURA --
+    {"AURA_STUN", 0},
+    {"AURA_SILENCE"},
+    {"AURA_HIJACK"},
+
+    -- ZTCG_FLAGTYPE --
+    {"FLAG_TYPE", 0},
+    {"FLAG_ELEM"},
+
     -- ZTCG FLAGS index --
     {"ZTCG_COMPARATOR", 0},
     {"ZTCG_PLAYERMODE"},
@@ -235,6 +250,7 @@ ztcg_enum =
     {"ZTCG_SUMMONMODE"},
     {"ZTCG_EQUIPMODE"},
     {"ZTCG_LOCATEMODE"},
+    {"ZTCG_PLAYCARDMODE"},
     {"ZTCG_AURAMODE"},
     {"ZTCG_DECKTYPE"},
     {"ZTCG_TARGETTYPE"},
@@ -244,12 +260,13 @@ ztcg_enum =
     {"ZTCG_PLAYERTYPE"},
     {"ZTCG_ATTACKSTATE"},
     {"ZTCG_REMOVETYPE"},
+    {"ZTCG_BLOCKAURA"},
+    {"ZTCG_FLAGTYPE"},
 
     -- ZTCG_POINTCUTID --
     {"preventTargetCharacter", 1},
     {"preventTargetMob"},
     {"preventTargetEquip"},
-    {"hasStunDebuff"},
     {"onGetTargeted"},
     {"onEquipBuff"},
     {"renderCardCounter"},
@@ -298,6 +315,9 @@ ztcg_enum =
     {"onReceiveStun"},
     {"onReceiveStunCard"},
     {"onOpponentReceiveStunCard"},
+    {"onReceiveHijack"},
+    {"onReceiveHijackCard"},
+    {"onOpponentReceiveHijackCard"},
     {"onReceiveSilence"},
     {"onReceiveSilenceCard"},
     {"onOpponentReceiveSilenceCard"},
@@ -317,6 +337,11 @@ ztcg_enum =
     {"onAttackMobDestroyed"},
     {"onExecuteAttackAndDestroyed"},
     {"onReceiveAttackAndDestroyed"},
+    {"onReceiveAttackAndSentToDiscardPile"},
+    {"onMobSentToDiscardPile"},
+    {"onOpponentMobSentToDiscardPile"},
+    {"onLaunchAttack"},
+    {"onInterceptAttack"},
     {"onApplyCounterAttack"},
     {"onExecuteAttackAndSurvived"},
     {"onReceiveAttackAndSurvived"},
@@ -324,14 +349,23 @@ ztcg_enum =
     {"onReceiveAttack"},
     {"onPlayCard"},
     {"onOpponentPlayCard"},
+    {"onInitAction"},
+    {"onInterceptPlayAction"},
+    {"onInterceptOpponentPlayAction"},
     {"onThinkAction"},
     {"onPlayAction"},
     {"onOpponentPlayAction"},
+    {"onInitEquipment"},
+    {"onInterceptPlayEquipment"},
+    {"onInterceptOpponentPlayEquipment"},
     {"onThinkEquipment"},
     {"onPlayEquipment"},
     {"onOpponentPlayEquipment"},
     {"onDestroyField"},
     {"onOpponentDestroyField"},
+    {"onInitField"},
+    {"onInterceptPlayField"},
+    {"onInterceptOpponentPlayField"},
     {"onThinkField"},
     {"onPlayField"},
     {"onOpponentPlayField"},
@@ -571,6 +605,7 @@ ztcg_enum =
     -- new cards created can be listed here.
 
     {"ZTCG_DONTCARE", -1},
+    {"ZTCG_NIL"},
 
     -- ###############################
     -- ## DO NOT MODIFY THESE ENUMS ##
@@ -582,7 +617,7 @@ ztcg_enum =
     -- you can insert new enums here, usable in your own files
 
     {"ZTCG_DUMMY", -1},
-    {"ZTCG_ZERO"},      -- value of the next integer
+    {"ZTCG_ZERO"},      -- if not specified, value is of the next integer
 
     -- /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\
 

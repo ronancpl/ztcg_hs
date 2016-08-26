@@ -1,20 +1,26 @@
 CHARACTER
-Nabooru
-160
-280
+Mido
+50
+400
 HAND
-Hylian Shield
-Goron Ruby
-Spirit Medallion
+Heart Piece
+Kokiri Tunic
+Poe Sisters
+Poe
 GRAVEYARD
 LVL_CARDS
-Desert Colossus
-Desert Colossus
-Anubis
-Anubis
-Adult Wallet
-Adult Wallet
-Guay
+Joelle
+Joelle
+Malon
+Mad Scrub
+Red Tektite
+Biggorons Sword
+Heart Piece
+Heart Piece
 EQUIPS
 MONSTERS
+Tailpasaran
+Malon
+Red Tektite
+Mad Scrub
 FIELD

@@ -1,24 +1,26 @@
 CHARACTER
-Dark Link
-160
-280
+Link
+50
+320
 HAND
-Skull Mask
-Skulltulas Ambush
+Blaze Dragon
+Goron Ruby
+Goron Tunic
 GRAVEYARD
 LVL_CARDS
-Silver Gauntlets
-Skull Mask
-Zoras Sapphire
-Ganons Castle
-Lake Hylia
-Hookshot
-Skull Mask
-Moblin
-Bigocto
-Octorok
-Cursed Villager
+Blaze Dragon
+Dodongo
+Dodongo
+Baby Dodongo
+Fire Keese
+Fire Keese
+Deku Stick
+Raze
+Dins Fire
 EQUIPS
-Hookshot
+Goron Bracelet
 MONSTERS
+Baby Dodongo
+Giant Leever
 FIELD
+Forest

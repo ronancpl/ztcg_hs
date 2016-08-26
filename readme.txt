@@ -1,4 +1,4 @@
-﻿---- Zelda Trading Card Game : Hyrule Showdown V1.0 -------
+﻿---- Zelda Trading Card Game : Hyrule Showdown V2.1 -------
 By Ronan C. P. Lana
 Undergraduate @ DCC-UFMG
 Email: rcpl2010@gmail.com
@@ -35,6 +35,8 @@ v1.9:  data structures have been changed, to accomodate the new WIP feature: Car
 v1.9a: card Editor API embedded and ready to use, examples provided, tests under progress. Minor game patches.
 v1.9b: minor card Editor API bug fixes.
 v1.9c: more card Editor API bug fixes.
+v2.0:  card Editor API test battery completed, ready to use.
+v2.1:  interface tweaks, bug fixes and sample cards which uses the Card Editor API were provided.
 
 4) More Details
 Game rules: "ztcg_rules.pdf" at 'docs'.

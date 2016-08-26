@@ -1,25 +1,24 @@
 CHARACTER
 Link
-280
-280
+50
+320
 HAND
-Ocarina of Time
-Ocarina of Time
-Rauru
-Great Dekus Bless
-Deku Seeds Bag
-Larva Gohma
-Magic Beans
+Blaze Dragon
+Goron Ruby
+Goron Tunic
 GRAVEYARD
 LVL_CARDS
-Lizalfos
-Ocarina of Time
-Lizalfos
-Like-Like
-Poe Sisters
+Blaze Dragon
+Dodongo
+Baby Dodongo
+Fire Keese
+Fire Keese
+Deku Stick
+Raze
+Dins Fire
 EQUIPS
+Goron Bracelet
 MONSTERS
-Lizalfos
-Dead Hand
-Lizalfos
+Baby Dodongo
 FIELD
+Forest
