@@ -37,6 +37,7 @@ v1.9b: minor card Editor API bug fixes.
 v1.9c: more card Editor API bug fixes.
 v2.0:  card Editor API test battery completed, ready to use.
 v2.1:  interface tweaks, bug fixes and sample cards which uses the Card Editor API were provided.
+v2.1a: minor game patches.
 
 4) More Details
 Game rules: "ztcg_rules.pdf" at 'docs'.
