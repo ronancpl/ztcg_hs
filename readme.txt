@@ -11,7 +11,9 @@ their respective staff.
 
 2) Running on your machine
 
-Extract the ZIP folder and run "ztcg_hs.exe".
+Extract the ZIP folder.
+On Windows OS: run "ztcg_hs.exe".
+On Unix: run "ztcg_hs_unix". If at first it didn't run, go Properties -> check "Is executable", and try running again.
 
 3) Game Patches
 
