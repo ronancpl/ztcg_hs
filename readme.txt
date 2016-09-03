@@ -11,7 +11,7 @@ their respective staff.
 
 2) Running on your machine
 
-Extract the ZIP folder and run "main.exe".
+Extract the ZIP folder and run "ztcg_hs.exe".
 
 3) Game Patches
 
@@ -38,6 +38,7 @@ v1.9c: more card Editor API bug fixes.
 v2.0:  card Editor API test battery completed, ready to use.
 v2.1:  interface tweaks, bug fixes and sample cards which uses the Card Editor API were provided.
 v2.1a: minor game patches.
+v2.2:  portability to Linux. The game now runs on Unix systems too. Minor game patches and card rebalances.
 
 4) More Details
 Game rules: "ztcg_rules.pdf" at 'docs'.
