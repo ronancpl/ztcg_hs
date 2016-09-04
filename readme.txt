@@ -41,6 +41,7 @@ v2.0:  card Editor API test battery completed, ready to use.
 v2.1:  interface tweaks, bug fixes and sample cards which uses the Card Editor API were provided.
 v2.1a: minor game patches.
 v2.2:  portability to Linux. The game now runs on Unix systems too. Minor game patches and card rebalances.
+v2.2a: minor card rebalances.
 
 4) More Details
 Game rules: "ztcg_rules.pdf" at 'docs'.
