@@ -44,17 +44,8 @@ ZTCG_CARD
         attack(player, attacker, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_DONTCARE", "ENABLE_PREVENT", "IS_STARTER")
     end
 
-    function onPlayMob(player)
-        -- aura only takes effect if character is LEVEL 60+ and has 3+ LIGHT-type cards under it.
-        if(not matchRequirements(player, 60, 3, "ELEM_LIGHT")) then return end
-
-        local src = getSourceCARD()
-        local mob_played = getCardPointer(0)
-
-        applyTargetBonus(player,mob_played,src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_LIGHT", "ZTCG_NIL")
-    end
-
     function undoBuffs(player)
+        -- aura only takes effect if character is LEVEL 60+ and has 3+ LIGHT-type cards under it.
         if(not matchRequirements(player, 60, 3, "ELEM_LIGHT")) then return end
 
         local src = getSourceCARD()
@@ -62,6 +53,7 @@ ZTCG_CARD
     end
 
     function applyBuffs(player)
+        -- aura only takes effect if character is LEVEL 60+ and has 3+ LIGHT-type cards under it.
         if(not matchRequirements(player, 60, 3, "ELEM_LIGHT")) then return end
 
         local src = getSourceCARD()
