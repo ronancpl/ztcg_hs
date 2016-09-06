@@ -43,6 +43,7 @@ v2.1a: minor game patches.
 v2.2:  portability to Linux. The game now runs on Unix systems too. Minor game patches and card rebalances.
 v2.2a: minor card rebalances.
 v2.2b: minor game patches and card rebalances.
+v2.2c: minor card rebalances.
 
 4) More Details
 Game rules: "ztcg_rules.pdf" at 'docs'.
