@@ -399,6 +399,7 @@ ztcg_enum =
     {"afterOpponentCharacterActions"},
     {"onActivateMobEffect"},
     {"onRecoverMobStats"},
+    {"onCheckPreventAttack"},
 
     -- ZTCG_CARDID --
     {"LINK", 1},

@@ -64,23 +64,6 @@ ZTCG_CARD
         end
     end
 
-    function onPlayMob(player)
-        local src = getSourceCARD()
-        local mob_played = getCardPointer(0)
-
-        applyTargetBonus(player,mob_played,src,20,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_EARTH", "ZTCG_NIL")
-    end
-
-    function onOpponentPlayMob(player)
-        local adv_field = getOnBoardCARD(player, "SLOT_ADVSRYFLD")
-        if(not isNullCARD(adv_field)) then return end
-
-        local src = getSourceCARD()
-        local mob_played = getCardPointer(0)
-
-        applyTargetBonus(player,mob_played,src,20,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_EARTH", "ZTCG_NIL")
-    end
-
     function undoBuffs(player)
         local src = getSourceCARD()
         removeAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,20,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_EARTH", "ZTCG_NIL")

@@ -13,7 +13,7 @@ their respective staff.
 
 Extract the ZIP folder.
 On Windows OS: run "ztcg_hs.exe".
-On Unix: run "ztcg_hs_unix". If at first it didn't run, go Properties -> check "Is executable", and try running again.
+On Unix: run "ztcg_hs". If at first it didn't run, go Properties -> check "Is executable", and try running again.
 
 3) Game Patches
 
@@ -44,6 +44,7 @@ v2.2:  portability to Linux. The game now runs on Unix systems too. Minor game p
 v2.2a: minor card rebalances.
 v2.2b: minor game patches and card rebalances.
 v2.2c: minor card rebalances.
+v2.3:  improved game results display, added EXP bar at the display. Minor game patches and card rebalances.
 
 4) More Details
 Game rules: "ztcg_rules.pdf" at 'docs'.
