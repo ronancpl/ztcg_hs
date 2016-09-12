@@ -20,7 +20,7 @@ On Unix: run "ztcg_hs_unix". If at first it didn't run, go Properties -> check "
 v1.0:  implementation of the 200 cards completed, full set.
 v1.1:  redesign of StatusBox UI.
 v1.2:  redesign of Card List and Deck Build.
-v1.3:  included profile level system (PLS), end-match mechanics (such loot and exp gain).
+v1.3:  included profile level system (PLS), end-match mechanics (such as loot and exp gain).
 v1.4:  included game log mechanics, corrected some quirks with PLS and game chat.
 v1.5:  included in-game build mechanics (UI that keeps track of available character actions).
 v1.6:  included equip bonus screen (UI that permits toggling between equipped bonus to each attack).
@@ -46,6 +46,7 @@ v2.2b: minor game patches and card rebalances.
 v2.2c: minor card rebalances.
 v2.3:  improved game results display, added EXP bar at the display. Minor game patches and card rebalances.
 v2.3a: minor game patches.
+v2.3b: minor revamp on game results display.
 
 4) More Details
 Game rules: "ztcg_rules.pdf" at 'docs'.
