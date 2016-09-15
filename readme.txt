@@ -47,6 +47,7 @@ v2.2c: minor card rebalances.
 v2.3:  improved game results display, added EXP bar at the display. Minor game patches and card rebalances.
 v2.3a: minor game patches.
 v2.3b: minor revamp on game results display.
+v2.3c: fixed a bug on PlayCard function at the Card API framework.
 
 4) More Details
 Game rules: "ztcg_rules.pdf" at 'docs'.
