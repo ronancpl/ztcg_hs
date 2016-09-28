@@ -13,7 +13,9 @@ their respective staff.
 
 Extract the ZIP folder.
 On Windows OS: run "ztcg_hs.exe".
-On Unix: run "ztcg_hs_unix". If at first it didn't run, go Properties -> check "Is executable", and try running again.
+
+On Unix: run "ztcg_hs_unix".
+If at first it didn't run, go Properties -> check "Is executable", and try running again.
 
 3) Game Patches
 
@@ -50,6 +52,7 @@ v2.3b: minor revamp on game results display.
 v2.3c: fixed a bug on PlayCard function at the Card API framework.
 v2.3d: minor card patch.
 v2.3e: minor game patch.
+v2.3f: minor game patch.
 
 4) More Details
 Game rules: "ztcg_rules.pdf" at 'docs'.
