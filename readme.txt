@@ -54,6 +54,7 @@ v2.3d: minor card patch.
 v2.3e: minor game patch.
 v2.3f: minor game patch.
 v2.3g: minor game patch and card rebalances.
+v2.3g: minor card rebalances.
 
 4) More Details
 Game rules: "ztcg_rules.pdf" at 'docs'.
