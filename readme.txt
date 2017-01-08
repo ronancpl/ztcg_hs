@@ -15,7 +15,7 @@ Extract the ZIP folder.
 On Windows OS: run "ztcg_hs.exe".
 
 On Unix: run "ztcg_hs_unix".
-If at first it didn't run, go Properties -> check "Is executable", and try running again.
+If at first it doesn't run, go Properties -> check "Is executable", and try running again.
 
 3) Game Patches
 
@@ -54,7 +54,8 @@ v2.3d: minor card patch.
 v2.3e: minor game patch.
 v2.3f: minor game patch.
 v2.3g: minor game patch and card rebalances.
-v2.3g: minor card rebalances.
+v2.3h: minor card rebalances.
+v2.4:  memory management fixes and some code structure enhancement.
 
 4) More Details
 Game rules: "ztcg_rules.pdf" at 'docs'.
