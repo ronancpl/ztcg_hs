@@ -56,6 +56,7 @@ v2.3f: minor game patch.
 v2.3g: minor game patch and card rebalances.
 v2.3h: minor card rebalances.
 v2.4:  memory management fixes and some code structure enhancement.
+v2.5:  fixed build engine drawing certain shapes incorrectly.
 
 4) More Details
 Game rules: "ztcg_rules.pdf" at 'docs'.
