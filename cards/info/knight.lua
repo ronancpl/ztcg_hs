@@ -5,7 +5,7 @@ ZTCG_CARD
     "INFO" "Light - Character"  -- Lua-like line comments can be used at these card descriptor files.
     "TYPE" "CHAR"
     "ELEMENT" "LIGHT"
-    "RARITY" "1"
+    "RARITY" "RARITY_UNIQUE"
     "COST" "777"
 
     TYPE_CHAR

@@ -5,7 +5,7 @@ ZTCG_CARD
     "INFO" "Earth - Field - Forest"
     "TYPE" "FIELD"
     "ELEMENT" "EARTH"
-    "RARITY" "3"
+    "RARITY" "RARITY_SELDOM"
     "COST" "1000"
 
     TYPE_FLD

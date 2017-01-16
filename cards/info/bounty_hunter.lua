@@ -4,7 +4,7 @@ ZTCG_CARD
     "IMAGE" "bounty_hunter.png"
     "TYPE" "MOB"
     "ELEMENT" "DARK"
-    "RARITY" "3"
+    "RARITY" "RARITY_SELDOM"
     "INFO" "Dark - Monster - Trickster"
     "COST" "950"
 

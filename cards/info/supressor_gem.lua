@@ -4,7 +4,7 @@ ZTCG_CARD
     "IMAGE" "supressor_gem.png"
     "TYPE" "EQUIP"
     "ELEMENT" "WATER"
-    "RARITY" "1"
+    "RARITY" "RARITY_UNIQUE"
     "INFO" "Water - Equipment - Device"
     "COST" "1320"
 

@@ -16,6 +16,11 @@ ztcg_enum =
     {"JRBOSS"},
     {"BOSS"},
 
+    -- ZTCG_RARITY
+    {"RARITY_UNIQUE", 1},
+    {"RARITY_SELDOM", 3},
+    {"RARITY_COMMON", 7},
+
     -- ZTCG_TYPE
     {"TYPE_MOB", 0},
     {"TYPE_EQP"},
@@ -605,6 +610,7 @@ ztcg_enum =
     -- {"NEW_CARDS"},
     -- new cards created can be listed here.
 
+    {"ZTCG_MAXVALUE", 999},
     {"ZTCG_DONTCARE", -1},
     {"ZTCG_NIL"},
 

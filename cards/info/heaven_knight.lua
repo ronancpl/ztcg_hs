@@ -4,7 +4,7 @@ ZTCG_CARD
     "IMAGE" "heaven_knight.png"
     "TYPE" "BOSS"
     "ELEMENT" "LIGHT"
-    "RARITY" "1"
+    "RARITY" "RARITY_UNIQUE"
     "INFO" "Light - Boss - Knight"
     "COST" "1777"
 

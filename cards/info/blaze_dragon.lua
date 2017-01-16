@@ -4,7 +4,7 @@ ZTCG_CARD
     "IMAGE" "blaze_dragon.png"
     "TYPE" "JRBOSS"
     "ELEMENT" "FIRE"
-    "RARITY" "3"
+    "RARITY" "RARITY_SELDOM"
     "INFO" "Fire - Jr. Boss - Dragon"
     "COST" "1500"
 

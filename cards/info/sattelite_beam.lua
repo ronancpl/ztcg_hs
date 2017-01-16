@@ -4,7 +4,7 @@ ZTCG_CARD
     "IMAGE" "sattelite_beam.png"
     "TYPE" "ACTION"
     "ELEMENT" "WIND"
-    "RARITY" "3"
+    "RARITY" "RARITY_SELDOM"
     "INFO" "Wind - Tactic - Strategy"
     "COST" "1200"
 
@@ -16,7 +16,7 @@ ZTCG_CARD
 
     LVL_ACTION
     {
-        "LEVEL" "999"   -- one-shot skill requires LEVEL set at 999
+        "LEVEL" "ZTCG_MAXVALUE"   -- one-shot skill requires LEVEL set at ZTCG_MAXVALUE
         "TEXT" "Concussive Purge - Choose an opponent monster on the field and silence it for 2 turns."
     }
 

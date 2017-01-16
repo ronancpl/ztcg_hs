@@ -2,7 +2,7 @@ ZTCG_CARD
 {
     LVL_ACTION
     {
-        "LEVEL" "999"
+        "LEVEL" "ZTCG_MAXVALUE"
         "ATTRB" "2"
         "TEXT" "Draw a card."
     }
