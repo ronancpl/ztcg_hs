@@ -11,8 +11,8 @@ ZTCG_CARD
     "IMAGE" "base_card.png"
     "TYPE" "ACTION"
     "ELEMENT" "WATER"
-    "RARITY" "7"
-    "INFO" "Water - Tactic - Recovery"
+    "RARITY" "RARITY_COMMON"
+    "INFO" "Water - Tactic - Recovery"  -- subtypes: Water, Tactic, Recovery
     "COST" "500"
 
     TYPE_ACT

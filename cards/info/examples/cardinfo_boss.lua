@@ -4,7 +4,7 @@ ZTCG_CARD
     "IMAGE" "base_card.png"
     "TYPE" "BOSS"
     "ELEMENT" "FIRE"
-    "RARITY" "1"
+    "RARITY" "RARITY_UNIQUE"
     "INFO" "random things"
     "COST" "777"
 

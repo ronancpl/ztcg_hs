@@ -58,7 +58,7 @@ ZTCG_CARD
             local cid = getCardIdFromCARD(src)
 
             setCardPointer(0, src)
-            editCardCounter(src, cid, 0, 777, 0, null)  -- prepare counter!
+            editCardRegister(src, cid, 0, 777, 0, null)  -- prepare counter!
         end
 
     end
@@ -67,8 +67,8 @@ ZTCG_CARD
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
-        if(getCardCounter(src, cid, 0) == 777) then
-            editCardCounter(src, cid, 0, 0, 0, null)
+        if(getCardRegister(src, cid, 0) == 777) then
+            editCardRegister(src, cid, 0, 0, 0, null)
 
             local dmg = getGameValue(0)     -- damage received will be returned to the attacker as a direct attack
 

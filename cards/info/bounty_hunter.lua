@@ -54,7 +54,7 @@ ZTCG_CARD
         local src = getSourceCARD()     -- it is recommended to always declare src card at the start of a pointcut function
 
         local deck = getPlayerDeck(player, "DECK_HAND")
-        local list = getDataFromDeck(deck)
+        local list = getListFromDeck(deck)
 
         -- returns a list with all mobs on the player's hand
         local card_list = makeFilteredList(player,list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_MOB", "ELEM_ANY", "ZTCG_NIL")

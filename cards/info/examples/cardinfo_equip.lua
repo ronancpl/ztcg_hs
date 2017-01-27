@@ -11,7 +11,7 @@ LVL_ACTION
     "IMAGE" "base_card.png"
     "TYPE" "EQUIP"
     "ELEMENT" "EARTH"
-    "RARITY" "7"
+    "RARITY" "RARITY_COMMON"
     "INFO" "random things"
     "COST" "1"
 

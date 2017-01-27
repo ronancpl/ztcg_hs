@@ -2,9 +2,8 @@ ZTCG_CARD
 {
     LVL_ACTION
         {
-            "LEVEL" "10"
-            "ATTRB" "1"
-            "TEXT" "Noob Attack - Do 10 damage."
+            "LEVEL" "ZTCG_MAXVALUE"
+            "TEXT" "Critical Blow - Do 50 damage."
         }
 
     TYPE_FLD
@@ -16,7 +15,7 @@ ZTCG_CARD
     "IMAGE" "base_card.png"
     "TYPE" "FIELD"
     "ELEMENT" "WIND"
-    "RARITY" "7"
+    "RARITY" "RARITY_COMMON"
     "INFO" "Mountain"
     "COST" "300"
 

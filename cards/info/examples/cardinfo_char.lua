@@ -4,7 +4,7 @@ ZTCG_CARD
     "IMAGE" "base_card.png"
     "TYPE" "CHAR"
     "ELEMENT" "DARK"
-    "RARITY" "7"
+    "RARITY" "RARITY_COMMON"
     "INFO" "random things"
     "COST" "777"
 

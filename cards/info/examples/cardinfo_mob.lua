@@ -4,7 +4,7 @@ ZTCG_CARD
     "IMAGE" "base_card.png"
     "TYPE" "MOB"
     "ELEMENT" "EARTH"
-    "RARITY" "7"
+    "RARITY" "RARITY_COMMON"
     "INFO" "BATTLEFIELD"
     "COST" "200"
 
@@ -15,6 +15,8 @@ ZTCG_CARD
         "ATTCK" "10"
         "HP" "20"
 
+        -- optional field TEXT
+        "TEXT" "Call the shots - When this card is played, do 40 damage to a character."
     }
     LVL_ACTION
         {

@@ -5,8 +5,8 @@ ZTCG_CARD
     "TYPE" "EQUIP"
     "ELEMENT" "WATER"
     "RARITY" "RARITY_UNIQUE"
-    "INFO" "Water - Equipment - Device"
-    "COST" "1320"
+    "INFO" "Water - Equipment - Device" -- subtypes: Water, Equipment, Device
+    "COST" "1320"                       -- subtypes are CASE SENSITIVE.
 
     LVL_ACTION
     {
@@ -27,21 +27,21 @@ ZTCG_CARD
         playCard(player, str, "PLAY_MOB | PLAY_FIELD", 60)
     end
 
-    -- CARD COUNTER:
+    -- CARD REGISTER:
     -- 0 <- Mob slot targeted
 
     function onInitEquipment(player)
         local src = getSourceCARD()
         local cardid = getCardIdFromCARD(src)
 
-        editCardCounter(src, cardid, 0, -1, 0, null)    -- informs the card does not have a target yet
+        editCardRegister(src, cardid, 0, -1, 0, null)    -- informs the card does not have a target yet
     end
 
     function undoBuffs(player)
         local src = getSourceCARD()
         local cardid = getCardIdFromCARD(src)
 
-        local slot = getCardCounter(src, cardid, 0)
+        local slot = getCardRegister(src, cardid, 0)
         local affected_mob = getOnBoardCARD(not player, slot)  -- the affected mob card
 
         print("AFFECTED_MOB: ", slot)
@@ -54,7 +54,7 @@ ZTCG_CARD
         local src = getSourceCARD()
         local cardid = getCardIdFromCARD(src)
 
-        local slot = getCardCounter(src, cardid, 0)
+        local slot = getCardRegister(src, cardid, 0)
         local affected_mob = getOnBoardCARD(not player, slot)  -- the affected mob card
 
         print("RE AFFECTED_MOB: ", slot)
@@ -66,7 +66,7 @@ ZTCG_CARD
     function onThinkEquipment(player)
         local src = getSourceCARD()
         local cardid = getCardIdFromCARD(src)
-        editCardCounter(src, cardid, 0, -1, 0, null)  -- init value: -1 (card does not have a target yet)
+        editCardRegister(src, cardid, 0, -1, 0, null)  -- init value: -1 (card does not have a target yet)
 
         local clist = makeFilteredTableList(player, "ONLY_ADVSRY", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
         local chosen = menuCards(player,clist, "SUPRESSOR GEM: Select a card to apply silence.", "CARDLIST_PEEK")
@@ -80,7 +80,7 @@ ZTCG_CARD
                 print("TARGET SGEM:", val)
 
                 local cardid = getCardIdFromCARD(src)
-                editCardCounter(src, cardid, 0, val, 0, null)
+                editCardRegister(src, cardid, 0, val, 0, null)
             end
         end
 
@@ -92,7 +92,7 @@ ZTCG_CARD
         local src = getSourceCARD()
         local cardid = getCardIdFromCARD(src)
 
-        local slot = getCardCounter(src, cardid, 0)
+        local slot = getCardRegister(src, cardid, 0)
         local affected_mob = getOnBoardCARD(not player, slot)  -- the affected mob card
 
         removeBlockAura(affected_mob, "AURA_SILENCE", src);
@@ -103,7 +103,7 @@ ZTCG_CARD
 
         local src = getSourceCARD()
         local id = getCardIdFromCARD(src)
-        local slot = getCardCounter(src, id, 0)
+        local slot = getCardRegister(src, id, 0)
 
         local affected_mob = getOnBoardCARD(not player, slot)  -- the affected mob card
 
@@ -113,7 +113,7 @@ ZTCG_CARD
 
         if(isSameCARD(target, affected_mob)) then
             removeBlockAura(affected_mob, "AURA_SILENCE", src);
-            editCardCounter(src, id, 0, -1, 0, null)  -- target has been destroyed, ready to affect another
+            editCardRegister(src, id, 0, -1, 0, null)  -- target has been destroyed, ready to affect another
         end
     end
 
@@ -121,7 +121,7 @@ ZTCG_CARD
         local src = getSourceCARD()
         local cardid = getCardIdFromCARD(src)
 
-        if(getCardCounter(src, cardid, 0) == -1) then
+        if(getCardRegister(src, cardid, 0) == -1) then
             local clist = makeFilteredTableList(player, "ONLY_ADVSRY", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
             local chosen = menuCards(player,clist, "SUPRESSOR GEM: Select a card to apply silence.", "CARDLIST_PEEK")
             local target = getCARD(chosen)
@@ -131,7 +131,7 @@ ZTCG_CARD
                     applyBlockAura(target, "AURA_SILENCE", src)
 
                     local val = getSlotIdFromCARD(not player, target)   -- saving the slot this equipment is targeting
-                    editCardCounter(src, cardid, 0, val, 0, null)
+                    editCardRegister(src, cardid, 0, val, 0, null)
                 end
             end
 

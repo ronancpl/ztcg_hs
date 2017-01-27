@@ -30,7 +30,7 @@ ZTCG_CARD
         local card = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
         if(hasSharedFlagsCARD(card, "FLAG_ELEM", "ELEM_EARTH")) then
             local attr = getPlayerAttributes(player, "ELEM_EARTH")
-            setFieldCounter(player, attr)
+            setFieldRegister(player, attr)
         end
     end
 
@@ -42,7 +42,7 @@ ZTCG_CARD
             local card = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
             if(hasSharedFlagsCARD(card, "FLAG_ELEM", "ELEM_EARTH")) then
                 local attr = getPlayerAttributes(player, "ELEM_EARTH")  -- opponent can share field perks if it doesnt own a field
-                setFieldCounter(player, attr)
+                setFieldRegister(player, attr)
             end
         end
     end
@@ -51,7 +51,7 @@ ZTCG_CARD
         local card = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
         if(hasSharedFlagsCARD(card, "FLAG_ELEM", "ELEM_EARTH")) then
             local attr = getPlayerAttributes(player, "ELEM_EARTH")
-            setFieldCounter(player, attr)
+            setFieldRegister(player, attr)
         end
 
         local card2 = getOnBoardCARD(player, "SLOT_ADVSRYCHAR")
@@ -59,7 +59,7 @@ ZTCG_CARD
             local op_field = getOnBoardCARD(player, "SLOT_ADVSRYFLD")
             if(isNullCARD(op_field)) then
                 local attrb = getPlayerAttributes(not player, "ELEM_EARTH")  -- opponent can share field perks if it doesnt own a field
-                setFieldCounter(not player, attrb)
+                setFieldRegister(not player, attrb)
             end
         end
     end

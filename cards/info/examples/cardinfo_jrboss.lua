@@ -1,10 +1,10 @@
 ZTCG_CARD
 {
-    "NAME" "great noob"
+    "NAME" "great figure"
     "IMAGE" "base_card.png"
     "TYPE" "JRBOSS"
     "ELEMENT" "LIGHT"
-    "RARITY" "3"
+    "RARITY" "RARITY_SELDOM"
     "INFO" "Ternuria"
     "COST" "1000"
 
@@ -20,13 +20,13 @@ ZTCG_CARD
         "LEVEL" "130"
         "ATTCK" "70"
         "HP" "120"
+    }
 
-        LVL_ACTION
-        {
-            "LEVEL" "10"
-            "ATTRB" "1"
-            "TEXT" "Noob Attack - Do 10 damage."
-        }
+    LVL_ACTION
+    {
+        "LEVEL" "10"
+        "ATTRB" "1"
+        "TEXT" "Noob Attack - Do 10 damage."
     }
 
     function onPlay(x)
