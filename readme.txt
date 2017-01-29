@@ -1,4 +1,4 @@
-﻿---- Zelda Trading Card Game : Hyrule Showdown V2.8 -------
+﻿---- Zelda Trading Card Game : Hyrule Showdown V2.9 -------
 By Ronan C. P. Lana
 Undergraduate @ DCC-UFMG
 Email: rcpl2010@gmail.com
@@ -60,6 +60,7 @@ v2.5:  fixed build engine drawing certain shapes incorrectly.
 v2.6:  rearranged LUA-based card description syntax and some code tweaks permitting code reusability.
 v2.7:  tweaked some files at the folder tree and created a new documentation file (English).
 v2.8:  incorporated "Development Section" at documentation, with focus in Custom Cards. Few code tweaks.
+v2.9:  abandoning matches now does not gives match loots. Finished ZTCG:HS documentation.
 
 4) More Details
 Resumed game rules: "ztcg_rules.pdf" at 'extra'.
