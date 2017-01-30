@@ -1,4 +1,4 @@
-﻿---- Zelda Trading Card Game : Hyrule Showdown V2.9a ----
+﻿---- Zelda Trading Card Game : Hyrule Showdown V2.9b ----
 By Ronan C. P. Lana
 Undergraduate @ DCC-UFMG
 Email: rcpl2010@gmail.com
@@ -62,6 +62,7 @@ v2.7:  tweaked some files at the folder tree and created a new documentation fil
 v2.8:  incorporated "Development Section" at documentation, with focus in Custom Cards. Few code tweaks.
 v2.9:  abandoning matches now does not gives match loots. Finished ZTCG:HS documentation.
 v2.9a: minor game patch.
+v2.9b: pointcut fixes and minor game patch.
 
 4) More Details
 Resumed game rules: "ztcg_rules.pdf" at 'extra'.
