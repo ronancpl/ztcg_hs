@@ -1,4 +1,4 @@
-﻿---- Zelda Trading Card Game : Hyrule Showdown V3.0 ----
+﻿---- Zelda Trading Card Game : Hyrule Showdown V3.0a ----
 By Ronan C. P. Lana
 Undergraduate @ DCC-UFMG
 Email: rcpl2010@gmail.com
@@ -65,6 +65,7 @@ v2.9a: minor game patch.
 v2.9b: pointcut fixes and minor game patch.
 v2.9c: minor card patches and rebalances, two new atomic rules introduced.
 v3.0:  designed a new debugging tool, capable of detection of memory management leaks within the system.
+v3.0a: minor game patch and card rebalances.
 
 4) More Details
 Resumed game rules: "ztcg_rules.pdf" at 'extra'.
