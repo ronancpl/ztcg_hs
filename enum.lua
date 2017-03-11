@@ -7,6 +7,45 @@ ztcg_enum =
     -- ###############################
 
     {"ZTCG_CARD" , 0},
+    {"ZTCG_SPRITE"},
+
+    {"SPR_SOURCE", 1},
+    {"SPR_NAME"},
+    {"SPR_COUNT"},
+    {"SPR_AUTO_DX"},
+    {"SPR_AUTO_DY"},
+    {"SPR_ITEM_X"},
+    {"SPR_ITEM_Y"},
+    {"SPR_ITEM_DX"},
+    {"SPR_ITEM_DY"},
+
+    -- Drawing modes
+    {"DRAW_SOURCE", 1},
+    {"DRAW_SCALED"},
+	{"DRAW_TINTED"},
+	{"DRAW_ROTATED"},
+	{"DRAW_COMPLEX"},
+
+	-- Drawing "Flag" operations
+	{"FLIP_NONE", 0},
+	{"FLIP_HORIZONTAL"},
+	{"FLIP_VERTICAL"},
+	{"FLIP_HORIZONTAL_VERTICAL"},
+
+	-- Blend operations
+    {"BLEND_ADD", 0},
+    {"BLEND_SRC_MINUS_DEST"},
+	{"BLEND_DEST_MINUS_SRC"},
+
+	-- Blend modes
+	{"BLEND_ZERO", 0},
+    {"BLEND_ONE"},
+	{"BLEND_ALPHA"},
+	{"BLEND_INVERSE_ALPHA"},
+	{"BLEND_SRC_COLOR"},
+	{"BLEND_DEST_COLOR"},
+	{"BLEND_INVERSE_SRC_COLOR"},
+	{"BLEND_INVERSE_DEST_COLOR"},
 
     {"MOB", 0},
     {"EQUIP"},
@@ -20,6 +59,10 @@ ztcg_enum =
     {"RARITY_UNIQUE", 1},
     {"RARITY_SELDOM", 3},
     {"RARITY_COMMON", 7},
+
+    -- ZTCG_TRUESTRIKE
+    {"STRIKE_NORMAL", 0},
+    {"STRIKE_TRUE"},
 
     -- ZTCG_TYPE
     {"TYPE_MOB", 0},
