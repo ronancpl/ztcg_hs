@@ -1,6 +1,6 @@
 ZTCG_SPRITE
 {
-    "SPR_SOURCE" "ZPsprites.jpg"    -- this preamble (source, count) must ALWAYS come before the first definition of a SPRITE block
+    "SPR_SOURCE" "ZPsprites.png"    -- this preamble (source, count) must ALWAYS come before the first definition of a SPRITE block
     "SPR_NAME" "sprite2"
     "SPR_COUNT" "4"
 

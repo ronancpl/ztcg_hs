@@ -1,6 +1,6 @@
 ZTCG_SPRITE
 {
-    "SPR_SOURCE" "ZPsprites.jpg"    -- this preamble (source, count) must ALWAYS come before the first definition of a SPRITE block
+    "SPR_SOURCE" "ZPsprites.png"    -- this preamble (source, count) must ALWAYS come before the first definition of a SPRITE block
     "SPR_NAME" "sprite"
     "SPR_COUNT" "8"
 
@@ -16,23 +16,23 @@ ZTCG_SPRITE
     }
 
     function onEffectStart()
-        setEffectDuration(1000)
+        setNewEffectDuration(1000)
 
-        setEffectTint(255,255,255,255) -- RGBA
+        setNewEffectTint(255,255,255,255) -- RGBA
 
-        setEffectPosition(600,300)
-        setEffectMovement(0,0)
-        setEffectRandomMove(5,5)
-        setEffectRandomStep(20,20)
+        setNewEffectPosition(600,300)
+        setNewEffectMovement(0,0)
+        setNewEffectRandomMove(5,5)
+        setNewEffectRandomStep(20,20)
 
-        setEffectScale(4,4)
+        setNewEffectScale(4,4)
 
-        setEffectRotationCenter(0,0)
-        setEffectRotationAngle(0)
+        setNewEffectRotationCenter(0,0)
+        setNewEffectRotationAngle(0)
 
-        setEffectFlags(0)
-        setEffectDrawType("DRAW_SCALED")
-        setEffectBlendingFlags("BLEND_ADD","BLEND_ALPHA","BLEND_ONE")
+        setNewEffectFlags(0)
+        setNewEffectDrawType("DRAW_SCALED")
+        setNewEffectBlendingFlags("BLEND_ADD","BLEND_ALPHA","BLEND_ONE")
 
         -- deploy new effect after loading the effect's flags
         createEffect("sprite2")
