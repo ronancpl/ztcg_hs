@@ -27,7 +27,6 @@ ZTCG_CARD
         local grav = getPlayerDeck(player, "DECK_GRAV")
 
         local cards = takeCardsFromDeck(deck, 2)
-        local card = menuCards(player,cards,"Select a card to draw.","CARDLIST_PEEK")
         local qty = getListLength(cards)
         if qty >= 2 then
             local card = menuCards(player,cards,"Select a card to draw.","CARDLIST_PEEK")
