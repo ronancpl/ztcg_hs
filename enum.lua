@@ -83,6 +83,11 @@ ztcg_enum =
     {"DARK"},
     {"LIGHT"},
 
+    {"Warrior", 0},
+    {"Magician"},
+    {"Bowman"},
+    {"Thief"},
+
     -- ZTCG_ELEMENT
     {"ELEM_EARTH", 0},
     {"ELEM_WIND"},
@@ -91,6 +96,12 @@ ztcg_enum =
     {"ELEM_DARK"},
     {"ELEM_LIGHT"},
     {"ELEM_ANY"},       -- a FLAG, NOT a card-element
+
+    -- ZTCG_ELEMENT (iTCG)
+    {"ELEM_WARRIOR", 0},
+    {"ELEM_MAGE"},
+    {"ELEM_BOWMAN"},
+    {"ELEM_THIEF"},
 
     -- ZTCG_CALL
     {"CALL_ACTION", 0},
@@ -142,6 +153,7 @@ ztcg_enum =
     {"ATKRES_FIXED_SLOT"},
     {"ATKRES_FIXED_SLOT_DAMAGE"},
     {"ATKRES_FIXED_DAMAGE"},
+    {"ATKRES_NO_TARGET"},
 
     -- ZTCG_FIXEDTARGET
     {"SLOT_CHAR", 0},
@@ -295,6 +307,7 @@ ztcg_enum =
     {"ZTCG_PEEK"},
     {"ZTCG_DECKORIENT"},
     {"ZTCG_DECKMOVE"},
+    {"ZTCG_SCOUTMODE"},
     {"ZTCG_SUMMONMODE"},
     {"ZTCG_EQUIPMODE"},
     {"ZTCG_LOCATEMODE"},
@@ -317,6 +330,7 @@ ztcg_enum =
     {"preventTargetEquip"},
     {"onGetTargeted"},
     {"onEquipBuff"},
+    {"onEquipBlockDamage"},
     {"renderCardRegister"},
     {"undoBuffs"},
     {"applyBuffs"},
@@ -385,8 +399,8 @@ ztcg_enum =
     {"onAttackMobDestroyed"},
     {"onAttackOpponentCharacterDestroyed"},
     {"onAttackCharacterDestroyed"},
-    {"onExecuteAttackAndDestroyed"},
-    {"onReceiveAttackAndDestroyed"},
+    {"onExecuteAttackAndInterceptDestroyed"},
+    {"onReceiveAttackAndInterceptDestroyed"},
     {"onReceiveAttackAndSentToDiscardPile"},
     {"onMobSentToDiscardPile"},
     {"onOpponentMobSentToDiscardPile"},
