@@ -24,11 +24,12 @@ ZTCG_CARD
         "TEXT" "Spawn / Think Fast 30 -- Play a monster or tactic of level 30 or less. "
     }
 
-    function onReceiveAttackAndDestroyed()
+    function onReceiveAttackAndInterceptDestroyed(player)
         if throwCoin(player) then
+            local destroyed = updateGameValue(0,0)  -- not destroyed
+
             local src = getSourceCARD()
-            recoverDestroyedCard(player,src)
-            summon(player, "PLAY_SCOUTSUMMON","ELEM_ANY","ZTCG_MAXVALUE")
+            editCardHP(src,20)
         end
     end
 

@@ -31,7 +31,7 @@ ZTCG_CARD
 
             local card = menuCards(player,cards,"Select a tactic to draw.","CARDLIST_PEEK")
             if card ~= 0 then
-                local deck = getPlayerDeck(player, "DECK_HAND")
+                local hand = getPlayerDeck(player, "DECK_HAND")
                 moveCards(deck,hand,"TAKE_CARDID","PUT_BOTTOM",card)
 
                 revealCard(player,"This card has been drawn.",getCARD(card))

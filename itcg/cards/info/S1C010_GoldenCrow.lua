@@ -27,7 +27,11 @@ ZTCG_CARD
     end
 
     function onEquipBuffWithCharge(player)      -- damage value doubled
-        return getGameValue(3)
+        if hasFlag("ZTCG_ATKSRC", "ATKSRC_CHA") then
+            return getGameValue(3)
+        else
+            return 0
+        end
     end
 
     function onActivateCharacterAction(player)

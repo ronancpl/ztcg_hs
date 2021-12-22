@@ -28,7 +28,7 @@ ZTCG_CARD
         local attacker = getSourceCARD()
         local dmg = getGameValue(0)
 
-        attack(player, attacker, dmg, "ATKRES_NIL", "ATKSRC_MOB", "ZTCG_DONTCARE", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+        attack(player, attacker, dmg, "ATKRES_DONT_HIT_MOBS", "ATKSRC_MOB", "ZTCG_DONTCARE", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
     function onLevelActionTrigger(player)
