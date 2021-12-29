@@ -24,6 +24,19 @@ ZTCG_CARD
         "TEXT" "Quest -- Draw a card. "
     }
 
+    function onThinkMob(player)
+        local card = peekNextCard(player)
+
+        drawCard(player)
+        revealCard(not player,"Opponent has drawn card...",getCARD(card))
+
+        if(hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_ACT")) then
+            if(makePrompt(player,"Use " .. getNameFromCARD(card) .. "?","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then
+                action(player,card,"ELEM_ANY","ZTCG_MAXVALUE")
+            end
+        end
+    end
+
     function onLevelActionTrigger(player)
         drawCard(player)
     end

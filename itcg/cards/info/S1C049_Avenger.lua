@@ -28,6 +28,7 @@ ZTCG_CARD
             destroyMonster(player)
             c = c - 1
         end
+        drawCard(player)
     end
 
     function onActivateCharacterAction(player)

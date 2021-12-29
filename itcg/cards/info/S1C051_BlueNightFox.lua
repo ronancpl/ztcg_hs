@@ -28,7 +28,7 @@ ZTCG_CARD
     end
 
     function onActivateCharacterAction(player)
-        local str = "Sneak X"
+        local str = "Crafty"
 
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
         local level = getCurrentLevelFromCARD(player,chr)

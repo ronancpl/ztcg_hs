@@ -26,7 +26,6 @@ ZTCG_CARD
     function onActivateCharacterAction(player)
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
         local level = getCurrentLevelFromCARD(player,chr)
-        local name = getNameFromCARD(chr)
 
         summon(player,"PLAY_NORMALSUMMON","ELEM_ANY",level)
     end

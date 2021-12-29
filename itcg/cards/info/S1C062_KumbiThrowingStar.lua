@@ -22,9 +22,11 @@ ZTCG_CARD
         "TEXT" "Equip 20 -- Play an item of level 20 or less. "
     }
 
-    function onReceiveNormalAttack(player)
-        local src = getSourceCARD()
-        attack(player, src, 20, "ATKRES_NIL", "ATKSRC_EQP", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+    function onInterceptAttack(player)
+        if hasFlag("ZTCG_ATKSRC", "ATKSRC_CHA") then
+            local src = getSourceCARD()
+            attack(player, src, 20, "ATKRES_DONT_HIT_MOBS", "ATKSRC_EQP", "ZTCG_DONTCARE", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        end
     end
 
     function onActivateCharacterAction(player)

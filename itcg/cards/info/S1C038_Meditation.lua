@@ -29,7 +29,6 @@ ZTCG_CARD
         editCardRegister(src, cid, 0, 10, 0, nil)
         editCardRegister(src, cid, 1, 40, 0, nil)
 
-        print("act",getCardRegister(src, cid, 0))
         insertCardNextAction(player)  -- card pointer : next attack
 
         drawCard(player)
@@ -40,8 +39,6 @@ ZTCG_CARD
         local cid = getCardIdFromCARD(src)
 
         local atkr = getCardPointer(0)
-
-        print("buff",getCardRegister(src, cid, 0))
         if(hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_MOB | TYPE_ACT") and getCardRegister(src, cid, 0) == 10) then
             local dmg = getGameValue(0)
             local bonus = getCardRegister(src, cid, 1)
@@ -55,7 +52,6 @@ ZTCG_CARD
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
-        print("reg",getCardRegister(src, cid, 0))
         if(getCardRegister(src, cid, 0) == 10) then
             editCardRegister(src, cid, 0, 0, 0, nil)
 

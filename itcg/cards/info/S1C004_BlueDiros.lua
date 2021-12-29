@@ -38,7 +38,7 @@ ZTCG_CARD
             if(getCardRegister(src, cid, 0) ~= 777) then
                 editCardRegister(src, cid, 0, 777, 0, nil)
 
-                local atkr = getCardPointer(1)
+                local atkr = getCardPointer(0)
                 setCardPointer(3, atkr)
 
                 newBuff(atkr,src,-10,0,0,1)

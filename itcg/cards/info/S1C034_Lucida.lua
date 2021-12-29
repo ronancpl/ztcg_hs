@@ -44,7 +44,7 @@ ZTCG_CARD
                         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
                         local level = getCurrentLevelFromCARD(player,chr)
 
-                        destroyCharacterAction(not player,card)
+                        destroyCharacterAction(player,card,true)
                         recoverDestroyedCard(player,card)
                     end
                 end

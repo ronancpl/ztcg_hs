@@ -26,7 +26,7 @@ ZTCG_CARD
 
     function onAttackMobDestroyed(player)
         local src = getSourceCARD()
-        local srcCard = makeTargetFromCard(src)
+        local srcCard = makeTargetFromCARD(src)
 
         local deckGrav = getPlayerDeck(player, "DECK_GRAV")
         local cardList = takeTargetCardFromDeck(srcCard,deckGrav)

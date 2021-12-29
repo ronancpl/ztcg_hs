@@ -26,7 +26,6 @@ ZTCG_CARD
 
     function onAttackOpponentMobDestroyed(player)
         local src = getSourceCARD()
-        print(getNameFromCARD(getCardPointer(1)))
         if src == getCardPointer(0) then
             attack(player, src, 10, "ATKRES_DONT_HIT_MOBS", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
         end
