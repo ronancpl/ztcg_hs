@@ -200,6 +200,7 @@ ztcg_enum =
     -- ZTCG_EQUIPMODE
     {"PLAY_NORMALEQUIP", 0},
     {"PLAY_GEARUPEQUIP"},
+    {"PLAY_SCOUTEQUIP"},
 
     -- ZTCG_LOCATEMODE
     {"PLAY_NORMALFIELD", 0},
@@ -331,7 +332,18 @@ ztcg_enum =
     {"preventIntercomeTargetCharacter"},
     {"preventIntercomeTargetMob"},
     {"preventIntercomeTargetEquip"},
+    {"preventSelfTargetCharacter"},
+    {"preventSelfTargetMob"},
+    {"preventSelfTargetEquip"},
     {"preventTargetCancel"},
+    {"onPlayActionCancel"},
+    {"onOpponentPlayActionCancel"},
+    {"onPlayEquipCancel"},
+    {"onOpponentPlayEquipCancel"},
+    {"onPlayFieldCancel"},
+    {"onOpponentPlayFieldCancel"},
+    {"onPlayMobCancel"},
+    {"onOpponentPlayMobCancel"},
     {"onGetTargeted"},
     {"onEquipBuff"},
     {"onEquipBlockDamage"},

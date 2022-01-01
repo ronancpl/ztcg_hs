@@ -30,7 +30,19 @@ ZTCG_CARD
         end
     end
 
-    function onInterceptAttack(player)
+    function onCalcDefenseCard(player)
+        local src = getSourceCARD()
+        local cid = getCardIdFromCARD(src)
+
+        if hasFlag("ZTCG_ATKSRC", "ATKSRC_MOB") then
+            if(getCardRegister(src, cid, 0) ~= 777) then
+                local block = getGameValue(0)
+                updateGameValue(0, block + 10)
+            end
+        end
+    end
+
+    function onEquipBlockDamage(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 

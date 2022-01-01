@@ -41,7 +41,7 @@ ZTCG_CARD
 
     function onAttackOpponentMobDestroyed(player)
         local src = getSourceCARD()
-        if src == getCardPointer(0) then
+        if src == getCardPointer(0) and getSlotIdFromCARD(player, src) > -1 then
             attack(player, src, 20, "ATKRES_DONT_HIT_MOBS", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
         end
     end

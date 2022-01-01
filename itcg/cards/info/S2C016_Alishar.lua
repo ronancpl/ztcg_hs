@@ -41,7 +41,6 @@ ZTCG_CARD
     end
 
     function onActivateMobEffect(player)
-        print("active " .. tostring(hasFlag("ZTCG_PLAYERTYPE","IS_PLAYER")) .. " " .. tostring(matchRequirements(player, 70, 2, "ELEM_MAGE")))
         if (not hasFlag("ZTCG_PLAYERTYPE","IS_PLAYER")) then return end
         if(not matchRequirements(player, 70, 2, "ELEM_MAGE")) then return end
         if(not makePrompt(player,"Use Time Tornado?","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end

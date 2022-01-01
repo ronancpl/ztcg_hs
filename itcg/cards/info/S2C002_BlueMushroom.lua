@@ -44,16 +44,11 @@ ZTCG_CARD
                     p = player
                 end
 
-                print(" card slot " .. tostring(slotid))
-
                 local list2, hasCard
                 list2, hasCard = takeCardFromTable(player, slot)
 
-                print(" has card " .. tostring(hasCard))
-
                 if hasCard then
                     local deckHand = getPlayerDeck(p, "DECK_HAND")
-                    print("move")
                     list2 = moveCardsFromListToDeck(list2, deckHand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
                 end
 
