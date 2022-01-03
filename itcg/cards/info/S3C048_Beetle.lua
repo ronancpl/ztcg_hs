@@ -31,7 +31,7 @@ ZTCG_CARD
 
     function undoBuffs(player)
         local src = getSourceCARD()
-        removeBuff(src,src,0,0,10,1)
+        removeBuff(src,src,0,0,10)
     end
 
     function applyBuffs(player)

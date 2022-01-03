@@ -37,7 +37,7 @@ ZTCG_CARD
             if qty > 0 then
                 local cards, not_empty = makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB","ELEM_ANY","Goo")
                 if not_empty then
-                    local card = menuCards(player,cards,"Select a card to draw.","CARDLIST_PEEK")
+                    local card = menuCards(player,cards,"Select a mob to play.","CARDLIST_PEEK")
                     if card ~= 0 then
                         local hand = getPlayerDeck(player, "DECK_HAND")
                         cards = moveCardsFromListToDeck(cards,hand,"TAKE_CARDID","PUT_BOTTOM",card)

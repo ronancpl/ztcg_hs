@@ -29,7 +29,7 @@ ZTCG_CARD
 
     function onLevelActionTrigger(player)
         if amaze(player) then
-            attack(player, src, 40, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            attack(player, src, 40, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
         end
     end
 

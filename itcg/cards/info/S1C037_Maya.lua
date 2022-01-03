@@ -33,7 +33,7 @@ ZTCG_CARD
     }
 
     function onActivateCharacterAction1(player)
-        drawCard(player);
+        drawCard(player)
     end
 
     function onActivateCharacterAction2(player)

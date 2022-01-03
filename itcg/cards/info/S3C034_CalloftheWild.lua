@@ -37,7 +37,7 @@ ZTCG_CARD
             local menuCard = menuCards(player,menu,"Select one equipment to destroy.","CARDLIST_PEEK")
             if menuCard ~= 0 then
                 local slotid = getSlotIdFromCARD(player,getCARD(menuCard))
-                destroySelf(player,"SLOT_ADVSRYEQUIP" .. slotid)
+                destroySelf(player,"SLOT_ADVSRYEQP" .. slotid)
             end
         end
     end
