@@ -24,6 +24,7 @@ ZTCG_CARD
     }
 
     function onActivateCharacterAction(player)
+        local str = "Think Fast / Equip 50"
         playCard(player, str, "ELEM_ANY", "PLAY_EQUIP | PLAY_ACTION", 50)
     end
 

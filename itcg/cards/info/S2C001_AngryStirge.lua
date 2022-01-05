@@ -43,7 +43,7 @@ ZTCG_CARD
         revealCard(player,"Next Card...",card)
 
         local level = getCurrentLevelFromCARD(player,atkr)
-        if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_MOB") and level <= 20 then
+        if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_MOB | TYPE_JRB | TYPE_BOS") and level <= 20 then
             local hand_list = getPlayerDeck(player, "DECK_HAND")
             card_taken = moveCardsFromListToDeck(card_taken,hand_list,"TAKE_NEXT","PUT_TOP", 1)
             summon(player,"PLAY_FORCESUMMON","ELEM_ANY",20)

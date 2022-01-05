@@ -41,8 +41,7 @@ ZTCG_CARD
         while res do
             attack(player, chr, 10, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
 
-            local targetCard = getCardPointer(1)
-            if getHpFromCARD(targetCard) > 0 then
+            if not lastAttackKilled(player) then
                 res = false
             end
         end

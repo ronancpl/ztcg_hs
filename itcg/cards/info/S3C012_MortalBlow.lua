@@ -26,7 +26,7 @@ ZTCG_CARD
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
-        local atkr = getCardPointer(1)
+        local atkr = getCardPointer(0)
         if hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_CHAR") then
            local dmg = getCardRegister(src, cid, 0)
             editCardRegister(src, cid, 0, dmg + getGameValue(0), 0, nil)

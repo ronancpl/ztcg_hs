@@ -27,7 +27,7 @@ ZTCG_CARD
         local cid = getCardIdFromCARD(src)
 
         local atkr = getCardPointer(0)
-        if(hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_MOB") and getCardRegister(src, cid, 0) > 0) then
+        if(hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_MOB | TYPE_JRB | TYPE_BOS") and getCardRegister(src, cid, 0) > 0) then
             local dmg = getGameValue(0)
             local bonus = getCardRegister(src, cid, 1)
             updateGameValue(0, dmg + bonus)

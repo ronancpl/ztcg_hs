@@ -64,7 +64,7 @@ ZTCG_CARD
         local card = getOnBoardCARD(player, "SLOT_ADVSRYCHAR")
         editCardHP(card,10)
 
-        endTurn(player)
+        finishTurn(player)
     end
 
 }
