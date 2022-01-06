@@ -22,9 +22,9 @@ ZTCG_CARD
         "TEXT" "Sell Loot -- Discard this card. Draw 3 cards."
     }
 
-    function onReceiveAttack(player)
+    function onBlockResultDamage(player)
         if throwCoin(player) then
-            updategameValue(0,0)
+            updateGameValue(0,0)
         end
     end
 

@@ -25,8 +25,11 @@ ZTCG_CARD
     }
 
     function onBlockResultDamage(player)
+        local src = getSourceCARD()
+        local def_card = getCardPointer(1)
+
         local dmg = getGameValue(0)
-        if dmg >= 60 then
+        if src == def_card and dmg >= 60 then
             updateGameValue(0,0)
             finishTurn(player)
         end

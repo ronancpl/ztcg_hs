@@ -29,7 +29,7 @@ ZTCG_CARD
         local cardid = getCardIdFromCARD(src)
         if getSlotIdFromCARD(player,src) < 0 and getCardRegister(src,cardid,0) == 0 then return end
 
-        removeAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,20,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "Boar")
+        removeAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,30,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "Boar")
     end
 
     function applyBuffs(player)
@@ -37,7 +37,7 @@ ZTCG_CARD
         local cardid = getCardIdFromCARD(src)
         if getSlotIdFromCARD(player,src) < 0 and getCardRegister(src,cardid,0) == 0 then return end
 
-        applyAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,20,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
+        applyAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,30,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
     end
 
     function onStartTurn(player)
@@ -53,7 +53,7 @@ ZTCG_CARD
         if playClash(player) then
             editCardRegister(src,cardid,0,1,0,nil)
 
-            applyAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,20,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
+            applyAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,30,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
         end
     end
 

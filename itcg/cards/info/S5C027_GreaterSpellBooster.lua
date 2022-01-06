@@ -36,7 +36,7 @@ ZTCG_CARD
                 local card = menuCards(player,list,"Select a card to put on the top of the deck.","CARDLIST_PEEK")
                 if card ~= 0 then
                     local deck = getPlayerDeck(player, "DECK_DECK")
-                    moveCards(hand,deck,"TAKE_CARDID","PUT_BOTTOM",card)
+                    moveCards(hand,deck,"TAKE_CARDID","PUT_TOP",card)
 
                     break
                 end

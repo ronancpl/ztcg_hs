@@ -3,13 +3,13 @@ ZTCG_CARD
 
     "NAME" "Mighty Zakum"
     "IMAGE" "S5C082_MightyZakum.png"
-    "TYPE" "MOB"
+    "TYPE" "BOSS"
     "ELEMENT" "Jobless"
     "RARITY" "RARITY_SELDOM"
     "INFO" "Monster - Zakum Boss"
     "COST" "1000"
 
-    TYPE_MOB
+    TYPE_BOS
     {
         "LEVEL" "140"
         "ATTCK" "60"
@@ -24,7 +24,10 @@ ZTCG_CARD
         "TEXT" "Zupreme Power -- Reveal the top 4 cards of your deck. Play each Zakum card from among them and put the others on the bottom of your deck in any order."
     }
 
-    function onActivateCharacterAction(player)
+    function onActivateMobEffect(player)
+        if(not matchRequirements(player, 100, 0, "ELEM_WARRIOR")) then return end
+
+        local deck = getPlayerDeck(player,"DECK_DECK")
         local cards = takeCardsFromDeck(deck, 4)
 
         local zcards = makeFilteredList(player,cards,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY","ELEM_ANY","Zakum")

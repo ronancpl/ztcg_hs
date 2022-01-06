@@ -59,9 +59,7 @@ ZTCG_CARD
         local deckHand = getPlayerDeck(player, "DECK_HAND")
         local card_list = getListFromDeck(deckHand)
 
-        local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-        local level = getCurrentLevelFromCARD(player,chr)
-        local boss_list, not_empty = makeFilteredList(player,card_list,0,0,level,"TYPE_BOS", "ELEM_ANY", "ZTCG_NIL")
+        local boss_list, not_empty = makeFilteredList(player,card_list,0,0,"ZTCG_MAXVALUE","TYPE_BOS", "ELEM_ANY", "ZTCG_NIL")
         if not_empty then
             local menuCard = menuCards(player,boss_list,"Select a boss to spawn.","CARDLIST_PEEK")
             if menuCard ~= 0 then

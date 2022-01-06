@@ -11,7 +11,7 @@ ZTCG_CARD
 
     TYPE_ACT
     {
-        "LEVEL" "10"
+        "LEVEL" "35"
         "TEXT" "If you have a Weapon, one of your monsters that attacks this turn gets +60 attack until end of turn and you draw a card."
     }
 

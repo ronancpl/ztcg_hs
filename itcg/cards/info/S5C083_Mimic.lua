@@ -40,6 +40,8 @@ ZTCG_CARD
 
         if not revealed then
             drawCard(not player)
+        else
+            drawCard(player)
         end
 
         destroyList(equips)

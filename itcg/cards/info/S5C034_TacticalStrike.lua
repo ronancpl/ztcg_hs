@@ -24,7 +24,7 @@ ZTCG_CARD
 
     function onThinkAction(player)
         local src = getSourceCARD()
-        local attr = getPlayerAttributes(PLAYER, "ELEM_MAGE")
+        local attr = getPlayerAttributes(player, "ELEM_MAGE")
 
         attack(player, src, 10 * attr, "ATKRES_FIXED_SLOT", "ATKSRC_ACT", "SLOT_ADVSRYMOB1", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
         attack(player, src, 10 * attr, "ATKRES_FIXED_SLOT", "ATKSRC_ACT", "SLOT_ADVSRYMOB2", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")

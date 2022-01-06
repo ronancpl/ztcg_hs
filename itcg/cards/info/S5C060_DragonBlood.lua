@@ -23,6 +23,8 @@ ZTCG_CARD
     }
 
     function onThinkAction(player)
+        insertCardTurnAction(player)
+
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 

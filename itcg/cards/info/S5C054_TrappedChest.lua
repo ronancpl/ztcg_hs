@@ -22,14 +22,14 @@ ZTCG_CARD
         "TEXT" "Thief Prowess -- Play a Thief card of your level or less."
     }
 
-    function onThinkEquipment(player)
+    function afterCharacterActions(player)
         local card = getSourceCARD()
         if(makePrompt(player,"Use " .. getNameFromCARD(card) .. "?","Draw a card. Choose one to discard.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then
             drawCard(player)
             discardCard(player)
 
             local slotid = getSlotIdFromCARD(player,card)
-            destroySelf(player,"SLOT_PLAYEREQP" .. slotid)
+            destroySelf(player,"SLOT_PLAYEREQP" .. (slotid - 7))
         end
     end
 
