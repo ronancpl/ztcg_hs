@@ -28,7 +28,7 @@ ZTCG_CARD
 
     function onEquipBuffWithCharge(player)
         if hasFlag("ZTCG_ATKSRC", "ATKSRC_CHA") then
-            return 20
+            return 10
         else
             return 0
         end

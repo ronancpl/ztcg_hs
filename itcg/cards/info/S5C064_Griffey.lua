@@ -44,13 +44,20 @@ ZTCG_CARD
 
         if (not hasFlag("ZTCG_PLAYERTYPE","IS_PLAYER")) then return end
         if(not matchRequirements(player, 60, 2, "ELEM_MAGE")) then return end
-        if(not makePrompt(player,"Use Uni Horn?","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","Yes","No")) then return end
 
-        local card = discardCard(player)
-        local level = getCurrentLevelFromCARD(player,card)
+        local hand = getPlayerDeck(player, "DECK_HAND")
+        local list, qty = getListFromDeck(hand)
+        if qty > 0 then
+            if(not makePrompt(player,"Use Uni Horn?","Discard a card to convert its level to Griffey's attack.","ZTCG_NIL","ZTCG_NIL","Yes","No")) then return end
 
-        editCardRegister(src,cardid,1,getRoundedNearest(level),0,nil)
-        drawCard(player)
+            local card = discardCard(player)
+            if card ~= 0 then
+                local level = getCurrentLevelFromCARD(player,card)
+                editCardRegister(src,cardid,1,getRoundedNearest(level),0,nil)
+
+                drawCard(player)
+            end
+        end
     end
 
 }

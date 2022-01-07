@@ -28,28 +28,28 @@ ZTCG_CARD
         }
     }
 
-    function effect_h(player)
-        local src = getSourceCARD()
-        attack(player, src, 30, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+    function effect_h(player,src)
+        if(not matchRequirements(player, 70, 2, "ELEM_THIEF")) then return end
+
+        attack(player, src, 30, "ATKRES_NIL", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
     end
 
-    function effect_k(player)
-        local src = getSourceCARD()
+    function effect_k(player,src)
+        if(not matchRequirements(player, 80, 3, "ELEM_THIEF")) then return end
 
-        local menu = makeFilteredTableList(player, "ONLY_ADVSRY", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_ANY", "ELEM_ANY", "ZTCG_NIL")
-        local card = menuCards(player,menu,"Select a card to stun.","CARDLIST_PEEK")
-        if card ~= 0 then
-            applyBlockAura(getCARD(card), "AURA_STUN", src)
+        local menu = makeFilteredTableList(player, "ONLY_ADVSRY", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_CHAR | TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
+        local menuCard = menuCards(player,menu,"Select a card to stun.","CARDLIST_PEEK")
+        if menuCard ~= 0 then
+            local card = getCARD(menuCard)
+            applyBlockAura(card, "AURA_STUN", src)
 
-            local src = getSourceCARD()
             local cardid = getCardIdFromCARD(src)
+            local menuCardid = getCardIdFromCARD(card)
 
-            local menuCardid = getCardIdFromCARD(getCARD(card))
-
-            local n = getCardRegister(src, cardid, 0) + 1
+            local n = (getCardRegister(src, cardid, 0) or 0) + 1
             editCardRegister(src,cardid,0,n,0,nil)
 
-            local slotid = getSlotIdFromCARD(player, getCARD(card))
+            local slotid = getSlotIdFromCARD(not player, card)
             editCardRegister(src,cardid,n,14*menuCardid + (slotid - 1),0,nil)
         end
 
@@ -57,21 +57,23 @@ ZTCG_CARD
     end
 
     function onActivateMobEffect(player)
-        effect_h(player)
-        effect_k(player)
+        if (not hasFlag("ZTCG_PLAYERTYPE","IS_PLAYER")) then return end
+
+        local src = getSourceCARD()
+        effect_h(player,src)
+        effect_k(player,src)
     end
 
-    function onReceiveAttackAndSentToDiscardPile(player)
+    function onReceiveAttackAndInterceptDestroyed(player)
         local src = getSourceCARD()
         local cardid = getCardIdFromCARD(src)
 
         local n = getCardRegister(src, cardid, 0)
         for i = 1, n, 1 do
             local reg = getCardRegister(src, cardid, i)
-
             local cardid = math.floor(reg / 14)
-
             local slotid = (reg % 14) + 1
+
             local strSlot
             if slotid >= 8 then
                 strSlot = "SLOT_ADVSRYEQP" .. tostring(slotid - 7)

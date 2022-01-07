@@ -87,9 +87,9 @@ ZTCG_CARD
         local pet_count = getListLength(pet_list)
         destroyList(pet_list)
 
-        local src = getSourceCARD()
+        local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
         for i = 1, pet_count, 1 do
-            attack(player, src, 10, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            attack(player, chr, 10, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
         end
     end
 

@@ -26,7 +26,7 @@ ZTCG_CARD
 
     function onThinkMob(player)
         local src = getSourceCARD()
-        attack(player, src, 40, "ATKRES_DONT_HIT_CHAR", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 40, "ATKRES_DONT_HIT_CHAR", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
 
         if lastAttackKilled(player) then
             newBuff(src,src,40,0,0,1)

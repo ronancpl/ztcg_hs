@@ -28,9 +28,7 @@ ZTCG_CARD
         }
     }
 
-    function onActivateMobEffect(player)
-        -- Effect 1
-        if (not hasFlag("ZTCG_PLAYERTYPE","IS_PLAYER")) then return end
+    function effect_dw(player)
         if(not matchRequirements(player, 70, 3, "ELEM_MAGE")) then return end
 
         local deck = getPlayerDeck(player, "DECK_DECK")
@@ -53,8 +51,9 @@ ZTCG_CARD
 
         destroyList(actions)
         destroyList(cards)
+    end
 
-        -- Effect 2
+    function effect_rk(player)
         if(not matchRequirements(player, 120, 3, "ELEM_MAGE")) then return end
 
         if not makePrompt(player,"Use Reaper's Knock?","Opponent's HP goes to 10. Your turn ends.","ZTCG_NIL","ZTCG_NIL","OK","Cancel") then
@@ -65,6 +64,13 @@ ZTCG_CARD
         editCardHP(card,10)
 
         finishTurn(player)
+    end
+
+    function onActivateMobEffect(player)
+        if (not hasFlag("ZTCG_PLAYERTYPE","IS_PLAYER")) then return end
+
+        effect_dw(player)
+        effect_rk(player)
     end
 
 }

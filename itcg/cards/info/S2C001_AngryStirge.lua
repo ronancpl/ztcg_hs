@@ -36,23 +36,20 @@ ZTCG_CARD
     end
 
     function onActivateCharacterAction(player)
-        local deck_list = getPlayerDeck(player, "DECK_DECK")
-        local card_taken = takeCardsFromDeck(deck_list, 1)
-        local card = getCARD(card_taken)
+        local card = peekNextCard(player)
+        --revealCard(player,"Next Card...",card)
 
-        revealCard(player,"Next Card...",card)
-
-        local level = getCurrentLevelFromCARD(player,atkr)
+        local level = getCurrentLevelFromCARD(player,card)
         if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_MOB | TYPE_JRB | TYPE_BOS") and level <= 20 then
-            local hand_list = getPlayerDeck(player, "DECK_HAND")
-            card_taken = moveCardsFromListToDeck(card_taken,hand_list,"TAKE_NEXT","PUT_TOP", 1)
-            summon(player,"PLAY_FORCESUMMON","ELEM_ANY",20)
-        else
-            -- send TOP
-            card_taken = moveCardsFromListToDeck(card_taken,deck_list,"TAKE_NEXT","PUT_TOP", 1)
-        end
+            local deck = getPlayerDeck(player, "DECK_DECK")
+            local card_taken = takeCardsFromDeck(deck, 1)
 
-        destroyList(card_taken)
+            local hand = getPlayerDeck(player, "DECK_HAND")
+            card_taken = moveCardsFromListToDeck(card_taken,hand,"TAKE_NEXT","PUT_BOTTOM", 1)
+            summon(player,"PLAY_FORCESUMMON","ELEM_ANY",20)
+
+            destroyList(card_taken)
+        end
     end
 
 }

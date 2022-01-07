@@ -24,8 +24,8 @@ ZTCG_CARD
 
     function onInterceptCharacterAction(player)
         if(matchRequirements(player, 60, 2, "ELEM_BOWMAN")) then
-            local src = getSourceCARD()
-            attack(player, src, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
+            attack(player, chr, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
         end
 
         updateGameValue(0, 1)       -- ignore character action

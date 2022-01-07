@@ -23,6 +23,8 @@ ZTCG_CARD
     }
 
     function onThinkAction(player)
+        local src = getSourceCARD()
+
         local hand = getPlayerDeck(player, "DECK_HAND")
         local list = getListFromDeck(hand)
         local cards, not_empty = makeFilteredList(player,list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB","ELEM_ANY","ZTCG_NIL")
@@ -33,9 +35,10 @@ ZTCG_CARD
                 if menuCard ~= 0 then
                     cards = takeTargetCardFromList(menuCard,cards)
 
-                    if(not makePrompt(player,"Accept " .. getNameFromCARD() .. "?","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then
+                    if(makePrompt(player,"Accept " .. getNameFromCARD(getCARD(menuCard)) .. "?","The card will be spawned.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then
+                        moveCards(hand,hand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
+                        ret = summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
                     else
-                        local src = getSourceCARD()
                         attack(player, src, 40, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
                     end
                 else

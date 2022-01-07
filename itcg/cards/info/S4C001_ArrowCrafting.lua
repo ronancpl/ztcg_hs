@@ -32,8 +32,6 @@ ZTCG_CARD
     end
 
     function onActivateCharacterAction(player)
-        local src = getSourceCARD()
-
         local deckHand = getPlayerDeck(player, "DECK_HAND")
         local card_list, qty = getListFromDeck(deckHand)
         if qty <= 0 then return end
@@ -41,7 +39,8 @@ ZTCG_CARD
         if(not makePrompt(player,"Use Improvise?","Discard a card. Do 30 damage to a character or monster.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
         discardCard(player)
 
-        attack(player,src,30,"ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
+        attack(player,chr,30,"ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
     end
 
 }

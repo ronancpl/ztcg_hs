@@ -26,7 +26,7 @@ ZTCG_CARD
 
     function onOpponentEndTurn(player)
         local src = getSourceCARD()
-        attack(player, src, 40, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 40, "ATKRES_NIL", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
     end
 
     function onActivateCharacterAction(player)

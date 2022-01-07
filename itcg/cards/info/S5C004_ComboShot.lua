@@ -32,9 +32,9 @@ ZTCG_CARD
     end
 
     function onLevelActionTrigger(player)
-        local src = getSourceCARD()
         if playClash(player) then
-            attack(player, src, 40, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
+            attack(player, chr, 40, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
         end
     end
 

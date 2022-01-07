@@ -27,7 +27,7 @@ ZTCG_CARD
         local dmg = getBaseAttackFromCARD(card)
 
         local src = getSourceCARD()
-        attack(player, src, dmg, "ATKRES_DONT_HIT_MOBS", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, dmg, "ATKRES_DONT_HIT_MOBS", "ATKSRC_EQP", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
     end
 
     function onLevelActionTrigger(player)

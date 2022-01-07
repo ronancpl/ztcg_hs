@@ -30,8 +30,8 @@ ZTCG_CARD
         equip(player,"PLAY_NORMALEQUIP","ELEM_ANY",level)
 
         if getEquipsOnTable(player,"ONLY_PLAYER") >= 4 then
-            local src = getSourceCARD()
-            attack(player, src, 30, "ATKRES_DONT_HIT_MOBS", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
+            attack(player, chr, 30, "ATKRES_DONT_HIT_MOBS", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
         end
     end
 
