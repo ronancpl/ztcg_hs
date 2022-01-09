@@ -22,7 +22,7 @@ ZTCG_CARD
         "TEXT" "Spawn / Equip 70 -- Play a monster or item of level 70 or less. "
     }
 
-    function onStartTurn(player)
+    function onStartCharacterActions(player)
         doTwiceCharacterAction(player,true)
     end
 

@@ -22,7 +22,7 @@ ZTCG_CARD
         "TEXT" "Think Fast / Equip 20 -- Play a tactic or item of level 20 or less."
     }
 
-    function onStartTurn(player)
+    function onStartCharacterActions(player)
         doTwiceCharacterAction(player,true)
     end
 
