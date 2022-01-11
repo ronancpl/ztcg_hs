@@ -11,7 +11,7 @@ ZTCG_CARD
 
     TYPE_MOB
     {
-        "LEVEL" "100"
+        "LEVEL" "120"
         "ATTCK" "50"
         "HP" "100"
         "TEXT" "Mega Fierce -- Bahamut attacks 3 times each turn. Summoned -- When your turn ends, destroy Bahamut if you didn't play it this turn."
@@ -49,6 +49,21 @@ ZTCG_CARD
         else
             editCardRegister(src, cid, 0, 1, 0, null)
         end
+    end
+
+    function onActivateCharacterAction(player)
+        local src = getSourceCARD()
+        destroyCharacterAction(player, src,true)
+
+        local grav = getPlayerDeck(player, "DECK_GRAV")
+        local hand = getPlayerDeck(player, "DECK_HAND")
+
+        local target = makeTargetFromCARD(src)
+        moveCards(grav,hand,"TAKE_CARDID","PUT_BOTTOM",target)
+        destroyList(target)
+
+        drawCard(player)
+        levelUpScout(player)
     end
 
 }
