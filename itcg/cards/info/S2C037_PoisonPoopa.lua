@@ -45,14 +45,10 @@ ZTCG_CARD
         return ret
     end
 
-    function onOpponentPlayMob(player)
-        local target = getTargetCARD()
-        local src = getSourceCARD()
-
+    function onExecuteAttack(player)
+        local target = getCardPointer(1)
         if target ~= 0 then
-            if destroyCard(not player, target, "SLOT_PLAYERMOB", false) then
-                destroyCard(player, src, "SLOT_PLAYERMOB", false)
-            end
+            destroyCard(not player, target, "SLOT_PLAYERMOB", false)
         end
     end
 

@@ -43,7 +43,7 @@ ZTCG_CARD
         local cardid = getCardIdFromCARD(src)
 
         if (not hasFlag("ZTCG_PLAYERTYPE","IS_PLAYER")) then return end
-        if(not matchRequirements(player, 60, 2, "ELEM_MAGE")) then return end
+        if(not matchRequirements(player, 60, 2, "ELEM_WARRIOR")) then return end
 
         local hand = getPlayerDeck(player, "DECK_HAND")
         local list, qty = getListFromDeck(hand)

@@ -28,7 +28,7 @@ ZTCG_CARD
         local card = peekNextCard(player)
 
         drawCard(player)
-        revealCard(not player,"Opponent has drawn card...",getCARD(card))
+        revealCard(not player,"Opponent has drawn card...",card)
 
         if(hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_ACT")) then
             if(makePrompt(player,"Use " .. getNameFromCARD(card) .. "?","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then
