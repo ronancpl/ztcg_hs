@@ -24,31 +24,22 @@ ZTCG_CARD
         "TEXT" "Spawn / Equip 30 -- Play a monster or item of level 30 or less. "
     }
 
-    function destroyCard(player, card, tableStr, isEqp)
-        if isBossCARD(card) then return end
-
-        local ret = false
-        local slotid = getSlotIdFromCARD(player, card)
-        if slotid >= 0 then
-            local new_list, not_empty = takeCardFromTable(player, tableStr .. (isEqp and (slotid - 7) or slotid))
-
-            if not_empty then
-                local deckGrav = getPlayerDeck(player, "DECK_GRAV")
-                new_list = moveCardsFromListToDeck(new_list,deckGrav,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
-
-                ret = true
-            end
-
-            destroyList(new_list)
-        end
-
-        return ret
-    end
-
     function onExecuteAttack(player)
         local target = getCardPointer(1)
         if target ~= 0 then
-            destroyCard(not player, target, "SLOT_PLAYERMOB", false)
+            if isBossCARD(target) then return end
+
+            local slotid = getSlotIdFromCARD(not player, target)
+            if slotid > 0 then
+                local new_list, not_empty = takeCardFromTable(not player, "SLOT_PLAYERMOB" .. slotid)
+
+                if not_empty then
+                    local deckGrav = getPlayerDeck(not player, "DECK_GRAV")
+                    new_list = moveCardsFromListToDeck(new_list,deckGrav,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
+                end
+
+                destroyList(new_list)
+            end
         end
     end
 
