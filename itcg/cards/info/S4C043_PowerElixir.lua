@@ -22,8 +22,30 @@ ZTCG_CARD
         "TEXT" "Drink Potion -- You get +HP equal to your level."
     }
 
+    function destroyCard(player, card, tableStr, isEqp)
+        if isBossCARD(card) then return end
+
+        local ret = false
+        local slotid = getSlotIdFromCARD(player, card)
+        if slotid > 0 then
+            local new_list, not_empty = takeCardFromTable(player, tableStr .. (isEqp and (slotid - 7) or slotid))
+
+            if not_empty then
+                local deckGrav = getPlayerDeck(player, "DECK_GRAV")
+                new_list = moveCardsFromListToDeck(new_list,deckGrav,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
+
+                ret = true
+            end
+
+            destroyList(new_list)
+        end
+
+        return ret
+    end
+
     function onEndTurn(player)
-        if(not makePrompt(player,"Use Power Elixir?","Get +HP equal to your level and draw cards.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
+        local src = getSourceCARD()
+        if(not makePrompt(player,"Use " .. getNameFromCARD(src) .. "?","Get +HP equal to your level and draw cards.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
 
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
         local level = getCurrentLevelFromCARD(player,chr)
@@ -36,6 +58,8 @@ ZTCG_CARD
         for i = 1, c, 1 do
             drawCard(player)
         end
+
+        destroyCard(player, src, "SLOT_PLAYEREQP", true)
     end
 
     function onLevelActionTrigger(player)

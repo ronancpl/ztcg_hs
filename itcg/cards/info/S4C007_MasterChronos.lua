@@ -29,7 +29,7 @@ ZTCG_CARD
         if not_empty then
             local card = menuCards(player,list,"Select a mob to attack itself.","CARDLIST_PEEK")
             if card ~= 0 then
-                local slotid = getSlotIdFromCARD(player, getCARD(card))
+                local slotid = getSlotIdFromCARD(not player, getCARD(card))
                 attack(player, getCARD(card), 50, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB" .. tostring(slotid), "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
             end
         end

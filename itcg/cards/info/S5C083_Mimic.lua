@@ -33,7 +33,7 @@ ZTCG_CARD
         if not_empty then
             local card = menuCards(player,list,"Select a card for reveal.","CARDLIST_PEEK")
             if card ~= 0 then
-                revealCard(player,"Has item...",getCARD(card))
+                revealCard(not player,"Opponent has item...",getCARD(card))
                 revealed = true
             end
         end

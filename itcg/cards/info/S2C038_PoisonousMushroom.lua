@@ -27,7 +27,7 @@ ZTCG_CARD
 
         local ret = false
         local slotid = getSlotIdFromCARD(player, card)
-        if slotid >= 0 then
+        if slotid > 0 then
             local new_list, not_empty = takeCardFromTable(player, tableStr .. (isEqp and (slotid - 7) or slotid))
 
             if not_empty then

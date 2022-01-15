@@ -37,7 +37,7 @@ ZTCG_CARD
 
     function onActivateCharacterAction(player)
         local card = peekNextCard(player)
-        --revealCard(player,"Next Card...",card)
+        --revealCard(not player,"Next Card...",card)
 
         local level = getCurrentLevelFromCARD(player,card)
         if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_MOB | TYPE_JRB | TYPE_BOS") and level <= 20 then
