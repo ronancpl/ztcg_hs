@@ -48,7 +48,7 @@ S1C047_ZetaGray.lua
 S1C048_ZombieLupin.lua
 S1C049_Avenger.lua
 S1C050_BloodSlain.lua
-S1C051_BlueNightFox.lua
+S1C051_BlueNightfox.lua
 S1C052_Buffy.lua
 S1C053_Cico.lua
 S1C054_CoconutKnife.lua

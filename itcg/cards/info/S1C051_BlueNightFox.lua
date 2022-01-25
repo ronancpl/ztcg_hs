@@ -2,7 +2,7 @@ ZTCG_CARD
 {
 
     "NAME" "Blue NightFox"
-    "IMAGE" "S1C051_BlueNightFox.png"
+    "IMAGE" "S1C051_BlueNightfox.png"
     "TYPE" "EQUIP"
     "ELEMENT" "Thief"
     "RARITY" "RARITY_UNIQUE"
