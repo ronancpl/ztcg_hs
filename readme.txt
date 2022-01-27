@@ -70,7 +70,13 @@ v3.1:  new effects and animations can be inserted using the Particles engine. Ga
 v3.1a: incremented funcionalities for Particles engine. Minor game patches.
 v3.1b: card rebalances.
 
-4) More Details
+4) Instruction on how to run the application first-time
+  On Windows: start the .exe file.
+  On Linux:
+    - From terminal, install the following package: `sudo apt-get install liballegro*5.2`;
+    - Run the bash script "launch_posix.sh".
+
+5) More Details
 Resumed game rules: "ztcg_rules.pdf" at 'extra'.
 Refer to the file "ztcg_booklet.pdf" at 'doc' for detailed info about the game structure.
 
