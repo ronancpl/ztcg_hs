@@ -37,11 +37,42 @@ ZTCG_CARD
     end
 
     function onActivateCharacterAction2(player)
-        local str = "Crafty"
+        local hand = getPlayerDeck(player,"DECK_HAND")
+        local deck = getPlayerDeck(player,"DECK_DECK")
 
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
         local level = getCurrentLevelFromCARD(player,chr)
-        playCard(player, str, "ELEM_THIEF", "PLAY_MOB | PLAY_EQUIP | PLAY_ACTION | PLAY_FIELD", level)
+
+        local card_list = getListFromDeck(hand)
+
+        local wList, w_not_empty = makeFilteredList(player,card_list,"ZTCG_DONTCARE","ZTCG_DONTCARE",level,"TYPE_ANY", "ELEM_ANY", "Weapon")
+        local sList, s_not_empty = makeFilteredList(player,card_list,"ZTCG_DONTCARE","ZTCG_DONTCARE",level,"TYPE_ANY", "ELEM_ANY", "Strategy")
+        local uList, u_not_empty = makeFilteredList(player,card_list,"ZTCG_DONTCARE","ZTCG_DONTCARE",level,"TYPE_ANY", "ELEM_ANY", "Undead")
+        if w_not_empty or s_not_empty or u_not_empty then
+            local cards = wList
+            cards = appendLists(cards,sList)
+            cards = appendLists(cards,uList)
+
+            local menuCard = menuCards(player,cards,"Select a card to play.","CARDLIST_PEEK")
+            if menuCard ~= 0 then
+                moveCards(hand,hand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
+
+                local card = getCARD(menuCard)
+                if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_MOB | TYPE_JRB | TYPE_BOS") then
+                    ret = summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
+                elseif hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_EQP") then
+                    ret = equip(player,"PLAY_SCOUTEQUIP", "ELEM_ANY","ZTCG_MAXVALUE")
+                elseif hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_ACT") then
+                    ret = action(player,card, "ELEM_ANY","ZTCG_MAXVALUE")
+                elseif hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_FLD") then
+                    ret = locate(player,"PLAY_FIRSTCARDFIELD", "ELEM_ANY")
+                end
+            end
+        end
+
+        destroyList(uList)
+        destroyList(sList)
+        destroyList(wList)
     end
 
     function onActivateCharacterAction3(player)

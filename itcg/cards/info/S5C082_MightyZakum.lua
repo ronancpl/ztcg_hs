@@ -27,6 +27,7 @@ ZTCG_CARD
     function onActivateMobEffect(player)
         if(not matchRequirements(player, 100, 0, "ELEM_WARRIOR")) then return end
 
+        local hand = getPlayerDeck(player,"DECK_HAND")
         local deck = getPlayerDeck(player,"DECK_DECK")
         local cards = takeCardsFromDeck(deck, 4)
 
@@ -35,7 +36,7 @@ ZTCG_CARD
             local menuCard = menuCards(player,zcards,"Select a card to play.","CARDLIST_PEEK")
             if menuCard ~= 0 then
                 zcards = takeTargetCardFromList(menuCard,zcards)
-                cards = takeTargetCardFromList(menuCard,cards)
+                cards = moveCardsFromListToDeck(cards,hand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
 
                 local card = getCARD(menuCard)
                 if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_MOB | TYPE_JRB | TYPE_BOS") then

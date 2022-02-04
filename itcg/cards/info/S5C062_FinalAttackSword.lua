@@ -6,7 +6,7 @@ ZTCG_CARD
     "TYPE" "ACTION"
     "ELEMENT" "Warrior"
     "RARITY" "RARITY_SELDOM"
-    "INFO" "Tactic - Strategy"
+    "INFO" "Tactic - Skill"
     "COST" "580"
 
     TYPE_ACT
