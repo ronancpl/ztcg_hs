@@ -87,6 +87,7 @@ ztcg_enum =
     {"Magician"},
     {"Bowman"},
     {"Thief"},
+    {"Jobless"},
 
     -- ZTCG_ELEMENT
     {"ELEM_EARTH", 0},
@@ -102,6 +103,7 @@ ztcg_enum =
     {"ELEM_MAGE"},
     {"ELEM_BOWMAN"},
     {"ELEM_THIEF"},
+    {"ELEM_JOBLESS"},
 
     -- ZTCG_CALL
     {"CALL_ACTION", 0},
@@ -482,6 +484,7 @@ ztcg_enum =
     {"afterOpponentApplyCharacterAction"},
     {"afterCharacterActions"},
     {"afterOpponentCharacterActions"},
+    {"doTwiceLevelActionTrigger"},
     {"onActivateMobEffect"},
     {"onRecoverMobStats"},
     {"onCheckPreventAttack"},

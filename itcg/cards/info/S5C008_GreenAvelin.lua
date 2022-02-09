@@ -27,7 +27,7 @@ ZTCG_CARD
     end
 
     function onLevelActionTrigger(player)
-        doTwiceCharacterAction(player,true)
+        doTwiceCharacterActionTrigger(player,true)
     end
 
 }
