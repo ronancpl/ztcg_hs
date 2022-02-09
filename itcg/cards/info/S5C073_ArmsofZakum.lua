@@ -12,7 +12,7 @@ ZTCG_CARD
     TYPE_ACT
     {
         "LEVEL" "70"
-        "TEXT" "Do 80 damage to a character or monster. You get +80 HP. If you have Zakum, remove all dmage from it."
+        "TEXT" "Do 80 damage to a character or monster. You get +80 HP. If you have Zakum, remove all damage from it."
     }
 
     LVL_ACTION

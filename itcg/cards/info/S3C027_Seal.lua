@@ -24,13 +24,13 @@ ZTCG_CARD
 
     function onThinkAction(player)
         local card = getOnBoardCARD(player, "SLOT_ADVSRYCHAR")
+        local src = getSourceCARD()
 
         local list, not_empty = makeFilteredTableList(player, "ONLY_ADVSRY",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB","ELEM_ANY","ZTCG_NIL")
         if not_empty then
-            local card = menuCards(player,list,"Select a card to apply Stun.","CARDLIST_PEEK")
+            local card = menuCards(player,list,"Select a card to take from table.","CARDLIST_PEEK")
             if card ~= 0 then
-                applyStun(player,getCARD(card),1)
-                applySilence(player,getCARD(card),1)
+                sendCardAway(getCARD(card),src,1)
             end
         end
 

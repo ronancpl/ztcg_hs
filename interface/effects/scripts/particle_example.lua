@@ -29,7 +29,7 @@ ZTCG_SPRITE
     }
 
     function onActivateCharacterAction(player)
-        locate(player, "PLAY_NORMALFIELD")
+        locate(player,"PLAY_NORMALFIELD","ELEM_ANY")
     end
 
     function onStartTurn(player)

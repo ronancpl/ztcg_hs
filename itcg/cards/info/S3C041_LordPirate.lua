@@ -37,11 +37,11 @@ ZTCG_CARD
     function effect_k(player,src)
         if(not matchRequirements(player, 80, 3, "ELEM_THIEF")) then return end
 
-        local menu = makeFilteredTableList(player, "ONLY_ADVSRY", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_CHAR | TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
-        local menuCard = menuCards(player,menu,"Select a card to stun.","CARDLIST_PEEK")
+        local menu = makeFilteredTableList(player, "ONLY_ADVSRY", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_EQP | TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
+        local menuCard = menuCards(player,menu,"Select a card to take from table.","CARDLIST_PEEK")
         if menuCard ~= 0 then
             local card = getCARD(menuCard)
-            applyBlockAura(card, "AURA_STUN", src)
+            applyBlockAura(card,"AURA_AWAY", src)
 
             local cardid = getCardIdFromCARD(src)
             local menuCardid = getCardIdFromCARD(card)
@@ -83,6 +83,8 @@ ZTCG_CARD
 
             local card = getOnBoardCARD(player, strSlot)
             if card ~= 0 and getCardIdFromCARD(card) == cardid then
+                removeBlockAura(card, "AURA_AWAY", src)
+
                 local list2, hasCard
                 list2, hasCard = takeCardFromTable(player, strSlot)
 

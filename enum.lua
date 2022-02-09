@@ -292,6 +292,7 @@ ztcg_enum =
     {"AURA_STUN", 0},
     {"AURA_SILENCE"},
     {"AURA_HIJACK"},
+    {"AURA_AWAY"},
 
     -- ZTCG_FLAGTYPE --
     {"FLAG_TYPE", 0},
