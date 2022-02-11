@@ -30,7 +30,7 @@ ZTCG_CARD
         if not_empty then
             local card = menuCards(player,list,"Select a card to take from table.","CARDLIST_PEEK")
             if card ~= 0 then
-                sendCardAway(getCARD(card),src,1)
+                applyAway(player,getCARD(card),1)
             end
         end
 
