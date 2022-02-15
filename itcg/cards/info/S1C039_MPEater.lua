@@ -24,9 +24,9 @@ ZTCG_CARD
 
     function onThinkAction(player)
         local src = getSourceCARD()
-        attack(player,src, 50, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_DONTCARE", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
-
         applyGlobalSilence(player)
+
+        attack(player,src, 50, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_DONTCARE", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
     function onLevelActionTrigger(player)
