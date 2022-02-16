@@ -27,8 +27,8 @@ ZTCG_CARD
     end
 
     function onActivateCharacterAction(player)
-        local str = "Think Fast / Equip 70"
-        playCard(player, str, "ELEM_ANY", "PLAY_EQUIP | PLAY_ACTION", 70)
+        local str = "Think Fast / Equip 20"
+        playCard(player, str, "ELEM_ANY", "PLAY_EQUIP | PLAY_ACTION", 20)
     end
 
 }
