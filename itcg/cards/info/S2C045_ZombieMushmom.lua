@@ -23,13 +23,12 @@ ZTCG_CARD
     }
 
     function onReceiveAttackAndInterceptDestroyed(player)
-        if playRps(player) then
-            local src = getSourceCARD()
+        local src = getSourceCARD()
 
+        if playRps(player) then
             editCardHP(src,70)
             updateGameValue(0, 0)
         end
     end
-
 
 }

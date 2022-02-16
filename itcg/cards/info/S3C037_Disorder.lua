@@ -23,7 +23,7 @@ ZTCG_CARD
     }
 
     function onThinkAction(player)
-        local mob_list = makeFilteredTableList(player,"ONLY_PLAYER",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB","ELEM_ANY","ZTCG_NIL")
+        local mob_list = makeFilteredTableList(player,"ONLY_ADVSRY",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB","ELEM_ANY","ZTCG_NIL")
 
         for i = 1, 7, 1 do
             local board_card = getOnBoardCARD(player,"SLOT_ADVSRYMOB" .. tostring(i))
@@ -41,7 +41,7 @@ ZTCG_CARD
             if menuCard ~= 0 then
                 mob_list = takeTargetCardFromList(menuCard,mob_list)
 
-                local slotid = getSlotIdFromCARD(player,getCARD(menuCard))
+                local slotid = getSlotIdFromCARD(not player,getCARD(menuCard))
                 destroySelf(player,"SLOT_ADVSRYMOB" .. slotid)
             else
                 break

@@ -24,14 +24,14 @@ ZTCG_CARD
         "TEXT" "Spy -- Draw a card. Then discard a card from your hand."
     }
 
-    function onPlayEquipment(player)
+    function onOpponentPlayEquipment(player)
         local src = getSourceCARD()
 
         local slotid = getSlotIdFromCARD(player,src)
         destroySelf(player,"SLOT_PLAYERMOB" .. slotid)
     end
 
-    function onPlayMob(player)
+    function onOpponentPlayMob(player)
         local src = getSourceCARD()
 
         local slotid = getSlotIdFromCARD(player,src)

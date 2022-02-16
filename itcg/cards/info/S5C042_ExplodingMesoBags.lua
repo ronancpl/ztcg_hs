@@ -24,12 +24,15 @@ ZTCG_CARD
 
     function onStartTurn(player)
         local src = getSourceCARD()
+        if getSlotIdFromCARD(player,src) < 0 then return end
+
+        local src = getSourceCARD()
 
         local equips, not_empty = makeFilteredTableList(player,"ONLY_PLAYER",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_EQP","ELEM_ANY","ZTCG_NIL")
         if not_empty then
             local menuCard = menuCards(player,equips,"Select an equip to destroy for its level in attack.","CARDLIST_PEEK")
             if menuCard ~= 0 then
-                local slotid = getSlotIdFromCARD(player,getCARD(menuCard))
+                local slotid = getSlotIdFromCARD(player,getCARD(menuCard)) - 7
                 destroySelf(player,"SLOT_PLAYEREQP" .. slotid)
 
                 local dmg = getCurrentLevelFromCARD(player, getCARD(menuCard))

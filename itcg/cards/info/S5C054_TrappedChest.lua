@@ -28,8 +28,8 @@ ZTCG_CARD
             drawCard(player)
             discardCard(player)
 
-            local slotid = getSlotIdFromCARD(player,card)
-            destroySelf(player,"SLOT_PLAYEREQP" .. (slotid - 7))
+            local slotid = getSlotIdFromCARD(player,card) - 7
+            destroySelf(player,"SLOT_PLAYEREQP" .. slotid)
         end
     end
 

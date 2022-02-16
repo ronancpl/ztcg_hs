@@ -27,7 +27,7 @@ ZTCG_CARD
         attack(player, src, 10, "ATKRES_NIL", "ATKSRC_EQP", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
 
         if lastAttackKilled(player) then
-            local slotid = getSlotIdFromCARD(player, src)
+            local slotid = getSlotIdFromCARD(player, src) - 7
             local list = takeCardFromTable(player, "SLOT_PLAYEREQP" .. tostring(slotid))
 
             local hand = getPlayerDeck(player, "DECK_HAND")

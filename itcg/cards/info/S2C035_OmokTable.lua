@@ -22,7 +22,7 @@ ZTCG_CARD
         "TEXT" "Think Fast / Equip 80   -- Play a tactic or item of level 80 or less. "
     }
 
-    function onInterceptDrawCard(player)
+    function onStartTurn(player)
         local card = peekNextCard(player)
 
         local deck_list = getPlayerDeck(player, "DECK_DECK")
