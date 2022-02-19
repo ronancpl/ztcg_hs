@@ -23,6 +23,9 @@ ZTCG_CARD
     }
 
     function onStartTurn(player)
+        local src = getSourceCARD()
+        if getSlotIdFromCARD(player,src) < 0 then return end
+
         local card = peekNextCard(player)
 
         local deck_list = getPlayerDeck(player, "DECK_DECK")
