@@ -14,7 +14,7 @@ ZTCG_CARD
         LVL_ACTION
         {
             "LEVEL" "10"
-            "ATTRB" "2"
+            "ATTRB" "1"
             "TEXT" "Peer -- Look at the top card of your deck. Put it back on the top or the bottom of your deck."
         }
         LVL_ACTION
