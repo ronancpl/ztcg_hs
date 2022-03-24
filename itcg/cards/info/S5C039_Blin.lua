@@ -24,7 +24,7 @@ ZTCG_CARD
         "TEXT" "Spawn 60 -- Play a monster of level 60 or less."
     }
 
-    function onMobSentToDiscardPile(player)
+    function onReceiveAttackAndSentToDiscardPile(player)
         summon(player,"PLAY_NORMALSUMMON","ELEM_ANY",60)
     end
 
