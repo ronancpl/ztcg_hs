@@ -21,7 +21,7 @@ ZTCG_CARD
     {
         "LEVEL" "30"
         "ATTRB" "1"
-        "TEXT" "Spawn / Equip 30 -- Play a monster or item of level 30 or less. "
+        "TEXT" "Spawn / Equip 60 -- Play a monster or item of level 60 or less. "
     }
 
     function onExecuteAttack(player)
@@ -44,8 +44,8 @@ ZTCG_CARD
     end
 
     function onActivateCharacterAction(player)
-        local str = "Spawn / Equip 30"
-        playCard(player, str, "ELEM_ANY", "PLAY_MOB | PLAY_EQUIP", 30)
+        local str = "Spawn / Equip 60"
+        playCard(player, str, "ELEM_ANY", "PLAY_MOB | PLAY_EQUIP", 60)
     end
 
 }
