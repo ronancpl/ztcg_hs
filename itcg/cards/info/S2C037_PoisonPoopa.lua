@@ -19,8 +19,8 @@ ZTCG_CARD
 
     LVL_ACTION
     {
-        "LEVEL" "30"
-        "ATTRB" "1"
+        "LEVEL" "60"
+        "ATTRB" "2"
         "TEXT" "Spawn / Equip 60 -- Play a monster or item of level 60 or less. "
     }
 
