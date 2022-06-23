@@ -62,8 +62,10 @@ ZTCG_CARD
         moveCards(grav,hand,"TAKE_CARDID","PUT_BOTTOM",target)
         destroyList(target)
 
-        drawCard(player)
-        levelUpScout(player)
+        local d = drawCard(player)
+        if d then
+            levelUpScout(player)
+        end
     end
 
 }
