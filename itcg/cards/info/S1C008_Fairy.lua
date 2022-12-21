@@ -33,7 +33,7 @@ ZTCG_CARD
 
         if hasCard then
             local deckHand = getPlayerDeck(player, "DECK_HAND")
-            list = moveCardsFromListToDeck(list, deckHand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+            list = moveCardsFromListToDeck(player,list, deckHand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
         end
 
         destroyList(list)

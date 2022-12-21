@@ -34,7 +34,7 @@ ZTCG_CARD
 
     function onActivateCharacterAction1(player)
         local src = getSourceCARD()
-        attack(player, src, 10, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 10, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
     function onActivateCharacterAction2(player)
@@ -42,8 +42,10 @@ ZTCG_CARD
     end
 
     function onActivateCharacterAction3(player)
-        if throwCoin(player) then
-            doTwiceCharacterAction(player,true)
+        if hasCharacterActions(player,true) then
+            if throwCoin(player) then
+                doRepeatCharacterAction(player,true,3)
+            end
         end
     end
 

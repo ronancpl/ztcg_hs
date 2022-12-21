@@ -24,15 +24,15 @@ ZTCG_CARD
 
     function onThinkAction(player)
         local deck = getPlayerDeck(player, "DECK_DECK")
-        local cards_taken = takeCardsFromDeck(deck,5)
+        local cards_taken = takeCardsFromDeck(player,deck,5)
 
         local mob_list = makeFilteredList(player,cards_taken,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB","ELEM_ANY","ZTCG_NIL")
         local card = menuCards(player,mob_list,"Select a monster to draw.","CARDLIST_PEEK")
         if card ~= 0 then
             local hand = getPlayerDeck(player, "DECK_HAND")
-            cards_taken = moveCardsFromListToDeck(cards_taken,hand,"TAKE_CARDID","PUT_BOTTOM",card)
+            cards_taken = moveCardsFromListToDeck(player,cards_taken,hand,"TAKE_CARDID","PUT_BOTTOM",card)
         end
-        cards_taken = moveCardsFromListToDeck(cards_taken,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+        cards_taken = moveCardsFromListToDeck(player,cards_taken,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
 
         destroyList(mob_list)
         destroyList(cards_taken)

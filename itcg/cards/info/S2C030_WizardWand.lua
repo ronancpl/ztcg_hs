@@ -25,14 +25,20 @@ ZTCG_CARD
     function onEndTurn(player)
         local deck_hand = getPlayerDeck(player, "DECK_HAND")
         local deck_grav = getPlayerDeck(player, "DECK_GRAV")
+        local deck_deck = getPlayerDeck(player, "DECK_DECK")
 
         while true do
-            if not makePrompt(player,"Use Wizard Wand to draw a card?","You will have to throw a coin. If you lose, discard all cards from hand.","ZTCG_NIL","ZTCG_NIL","OK","Cancel") then
+            local card_list, qty = getListFromDeck(deck_deck)
+            if qty <= 0 then
+                break
+            end
+
+            if not makePrompt(player,true,"Use Wizard Wand to draw a card?","You will have to throw a coin. If you lose, discard all cards from hand.","ZTCG_NIL","ZTCG_NIL","OK","Cancel") then
                 break
             end
 
             if not throwCoin(player) then
-                moveCards(deck_hand,deck_grav,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
+                moveCards(player,deck_hand,deck_grav,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
                 break
             end
 

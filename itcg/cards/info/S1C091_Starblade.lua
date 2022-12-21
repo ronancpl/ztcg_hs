@@ -34,7 +34,7 @@ ZTCG_CARD
 
     function onActivateCharacterAction1(player)
         local src = getSourceCARD()
-        attack(player, src, 10, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 10, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
     function onActivateCharacterAction2(player)

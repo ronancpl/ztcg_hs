@@ -50,11 +50,13 @@ ZTCG_CARD
         local level1 = getCurrentLevelFromCARD(player,chr)
 
         local adv = getOnBoardCARD(not player, "SLOT_PLAYERCHAR")
-        local level2 = getCurrentLevelFromCARD(player,adv)
+        local level2 = getCurrentLevelFromCARD(not player,adv)
 
         if level1 < level2 then
-            drawCard(player)
-            levelUpScout(player)
+            local d = drawCard(player)
+            if d then
+                levelUpScout(player)
+            end
         end
     end
 

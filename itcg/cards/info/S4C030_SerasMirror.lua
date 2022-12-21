@@ -35,13 +35,13 @@ ZTCG_CARD
         if not_empty then
             local menuCard = menuCards(player,cards,"Select a card to replace Sera's Mirror.","CARDLIST_PEEK")
             if menuCard ~= 0 then
-                moveCards(deck,hand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
+                moveCards(player,deck,hand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
 
                 local slotid = getSlotIdFromCARD(player, src) - 7
                 destroySelf(player,"SLOT_PLAYEREQP" .. slotid)
 
                 local card = getCARD(menuCard)
-                if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_MOB | TYPE_JRB | TYPE_BOS") then
+                if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_ANYMOB") then
                     ret = summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
                 elseif hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_EQP") then
                     ret = equip(player,"PLAY_SCOUTEQUIP", "ELEM_ANY","ZTCG_MAXVALUE")
@@ -61,16 +61,20 @@ ZTCG_CARD
         if list_sz > 0 then
             local mg_list, not_empty = makeFilteredList(player,list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY","ELEM_MAGE","ZTCG_NIL")
             if not_empty then
-                local menuCard = menuCards(player,mg_list,"Select a card to draw.","CARDLIST_PEEK")
-                if menuCard ~= 0 then
-                    local card = getCARD(menuCard)
-                    local src = getSourceCARD()
-                    if card ~= src then
-                        local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-                        local level = getCurrentLevelFromCARD(player,chr)
+                while true do
+                    local menuCard = menuCards(player,mg_list,"Select a card to draw.","CARDLIST_PEEK")
+                    if menuCard ~= 0 then
+                        local card = getCARD(menuCard)
+                        local src = getSourceCARD()
+                        if card ~= src then
+                            local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
+                            local level = getCurrentLevelFromCARD(player,chr)
 
-                        destroyCharacterAction(player,card,true)
-                        recoverDestroyedCard(player,card)
+                            destroyCharacterAction(player,card,true)
+                            recoverDestroyedCard(player,card)
+                        end
+
+                        break
                     end
                 end
             end

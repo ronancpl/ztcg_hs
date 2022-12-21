@@ -50,8 +50,8 @@ ZTCG_CARD
     end
 
     function onActivateCharacterAction(player)
-        local atkr = getSourceCARD()
-        attack(player, atkr, 30, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_DONTCARE", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+        local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
+        attack(player, chr, 30, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_DONTCARE", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
 }

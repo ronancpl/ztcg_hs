@@ -55,10 +55,10 @@ ZTCG_CARD
 
             local menuCard = menuCards(player,cards,"Select a card to play.","CARDLIST_PEEK")
             if menuCard ~= 0 then
-                moveCards(hand,hand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
+                moveCards(player,hand,hand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
 
                 local card = getCARD(menuCard)
-                if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_MOB | TYPE_JRB | TYPE_BOS") then
+                if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_ANYMOB") then
                     ret = summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
                 elseif hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_EQP") then
                     ret = equip(player,"PLAY_SCOUTEQUIP", "ELEM_ANY","ZTCG_MAXVALUE")
@@ -77,7 +77,7 @@ ZTCG_CARD
 
     function onActivateCharacterAction3(player)
         local src = getSourceCARD()
-        attack(player, src, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
 }

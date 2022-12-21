@@ -42,7 +42,7 @@ ZTCG_CARD
 
             local card = menuCards(player,card_list1,"Select a card to equip.","CARDLIST_PEEK")
             if card ~= 0 then
-                moveCards(deck,hand,"TAKE_CARDID","PUT_BOTTOM",card)
+                moveCards(player,deck,hand,"TAKE_CARDID","PUT_BOTTOM",card)
 
                 editCardRegister(src,cardid,0,1,0,nil)
                 equip(player,"PLAY_SCOUTEQUIP", "ELEM_ANY","ZTCG_MAXVALUE")

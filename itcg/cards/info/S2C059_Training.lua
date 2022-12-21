@@ -23,8 +23,10 @@ ZTCG_CARD
     }
 
     function onThinkAction(player)
-        drawCard(player)
-        levelUpScout(player)
+        local d = drawCard(player)
+        if d then
+            levelUpScout(player)
+        end
     end
 
     function onActivateCharacterAction(player)

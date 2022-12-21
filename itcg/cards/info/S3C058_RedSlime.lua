@@ -25,8 +25,8 @@ ZTCG_CARD
     }
 
     function onThinkMob(player)
+        local src = getSourceCARD()
         if not throwCoin(player) then
-            local src = getSourceCARD()
             local slot = getSlotIdFromCARD(player, src)
 
             local list, hasCard
@@ -34,7 +34,7 @@ ZTCG_CARD
 
             if hasCard then
                 local deckHand = getPlayerDeck(player, "DECK_HAND")
-                list = moveCardsFromListToDeck(list, deckHand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+                list = moveCardsFromListToDeck(player,list, deckHand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
             end
 
             destroyList(list)
@@ -45,7 +45,7 @@ ZTCG_CARD
         local src = getSourceCARD()
 
         if getEquipsOnTable(player,"ONLY_ADVSRY") == 0 then return end
-        if(not makePrompt(player,"Use Misplace?","Destroy this character action, then destroy an equipment.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
+        if(not makePrompt(player,true,"Use Misplace?","Destroy this character action, then destroy an equipment.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
 
         destroyCharacterAction(player,src,true)
         destroyEquipment(player)

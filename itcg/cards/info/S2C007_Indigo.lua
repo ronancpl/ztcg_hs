@@ -32,11 +32,10 @@ ZTCG_CARD
         "HP" "210"
     }
 
-    function onCalcAttack(player)
+    function onCalcAttackCard(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
-        local atkr = getCardPointer(0)
         if(getCardRegister(src, cid, 0) == 10) then
             local dmg = getGameValue(0)
             local bonus = getCardRegister(src, cid, 1)
@@ -46,7 +45,7 @@ ZTCG_CARD
         end
     end
 
-    function onExecuteAttack(player)
+    function onExecuteAttackCard(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
@@ -71,7 +70,7 @@ ZTCG_CARD
 
     function onActivateCharacterAction3(player)
         local src = getSourceCARD()
-        attack(player, src, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
 }

@@ -44,7 +44,7 @@ ZTCG_CARD
         local cid = getCardIdFromCARD(src)
 
         local atkr = getCardPointer(0)
-        if(hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_MOB | TYPE_ACT") and getCardRegister(src, cid, 0) == 10) then
+        if(hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_ANYMOB | TYPE_ACT") and getCardRegister(src, cid, 0) == 10) then
             local dmg = getGameValue(0)
             local bonus = getCardRegister(src, cid, 1)
             updateGameValue(0, dmg + bonus)
@@ -66,7 +66,7 @@ ZTCG_CARD
 
     function onActivateCharacterAction(player)
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-        attack(player, chr, 20, "ATKRES_DONT_HIT_CHAR", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, chr, 20, "ATKRES_DONT_HIT_CHAR", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
 }

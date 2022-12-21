@@ -30,15 +30,15 @@ ZTCG_CARD
 
         if qty > 0 then
             if playClash(player) then
-                local card = peekNextCard(player)
-
                 local hand = getPlayerDeck(player, "DECK_HAND")
-                local cards_taken = takeCardsFromDeck(deck, 1)
+                local cards_taken = takeCardsFromDeck(player,deck, 1)
 
-                cards_taken = moveCardsFromListToDeck(cards_taken,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+                local card = getCARD(cards_taken)
+
+                cards_taken = moveCardsFromListToDeck(player,cards_taken,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
                 destroyList(cards_taken)
 
-                if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_MOB | TYPE_JRB | TYPE_BOS") then
+                if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_ANYMOB") then
                     ret = summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
                 elseif hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_EQP") then
                     ret = equip(player,"PLAY_SCOUTEQUIP", "ELEM_ANY","ZTCG_MAXVALUE")
@@ -54,7 +54,7 @@ ZTCG_CARD
     function onLevelActionTrigger(player)
         if playClash(player) then
             local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-            attack(player, chr, 40, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            attack(player, chr, 40, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
         end
     end
 

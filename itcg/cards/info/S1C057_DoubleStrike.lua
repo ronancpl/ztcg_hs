@@ -12,7 +12,7 @@ ZTCG_CARD
     TYPE_ACT
     {
         "LEVEL" "20"
-        "TEXT" "Destroy a monster"
+        "TEXT" "Destroy a monster."
     }
 
     LVL_ACTION

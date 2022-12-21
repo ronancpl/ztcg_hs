@@ -26,16 +26,16 @@ ZTCG_CARD
         local deck = getPlayerDeck(player, "DECK_DECK")
         local grav = getPlayerDeck(player, "DECK_GRAV")
 
-        local cards = takeCardsFromDeck(deck, 2)
+        local cards = takeCardsFromDeck(player,deck, 2)
         local qty = getListLength(cards)
         if qty >= 2 then
             local card = menuCards(player,cards,"Select a card to draw.","CARDLIST_PEEK")
             if card ~= 0 then
-                cards = moveCardsFromListToDeck(cards,deck,"TAKE_CARDID","PUT_TOP",card)
-                cards = moveCardsFromListToDeck(cards,grav,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
+                cards = moveCardsFromListToDeck(player,cards,deck,"TAKE_CARDID","PUT_TOP",card)
+                cards = moveCardsFromListToDeck(player,cards,grav,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
             end
         else
-            cards = moveCardsFromListToDeck(cards,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
+            cards = moveCardsFromListToDeck(player,cards,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
         end
 
         destroyList(cards)

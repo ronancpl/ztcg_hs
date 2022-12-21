@@ -24,7 +24,7 @@ ZTCG_CARD
 
     function onThinkAction(player)
         local src = getSourceCARD()
-        attack(player, src, 40, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 40, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
 
         drawCard(player)
         discardCard(player)
@@ -32,7 +32,7 @@ ZTCG_CARD
 
     function onActivateCharacterAction(player)
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-        attack(player, chr, 10, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, chr, 10, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
 }

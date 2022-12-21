@@ -34,7 +34,7 @@ ZTCG_CARD
 
     function onThinkMob(player)
         local src = getSourceCARD()
-        attack(player, src, 20, "ATKRES_NIL", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 20, "ATKRES_NIL", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
     function onLevelActionTrigger(player)

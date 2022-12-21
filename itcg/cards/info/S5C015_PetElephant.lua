@@ -30,41 +30,42 @@ ZTCG_CARD
 
         local c = countCardsUnder(player,src)
         if c < 3 then
-            local cards = takeCardsFromDeck(deck, 1)
-            local card = menuCards(player,cards,"Pick a card to place under the pet.","CARDLIST_HIDE")
+            local card_list = takeCardsFromDeck(player,deck, 1)
+            local card = makeTargetFromCARD(getCARD(card_list))
 
             if card ~= 0 then
-                cards = takeTargetCardFromList(card,cards)
+                card_list = takeTargetCardFromList(card,card_list)
                 putCardUnder(src,card)
             end
 
-            destroyList(cards)
+            destroyList(card_list)
         end
 
         local c = countCardsUnder(player,src)
         if c >= 3 then
             local pet_spawns = removeCardsUnder(src)
 
-            local pet_spawn = menuCards(player,pet_spawns,"Select a card to level up with.","CARDLIST_HIDE")
+            local pet_spawn = menuCards(player,pet_spawns,"Select a card to level up with.","CARDLIST_PEEK")
             if pet_spawn ~= 0 then
                 local hand = getPlayerDeck(player, "DECK_HAND")
-                pet_spawns = takeTargetCardFromListToDeck(hand,pet_spawns,pet_spawn,"DECK_BOTTOM")
+                pet_spawns = takeTargetCardFromListToDeck(player,hand,pet_spawns,pet_spawn,"DECK_BOTTOM")
 
                 levelUpScout(player)
             end
 
-            pet_spawns = moveCardsFromListToDeck(pet_spawns,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+            pickCardOrder(player,pet_spawns)
+            pet_spawns = moveCardsFromListToDeck(player,pet_spawns,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
 
             destroyList(pet_spawns)
         end
     end
 
     function onLevelActionTrigger(player)
-        local deck1 = getPlayerDeck(player,"DECK_DECK")
-        local card_list1, qty1 = getListFromDeck(deck1)
+        local hand1 = getPlayerDeck(player,"DECK_HAND")
+        local card_list1, qty1 = getListFromDeck(hand1)
 
-        local deck2 = getPlayerDeck(not player,"DECK_DECK")
-        local card_list2, qty2 = getListFromDeck(deck2)
+        local hand2 = getPlayerDeck(not player,"DECK_HAND")
+        local card_list2, qty2 = getListFromDeck(hand2)
 
         if qty1 < qty2 then
             drawCard(player)

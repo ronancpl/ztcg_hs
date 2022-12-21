@@ -31,17 +31,14 @@ ZTCG_CARD
     function onActivateCharacterAction(player)
         local card = peekNextCard(player)
 
-        local deck = getPlayerDeck(player, "DECK_DECK")
-        local hand = getPlayerDeck(player, "DECK_HAND")
-        local list_cards = takeCardsFromDeck(deck, 1)
+        if isInfoCARD(card, "Boar") then
+            local deck = getPlayerDeck(player, "DECK_DECK")
+            local hand = getPlayerDeck(player, "DECK_HAND")
 
-        if not isInfoCARD(getCARD(list_cards), "Boar") then
-            list_cards = moveCardsFromListToDeck(list_cards,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
-        else
-            list_cards = moveCardsFromListToDeck(list_cards,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+            local list_cards = takeCardsFromDeck(player,deck, 1)
+            list_cards = moveCardsFromListToDeck(player,list_cards,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+            destroyList(list_cards)
         end
-
-        destroyList(list_cards)
     end
 
 }

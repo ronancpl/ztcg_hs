@@ -29,12 +29,10 @@ ZTCG_CARD
         if not_empty then
             local card = menuCards(player,new_list,"Select a card to put on top of the deck.","CARDLIST_PEEK")
             if card ~= 0 then
-                revealCard(not player,"Opponent has placed card...",getCARD(card))
-
-                local list_card = takeTargetCardFromDeck(card,deck)
+                local list_card = takeTargetCardFromDeck(player,card,deck)
                 shuffleDeck(deck)
 
-                list_card = moveCardsFromListToDeck(list_card,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
+                list_card = moveCardsFromListToDeck(player,list_card,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
                 destroyList(list_card)
             end
         end

@@ -32,7 +32,7 @@ ZTCG_CARD
 
             if not_empty then
                 local deckGrav = getPlayerDeck(player, "DECK_GRAV")
-                new_list = moveCardsFromListToDeck(new_list,deckGrav,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
+                new_list = moveCardsFromListToDeck(player,new_list,deckGrav,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
 
                 ret = true
             end

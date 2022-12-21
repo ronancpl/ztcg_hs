@@ -30,7 +30,7 @@ ZTCG_CARD
         local src = getSourceCARD()
         local c = getPlayerAttributes(player, "ELEM_BOWMAN")
         for i = 1, c, 1 do
-            attack(player,src,20,"ATKRES_NIL", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            attack(player,src,20,"ATKRES_NIL", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
         end
     end
 

@@ -27,18 +27,20 @@ ZTCG_CARD
             local menu = makeFilteredTableList(player, "ONLY_ADVSRY", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
             local menuCard = menuCards(player,menu,"Select one monster to destroy.","CARDLIST_PEEK")
             if menuCard ~= 0 then
-                local slotid = getSlotIdFromCARD(player,getCARD(menuCard))
+                local slotid = getSlotIdFromCARD(not player,getCARD(menuCard))
                 destroySelf(player,"SLOT_ADVSRYMOB" .. slotid)
             end
+            destroyList(menu)
         end
 
         if getEquipsOnTable(player,"ONLY_PLAYER") > 0 then
             local menu = makeFilteredTableList(player, "ONLY_ADVSRY", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_EQP", "ELEM_ANY", "ZTCG_NIL")
             local menuCard = menuCards(player,menu,"Select one equipment to destroy.","CARDLIST_PEEK")
             if menuCard ~= 0 then
-                local slotid = getSlotIdFromCARD(player,getCARD(menuCard))
-                destroySelf(player,"SLOT_ADVSRYEQP" .. slotid)
+                local slotid = getSlotIdFromCARD(not player,getCARD(menuCard))
+                destroySelf(player,"SLOT_ADVSRYEQP" .. (slotid - 7))
             end
+            destroyList(menu)
         end
     end
 

@@ -27,7 +27,7 @@ ZTCG_CARD
 
         local attr = getPlayerAttributes(player, "ELEM_BOWMAN")
         for i = 1, attr, 1 do
-            attack(player, src, 10, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            attack(player, src, 10, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
         end
     end
 
@@ -42,7 +42,7 @@ ZTCG_CARD
         local cardid = getCardIdFromCARD(card)
 
         local storm = getCardRegister(card, cardid, 5)
-        attack(player, card, 10 + (10 * storm), "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, card, 10 + (10 * storm), "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
         editCardRegister(card, cardid, 5, storm + 1, 0, 0)
     end
 

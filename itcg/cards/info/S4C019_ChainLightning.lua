@@ -23,14 +23,25 @@ ZTCG_CARD
     }
 
     function onThinkAction(player)
+        local src = getSourceCARD()
+
         local list, not_empty = makeFilteredTableList(player,"ONLY_ADVSRY",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_CHAR | TYPE_ANYMOB","ELEM_ANY","ZTCG_NIL")
 
         local dmg = 60
         while dmg > 0 and getListLength(list) > 0 do
             local menuCard = menuCards(player,list,"Select a monster to apply Chain Lightning (damage: " .. tostring(dmg) .. " ).","CARDLIST_PEEK")
             if menuCard ~= 0 then
-                local slotid = getSlotIdFromCARD(player, getCARD(menuCard))
+                local slotid = getSlotIdFromCARD(not player, getCARD(menuCard))
                 list = takeTargetCardFromList(menuCard,list)
+
+                local slotstr
+                if slotid == 0 then
+                    slotstr = "SLOT_ADVSRYCHAR"
+                else
+                    slotstr = "SLOT_ADVSRYMOB" .. tostring(slotid)
+                end
+
+                attack(player, src, dmg, "ATKRES_FIXED_SLOT", "ATKSRC_ACT", slotstr, "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
 
                 dmg = dmg - 20
             end
@@ -41,7 +52,7 @@ ZTCG_CARD
 
     function onActivateCharacterAction(player)
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-        attack(player, chr, 20, "ATKRES_DONT_HIT_MOBS", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, chr, 20, "ATKRES_DONT_HIT_MOBS", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
 

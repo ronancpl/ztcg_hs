@@ -26,7 +26,7 @@ ZTCG_CARD
 
     function onThinkMob(player)
         local src = getSourceCARD()
-        attack(player, src, 40, "ATKRES_DONT_HIT_CHAR", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 40, "ATKRES_DONT_HIT_CHAR", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
 
         if lastAttackKilled(player) then
             newBuff(src,src,40,0,0,1)
@@ -35,7 +35,7 @@ ZTCG_CARD
 
     function onActivateCharacterAction(player)
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-        attack(player, chr, 30, "ATKRES_DONT_HIT_CHAR", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, chr, 30, "ATKRES_DONT_HIT_CHAR", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
 }

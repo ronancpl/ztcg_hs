@@ -12,7 +12,7 @@ ZTCG_CARD
     TYPE_EQP
     {
         "LEVEL" "35"
-        "TEXT" "Each of your monsters gets +20 HP"
+        "TEXT" "Each of your monsters gets +20 HP."
     }
 
     LVL_ACTION

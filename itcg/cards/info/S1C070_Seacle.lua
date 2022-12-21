@@ -25,10 +25,9 @@ ZTCG_CARD
     }
 
     function onReceiveAttackAndInterceptDestroyed(player)
+        local src = getSourceCARD()
         if throwCoin(player) then
-            local destroyed = updateGameValue(0,0)  -- not destroyed
-
-            local src = getSourceCARD()
+            updateGameValue(0,0)  -- not destroyed
             editCardHP(src,20)
         end
     end

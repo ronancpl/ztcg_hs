@@ -26,7 +26,7 @@ ZTCG_CARD
         if(matchRequirements(player, 60, 2, "ELEM_BOWMAN")) then
             local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
 
-            local res = attack(player, chr, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            local res = attack(player, chr, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
             if res then
                 return 1       -- ignore character action
             end
@@ -38,7 +38,7 @@ ZTCG_CARD
 
         local res = true
         while res do
-            attack(player, chr, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            attack(player, chr, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
 
             if not lastAttackKilled(player) then
                 res = false

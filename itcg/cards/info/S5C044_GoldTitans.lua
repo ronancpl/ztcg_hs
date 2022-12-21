@@ -24,7 +24,7 @@ ZTCG_CARD
 
     function onOpponentDrawCard(player)
         local src = getSourceCARD()
-        attack(player, src, 20, "ATKRES_DONT_HIT_MOBS", "ATKSRC_EQP", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 20, "ATKRES_DONT_HIT_MOBS", "ATKSRC_EQP", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
     function onLevelActionTrigger(player)

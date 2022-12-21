@@ -23,7 +23,7 @@ ZTCG_CARD
     }
 
     function onThinkAction(player)
-        discardRandomHandCard(not player)
+        discardCardRandom(not player)
     end
 
     function onLevelActionTrigger(player)

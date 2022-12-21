@@ -36,16 +36,20 @@ ZTCG_CARD
         if list_sz > 0 then
             local mg_list, not_empty = makeFilteredList(player,list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY","ELEM_MAGE","ZTCG_NIL")
             if not_empty then
-                local menuCard = menuCards(player,mg_list,"Select a card to draw.","CARDLIST_PEEK")
-                if menuCard ~= 0 then
-                    local card = getCARD(menuCard)
-                    local src = getSourceCARD()
-                    if card ~= src then
-                        local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-                        local level = getCurrentLevelFromCARD(player,chr)
+                while true do
+                    local menuCard = menuCards(player,mg_list,"Select a card to draw.","CARDLIST_PEEK")
+                    if menuCard ~= 0 then
+                        local card = getCARD(menuCard)
+                        local src = getSourceCARD()
+                        if card ~= src then
+                            local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
+                            local level = getCurrentLevelFromCARD(player,chr)
 
-                        destroyCharacterAction(player,card,true)
-                        recoverDestroyedCard(player,card)
+                            destroyCharacterAction(player,card,true)
+                            recoverDestroyedCard(player,card)
+                        end
+
+                         break
                     end
                 end
             end

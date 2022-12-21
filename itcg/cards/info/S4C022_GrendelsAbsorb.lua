@@ -12,7 +12,7 @@ ZTCG_CARD
     TYPE_ACT
     {
         "LEVEL" "80"
-        "TEXT" "If you have fewer cards in hand than your opponent, draw cards until you have the same number of cards as your opponent. Then your opponent chooses and discards as many cards from his or her hand you drew"
+        "TEXT" "If you have fewer cards in hand than your opponent, draw cards until you have the same number of cards as your opponent. Then your opponent chooses and discards as many cards from his or her hand you drew."
     }
 
     LVL_ACTION
@@ -53,7 +53,7 @@ ZTCG_CARD
         if level >= 60 and not_empty then
             local card = menuCards(player,list,"Select a mob to spawn.","CARDLIST_PEEK")
             if card ~= 0 then
-                moveCards(deckHand,deckHand,"TAKE_CARDID","PUT_BOTTOM",card)
+                moveCards(player,deckHand,deckHand,"TAKE_CARDID","PUT_BOTTOM",card)
                 summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
             end
         end

@@ -24,27 +24,26 @@ ZTCG_CARD
         "TEXT" "Spawn 80 -- Play a monster of level 80 or less."
     }
 
-    function onMobSentToDiscardPile(player)
+    function onDestroy(player)
+        local src = getSourceCARD()
         local list, not_empty = makeFilteredTableList(player,"ONLY_PLAYER",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_EQP","ELEM_ANY","Pet")
         while not isEmptyList(list) do
-            local card = menuCards(player,list,"Select a pet to feed.","CARDLIST_PEEK")
-            if card ~= 0 then
-                local deck = getPlayerDeck(player, "DECK_DECK")
+            local pet
+            list, pet = takeNextCardsFromList(list,1)
 
-                local c = countCardsUnder(player,src)
-                if c < 3 then
-                    local cards = takeCardsFromDeck(deck, 1)
-                    local card = menuCards(player,cards,"Pick a card to place under the pet.","CARDLIST_HIDE")
+            local deck = getPlayerDeck(player, "DECK_DECK")
 
-                    if card ~= 0 then
-                        cards = takeTargetCardFromList(card,cards)
-                        putCardUnder(src,card)
-                    end
+            local c = countCardsUnder(player,getCARD(pet))
+            if c < 3 then
+                local card_list = takeCardsFromDeck(player,deck, 1)
+                local card = makeTargetFromCARD(getCARD(card_list))
 
-                    destroyList(cards)
+                if card ~= 0 then
+                    card_list = takeTargetCardFromList(card,card_list)
+                    putCardUnder(getCARD(pet),card)
                 end
-            else
-                break
+
+                destroyList(card_list)
             end
         end
 

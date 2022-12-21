@@ -7,7 +7,7 @@ ZTCG_CARD
     "ELEMENT" "Magician"
     "RARITY" "RARITY_UNIQUE"
     "INFO" "Monster - Alien"
-    "COST" "540"
+    "COST" "580"
 
     TYPE_MOB
     {
@@ -21,16 +21,16 @@ ZTCG_CARD
     {
         "LEVEL" "70"
         "ATTRB" "1"
-        "TEXT" "Think Fast 90 -- Play a tactic of level 90 or less. "
+        "TEXT" "Think Fast 90 -- Play a tactic of level 90 or less."
     }
 
     function onThinkMob(player)
         local deck = getPlayerDeck(player, "DECK_DECK")
 
-        local cards = takeCardsFromDeck(deck, 3)
+        local cards = takeCardsFromDeck(player,deck, 3)
         pickCardOrder(player,cards)
 
-        cards = moveCardsFromListToDeck(cards,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
+        cards = moveCardsFromListToDeck(player,cards,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
         destroyList(cards)
     end
 

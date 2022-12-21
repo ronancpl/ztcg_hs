@@ -27,7 +27,7 @@ ZTCG_CARD
         local cid = getCardIdFromCARD(src)
 
         local atkr = getCardPointer(0)
-        if(hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_MOB | TYPE_ACT") and getCardRegister(src, cid, 0) == 10) then
+        if(hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_ANYMOB") and getCardRegister(src, cid, 0) == 10) then
             local dmg = getGameValue(0)
             local bonus = getCardRegister(src, cid, 1)
             updateGameValue(0, dmg + bonus)
@@ -40,7 +40,8 @@ ZTCG_CARD
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
-        if(getCardRegister(src, cid, 0) == 10) then
+        local atkr = getCardPointer(0)
+        if(hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_ANYMOB") and getCardRegister(src, cid, 0) == 10) then
             editCardRegister(src, cid, 0, 0, 0, nil)
 
             local def_card = getCardPointer(1)
@@ -75,7 +76,7 @@ ZTCG_CARD
         if level >= 60 and not_empty then
             local card = menuCards(player,list,"Select a mob to spawn.","CARDLIST_PEEK")
             if card ~= 0 then
-                moveCards(deckHand,deckHand,"TAKE_CARDID","PUT_BOTTOM",card)
+                moveCards(player,deckHand,deckHand,"TAKE_CARDID","PUT_BOTTOM",card)
                 summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
             end
         end

@@ -32,7 +32,7 @@ ZTCG_CARD
 
             if not_empty then
                 local deckGrav = getPlayerDeck(player, "DECK_GRAV")
-                new_list = moveCardsFromListToDeck(new_list,deckGrav,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
+                new_list = moveCardsFromListToDeck(player,new_list,deckGrav,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
 
                 ret = true
             end
@@ -45,7 +45,7 @@ ZTCG_CARD
 
     function onEndTurn(player)
         local src = getSourceCARD()
-        if(not makePrompt(player,"Use " .. getNameFromCARD(src) .. "?","Get +HP equal to your level and draw cards.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
+        if(not makePrompt(player,true,"Use " .. getNameFromCARD(src) .. "?","Get +HP equal to your level and draw cards.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
 
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
         local level = getCurrentLevelFromCARD(player,chr)

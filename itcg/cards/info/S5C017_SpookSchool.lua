@@ -33,28 +33,35 @@ ZTCG_CARD
             local spook = takeCardFromTable(player,"SLOT_PLAYERMOB" .. tostring(slotid))
             if spook ~= 0 then
                 local deck = getPlayerDeck(player, "DECK_DECK")
-                spook = moveCardsFromListToDeck(spook,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+                spook = moveCardsFromListToDeck(player,spook,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+
+                destroyList(spook)
             end
-            destroyList(spook)
         end
     end
 
-    function onLevelActionTrigger(player)
+    function onActivateCharacterAction(player)
         local src = getSourceCARD()
         local cardid = getCardIdFromCARD(src)
+        insertCardTurnAction(player)
 
-        local deck = getPlayerDeck(player, "DECK_GRAV")
-        local card_list, qty = getListFromDeck(deck)
-        local spook_list, not_empty = makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_MOB","ELEM_ANY","Spook")
+        local grav = getPlayerDeck(player, "DECK_GRAV")
+        local card_list, qty = getListFromDeck(grav)
+        local spook_list, not_empty = makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB","ELEM_ANY","Spook")
 
-        local spook_spawn = menuCards(player,spook_list,"Select a card to spawn.","CARDLIST_HIDE")
+        local spook_spawn = menuCards(player,spook_list,"Select a card to spawn.","CARDLIST_PEEK")
         if spook_spawn ~= 0 then
-            card_list = takeTargetCardFromList(spook_spawn,card_list)
-            spook_list = takeTargetCardFromListToDeck(hand,spook_list,spook_spawn,"DECK_BOTTOM")
+            local hand = getPlayerDeck(player, "DECK_HAND")
+            local spook_card = getCARD(spook_spawn)
+
+            spook_spawn = takeTargetCardFromDeck(player,spook_spawn,grav)
+            spook_spawn = takeTargetCardFromListToDeck(player,hand,spook_spawn,spook_spawn,"DECK_BOTTOM")
             summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
 
-            local slotid = getSlotIdFromCARD(player, spook_spawn)
+            local slotid = getSlotIdFromCARD(player,spook_card)
             editCardRegister(src,cardid,0,slotid,0,nil)
+
+            destroyList(spook_spawn)
         end
 
         destroyList(spook_list)

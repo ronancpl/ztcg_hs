@@ -27,7 +27,7 @@ ZTCG_CARD
     function onAttackOpponentMobDestroyed(player)
         if hasFlag("ZTCG_ATKSRC","ATKSRC_MOB") then
             local src = getSourceCARD()
-            attack(player, src, 20, "ATKRES_DONT_HIT_MOBS", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            attack(player, src, 20, "ATKRES_DONT_HIT_MOBS", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
         end
     end
 

@@ -32,7 +32,7 @@ ZTCG_CARD
         if(not matchRequirements(player, 70, 3, "ELEM_MAGE")) then return end
 
         local deck = getPlayerDeck(player, "DECK_DECK")
-        local cards = takeCardsFromDeck(deck, 3)
+        local cards = takeCardsFromDeck(player,deck, 3)
 
         local actions = makeFilteredList(player,cards,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ACT","ELEM_ANY","ZTCG_NIL")
         while getListLength(actions) > 0 do
@@ -47,7 +47,7 @@ ZTCG_CARD
         end
 
         pickCardOrder(player,cards)
-        cards = moveCardsFromListToDeck(cards,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+        cards = moveCardsFromListToDeck(player,cards,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
 
         destroyList(actions)
         destroyList(cards)
@@ -56,7 +56,7 @@ ZTCG_CARD
     function effect_rk(player)
         if(not matchRequirements(player, 120, 3, "ELEM_MAGE")) then return end
 
-        if not makePrompt(player,"Use Reaper's Knock?","Opponent's HP goes to 10. Your turn ends.","ZTCG_NIL","ZTCG_NIL","OK","Cancel") then
+        if not makePrompt(player,true,"Use Reaper's Knock?","Opponent's HP goes to 10. Your turn ends.","ZTCG_NIL","ZTCG_NIL","OK","Cancel") then
             return
         end
 

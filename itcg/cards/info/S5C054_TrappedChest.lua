@@ -24,7 +24,7 @@ ZTCG_CARD
 
     function afterCharacterActions(player)
         local card = getSourceCARD()
-        if(makePrompt(player,"Use " .. getNameFromCARD(card) .. "?","Draw a card. Choose one to discard.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then
+        if(makePrompt(player,true,"Use " .. getNameFromCARD(card) .. "?","Draw a card. Choose one to discard.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then
             drawCard(player)
             discardCard(player)
 

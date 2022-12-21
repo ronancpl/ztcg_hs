@@ -7,7 +7,7 @@ ZTCG_CARD
     "ELEMENT" "Magician"
     "RARITY" "RARITY_COMMON"
     "INFO" "Tactic - Skill"
-    "COST" ""
+    "COST" "520"
 
     TYPE_ACT
     {
@@ -24,7 +24,7 @@ ZTCG_CARD
 
     function onThinkAction(player)
         local src = getSourceCARD()
-        attack(player, src, 50, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 50, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
 
         drawCard(player)
     end

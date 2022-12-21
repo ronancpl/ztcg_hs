@@ -29,10 +29,10 @@ ZTCG_CARD
         local srcCard = makeTargetFromCARD(src)
 
         local deckGrav = getPlayerDeck(player, "DECK_GRAV")
-        local cardList = takeTargetCardFromDeck(srcCard,deckGrav)
+        local cardList = takeTargetCardFromDeck(player,srcCard,deckGrav)
 
         local deckHand = getPlayerDeck(player, "DECK_HAND")
-        cardList = moveCardsFromListToDeck(cardList, deckHand,"TAKE_NEXT","PUT_BOTTOM",1)
+        cardList = moveCardsFromListToDeck(player,cardList, deckHand,"TAKE_NEXT","PUT_BOTTOM",1)
 
         destroyList(cardList)
         destroyList(srcCard)
@@ -40,16 +40,16 @@ ZTCG_CARD
 
     function onLevelActionTrigger(player)
         local deck = getPlayerDeck(player, "DECK_DECK")
-        local cards_taken = takeCardsFromDeck(deck, 2)
+        local cards_taken = takeCardsFromDeck(player,deck, 2)
 
         if getListLength(cards_taken) >= 2 then
             local card1 = getCARD(cards_taken)
             local cards_taken2 = takeTargetCardFromList(cards_taken,cards_taken)
             local card2 = getCARD(cards_taken2)
 
-            if(hasSharedFlagsCARD(card1, "FLAG_TYPE", "TYPE_MOB | TYPE_JRB | TYPE_BOS")) and (hasSharedFlagsCARD(card2, "FLAG_TYPE", "TYPE_MOB | TYPE_JRB | TYPE_BOS")) then
-                cards_taken = moveCardsFromListToDeck(cards_taken,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
-                cards_taken2 = moveCardsFromListToDeck(cards_taken2,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
+            if(hasSharedFlagsCARD(card1, "FLAG_TYPE", "TYPE_ANYMOB")) and (hasSharedFlagsCARD(card2, "FLAG_TYPE", "TYPE_ANYMOB")) then
+                cards_taken = moveCardsFromListToDeck(player,cards_taken,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
+                cards_taken2 = moveCardsFromListToDeck(player,cards_taken2,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
 
                 scoutMob(player,"SCOUT_NORMAL","ELEM_ANY")
                 scoutMob(player,"SCOUT_NORMAL","ELEM_ANY")
@@ -57,7 +57,7 @@ ZTCG_CARD
                 cards_taken = appendLists(cards_taken,cards_taken2)
                 pickCardOrder(player,cards_taken)
 
-                cards_taken = moveCardsFromListToDeck(cards_taken,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+                cards_taken = moveCardsFromListToDeck(player,cards_taken,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
             end
 
             destroyList(cards_taken)

@@ -24,6 +24,14 @@ ZTCG_CARD
         "TEXT" "Spawn 100 -- Play a monster of level 100 or less."
     }
 
+    function preventSelfTargetCharacter(player)
+        return 1
+    end
+
+    function preventSelfTargetMob(player)
+        return 1
+    end
+
     function onCalcDefenseCard(player)
         local def_card = getCardPointer(1)
         if(hasSharedFlagsCARD(def_card, "FLAG_TYPE", "TYPE_CHAR")) then

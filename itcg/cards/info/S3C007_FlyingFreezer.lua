@@ -46,6 +46,18 @@ ZTCG_CARD
         destroyList(list)
     end
 
+    function onEndTurn(player)
+        local src = getSourceCARD()
+        local cid = getCardIdFromCARD(src)
+
+        if(getCardRegister(src, cid, 0) == 1) then
+            local slotid = getSlotIdFromCARD(player,src)
+            destroySelf(player,"SLOT_PLAYERMOB" .. slotid)
+        else
+            editCardRegister(src, cid, 0, 1, 0, null)
+        end
+    end
+
     function onActivateCharacterAction(player)
         local src = getSourceCARD()
         destroyCharacterAction(player, src,true)
@@ -54,7 +66,7 @@ ZTCG_CARD
         local hand = getPlayerDeck(player, "DECK_HAND")
 
         local target = makeTargetFromCARD(src)
-        moveCards(grav,hand,"TAKE_CARDID","PUT_BOTTOM",target)
+        moveCards(player,grav,hand,"TAKE_CARDID","PUT_BOTTOM",target)
         destroyList(target)
 
         local d = drawCard(player)

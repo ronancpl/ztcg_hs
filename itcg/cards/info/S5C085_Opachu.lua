@@ -27,7 +27,7 @@ ZTCG_CARD
     function onReceiveNormalAttack(player)
         local src = getSourceCARD()
         local dmg = getGameValue(0)
-        attack(player, src, dmg, "ATKRES_DONT_HIT_MOBS", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, dmg, "ATKRES_DONT_HIT_MOBS", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
     function onActivateCharacterAction(player)

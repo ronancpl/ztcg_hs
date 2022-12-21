@@ -22,10 +22,10 @@ ZTCG_CARD
         }
     }
 
-    local function attackNotInfo(src,dmg,slotStr,slotid,info)
-        local card = getOnBoardCARD(player, slotid)
+    function attackNotInfo(player,src,dmg,slotStr,slotid,info)
+        local card = getOnBoardCARD(player, slotid + 16)
         if card ~= 0 and not isInfoCARD(card,info) then
-            attack(player, src, 30, "ATKRES_FIXED_SLOT", "ATKSRC_ACT", slotStr .. tostring(slotid), "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            attack(player, src, 30, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", slotStr .. tostring(slotid), "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
         end
     end
 
@@ -34,13 +34,13 @@ ZTCG_CARD
         if(not matchRequirements(player, 60, 2, "ELEM_BOWMAN")) then return end
 
         local src = getSourceCARD()
-        attackNotInfo(src,30,"SLOT_ADVSRYMOB",1,"Flying")
-        attackNotInfo(src,30,"SLOT_ADVSRYMOB",2,"Flying")
-        attackNotInfo(src,30,"SLOT_ADVSRYMOB",3,"Flying")
-        attackNotInfo(src,30,"SLOT_ADVSRYMOB",4,"Flying")
-        attackNotInfo(src,30,"SLOT_ADVSRYMOB",5,"Flying")
-        attackNotInfo(src,30,"SLOT_ADVSRYMOB",6,"Flying")
-        attackNotInfo(src,30,"SLOT_ADVSRYMOB",7,"Flying")
+        attackNotInfo(player,src,30,"SLOT_ADVSRYMOB",1,"Flying")
+        attackNotInfo(player,src,30,"SLOT_ADVSRYMOB",2,"Flying")
+        attackNotInfo(player,src,30,"SLOT_ADVSRYMOB",3,"Flying")
+        attackNotInfo(player,src,30,"SLOT_ADVSRYMOB",4,"Flying")
+        attackNotInfo(player,src,30,"SLOT_ADVSRYMOB",5,"Flying")
+        attackNotInfo(player,src,30,"SLOT_ADVSRYMOB",6,"Flying")
+        attackNotInfo(player,src,30,"SLOT_ADVSRYMOB",7,"Flying")
     end
 
 }

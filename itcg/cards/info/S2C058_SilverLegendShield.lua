@@ -28,7 +28,7 @@ ZTCG_CARD
 
         local grav = getPlayerDeck(player, "DECK_GRAV")
         local hand = getPlayerDeck(player, "DECK_HAND")
-        moveCards(grav,hand,"TAKE_CARDID","PUT_BOTTOM",card)
+        moveCards(player,grav,hand,"TAKE_CARDID","PUT_BOTTOM",card)
         levelUpScout(player)
 
         destroyList(card)
@@ -36,7 +36,7 @@ ZTCG_CARD
 
     function onActivateCharacterAction(player)
         if getMobsOnTable(player,"ONLY_PLAYER") > 0 then
-            if(makePrompt(player,"Use Bloodthirsty?","One of your monsters get Fierce.","ZTCG_NIL","ZTCG_NIL","Yes","No")) then
+            if(makePrompt(player,true,"Use Bloodthirsty?","One of your monsters get Fierce.","ZTCG_NIL","ZTCG_NIL","Yes","No")) then
                 local cards, list_sz = getListFromCharacterActions(player, true)
                 if list_sz > 0 then
                     local menuCard = menuCards(player,cards,"Select a card to remove from your character actions.","CARDLIST_PEEK")

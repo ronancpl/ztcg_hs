@@ -48,8 +48,8 @@ ZTCG_CARD
 
             local card = menuCards(player,spawn_list,"Select a mob to spawn.","CARDLIST_PEEK")
             if card ~= 0 then
-                local cardList = takeTargetCardFromDeck(card,deckHand)
-                cardList = moveCardsFromListToDeck(cardList,deckHand,"TAKE_CARDID","PUT_BOTTOM",card)
+                local cardList = takeTargetCardFromDeck(player,card,deckHand)
+                cardList = moveCardsFromListToDeck(player,cardList,deckHand,"TAKE_CARDID","PUT_BOTTOM",card)
                 summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
 
                 local mobLevel = getBaseLevelFromCARD(getCARD(card))

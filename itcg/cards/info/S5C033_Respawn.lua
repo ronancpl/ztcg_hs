@@ -22,34 +22,34 @@ ZTCG_CARD
         "TEXT" "Think Fast 110 -- Play a tactic of level 110 or less."
     }
 
-    function onThinkMob(player)
+    function onThinkAction(player)
         local list, not_empty = makeFilteredTableList(player,"ANY_PLAYER",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB","ELEM_ANY","ZTCG_NIL")
 
         local menuCard = menuCards(player,list,"Select a card to withdraw from the table.","CARDLIST_PEEK")
         if menuCard ~= 0 then
             local p
-            local slotid = getSlotIdFromCARD(not player, menuCard)
+            local slotid = getSlotIdFromCARD(not player, getCARD(menuCard))
             if slotid < 0 then
-                slotid = getSlotIdFromCARD(player, menuCard)
+                slotid = getSlotIdFromCARD(player, getCARD(menuCard))
                 p = player
             else
                 p = not player
             end
 
             local deck = getPlayerDeck(p, "DECK_DECK")
-            local hand = getPlayerDeck(p, "DECK_DECK")
+            local hand = getPlayerDeck(p, "DECK_HAND")
 
             local list, hasCard
             list, hasCard = takeCardFromTable(p, "SLOT_PLAYERMOB" .. tostring(slotid))
 
-            list = moveCardsFromListToDeck(list,deck,"TAKE_NEXT","PUT_BOTTOM", 1)
+            list = moveCardsFromListToDeck(p,list,deck,"TAKE_NEXT","PUT_BOTTOM", 1)
             destroyList(list)
 
             local card
-            local list = takeCardsFromDeck(deck, 1)
-            if(not hasSharedFlagsCARD(getCARD(list), "FLAG_TYPE", "TYPE_ANYMOB")) then
+            local list = takeCardsFromDeck(p,deck, 1)
+            if not hasSharedFlagsCARD(getCARD(list), "FLAG_TYPE", "TYPE_ANYMOB") then
                 while true do
-                    local list2 = takeCardsFromDeck(deck, 1)
+                    local list2 = takeCardsFromDeck(p,deck, 1)
                     list = appendLists(list,list2)
 
                     if hasSharedFlagsCARD(getCARD(list2), "FLAG_TYPE", "TYPE_ANYMOB") then
@@ -66,12 +66,11 @@ ZTCG_CARD
                 card = list
             end
 
-            list = takeTargetCardFromListToDeck(hand,list,card,"DECK_BOTTOM")
-            summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
+            list = takeTargetCardFromListToDeck(p,hand,list,card,"DECK_BOTTOM")
+            summon(p,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
 
-            pickCardOrder(player, list)
-            list = moveCardsFromListToDeck(list,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
-
+            pickCardOrder(p, list)
+            list = moveCardsFromListToDeck(p,list,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
 
             destroyList(list)
         end

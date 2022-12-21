@@ -31,7 +31,7 @@ ZTCG_CARD
 
         local revealed = false
         if not_empty then
-            local card = menuCards(player,list,"Select a card for reveal.","CARDLIST_PEEK")
+            local card = menuCards(player,equips,"Select a card for reveal.","CARDLIST_PEEK")
             if card ~= 0 then
                 revealCard(not player,"Opponent has item...",getCARD(card))
                 revealed = true
@@ -58,10 +58,10 @@ ZTCG_CARD
             local menuCard = menuCards(player,equips,"Select an equip to destroy for its level in attack.","CARDLIST_PEEK")
             if menuCard ~= 0 then
                 local grav = getPlayerDeck(player, "DECK_GRAV")
-                moveCards(hand,grav,"TAKE_CARDID","PUT_TOP",menuCard)
+                moveCards(player,hand,grav,"TAKE_CARDID","PUT_TOP",menuCard)
 
                 local dmg = getCurrentLevelFromCARD(player, getCARD(menuCard))
-                attack(player, chr, dmg, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+                attack(player, chr, dmg, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
             end
         end
     end

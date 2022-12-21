@@ -23,12 +23,12 @@ ZTCG_CARD
     }
 
     function onBlockResultDamage(player)
+        local src = getSourceCARD()
         if getGameValue(0) >= 50 then
-            if(not makePrompt(player,"Use Heroic Pentagon?","Block damage of 50 or more.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
+            if(not makePrompt(player,true,"Use Heroic Pentagon?","Block damage of 50 or more.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
 
             updateGameValue(0, 0)
 
-            local src = getSourceCARD()
             local slotid = getSlotIdFromCARD(player, src) - 7
             destroySelf(player,"SLOT_PLAYEREQP" .. slotid)
         end
@@ -40,7 +40,7 @@ ZTCG_CARD
 
     function onActivateCharacterAction(player)
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-        attack(player, chr, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, chr, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
 }

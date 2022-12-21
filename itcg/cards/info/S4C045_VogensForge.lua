@@ -23,7 +23,7 @@ ZTCG_CARD
     }
 
     function onThinkAction(player)
-        if(makePrompt(player,"Select one:","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","Destroy equipment","Play from discard")) then
+        if(makePrompt(player,false,"Select one:","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","Destroy equipment","Play from discard")) then
             destroyEquipment(player)
         else
             local player_hand = getPlayerDeck(player, "DECK_HAND")
@@ -35,7 +35,7 @@ ZTCG_CARD
             if not_empty then
                 local card = menuCards(player,card_list,"Select a card to play.","CARDLIST_PEEK")
                 if card ~= 0 then
-                    moveCards(player_grav,player_hand,"TAKE_CARDID","PUT_BOTTOM",card)
+                    moveCards(player,player_grav,player_hand,"TAKE_CARDID","PUT_BOTTOM",card)
                     equip(player,"PLAY_SCOUTEQUIP", "ELEM_ANY","ZTCG_MAXVALUE")
                 end
             end

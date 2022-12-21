@@ -50,7 +50,7 @@ ZTCG_CARD
 
         local weapons = makeFilteredTableList(player,"ONLY_PLAYER",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_EQP", "ELEM_ANY", "Weapon")
         local n = getListLength(weapons)
-        attack(player, src, 10 + 20 * (n), "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 10 + 20 * (n), "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
         destroyList(weapons)
     end
 

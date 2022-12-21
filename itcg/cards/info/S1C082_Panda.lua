@@ -14,7 +14,7 @@ ZTCG_CARD
         "LEVEL" "60"
         "ATTCK" "40"
         "HP" "60"
-        "TEXT" "Mystic Power -- Whenever Panda attacks, you get +40 HP"
+        "TEXT" "Mystic Power -- Whenever Panda attacks, you get +40 HP."
     }
 
     LVL_ACTION

@@ -27,7 +27,7 @@ ZTCG_CARD
         if(not matchRequirements(player, 90, 3, "ELEM_THIEF")) then return end
 
         local src = getSourceCARD()
-        attack(player, src, 100, "ATKRES_NIL", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 100, "ATKRES_NIL", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
 }

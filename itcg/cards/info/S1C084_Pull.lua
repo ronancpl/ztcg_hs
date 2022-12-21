@@ -27,14 +27,14 @@ ZTCG_CARD
         local hand = getPlayerDeck(player, "DECK_HAND")
 
         local card_list, qty = getListFromDeck(deck)
-        local new_list, not_empty = makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_MOB", "ELEM_ANY", "ZTCG_NIL")
+        local new_list, not_empty = makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
         if not_empty then
             local card = menuCards(player,new_list,"Select a card to bring along to hand.","CARDLIST_PEEK")
             if card ~= 0 then
                 revealCard(not player,"Opponent has drawn card...",getCARD(card))
 
-                local list_card = takeTargetCardFromDeck(card,deck)
-                list_card = moveCardsFromListToDeck(list_card,hand,"TAKE_NEXT","PUT_BOTTOM",1)
+                local list_card = takeTargetCardFromDeck(player,card,deck)
+                list_card = moveCardsFromListToDeck(player,list_card,hand,"TAKE_NEXT","PUT_BOTTOM",1)
                 destroyList(list_card)
 
                 shuffleDeck(deck)

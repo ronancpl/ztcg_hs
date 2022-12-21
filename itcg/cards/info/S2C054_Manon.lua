@@ -29,7 +29,7 @@ ZTCG_CARD
         local deck_list = getPlayerDeck(player, "DECK_DECK")
         local deck_hand = getPlayerDeck(player, "DECK_HAND")
         local deck_grav = getPlayerDeck(player, "DECK_GRAV")
-        local cards = takeCardsFromDeck(deck_list, 2)
+        local cards = takeCardsFromDeck(player,deck_list, 2)
 
         local i = 0
 
@@ -40,7 +40,7 @@ ZTCG_CARD
                 local cardp = getCARD(card)
                 cards = takeTargetCardFromList(card,cards)
 
-                list = moveCardsFromListToDeck(list,deck_hand,"TAKE_CARDID","PUT_BOTTOM",card)
+                list = moveCardsFromListToDeck(player,list,deck_hand,"TAKE_CARDID","PUT_BOTTOM",card)
                 summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
 
                 local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
@@ -54,7 +54,7 @@ ZTCG_CARD
             end
         end
 
-        cards = moveCardsFromListToDeck(cards,deck_grav,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
+        cards = moveCardsFromListToDeck(player,cards,deck_grav,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
 
         destroyList(cards)
         destroyList(list)

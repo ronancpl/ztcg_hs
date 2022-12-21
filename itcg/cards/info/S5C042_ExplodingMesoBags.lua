@@ -36,7 +36,7 @@ ZTCG_CARD
                 destroySelf(player,"SLOT_PLAYEREQP" .. slotid)
 
                 local dmg = getCurrentLevelFromCARD(player, getCARD(menuCard))
-                attack(player, src, dmg, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+                attack(player, src, dmg, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
             end
         end
     end

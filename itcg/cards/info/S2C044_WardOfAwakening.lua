@@ -1,7 +1,7 @@
 ZTCG_CARD
 {
 
-    "NAME" "Ward Of Awakening"
+    "NAME" "Ward of Awakening"
     "IMAGE" "S2C044_WardOfAwakening.png"
     "TYPE" "ACTION"
     "ELEMENT" "Thief"

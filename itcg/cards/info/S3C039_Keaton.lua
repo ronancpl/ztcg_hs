@@ -48,10 +48,11 @@ ZTCG_CARD
                 local count = countCardsUnder(player, getCARD(pet))
                 if count < 3 then
                     local deck = getPlayerDeck(player, "DECK_DECK")
-                    local cards_taken = takeCardsFromDeck(deck, 3 - count)
+                    local cards_taken = takeCardsFromDeck(player,deck, 3 - count)
 
                     while getListLength(cards_taken) > 0 do
-                        local card = menuCards(player,cards_taken,"Select a card to feed pet.","CARDLIST_HIDE")
+                        local card = makeTargetFromCARD(getCARD(cards_taken))
+
                         if card ~= 0 then
                             putCardUnder(getCARD(pet),card)
                             cards_taken = takeTargetCardFromList(card,cards_taken)
@@ -60,7 +61,6 @@ ZTCG_CARD
                         end
                     end
 
-                    cards_taken = moveCardsFromListToDeck(cards_taken,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
                     destroyList(cards_taken)
                 end
             end

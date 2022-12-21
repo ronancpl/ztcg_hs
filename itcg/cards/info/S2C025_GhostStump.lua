@@ -7,7 +7,7 @@ ZTCG_CARD
     "ELEMENT" "Magician"
     "RARITY" "RARITY_COMMON"
     "INFO" "Monster - Undead Flora"
-    "COST" ""
+    "COST" "490"
 
     TYPE_MOB
     {

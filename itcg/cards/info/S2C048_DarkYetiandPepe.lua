@@ -38,8 +38,8 @@ ZTCG_CARD
             if card ~= 0 then
                 local hand = getPlayerDeck(player, "DECK_HAND")
 
-                local cardList = takeTargetCardFromDeck(card,deck)
-                cardList = moveCardsFromListToDeck(cardList,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+                local cardList = takeTargetCardFromDeck(player,card,deck)
+                cardList = moveCardsFromListToDeck(player,cardList,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
                 summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
             end
         end

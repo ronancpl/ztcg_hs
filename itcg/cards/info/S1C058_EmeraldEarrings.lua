@@ -30,16 +30,16 @@ ZTCG_CARD
 
         if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_EQP") then   -- only draw card if its an item
             local hand = getPlayerDeck(player, "DECK_HAND")
-            moveCards(deck,hand,"TAKE_NEXT","PUT_BOTTOM",1)
+            moveCards(player,deck,hand,"TAKE_NEXT","PUT_BOTTOM",1)
         end
     end
 
     function onActivateCharacterAction(player)
-        local str = "Sneak 20"
+        local str = "Sneak 70"
 
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
         local level = getCurrentLevelFromCARD(player,chr)
-        playCard(player, str, "ELEM_ANY", "PLAY_MOB | PLAY_EQUIP | PLAY_ACTION | PLAY_FIELD", 20)
+        playCard(player, str, "ELEM_ANY", "PLAY_MOB | PLAY_EQUIP | PLAY_ACTION | PLAY_FIELD", 70)
     end
 
 }

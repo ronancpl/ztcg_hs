@@ -33,15 +33,15 @@ ZTCG_CARD
 
         local c = countCardsUnder(player,src)
         if c < 3 then
-            local cards = takeCardsFromDeck(deck, 1)
-            local card = menuCards(player,cards,"Pick a card to place under the pet.","CARDLIST_HIDE")
+            local card_list = takeCardsFromDeck(player,deck, 1)
+            local card = makeTargetFromCARD(getCARD(card_list))
 
             if card ~= 0 then
-                cards = takeTargetCardFromList(card,cards)
+                card_list = takeTargetCardFromList(card,card_list)
                 putCardUnder(src,card)
             end
 
-            destroyList(cards)
+            destroyList(card_list)
         end
 
         local deck = getPlayerDeck(player, "DECK_DECK")
@@ -52,16 +52,16 @@ ZTCG_CARD
 
             local pet_spawns,not_empty = makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_EQP","ELEM_ANY","ZTCG_NIL")
             if not_empty then
-                local pet_spawn = menuCards(player,pet_spawns,"Select a card to equip.","CARDLIST_HIDE")
+                local pet_spawn = menuCards(player,pet_spawns,"Select a card to equip.","CARDLIST_PEEK")
                 if pet_spawn ~= 0 then
                     card_list = takeTargetCardFromList(pet_spawn,card_list)
-                    pet_spawns = takeTargetCardFromListToDeck(hand,pet_spawns,pet_spawn,"DECK_BOTTOM")
+                    pet_spawns = takeTargetCardFromListToDeck(player,hand,pet_spawns,pet_spawn,"DECK_BOTTOM")
                     equip(player,"PLAY_SCOUTEQUIP","ELEM_ANY","ZTCG_MAXVALUE")
                 end
             end
 
-            pet_spawns = moveCardsFromListToDeck(pet_spawns,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
-            card_list = moveCardsFromListToDeck(card_list,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+            pickCardOrder(player,card_list)
+            card_list = moveCardsFromListToDeck(player,card_list,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
 
             destroyList(pet_spawns)
             destroyList(card_list)
@@ -90,12 +90,15 @@ ZTCG_CARD
         editCardRegister(src,cardid,1,1,0,nil)
     end
 
-    function onOpponentMobSentToDiscardPile(player)
-        local src = getSourceCARD()
-        local cardid = getCardIdFromCARD(src)
+    function onOpponentCardDestroyed(player)
+        local target = getTargetCARD()
+        if(hasSharedFlagsCARD(target, "FLAG_TYPE", "TYPE_ANYMOB")) then
+            local src = getSourceCARD()
+            local cardid = getCardIdFromCARD(src)
 
-        local n = getCardRegister(src,cardid,0)
-        editCardRegister(src,cardid,0,n + 1,0,nil)
+            local n = getCardRegister(src,cardid,0)
+            editCardRegister(src,cardid,0,n + 1,0,nil)
+        end
     end
 
 }

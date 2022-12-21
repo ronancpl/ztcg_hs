@@ -22,11 +22,9 @@ ZTCG_CARD
         "TEXT" "Think Fast / Equip 40 -- Play a tactic or item of level 40 or less. "
     }
 
-    function preventTargetCancel(player)
+    function onStartAttack(player)
         if hasFlag("ZTCG_ATKSRC", "ATKSRC_CHA") then
-            return 1
-        else
-            return 0
+            updateGameValue(0,0)    -- can't be prevented
         end
     end
 

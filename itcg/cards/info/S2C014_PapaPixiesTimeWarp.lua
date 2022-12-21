@@ -26,7 +26,7 @@ ZTCG_CARD
         local card = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
         local cardid = getCardIdFromCARD(card)
 
-        if editCardRegister(card, cardid, 6) == 0 then
+        if getCardRegister(card, cardid, 6) == 0 then
             editCardRegister(card, cardid, 6, 1, 0, 0)
             insertCardTurnAction(player)
 

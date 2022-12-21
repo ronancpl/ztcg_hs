@@ -59,14 +59,17 @@ ZTCG_CARD
     end
 
     function onActivateCharacterAction(player)
-        if(not makePrompt(player,"Use Flee?","Avoid using Clash to chance draw a card into discard your cards.","ZTCG_NIL","ZTCG_NIL","Yes","No")) then
-            local deck = getPlayerDeck(player, "DECK_DECK")
-            local hand = getPlayerDeck(player, "DECK_HAND")
+        local deck_deck = getPlayerDeck(player, "DECK_DECK")
+        local card_list, qty = getListFromDeck(deck_deck)
+        if qty <= 0 then return end
 
+        if(makePrompt(player,true,"Use Flee?","Clash to chance draw a card risking discard your cards.","ZTCG_NIL","ZTCG_NIL","Yes","No")) then
             if playClash(player) then
                 drawCard(player)
             else
-                moveCards(deck_hand,deck_grav,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
+                local deck_grav = getPlayerDeck(player, "DECK_GRAV")
+                local deck_hand = getPlayerDeck(player, "DECK_HAND")
+                moveCards(player,deck_hand,deck_grav,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
             end
         end
     end

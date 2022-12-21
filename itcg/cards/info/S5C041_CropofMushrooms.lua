@@ -36,18 +36,18 @@ ZTCG_CARD
     function onLevelActionTrigger(player)
         local grav = getPlayerDeck(player, "DECK_GRAV")
         local card_list, qty = getListFromDeck(grav)
-        local list, not_empty = makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY","ELEM_MAGE","Mushroom")
+        local list, not_empty = makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY","ELEM_ANY","Mushroom")
 
-        if qty > 0 then
+        if not_empty then
             local card = menuCards(player,list,"Select a card to revive.","CARDLIST_PEEK")
             if card ~= 0 then
-                local hand = getPlayerDeck(player, "DECK_GRAV")
+                local hand = getPlayerDeck(player, "DECK_HAND")
 
-                list = takeTargetCardFromList(card,list)
-                takeTargetCardFromDeck(card,grav)
-
-                list = moveCardsFromListToDeck(list,hand,"TAKE_CARDID","PUT_BOTTOM",card)
+                card = takeTargetCardFromDeck(player,card,grav)
+                card = moveCardsFromListToDeck(player,card,hand,"TAKE_CARDID","PUT_BOTTOM",card)
                 summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
+
+                destroyList(card)
             end
         end
 

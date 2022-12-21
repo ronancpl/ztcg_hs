@@ -31,15 +31,13 @@ ZTCG_CARD
 
         local clist = makeFilteredTableList(player, "ONLY_PLAYER", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_ANYMOB", "ELEM_ANY", "Zakum")
         while not isEmptyList(clist) do
-            local card = menuCards(player,clist,"Select a card to heal.","CARDLIST_PEEK")
-            if card ~= 0 then
-                local cardp = getCARD(card)
-                refreshHP(player,cardp,"ZTCG_MAXVALUE")
+            local card
+            clist, card = takeNextCardsFromList(clist,1)
 
-                clist = takeTargetCardFromList(card,clist)
-            else
-                break
-            end
+            local cardp = getCARD(card)
+            refreshHP(player,cardp,"ZTCG_MAXVALUE")
+
+            destroyList(card)
         end
 
         destroyList(clist)

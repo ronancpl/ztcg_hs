@@ -22,6 +22,32 @@ ZTCG_CARD
         "TEXT" "Multi Sneak 20 -- Play any number of cards with combined levels of 20 or less."
     }
 
+    function tsbAction(player)
+        local src = getSourceCARD()
+
+        local def_card = getCardPointer(1)
+        if getSlotIdFromCARD(not player,def_card) < 0 and getCurrentLevelFromCARD(not player,def_card) <= 10 then
+            local srcCard = makeTargetFromCARD(src)
+
+            local deckGrav = getPlayerDeck(player, "DECK_GRAV")
+            local cardList = takeTargetCardFromDeck(player,srcCard,deckGrav)
+
+            local deckHand = getPlayerDeck(player, "DECK_HAND")
+            cardList = moveCardsFromListToDeck(player,cardList, deckHand,"TAKE_NEXT","PUT_BOTTOM",1)
+
+            destroyList(cardList)
+            destroyList(srcCard)
+        end
+    end
+
+    function onExecuteAttackViewGraveyard(player)
+        tsbAction(player)
+    end
+
+    function onReceiveAttackViewGraveyard(player)
+        tsbAction(player)
+    end
+
     function onThinkAction(player)
         local src = getSourceCARD()
         attack(player, src, 20, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_DONTCARE", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
@@ -45,11 +71,11 @@ ZTCG_CARD
 
             local menuCard = menuCards(player,spawn_list,"Select a card to play.","CARDLIST_PEEK")
             if menuCard ~= 0 then
-                local cardList = takeTargetCardFromDeck(card,deckHand)
-                cardList = moveCardsFromListToDeck(cardList,deckHand,"TAKE_CARDID","PUT_BOTTOM",card)
+                local cardList = takeTargetCardFromDeck(player,menuCard,deckHand)
+                cardList = moveCardsFromListToDeck(player,cardList,deckHand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
 
                 local card = getCARD(menuCard)
-                if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_MOB | TYPE_JRB | TYPE_BOS") then
+                if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_ANYMOB") then
                     ret = summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
                 elseif hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_EQP") then
                     ret = equip(player,"PLAY_SCOUTEQUIP", "ELEM_ANY","ZTCG_MAXVALUE")
@@ -59,7 +85,7 @@ ZTCG_CARD
                     ret = locate(player,"PLAY_FIRSTCARDFIELD", "ELEM_ANY")
                 end
 
-                local cardLevel = getBaseLevelFromCARD(getCARD(card))
+                local cardLevel = getCurrentLevelFromCARD(card)
                 editCardRegister(src, cardid, 0, level - cardLevel, 0, nil)
 
                 destroyList(spawn_list)

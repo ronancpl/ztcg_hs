@@ -30,15 +30,15 @@ ZTCG_CARD
 
         local c = countCardsUnder(player,src)
         if c < 3 then
-            local cards = takeCardsFromDeck(deck, 1)
-            local card = menuCards(player,cards,"Pick a card to place under the pet.","CARDLIST_HIDE")
+            local card_list = takeCardsFromDeck(player,deck, 1)
+            local card = makeTargetFromCARD(getCARD(card_list))
 
             if card ~= 0 then
-                cards = takeTargetCardFromList(card,cards)
+                card_list = takeTargetCardFromList(card,card_list)
                 putCardUnder(src,card)
             end
 
-            destroyList(cards)
+            destroyList(card_list)
         end
 
         local c = countCardsUnder(player,src)
@@ -46,27 +46,24 @@ ZTCG_CARD
             local hand = getPlayerDeck(player, "DECK_HAND")
             local card_list = removeCardsUnder(src)
 
-            local pet_spawns = makeFilteredList(player,card_list,0,0,30,"TYPE_ACT","ELEM_ANY","ZTCG_NIL")
-            while not isEmptyList(pet_spawns) do
-                local pet_spawn = menuCards(player,cards,"Select a tactic to play.","CARDLIST_HIDE")
-                if pet_spawn == 0 then
-                    break
-                end
+            local pet_spawns = makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ACT","ELEM_ANY","ZTCG_NIL")
 
-                card_list = takeTargetCardFromList(pet_spawn,card_list)
-                pet_spawns = takeTargetCardFromListToDeck(hand,pet_spawns,pet_spawn,"DECK_BOTTOM")
-
+            local pet_spawn = menuCards(player,pet_spawns,"Select a tactic to play.","CARDLIST_PEEK")
+            if pet_spawn ~= 0 then
+                card_list = takeTargetCardFromListToDeck(player,hand,card_list,pet_spawn,"DECK_BOTTOM")
                 action(player,getCARD(pet_spawn),"ELEM_ANY","ZTCG_DONTCARE")
             end
 
-            pet_spawns = moveCardsFromListToDeck(pet_spawns,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
-            card_list = moveCardsFromListToDeck(card_list,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+            pickCardOrder(player,card_list)
+            card_list = moveCardsFromListToDeck(player,card_list,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
 
             destroyList(pet_spawns)
             destroyList(card_list)
         end
+    end
 
-        destroyList(cards)
+    function onLevelActionTrigger(player)
+        drawCard(player)
     end
 
 }

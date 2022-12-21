@@ -36,7 +36,7 @@ ZTCG_CARD
                 local card = menuCards(player,new_list,"Select a monster to draw.","CARDLIST_PEEK")
                 if card ~= 0 then
                     local hand = getPlayerDeck(player, "DECK_HAND")
-                    moveCards(deck,hand,"TAKE_CARDID","PUT_BOTTOM",card)
+                    moveCards(player,deck,hand,"TAKE_CARDID","PUT_BOTTOM",card)
 
                     summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
                     shuffleDeck(deck)

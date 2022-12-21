@@ -30,15 +30,15 @@ ZTCG_CARD
 
         local c = countCardsUnder(player,src)
         if c < 3 then
-            local cards = takeCardsFromDeck(deck, 1)
-            local card = menuCards(player,cards,"Pick a card to place under the pet.","CARDLIST_HIDE")
+            local card_list = takeCardsFromDeck(player,deck, 1)
+            local card = makeTargetFromCARD(getCARD(card_list))
 
             if card ~= 0 then
-                cards = takeTargetCardFromList(card,cards)
+                card_list = takeTargetCardFromList(card,card_list)
                 putCardUnder(src,card)
             end
 
-            destroyList(cards)
+            destroyList(card_list)
         end
 
         local c = countCardsUnder(player,src)
@@ -56,28 +56,25 @@ ZTCG_CARD
                 end
 
                 local card = takeCardUnder(src,pet_spawn)
-                card = moveCardsFromListToDeck(card,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+                card = moveCardsFromListToDeck(player,card,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
                 destroyList(card)
 
                 pet_spawns = takeTargetCardFromList(pet_spawn,pet_spawns)
-                card_list = takeTargetCardFromList(pet_spawn,card_list)
                 q = q + 1
             end
-
-            card_list = moveCardsFromListToDeck(card_list,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
 
             destroyList(pet_spawns)
             destroyList(card_list)
 
             for i = 1, q, 1 do
-                attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", "SLOT_ADVSRYMOB1", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
-                attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", "SLOT_ADVSRYMOB2", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
-                attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", "SLOT_ADVSRYMOB3", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
-                attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", "SLOT_ADVSRYMOB4", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
-                attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", "SLOT_ADVSRYMOB5", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
-                attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", "SLOT_ADVSRYMOB6", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
-                attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", "SLOT_ADVSRYMOB7", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
-                attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", "SLOT_ADVSRYCHAR", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+                attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", "SLOT_ADVSRYMOB1", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+                attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", "SLOT_ADVSRYMOB2", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+                attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", "SLOT_ADVSRYMOB3", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+                attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", "SLOT_ADVSRYMOB4", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+                attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", "SLOT_ADVSRYMOB5", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+                attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", "SLOT_ADVSRYMOB6", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+                attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", "SLOT_ADVSRYMOB7", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+                attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", "SLOT_ADVSRYCHAR", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
             end
         end
     end
@@ -89,7 +86,7 @@ ZTCG_CARD
 
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
         for i = 1, pet_count, 1 do
-            attack(player, chr, 10, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            attack(player, chr, 10, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
         end
     end
 

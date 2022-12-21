@@ -41,7 +41,7 @@ ZTCG_CARD
         destroyList(list)
 
         local src = getSourceCARD()
-        attack(player, src, not_empty and 30 or 10, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, not_empty and 30 or 10, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
     function onActivateCharacterAction3(player)

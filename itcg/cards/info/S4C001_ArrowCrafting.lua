@@ -28,7 +28,7 @@ ZTCG_CARD
         --revealCard(not player,"Next card...",card)
 
         local dmg = getRoundedNearest(getCurrentLevelFromCARD(player, card))
-        attack(player,src,dmg,"ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player,src,dmg,"ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
     function onActivateCharacterAction(player)
@@ -36,11 +36,11 @@ ZTCG_CARD
         local card_list, qty = getListFromDeck(deckHand)
         if qty <= 0 then return end
 
-        if(not makePrompt(player,"Use Improvise?","Discard a card. Do 30 damage to a character or monster.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
+        if(not makePrompt(player,true,"Use Improvise?","Discard a card. Do 30 damage to a character or monster.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
         discardCard(player)
 
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-        attack(player,chr,30,"ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player,chr,30,"ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
 }

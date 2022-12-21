@@ -28,7 +28,7 @@ ZTCG_CARD
         local card = destroyMonster(player)
         local dmg = getBaseAttackFromCARD(card)
 
-        attack(player, src, dmg, "ATKRES_DONT_HIT_MOBS", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, dmg, "ATKRES_DONT_HIT_MOBS", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
     function onLevelActionTrigger(player)
@@ -45,7 +45,7 @@ ZTCG_CARD
         if level >= 60 and not_empty then
             local card = menuCards(player,list,"Select a mob to spawn.","CARDLIST_PEEK")
             if card ~= 0 then
-                moveCards(deckHand,deckHand,"TAKE_CARDID","PUT_BOTTOM",card)
+                moveCards(player,deckHand,deckHand,"TAKE_CARDID","PUT_BOTTOM",card)
                 summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
             end
         end

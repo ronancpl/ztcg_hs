@@ -24,13 +24,16 @@ ZTCG_CARD
         "TEXT" "Think Fast / Equip 40 -- Play a tactic or item of level 40 or less."
     }
 
-    function onExecuteAttack(player)
-        local def_card = getCardPointer(1)
-        if isInfoCARD(def_card, "Water") or isInfoCARD(def_card, "Ice") then
-            local src = getSourceCARD()
+    function onLaunchAttack(player)
+        local src = getSourceCARD()
+        local atkr = getCardPointer(0)
 
-            updateGameValue(0, getGameValue(0) + 40)
-            newBuff(src,src,40,0,0,1)
+        if isSameCARD(src,atkr) then
+            local def_card = getCardPointer(1)
+            if isInfoCARD(def_card, "Water") or isInfoCARD(def_card, "Ice") then
+                local src = getSourceCARD()
+                newBuff(src,src,40,0,0,1)
+            end
         end
     end
 

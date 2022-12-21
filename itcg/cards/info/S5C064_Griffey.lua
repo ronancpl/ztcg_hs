@@ -48,7 +48,7 @@ ZTCG_CARD
         local hand = getPlayerDeck(player, "DECK_HAND")
         local list, qty = getListFromDeck(hand)
         if qty > 0 then
-            if(not makePrompt(player,"Use Uni Horn?","Discard a card to convert its level to Griffey's attack.","ZTCG_NIL","ZTCG_NIL","Yes","No")) then return end
+            if(not makePrompt(player,true,"Use Uni Horn?","Discard a card to convert its level to Griffey's attack.","ZTCG_NIL","ZTCG_NIL","Yes","No")) then return end
 
             local card = discardCard(player)
             if card ~= 0 then

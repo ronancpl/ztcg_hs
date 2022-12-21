@@ -22,38 +22,14 @@ ZTCG_CARD
         "TEXT" "Athena Team Up -- Do 20 damage to a character or monster. If you're level 60 or more, you may play Athena Pierce."
     }
 
-    function preventTargetCancel(player)
-        local src = getSourceCARD()
-        local cid = getCardIdFromCARD(src)
-
-        if hasFlag("ZTCG_ATKSRC", "ATKSRC_ACT") and getCardRegister(src, cid, 0) == 100 then
-            return 1
-        else
-            return 0
-        end
-    end
-
     function onThinkAction(player)
-        insertCardNextAction(player)
-
-        local src = getSourceCARD()
-        local cid = getCardIdFromCARD(src)
-        editCardRegister(src, cid, 0, 100, 0, nil)
-
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-        attack(player, chr, 100, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
-    end
-
-    function onStartTurn(player)
-        local src = getSourceCARD()
-        local cid = getCardIdFromCARD(src)
-
-        editCardRegister(src, cid, 0, 0, 0, nil)
+        attack(player, chr, 100, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "DISABLE_PREVENT", "IS_STARTER")
     end
 
     function onLevelActionTrigger(player)
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-        attack(player,chr,20,"ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player,chr,20,"ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
 
         local level = getCurrentLevelFromCARD(player,chr)
 
@@ -64,7 +40,7 @@ ZTCG_CARD
         if level >= 60 and not_empty then
             local card = menuCards(player,list,"Select a mob to spawn.","CARDLIST_PEEK")
             if card ~= 0 then
-                moveCards(deckHand,deckHand,"TAKE_CARDID","PUT_BOTTOM",card)
+                moveCards(player,deckHand,deckHand,"TAKE_CARDID","PUT_BOTTOM",card)
                 summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
             end
         end

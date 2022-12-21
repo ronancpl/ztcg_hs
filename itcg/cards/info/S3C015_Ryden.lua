@@ -26,9 +26,10 @@ ZTCG_CARD
         local list, not_empty = makeFilteredTableList(player, "ONLY_PLAYER", 0, 0, 30, "TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
 
         local len = getListLength(list)
+        local src = getSourceCARD()
+
         for i = 1, len, 1 do
-            local src = getSourceCARD()
-            attack(player,src,10,"ATKRES_NIL", "ATKSRC_EQP", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            attack(player,src,10,"ATKRES_NIL", "ATKSRC_EQP", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
         end
 
         destroyList(list)

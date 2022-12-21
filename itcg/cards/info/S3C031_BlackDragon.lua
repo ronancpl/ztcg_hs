@@ -43,22 +43,22 @@ ZTCG_CARD
 
         local c = countCardsUnder(player,src)
         if c < 3 then
-            local cards = takeCardsFromDeck(deck, 1)
-            local card = menuCards(player,cards,"Pick a card to place under the pet.","CARDLIST_HIDE")
+            local card_list = takeCardsFromDeck(player,deck, 1)
+            local card = makeTargetFromCARD(getCARD(card_list))
 
             if card ~= 0 then
-                cards = takeTargetCardFromList(card,cards)
+                card_list = takeTargetCardFromList(card,card_list)
                 putCardUnder(src,card)
             end
 
-            destroyList(cards)
+            destroyList(card_list)
         end
 
         local c = countCardsUnder(player,src)
         if c >= 3 then
-            local hand = getPlayerDeck(player, "DECK_HAND")
             local card_list = removeCardsUnder(src)
-            card_list = moveCardsFromListToDeck(card_list,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+            pickCardOrder(player,card_list)
+            card_list = moveCardsFromListToDeck(player,card_list,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
             destroyList(card_list)
 
             editCardRegister(src,cardid,0,1,0,nil)
@@ -71,15 +71,15 @@ ZTCG_CARD
             local pet = menuCards(player,menu,"Select a pet to feed.","CARDLIST_PEEK")
             if pet ~= 0 and countCardsUnder(player, getCARD(pet)) < 3 then
                 local deck = getPlayerDeck(player, "DECK_DECK")
-                local cards = takeCardsFromDeck(deck, 1)
+                local card_list = takeCardsFromDeck(player,deck, 1)
 
-                local card = menuCards(player,cards,"Pick a card to place under the pet.","CARDLIST_HIDE")
+                local card = makeTargetFromCARD(getCARD(card_list))
                 if card ~= 0 then
                     putCardUnder(getCARD(pet),card)
-                    cards = takeTargetCardFromList(card,cards)
+                    card_list = takeTargetCardFromList(card,card_list)
                 end
 
-                destroyList(cards)
+                destroyList(card_list)
             end
         end
 

@@ -25,7 +25,8 @@ ZTCG_CARD
     }
 
     function onExecuteAttack(player)
-        if playClash(player) then
+        local eqps = getEquipsOnTable(player,"ONLY_ADVSRY")
+        if eqps > 0 and playClash(player) then
             destroyEquipment(player)
         end
     end

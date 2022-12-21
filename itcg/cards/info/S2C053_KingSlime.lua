@@ -29,8 +29,8 @@ ZTCG_CARD
     }
 
     function onAttackMobDestroyed(player)
-        local target = getTargetCARD()
-        if(hasSharedFlagsCARD(target, "FLAG_TYPE", "TYPE_BOS")) then
+        local def_card = getCardPointer(1)
+        if(hasSharedFlagsCARD(def_card, "FLAG_TYPE", "TYPE_BOS")) then
             local deck = getPlayerDeck(player, "DECK_DECK")
             local card_list, qty = getListFromDeck(deck)
 
@@ -40,7 +40,7 @@ ZTCG_CARD
                     local card = menuCards(player,cards,"Select a mob to play.","CARDLIST_PEEK")
                     if card ~= 0 then
                         local hand = getPlayerDeck(player, "DECK_HAND")
-                        cards = moveCardsFromListToDeck(cards,hand,"TAKE_CARDID","PUT_BOTTOM",card)
+                        cards = moveCardsFromListToDeck(player,cards,hand,"TAKE_CARDID","PUT_BOTTOM",card)
                         summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
                     end
                 end
@@ -57,14 +57,14 @@ ZTCG_CARD
         if(not matchRequirements(player, 40, 2, "ELEM_WARRIOR")) then return end
 
         local src = getSourceCARD()
-        attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB1", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
-        attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB2", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
-        attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB3", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
-        attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB4", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
-        attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB5", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
-        attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB6", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
-        attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB7", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
-        attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYCHAR", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB1", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+        attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB2", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+        attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB3", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+        attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB4", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+        attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB5", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+        attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB6", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+        attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB7", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+        attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYCHAR", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
 }

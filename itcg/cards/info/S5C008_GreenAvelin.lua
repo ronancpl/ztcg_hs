@@ -22,12 +22,12 @@ ZTCG_CARD
         "TEXT" "Trigger Happy -- Do a lightning-bolt ability under your character other than a Trigger Happy."
     }
 
-    function doTwiceLevelActionTrigger(player)
+    function doRepeatLevelActionTrigger(player)
         return 1
     end
 
     function onLevelActionTrigger(player)
-        doTwiceCharacterActionTrigger(player,true)
+        doRepeatCharacterActionTrigger(player,true,1)
     end
 
 }

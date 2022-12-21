@@ -29,10 +29,10 @@ ZTCG_CARD
         local srcCard = makeTargetFromCARD(src)
 
         local deckGrav = getPlayerDeck(player, "DECK_GRAV")
-        local cardList = takeTargetCardFromDeck(srcCard,deckGrav)
+        local cardList = takeTargetCardFromDeck(player,srcCard,deckGrav)
 
         local deckHand = getPlayerDeck(player, "DECK_HAND")
-        cardList = moveCardsFromListToDeck(cardList, deckHand,"TAKE_NEXT","PUT_BOTTOM",1)
+        cardList = moveCardsFromListToDeck(player,cardList, deckHand,"TAKE_NEXT","PUT_BOTTOM",1)
 
         destroyList(cardList)
         destroyList(srcCard)

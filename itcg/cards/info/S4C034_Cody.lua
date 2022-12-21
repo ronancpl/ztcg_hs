@@ -38,7 +38,7 @@ ZTCG_CARD
         editCardRegister(src,cardid,0,1,0,nil)
     end
 
-    function preventTargetMob(player)
+    function preventIntercomeTargetMob(player)
         local src = getSourceCARD()
         local cardid = getCardIdFromCARD(src)
 

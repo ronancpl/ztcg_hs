@@ -24,7 +24,7 @@ ZTCG_CARD
 
     function onThinkAction(player)
         local p
-        if makePrompt(player,"Do Buy and Sell on which player?","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","Me","Opponent") then
+        if makePrompt(player,false,"Do Buy and Sell on which player?","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","Me","Opponent") then
             p = player
         else
             p = not player
@@ -36,7 +36,7 @@ ZTCG_CARD
         local card_list, qty = getListFromDeck(deckHand)
         local n = qty
 
-        moveCards(deckHand,deckDeck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+        moveCards(player,deckHand,deckDeck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
         shuffleDeck(deckDeck)
 
         for i = 1, n + 1, 1 do

@@ -23,7 +23,7 @@ ZTCG_CARD
     }
 
     function onThinkAction(player)
-        if(makePrompt(player,"Select one:","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","Destroy monster","Opponent discard")) then
+        if(makePrompt(player,false,"Select one:","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","Destroy monster","Opponent discard")) then
             destroyMonster(player)
         else
             discardCard(not player)

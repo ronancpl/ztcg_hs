@@ -24,6 +24,13 @@ ZTCG_CARD
         "TEXT" "Master Equip X -- Play an item of your level or less. If you have 4 or more items, do 30 damage to a character."
     }
 
+    function onEndTurn(player)
+        if getEquipsOnTable(player,"ONLY_PLAYER") > 0 then
+            local src = getSourceCARD()
+            attack(player,src,30,"ATKRES_NIL", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+        end
+    end
+
     function onActivateCharacterAction(player)
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
         local level = getCurrentLevelFromCARD(player,chr)
@@ -31,7 +38,7 @@ ZTCG_CARD
 
         if getEquipsOnTable(player,"ONLY_PLAYER") >= 4 then
             local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-            attack(player, chr, 30, "ATKRES_DONT_HIT_MOBS", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            attack(player, chr, 30, "ATKRES_DONT_HIT_MOBS", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
         end
     end
 

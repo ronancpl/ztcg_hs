@@ -87,8 +87,8 @@ ZTCG_CARD
             if menuCard ~= 0 then
                 local card = getCARD(menuCard)
 
-                menuCard = takeTargetCardFromDeck(menuCard,deckHand)
-                menuCard = moveCardsFromListToDeck(menuCard,deckHand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
+                menuCard = takeTargetCardFromDeck(player,menuCard,deckHand)
+                menuCard = moveCardsFromListToDeck(player,menuCard,deckHand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
                 summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
 
                 local slotid = getSlotIdFromCARD(player, card)

@@ -27,11 +27,11 @@ ZTCG_CARD
         local cid = getCardIdFromCARD(src)
 
         local atkr = getCardPointer(0)
-        if(hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_MOB | TYPE_JRB | TYPE_BOS") and getCardRegister(src, cid, 0) == 10) then
+        if(hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_ANYMOB") and getCardRegister(src, cid, 0) == 10) then
             local dmg = getGameValue(0)
 
             local list = makeFilteredTableList(player,"ONLY_PLAYER",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_EQP","ELEM_ANY","Weapon")
-            local bonus = getListLength(list) > 2 and 20 or 10
+            local bonus = getListLength(list) >= 2 and 20 or 10
             destroyList(list)
 
             updateGameValue(0, dmg + bonus)
@@ -44,7 +44,7 @@ ZTCG_CARD
         local cid = getCardIdFromCARD(src)
 
         local atkr = getCardPointer(0)
-        if(hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_MOB | TYPE_JRB | TYPE_BOS") and getCardRegister(src, cid, 0) == 10) then
+        if(hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_ANYMOB") and getCardRegister(src, cid, 0) == 10) then
             editCardRegister(src, cid, 0, 0, 0, nil)
 
             return 1    -- finishes bonus from next tactic
@@ -62,6 +62,8 @@ ZTCG_CARD
 
     function onStartTurn(player)
         local src = getSourceCARD()
+        if getSlotIdFromCARD(player,src) < 0 then return end
+
         local cid = getCardIdFromCARD(src)
 
         editCardRegister(src, cid, 0, 10, 0, nil)

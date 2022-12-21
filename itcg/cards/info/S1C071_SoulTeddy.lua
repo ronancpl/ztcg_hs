@@ -33,9 +33,9 @@ ZTCG_CARD
     end
 
     function onExecuteNormalAttack(player)
-        local target = getTargetCARD()
-        if hasSharedFlagsCARD(target,"FLAG_TYPE", "TYPE_CHAR") then
-            discardRandomHandCard(not player)
+        local def_card = getCardPointer(1)
+        if hasSharedFlagsCARD(def_card,"FLAG_TYPE", "TYPE_CHAR") then
+            discardCardRandom(not player)
         end
     end
 

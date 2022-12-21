@@ -31,8 +31,31 @@ ZTCG_CARD
     end
 
     function onActivateCharacterAction(player)
+        local slot1 = nextFreeEquipSlot(player)
+
         local str = "Equip Unlimited"
         equip(player,"PLAY_NORMALEQUIP","ELEM_ANY","ZTCG_MAXVALUE")
+
+        local slot2 = nextFreeEquipSlot(player)
+        if slot1 ~= slot2 then
+            local slot = -1
+            local maxLevel = -1
+
+            for i = 1, 7, 1 do
+                local eqp = getOnBoardCARD(player,"SLOT_PLAYEREQP" .. tostring(i))
+                if eqp ~= 0 then
+                    local level = getCurrentLevelFromCARD(player, eqp)
+                    if level > maxLevel then
+                        slot = i
+                        maxLevel = level
+                    end
+                end
+            end
+
+            if slot == slot1 then
+                drawCard(player)
+            end
+        end
     end
 
 }

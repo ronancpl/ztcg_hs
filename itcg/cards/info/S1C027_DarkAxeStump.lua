@@ -20,7 +20,7 @@ ZTCG_CARD
     {
         "LEVEL" "40"
         "ATTRB" "2"
-        "TEXT" " Spawn 40 -- Play a monster of level 40 or less. "
+        "TEXT" "Spawn 40 -- Play a monster of level 40 or less. "
     }
 
     function onActivateCharacterAction(player)

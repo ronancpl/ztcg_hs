@@ -42,7 +42,7 @@ ZTCG_CARD
             local card = menuCards(player,cards,"Select a tactic to draw.","CARDLIST_PEEK")
             if card ~= 0 then
                 local hand = getPlayerDeck(player, "DECK_HAND")
-                moveCards(deck,hand,"TAKE_CARDID","PUT_BOTTOM",card)
+                moveCards(player,deck,hand,"TAKE_CARDID","PUT_BOTTOM",card)
 
                 revealCard(not player,"This card has been drawn.",getCARD(card))
                 shuffleDeck(deck)

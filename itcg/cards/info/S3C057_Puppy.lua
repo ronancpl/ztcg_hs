@@ -12,7 +12,7 @@ ZTCG_CARD
     TYPE_EQP
     {
         "LEVEL" "10"
-        "TEXT" "Hungry -- When your turn starts, put the top card of your deck face down under this Pet. (A Pet can have up to 3 cards under it.) Dog's Life -- When Puppy has 3 cards under it, get +30 HP and put those cards on the bottom of your deck in any order"
+        "TEXT" "Hungry -- When your turn starts, put the top card of your deck face down under this Pet. (A Pet can have up to 3 cards under it.) Dog's Life -- When Puppy has 3 cards under it, get +30 HP and put those cards on the bottom of your deck in any order."
     }
 
     LVL_ACTION
@@ -30,15 +30,15 @@ ZTCG_CARD
 
         local c = countCardsUnder(player,src)
         if c < 3 then
-            local cards = takeCardsFromDeck(deck, 1)
-            local card = menuCards(player,cards,"Pick a card to place under the pet.","CARDLIST_HIDE")
+            local card_list = takeCardsFromDeck(player,deck, 1)
+            local card = makeTargetFromCARD(getCARD(card_list))
 
             if card ~= 0 then
-                cards = takeTargetCardFromList(card,cards)
+                card_list = takeTargetCardFromList(card,card_list)
                 putCardUnder(src,card)
             end
 
-            destroyList(cards)
+            destroyList(card_list)
         end
 
         local c = countCardsUnder(player,src)
@@ -46,11 +46,10 @@ ZTCG_CARD
             local card = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
             refreshHP(player,card,30)
 
-            local hand = getPlayerDeck(player, "DECK_HAND")
             local card_list = removeCardsUnder(src)
 
             pickCardOrder(player,card_list)
-            card_list = moveCardsFromListToDeck(card_list,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+            card_list = moveCardsFromListToDeck(player,card_list,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
 
             destroyList(card_list)
         end

@@ -33,8 +33,8 @@ ZTCG_CARD
                 slotid = getSlotIdFromCARD(not player,atkr)
                 destroySelf(player,"SLOT_ADVSRYMOB" .. slotid)
 
-                local target = getCardPointer(1)
-                slotid = getSlotIdFromCARD(player,target)
+                local src = getSourceCARD()
+                slotid = getSlotIdFromCARD(player,src)
                 destroySelf(player,"SLOT_PLAYERMOB" .. slotid)
             end
         end

@@ -20,7 +20,7 @@ ZTCG_CARD
     {
         "LEVEL" "50"
         "ATTRB" "2"
-        "TEXT" "Spawn / Think Fast 40 -- Play a monster or tactic of level 40 or less. "
+        "TEXT" "Spawn / Think Fast 40 -- Play a monster or tactic of level 40 or less."
     }
 
     function onActivateCharacterAction(player)

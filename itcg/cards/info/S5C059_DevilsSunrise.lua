@@ -31,52 +31,25 @@ ZTCG_CARD
 
     function onPlayMob(player)
         local src = getSourceCARD()
-        local target = getTargetCARD()
-
-        local cardid = getCardIdFromCARD(src)
-        local n = getCardRegister(src,cardid,0)
-        local slotid = getSlotIdFromCARD(player, target)
-
-        editCardRegister(src,cardid,n+1,slotid,0,nil)
-        editCardRegister(src,cardid,0,n+1,0,nil)
-
-        attack(player, src, 60, "ATKRES_NIL", "ATKSRC_EQP", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 60, "ATKRES_NIL", "ATKSRC_EQP", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
     function onEndTurn(player)
-        local list = makeFilteredTableList(player,"ONLY_PLAYER",0,"DONT_CARE","DONT_CARE","TYPE_ANYMOB","ELEM_ANY","ZTCG_NIL")
+        local list, not_empty = makeFilteredTableList(player,"ONLY_PLAYER",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB","ELEM_ANY","ZTCG_NIL")
+        if not_empty then
+            local card = menuCards(player,list,"Select a card to withdraw.","CARDLIST_PEEK")
+            if card ~= 0 then
+                local slotid = getSlotIdFromCARD(player,getCARD(card))
 
-        local src = getSourceCARD()
-        local cardid = getCardIdFromCARD(src)
-        local n = getCardRegister(src,cardid,0)
+                local outList = takeCardFromTable(player, "SLOT_PLAYERMOB" .. slotid)
+                local hand = getPlayerDeck(player, "DECK_HAND")
+                outList = moveCardsFromListToDeck(player,outList,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
 
-        if not isEmptyList(list) then
-            while true do
-                local card = menuCards(player,list,"Select a card to withdraw.","CARDLIST_PEEK")
-                if card ~= 0 then
-                    local slotidA = getSlotIdFromCARD(player,getCARD(card))
-
-                    local n = getCardRegister(src,cardid,0)
-                    local submit = false
-                    for i = 1,n,1 do
-                        local slotidB = getCardRegister(src,cardid,i)
-                        if slotidA == slotidB then
-                            submit = true
-                        end
-                    end
-
-                    if submit or true then
-                        outList = takeCardFromTable(player, "SLOT_PLAYERMOB" .. slotidA)
-                        local hand = getPlayerDeck(player, "DECK_HAND")
-                        outList = moveCardsFromListToDeck(outList,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
-
-                        break
-                    end
-                else
-                    break
-                end
+                destroyList(outList)
             end
         end
+
+        destroyList(list)
     end
 
     function onCalcAttack(player)
@@ -84,7 +57,7 @@ ZTCG_CARD
         local cid = getCardIdFromCARD(src)
 
         local atkr = getCardPointer(0)
-        if(hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_MOB | TYPE_JRB | TYPE_BOS") and getCardRegister(src, cid, 0) == 10) then
+        if(hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_ANYMOB") and getCardRegister(src, cid, 0) == 10) then
             local dmg = getGameValue(0)
             local bonus = getCardRegister(src, cid, 1)
             updateGameValue(0, dmg + bonus)

@@ -29,10 +29,10 @@ ZTCG_CARD
 
         if (not hasFlag("ZTCG_PLAYERTYPE","IS_PLAYER")) then return end
         if(matchRequirements(player, 60, 1, "ELEM_THIEF")) then
-            if(makePrompt(player,"Select one:","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","Damage character","Opponent discard")) then
-                attack(player, src, 40, "ATKRES_DONT_HIT_MOBS", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            if(makePrompt(player,false,"Select one:","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","Damage character","Opponent discard")) then
+                attack(player, src, 40, "ATKRES_DONT_HIT_MOBS", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
             else
-                discardCard(not player)
+                discardCardRandom(not player)
             end
         end
 
@@ -41,7 +41,7 @@ ZTCG_CARD
             local eqps = getEquipsOnTable(player,"ONLY_ADVSRY")
 
             if mobs > 0 and eqps > 0 then
-                if makePrompt(player,"Select one:","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","Destroy monster","Destroy equipment") then
+                if makePrompt(player,false,"Select one:","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","Destroy monster","Destroy equipment") then
                     destroyMonster(player)
                 else
                     destroyEquipment(player)

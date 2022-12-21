@@ -36,7 +36,8 @@ ZTCG_CARD
 
         local goo_spawn = menuCards(player,goo_list,"Select a card to spawn.","CARDLIST_PEEK")
         if goo_spawn ~= 0 then
-            moveCards(deck,hand,"TAKE_CARDID","PUT_BOTTOM",goo_spawn)
+            revealCard(not player,"Opponent has drawn card...",getCARD(goo_spawn))
+            moveCards(player,deck,hand,"TAKE_CARDID","PUT_BOTTOM",goo_spawn)
         end
 
         destroyList(goo_list)

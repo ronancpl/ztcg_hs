@@ -22,28 +22,18 @@ ZTCG_CARD
         "TEXT" "Perfect Aim -- Damage you do with character actions can't be prevented this turn."
     }
 
-    function preventTargetCancel(player)
+    function onStartAttack(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
-        if hasFlag("ZTCG_ATKSRC", "ATKSRC_ACT") and getCardRegister(src, cid, 0) == 100 then
-            return 1
-        elseif hasFlag("ZTCG_ATKSRC", "ATKSRC_CHA") and getCardRegister(src, cid, 0) == 777 then
-            return 1
-        else
-            return 0
+        if hasFlag("ZTCG_ATKSRC", "ATKSRC_CHA") and getCardRegister(src, cid, 0) == 777 then
+            updateGameValue(0,0)    -- can't be prevented
         end
     end
 
     function onThinkAction(player)
-        insertCardNextAction(player)
-
-        local src = getSourceCARD()
-        local cid = getCardIdFromCARD(src)
-        editCardRegister(src, cid, 0, 100, 0, nil)
-
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-        attack(player, chr, 40, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, chr, 40, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "DISABLE_PREVENT", "IS_STARTER")
     end
 
     function onStartTurn(player)
@@ -58,6 +48,8 @@ ZTCG_CARD
         local cid = getCardIdFromCARD(src)
 
         editCardRegister(src, cid, 0, 777, 0, nil)
+
+        insertCardTurnAction(player)
     end
 
 }

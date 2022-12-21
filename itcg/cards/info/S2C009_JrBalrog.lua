@@ -28,8 +28,13 @@ ZTCG_CARD
         }
     }
 
-    function preventTargetCancel(player)
-        return 1
+    function onStartAttack(player)
+        local src = getSourceCARD()
+        local atkr = getCardPointer(0)
+
+        if isSameCARD(src,atkr) then
+            updateGameValue(0,0)    -- can't be prevented
+        end
     end
 
     function onActivateMobEffect(player)
@@ -37,8 +42,8 @@ ZTCG_CARD
         if(not matchRequirements(player, 100, 3, "ELEM_BOWMAN")) then return end
 
         local src = getSourceCARD()
-        attack(player, src, 30, "ATKRES_NIL", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
-        attack(player, src, 30, "ATKRES_NIL", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 30, "ATKRES_NIL", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+        attack(player, src, 30, "ATKRES_NIL", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
 }

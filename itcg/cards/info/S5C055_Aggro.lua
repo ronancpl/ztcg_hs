@@ -35,11 +35,11 @@ ZTCG_CARD
                 if menuCard ~= 0 then
                     cards = takeTargetCardFromList(menuCard,cards)
 
-                    if(makePrompt(player,"Accept " .. getNameFromCARD(getCARD(menuCard)) .. "?","The card will be spawned.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then
-                        moveCards(hand,hand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
+                    if(makePrompt(not player,true,"Accept " .. getNameFromCARD(getCARD(menuCard)) .. "?","The card will be spawned.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then
+                        moveCards(player,hand,hand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
                         ret = summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
                     else
-                        attack(player, src, 40, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+                        attack(player, src, 40, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
                     end
                 else
                     break

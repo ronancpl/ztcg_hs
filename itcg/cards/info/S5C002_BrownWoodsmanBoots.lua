@@ -23,7 +23,7 @@ ZTCG_CARD
     }
 
     function onStartCharacterActions(player)
-        doTwiceCharacterAction(player,true)
+        doRepeatCharacterAction(player,true,2)
     end
 
     function onActivateCharacterAction(player)

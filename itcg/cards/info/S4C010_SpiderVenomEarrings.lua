@@ -68,7 +68,7 @@ ZTCG_CARD
                 slotStr = "SLOT_ADVSRYMOB" .. tostring(slotid)
             end
 
-            attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", slotStr, "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_EQP", slotStr, "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
         end
     end
 

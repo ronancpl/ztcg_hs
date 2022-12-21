@@ -19,28 +19,28 @@ ZTCG_CARD
     {
         "LEVEL" "ZTCG_MAXVALUE"
         "ATTRB" "0"
-        "TEXT" "Quick Shot -- Do 20 damage to a character or monster"
+        "TEXT" "Quick Shot -- Do 20 damage to a character or monster."
     }
 
     function afterCharacterActions(player)
         local src = getSourceCARD()
-        attack(player, src, 10, "ATKRES_NIL", "ATKSRC_EQP", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 10, "ATKRES_NIL", "ATKSRC_EQP", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
 
         if lastAttackKilled(player) then
             local slotid = getSlotIdFromCARD(player, src) - 7
             local list = takeCardFromTable(player, "SLOT_PLAYEREQP" .. tostring(slotid))
 
             local hand = getPlayerDeck(player, "DECK_HAND")
-            list = takeTargetCardFromListToDeck(hand,list,list,"DECK_BOTTOM")
+            list = takeTargetCardFromListToDeck(player,hand,list,list,"DECK_BOTTOM")
             levelUpScout(player)
 
             destroyList(list)
         end
     end
 
-    function onActivateCharacterAction(player)
+    function onLevelActionTrigger(player)
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-        attack(player, src, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, chr, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
 }

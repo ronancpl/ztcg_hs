@@ -21,32 +21,35 @@ ZTCG_CARD
     {
         "LEVEL" "80"
         "ATTRB" "0"
-        "TEXT" "Boss Spawn -- Play a Boss"
+        "TEXT" "Boss Spawn -- Play a Boss."
     }
 
-    function onOpponentEndTurn(player)
+    function onEndTurn(player)
         local src = getSourceCARD()
         local cardid = getCardIdFromCARD(src)
 
         if getCardRegister(src, cardid, 0) > 0 then
             editCardRegister(src, cardid, 0,0,0,nil)
-            doubleTurn(not player)
+            doubleTurn(player)
         end
     end
 
     function onExecuteAttack(player)
+        local src = getSourceCARD()
+
         local hand = getPlayerDeck(player, "DECK_HAND")
         local list, qty = getListFromDeck(hand)
         if qty >= 3 then
-            local card = menuCards(not player,cards,"Select a card.","CARDLIST_HIDE")
+            local card = menuCards(not player,list,"Select a card.","CARDLIST_HIDE")
+            revealCard(not player,"Opponent has card...",getCARD(card))
+
             if isBossCARD(getCARD(card)) then
-                card = takeTargetCardFromDeck(card,hand)
+                card = takeTargetCardFromDeck(player,card,hand)
 
                 local deck = getPlayerDeck(player, "DECK_DECK")
-                card = moveCardsFromListToDeck(card,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+                card = moveCardsFromListToDeck(player,card,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
                 destroyList(card)
 
-                local src = getSourceCARD()
                 local cardid = getCardIdFromCARD(src)
                 editCardRegister(src, cardid, 0, 1, 0, null)
             end
@@ -54,25 +57,26 @@ ZTCG_CARD
     end
 
     function onActivateCharacterAction(player)
-        local src = getSourceCARD()
+        if not isBossOnPlayerTable(player) then
+            local src = getSourceCARD()
 
-        local deckHand = getPlayerDeck(player, "DECK_HAND")
-        local card_list = getListFromDeck(deckHand)
+            local deckHand = getPlayerDeck(player, "DECK_HAND")
+            local card_list = getListFromDeck(deckHand)
 
-        local boss_list, not_empty = makeFilteredList(player,card_list,0,0,"ZTCG_MAXVALUE","TYPE_BOS", "ELEM_ANY", "ZTCG_NIL")
-        if not_empty then
-            local menuCard = menuCards(player,boss_list,"Select a boss to spawn.","CARDLIST_PEEK")
-            if menuCard ~= 0 then
-                local card = getCARD(menuCard)
+            local boss_list, not_empty = makeFilteredList(player,card_list,0,0,"ZTCG_MAXVALUE","TYPE_BOS", "ELEM_ANY", "ZTCG_NIL")
+            if not_empty then
+                local menuCard = menuCards(player,boss_list,"Select a boss to spawn.","CARDLIST_PEEK")
+                if menuCard ~= 0 then
+                    menuCard = takeTargetCardFromDeck(player,menuCard,deckHand)
+                    menuCard = moveCardsFromListToDeck(player,menuCard,deckHand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
+                    summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
 
-                menuCard = takeTargetCardFromDeck(menuCard,deckHand)
-                menuCard = moveCardsFromListToDeck(menuCard,deckHand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
-                summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
-
-                destroyList(menuCard)
+                    destroyList(menuCard)
+                end
             end
+
+            destroyList(boss_list)
         end
-        destroyList(boss_list)
     end
 
 }

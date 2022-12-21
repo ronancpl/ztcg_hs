@@ -31,7 +31,7 @@ ZTCG_CARD
     function effect_h(player,src)
         if(not matchRequirements(player, 70, 2, "ELEM_THIEF")) then return end
 
-        attack(player, src, 30, "ATKRES_NIL", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+        attack(player, src, 30, "ATKRES_NIL", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
     function effect_k(player,src)
@@ -90,7 +90,7 @@ ZTCG_CARD
 
                 if hasCard then
                     local deckHand = getPlayerDeck(not player, "DECK_HAND")
-                    list2 = moveCardsFromListToDeck(list2, deckHand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+                    list2 = moveCardsFromListToDeck(player,list2, deckHand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
                 end
 
                 destroyList(list2)

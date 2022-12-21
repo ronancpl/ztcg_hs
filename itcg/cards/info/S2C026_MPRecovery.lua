@@ -7,7 +7,7 @@ ZTCG_CARD
     "ELEMENT" "Magician"
     "RARITY" "RARITY_COMMON"
     "INFO" "Tactic - Skill"
-    "COST" ""
+    "COST" "450"
 
     TYPE_ACT
     {
@@ -39,7 +39,8 @@ ZTCG_CARD
 
     function onLevelActionTrigger(player)
         if amaze(player) then
-            attack(player, src, 40, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
+            attack(player, chr, 40, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
         end
     end
 

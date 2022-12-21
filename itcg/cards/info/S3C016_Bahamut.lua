@@ -59,7 +59,7 @@ ZTCG_CARD
         local hand = getPlayerDeck(player, "DECK_HAND")
 
         local target = makeTargetFromCARD(src)
-        moveCards(grav,hand,"TAKE_CARDID","PUT_BOTTOM",target)
+        moveCards(player,grav,hand,"TAKE_CARDID","PUT_BOTTOM",target)
         destroyList(target)
 
         local d = drawCard(player)

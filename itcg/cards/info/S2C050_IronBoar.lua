@@ -14,7 +14,7 @@ ZTCG_CARD
         "LEVEL" "45"
         "ATTCK" "30"
         "HP" "50"
-        "TEXT" "Leader 20 -- Each of your other Boars gets +20 attack and +20 Hp."
+        "TEXT" "Leader 20 -- Each of your other Boars gets +20 attack and +20 HP."
     }
 
     LVL_ACTION
@@ -44,7 +44,7 @@ ZTCG_CARD
         local cid = getCardIdFromCARD(src)
 
         local atkr = getCardPointer(0)
-        if(isInfoCARD(atkr, "Boar") and hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_MOB | TYPE_ACT") and getCardRegister(src, cid, 0) == 10) then
+        if(isInfoCARD(atkr, "Boar") and hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_ANYMOB | TYPE_ACT") and getCardRegister(src, cid, 0) == 10) then
             local dmg = getGameValue(0)
             local bonus = getCardRegister(src, cid, 1)
             updateGameValue(0, dmg + bonus)

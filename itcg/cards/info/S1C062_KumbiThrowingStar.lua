@@ -12,7 +12,7 @@ ZTCG_CARD
     TYPE_EQP
     {
         "LEVEL" "30"
-        "TEXT" "Whenever one of you opponent's character actions damages you, do 20 damage to that character"
+        "TEXT" "Whenever one of you opponent's character actions damages you, do 20 damage to that character."
     }
 
     LVL_ACTION
@@ -22,10 +22,10 @@ ZTCG_CARD
         "TEXT" "Equip 20 -- Play an item of level 20 or less. "
     }
 
-    function onInterceptAttack(player)
+    function onReceiveAttackCard(player)
         if hasFlag("ZTCG_ATKSRC", "ATKSRC_CHA") then
             local src = getSourceCARD()
-            attack(player, src, 20, "ATKRES_DONT_HIT_MOBS", "ATKSRC_EQP", "ZTCG_DONTCARE", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            attack(player, src, 20, "ATKRES_DONT_HIT_MOBS", "ATKSRC_EQP", "ZTCG_DONTCARE", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
         end
     end
 

@@ -32,10 +32,10 @@ ZTCG_CARD
             local deck = getPlayerDeck(player, "DECK_DECK")
 
             while true do
-                local menuCard = menuCards(player,card_list,"Select a card to withdraw.","CARDLIST_PEEK")
+                local menuCard = menuCards(player,card_list,"Select a card to put on the top of the deck.","CARDLIST_PEEK")
                 if menuCard ~= 0 then
-                    local card = takeTargetCardFromDeck(menuCard,hand)
-                    card = moveCardsFromListToDeck(card,deck,"ZTCG_NEXT","PUT_TOP","ZTCG_MAXVALUE")
+                    local card = takeTargetCardFromDeck(player,menuCard,hand)
+                    card = moveCardsFromListToDeck(player,card,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
 
                     break
                 end

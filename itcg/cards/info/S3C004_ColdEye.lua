@@ -25,6 +25,8 @@ ZTCG_CARD
     }
 
     function onThinkMob(player)
+        local src = getSourceCARD()
+
         local list, not_empty = makeFilteredTableList(player, "ONLY_ADVSRY",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB","ELEM_ANY","ZTCG_NIL")
         if not_empty then
             local card = menuCards(player,list,"Select a card to apply Silence.","CARDLIST_PEEK")
@@ -32,8 +34,8 @@ ZTCG_CARD
                 card = getCARD(card)
                 local slotid = getSlotIdFromCARD(not player, card)
 
-                applySilence(PLAYER,card,1)
-                attack(player, src, 20, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB" .. slotid, "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+                applySilence(player,card,1)
+                attack(player, src, 20, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB" .. slotid, "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
             end
         end
     end

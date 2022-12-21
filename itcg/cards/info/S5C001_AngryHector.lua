@@ -27,15 +27,15 @@ ZTCG_CARD
     function undoBuffs(player)
         local src = getSourceCARD()
         local cardid = getCardIdFromCARD(src)
-        if getSlotIdFromCARD(player,src) < 0 and getCardRegister(src,cardid,0) == 0 then return end
+        if getSlotIdFromCARD(player,src) < 0 or getCardRegister(src,cardid,0) == 0 then return end
 
-        removeAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,30,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "Boar")
+        removeAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,30,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
     end
 
     function applyBuffs(player)
         local src = getSourceCARD()
         local cardid = getCardIdFromCARD(src)
-        if getSlotIdFromCARD(player,src) < 0 and getCardRegister(src,cardid,0) == 0 then return end
+        if getSlotIdFromCARD(player,src) < 0 or getCardRegister(src,cardid,0) == 0 then return end
 
         applyAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,30,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
     end

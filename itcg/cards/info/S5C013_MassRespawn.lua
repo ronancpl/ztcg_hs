@@ -36,7 +36,7 @@ ZTCG_CARD
             end
 
             local menuCard = menuCards(player,cards,"Select a card to play.","CARDLIST_PEEK")
-            moveCards(grav,hand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
+            moveCards(player,grav,hand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
             summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
 
             cards = takeTargetCardFromList(menuCard,cards)

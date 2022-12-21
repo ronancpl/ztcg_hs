@@ -49,7 +49,7 @@ ZTCG_CARD
         local card = menuCards(player,card_list,"Select a card to activate.","CARDLIST_PEEK")
         if card ~= 0 then
             action(player,getCARD(card),"ELEM_ANY","ZTCG_DONTCARE")
-            moveCards(player_grav,player_deck,"TAKE_CARDID","PUT_BOTTOM",card)
+            moveCards(player,player_grav,player_deck,"TAKE_CARDID","PUT_BOTTOM",card)
         end
 
         destroyList(card_list)

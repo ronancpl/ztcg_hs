@@ -1,7 +1,7 @@
 ZTCG_CARD
 {
 
-    "NAME" "Rain Of Arrows"
+    "NAME" "Rain of Arrows"
     "IMAGE" "S1C019_RainOfArrows.png"
     "TYPE" "ACTION"
     "ELEMENT" "Bowman"
@@ -29,7 +29,7 @@ ZTCG_CARD
         local deckl, qty = getListFromDeck(deck)
 
         for i = 1, qty, 1 do
-            attack(player,src,20,"ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "PREVENT_ANY", "IS_STARTER")
+            attack(player,src,20,"ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
         end
     end
 
