@@ -50,10 +50,13 @@ ZTCG_CARD
             if not hasSharedFlagsCARD(getCARD(list), "FLAG_TYPE", "TYPE_ANYMOB") then
                 while true do
                     local list2 = takeCardsFromDeck(p,deck, 1)
-                    list = appendLists(list,list2)
 
-                    if hasSharedFlagsCARD(getCARD(list2), "FLAG_TYPE", "TYPE_ANYMOB") then
-                        card = list2
+                    card = list2
+                    list = appendLists(list,list2)
+                    list2 = takeTargetCardFromList(list2,list2)
+                    destroyList(list2)
+
+                    if hasSharedFlagsCARD(getCARD(card), "FLAG_TYPE", "TYPE_ANYMOB") then
                         break
                     else
                         local card_list, qty = getListFromDeck(deck)    -- shouldn't happen since 1 mob is present on deck

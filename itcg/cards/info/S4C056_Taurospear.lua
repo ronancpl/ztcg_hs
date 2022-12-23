@@ -40,12 +40,16 @@ ZTCG_CARD
 
     function onLevelActionTrigger(player)
         local deck = getPlayerDeck(player, "DECK_DECK")
-        local cards_taken = takeCardsFromDeck(player,deck, 2)
+        local cards, qty = getListFromDeck(deck)
 
-        if getListLength(cards_taken) >= 2 then
+        if qty >= 2 then
+            local cards_taken = takeCardsFromDeck(player,deck, 2)
+
             local card1 = getCARD(cards_taken)
-            local cards_taken2 = takeTargetCardFromList(cards_taken,cards_taken)
-            local card2 = getCARD(cards_taken2)
+            local cards_taken2 = makeTargetFromCARD(card1)
+
+            cards_taken = takeTargetCardFromList(cards_taken,cards_taken)
+            local card2 = getCARD(cards_taken)
 
             if(hasSharedFlagsCARD(card1, "FLAG_TYPE", "TYPE_ANYMOB")) and (hasSharedFlagsCARD(card2, "FLAG_TYPE", "TYPE_ANYMOB")) then
                 cards_taken = moveCardsFromListToDeck(player,cards_taken,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
@@ -60,6 +64,7 @@ ZTCG_CARD
                 cards_taken = moveCardsFromListToDeck(player,cards_taken,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
             end
 
+            destroyList(cards_taken2)
             destroyList(cards_taken)
         else
             scoutMob(player,"SCOUT_NORMAL","ELEM_ANY")

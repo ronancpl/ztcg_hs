@@ -45,6 +45,7 @@ ZTCG_CARD
                 list = takeTargetCardFromDeck(player,card,player_hand)
             end
             list = moveCardsFromListToDeck(player,list,player_deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+            destroyList(list)
         end
 
         destroyList(card_list2)

@@ -48,14 +48,15 @@ ZTCG_CARD
 
             local pet_spawns = makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_MOB","ELEM_ANY","Spook")
             while not isEmptyList(pet_spawns) do
-                local pet_spawn = menuCards(player,pet_spawns,"Select a card to spawn.","CARDLIST_PEEK")
+                local pet_spawn = menuCards(player,pet_spawns,"Select a card to draw.","CARDLIST_PEEK")
                 if pet_spawn == 0 then
                     break
                 end
 
+                revealCard(not player,"Opponent has drawn card...",getCARD(pet_spawn))
+
                 card_list = takeTargetCardFromList(pet_spawn,card_list)
                 pet_spawns = takeTargetCardFromListToDeck(player,hand,pet_spawns,pet_spawn,"DECK_BOTTOM")
-                summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
             end
 
             pickCardOrder(player,card_list)

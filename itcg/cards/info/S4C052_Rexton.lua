@@ -32,19 +32,23 @@ ZTCG_CARD
     function onPlayMob(player)
         local src = getSourceCARD()
         local cardid = getCardIdFromCARD(src)
-        if getCardRegister(src,cardid,0) == 0 then
+        if getCardRegister(src,cardid,0) == 1 then
             local card = getTargetCARD()
             if not isBossCARD(card) then
                 local hp = getMaxHpFromCARD(card)
                 local card = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
                 refreshHP(player,card,hp)
 
-                editCardRegister(src,cardid,0,1,0,nil)
+                editCardRegister(src,cardid,0,0,0,nil)
             end
         end
     end
 
     function onLevelActionTrigger(player)
+        local src = getSourceCARD()
+        local cardid = getCardIdFromCARD(src)
+        editCardRegister(src,cardid,0,1,0,nil)
+
         insertCardTurnAction(player)
     end
 
