@@ -55,7 +55,7 @@ ZTCG_CARD
         if level1 < level2 then
             local d = drawCard(player)
             if d then
-                levelUpScout(player)
+                levelUpScout(player,false)
             end
         end
     end

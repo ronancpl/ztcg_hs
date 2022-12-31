@@ -36,12 +36,12 @@ ZTCG_CARD
 
     function onActivateCharacterAction1(player)
         -- every character should have a draw card effect as a basic skill.
-        drawCard(player);
+        drawCard(player)
     end
 
     function onActivateCharacterAction2(player)
         local attacker = getSourceCARD()    -- this card
-        attack(player, attacker, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_DONTCARE", "ENABLE_PREVENT", "IS_STARTER")
+        attack(player, attacker, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_DONTCARE", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
     function undoBuffs(player)
@@ -49,7 +49,7 @@ ZTCG_CARD
         if(not matchRequirements(player, 60, 3, "ELEM_LIGHT")) then return end
 
         local src = getSourceCARD()
-        removeAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_LIGHT", "ZTCG_NIL")
+        removeAuraBonus(player,"GLOBALAURA_PASS_ADVSRY",src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_LIGHT", "ZTCG_NIL")
     end
 
     function applyBuffs(player)
@@ -57,7 +57,7 @@ ZTCG_CARD
         if(not matchRequirements(player, 60, 3, "ELEM_LIGHT")) then return end
 
         local src = getSourceCARD()
-        applyAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_LIGHT", "ZTCG_NIL")
+        applyAuraBonus(player,"GLOBALAURA_PASS_ADVSRY","BUFF_ANY",src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_LIGHT", "ZTCG_NIL")
     end
 
     function onActivateCharacterAction3(player)

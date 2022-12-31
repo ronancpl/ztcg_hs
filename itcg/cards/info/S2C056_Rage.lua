@@ -67,7 +67,7 @@ ZTCG_CARD
         if amaze(player) then
             local d = drawCard(player)
             if d then
-                levelUpScout(player)
+                levelUpScout(player,false)
             end
         end
     end

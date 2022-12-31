@@ -34,13 +34,15 @@ ZTCG_CARD
         if not_empty1 or not_empty2 then
             list1 = appendLists(list1,list2)
 
-            local card = menuCards(player,list1,"Select a mob to draw.","CARDLIST_PEEK")
+            local card = menuCards(player,list1,"Select a mob to play.","CARDLIST_PEEK")
             if card ~= 0 then
                 local hand = getPlayerDeck(player, "DECK_HAND")
 
                 local cardList = takeTargetCardFromDeck(player,card,deck)
                 cardList = moveCardsFromListToDeck(player,cardList,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
                 summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
+
+                destroyList(cardList)
             end
         end
 

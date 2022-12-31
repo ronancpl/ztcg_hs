@@ -30,14 +30,11 @@ ZTCG_CARD
 
     function onActivateCharacterAction(player)
         local card = peekNextCard(player)
-
-        if isInfoCARD(card, "Boar") then
-            local deck = getPlayerDeck(player, "DECK_DECK")
-            local hand = getPlayerDeck(player, "DECK_HAND")
-
-            local list_cards = takeCardsFromDeck(player,deck, 1)
-            list_cards = moveCardsFromListToDeck(player,list_cards,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
-            destroyList(list_cards)
+        if card ~= 0 then
+            if isInfoCARD(card, "Boar") then
+                drawCard(player)
+                --revealCard(not player,"Opponent has drawn card...",card)
+            end
         end
     end
 

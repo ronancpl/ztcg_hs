@@ -38,6 +38,7 @@ ZTCG_CARD
                 attack(player, src, 20, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB" .. slotid, "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
             end
         end
+        destroyList(list)
     end
 
     function onActivateCharacterAction(player)

@@ -24,9 +24,41 @@ ZTCG_CARD
         "TEXT" "Misplace -- Destroy this card. Then destroy an item."
     }
 
+    function resetRegisters()
+        local src = getSourceCARD()
+        local cid = getCardIdFromCARD(src)
+
+        editCardRegister(src,cid,0,0,0,nil)
+    end
+
+    function onStartTurnViewHand(player)
+        resetRegisters()
+    end
+
+    function onStartTurnViewDeck(player)
+        resetRegisters()
+    end
+
+    function onStartTurnViewGraveyard(player)
+        resetRegisters()
+    end
+
+    function onTryPlay(player)
+        local src = getSourceCARD()
+        local cid = getCardIdFromCARD(src)
+
+        local val = getCardRegister(src,cid,0)
+        if val ~= 0 then
+            updateGameValue(0, 0)
+        end
+    end
+
     function onThinkMob(player)
         local src = getSourceCARD()
         if not throwCoin(player) then
+            local cid = getCardIdFromCARD(src)
+            editCardRegister(src, cid, 0, 1, 0, nil)
+
             local slot = getSlotIdFromCARD(player, src)
 
             local list, hasCard

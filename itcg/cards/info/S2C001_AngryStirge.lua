@@ -37,18 +37,20 @@ ZTCG_CARD
 
     function onActivateCharacterAction(player)
         local card = peekNextCard(player)
-        --revealCard(not player,"Next Card...",card)
+        if card ~= 0 then
+            --revealCard(not player,"Next Card...",card)
 
-        local level = getCurrentLevelFromCARD(player,card)
-        if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_ANYMOB") and level <= 20 then
-            local deck = getPlayerDeck(player, "DECK_DECK")
-            local card_taken = takeCardsFromDeck(player,deck, 1)
+            local level = getCurrentLevelFromCARD(player,card)
+            if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_ANYMOB") and level <= 20 then
+                local deck = getPlayerDeck(player, "DECK_DECK")
+                local card_taken = takeCardsFromDeck(player,deck, 1)
 
-            local hand = getPlayerDeck(player, "DECK_HAND")
-            card_taken = moveCardsFromListToDeck(player,card_taken,hand,"TAKE_NEXT","PUT_BOTTOM", 1)
-            summon(player,"PLAY_FORCESUMMON","ELEM_ANY",20)
+                local hand = getPlayerDeck(player, "DECK_HAND")
+                card_taken = moveCardsFromListToDeck(player,card_taken,hand,"TAKE_NEXT","PUT_BOTTOM", 1)
+                summon(player,"PLAY_FORCESUMMON","ELEM_ANY",20)
 
-            destroyList(card_taken)
+                destroyList(card_taken)
+            end
         end
     end
 

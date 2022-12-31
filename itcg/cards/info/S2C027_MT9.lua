@@ -33,8 +33,8 @@ ZTCG_CARD
         if getSlotIdFromCARD(player,src) < 0 then return end
 
         local src = getSourceCARD()
-        removeAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "Alien")
-        removeAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "Mechanical")
+        removeAuraBonus(player,"GLOBALAURA_PASS_ADVSRY",src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "Alien")
+        removeAuraBonus(player,"GLOBALAURA_PASS_ADVSRY",src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "Mechanical")
     end
 
     function applyBuffs(player)
@@ -42,8 +42,8 @@ ZTCG_CARD
         if getSlotIdFromCARD(player,src) < 0 then return end
 
         local src = getSourceCARD()
-        applyAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "Alien")
-        applyAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "Mechanical")
+        applyAuraBonus(player,"GLOBALAURA_PASS_ADVSRY","BUFF_OTHER",src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "Alien")
+        applyAuraBonus(player,"GLOBALAURA_PASS_ADVSRY","BUFF_OTHER",src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "Mechanical")
     end
 
     function onActivateCharacterAction(player)

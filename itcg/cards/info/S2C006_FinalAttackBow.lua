@@ -34,6 +34,7 @@ ZTCG_CARD
     function onStartTurn(player)
         local card = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
         local cardid = getCardIdFromCARD(card)
+
         editCardRegister(card, cardid, 5, 0, 0, 0)
     end
 
@@ -43,6 +44,7 @@ ZTCG_CARD
 
         local storm = getCardRegister(card, cardid, 5)
         attack(player, card, 10 + (10 * storm), "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+
         editCardRegister(card, cardid, 5, storm + 1, 0, 0)
     end
 

@@ -32,13 +32,13 @@ ZTCG_CARD
             if mob ~= 0 then
                 local slot = getSlotIdFromCARD(not player,getCARD(mob))
                 local table_mob = takeCardFromTable(player,"SLOT_ADVSRYMOB" .. slot)
-
                 table_mob = moveCardsFromListToDeck(player,table_mob,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
-                top_card = moveCardsFromListToDeck(player,top_card,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
 
                 destroyList(table_mob)
             end
         end
+
+        top_card = moveCardsFromListToDeck(player,top_card,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
 
         destroyList(top_card)
         destroyList(mobs)

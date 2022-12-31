@@ -35,9 +35,10 @@ ZTCG_CARD
 
             if card ~= 0 then
                 card_list = takeTargetCardFromList(card,card_list)
-                putCardUnder(src,card)
+                card = putCardUnder(src,card)
             end
 
+            destroyList(card)
             destroyList(card_list)
         end
 
@@ -45,7 +46,7 @@ ZTCG_CARD
         if c >= 3 then
             local pet_spawns = removeCardsUnder(src)
 
-            local pet_spawn = menuCards(player,pet_spawns,"Select a card to draw.","CARDLIST_HIDE")
+            local pet_spawn = menuCards(player,pet_spawns,"Select a card to draw.","CARDLIST_PEEK")
             if pet_spawn ~= 0 then
                 local hand = getPlayerDeck(player, "DECK_HAND")
                 pet_spawns = takeTargetCardFromListToDeck(player,hand,pet_spawns,pet_spawn,"DECK_BOTTOM")

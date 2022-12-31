@@ -14,14 +14,20 @@ ZTCG_CARD
         "LEVEL" "140"
         "ATTCK" "60"
         "HP" "210"
-        "TEXT" "Zummon -- You may play Mighty Zakum as if it were 10 levels less for each Zakum card you have in play and in your discard pile."
-    }
 
-    LVL_ACTION
-    {
-        "LEVEL" "100"
-        "ATTRB" "0"
-        "TEXT" "Zupreme Power -- Reveal the top 4 cards of your deck. Play each Zakum card from among them and put the others on the bottom of your deck in any order."
+        LVL_ACTION
+        {
+            "LEVEL" "0"
+            "ATTRB" "0"
+            "TEXT" "Zummon -- You may play Mighty Zakum as if it were 10 levels less for each Zakum card you have in play and in your discard pile."
+        }
+
+        LVL_ACTION
+        {
+            "LEVEL" "100"
+            "ATTRB" "0"
+            "TEXT" "Zupreme Power -- Reveal the top 4 cards of your deck. Play each Zakum card from among them and put the others on the bottom of your deck in any order."
+        }
     }
 
     function recalcZakumCardLevelDrop(player)
@@ -53,6 +59,7 @@ ZTCG_CARD
     function onActivateMobEffect(player)
         if (not hasFlag("ZTCG_PLAYERTYPE","IS_PLAYER")) then return end
         if(not matchRequirements(player, 100, 0, "ELEM_WARRIOR")) then return end
+        if(not makePrompt(player,true,"Use Zupreme Power?","Reveal the top 4 cards of your deck and play each Zakum card from among them.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
 
         local hand = getPlayerDeck(player,"DECK_HAND")
         local deck = getPlayerDeck(player,"DECK_DECK")
@@ -79,8 +86,8 @@ ZTCG_CARD
         end
 
         pickCardOrder(player,cards)
-
         cards = moveCardsFromListToDeck(player,cards,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
+
         destroyList(zcards)
         destroyList(cards)
     end

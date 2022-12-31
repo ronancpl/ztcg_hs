@@ -30,19 +30,19 @@ ZTCG_CARD
         local deck_list = getPlayerDeck(player, "DECK_DECK")
 
         -- GENERATES a linked list containing all pertaining cards (1 card on this case, or none if deck is empty)
-        local card_taken = takeCardsFromDeck(deck_list, 1)
+        local card_taken = takeCardsFromDeck(player,deck_list, 1)
         local card = getCARD(card_taken)
 
         if(not isNullCARD(card)) then
             revealCard(player,"Next Card...",card)
             local name = getNameFromCARD(card)
 
-            if(makePrompt(player,"Send card to which edge of the deck?",name,"ZTCG_NIL","ZTCG_NIL","Top","Bottom")) then
+            if(makePrompt(player,false,"Send card to which edge of the deck?",name,"ZTCG_NIL","ZTCG_NIL","Top","Bottom")) then
                 -- send TOP
-                card_taken = moveCardsFromListToDeck(card_taken,deck_list,"TAKE_NEXT","PUT_TOP", 1)
+                card_taken = moveCardsFromListToDeck(player,card_taken,deck_list,"TAKE_NEXT","PUT_TOP", 1)
             else
                 -- send BOTTOM
-                card_taken = moveCardsFromListToDeck(card_taken,deck_list,"TAKE_NEXT","PUT_BOTTOM", 1)
+                card_taken = moveCardsFromListToDeck(player,card_taken,deck_list,"TAKE_NEXT","PUT_BOTTOM", 1)
             end
         end
 
@@ -60,7 +60,7 @@ ZTCG_CARD
         local card_list = makeFilteredList(player,list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_MOB", "ELEM_ANY", "ZTCG_NIL")
 
         if(not isEmptyList(card_list)) then
-            if(makePrompt(player,"Bounty Hunter has been played. Use Contrive?","Use a monster card to receive its attack as bonus.","ZTCG_NIL","ZTCG_NIL","Yes","No")) then
+            if(makePrompt(player,true,"Bounty Hunter has been played. Use Contrive?","Use a monster card to receive its attack as bonus.","ZTCG_NIL","ZTCG_NIL","Yes","No")) then
                 local chosen = menuCards(player,card_list,"CONTRIVE: Convert mob to bonus attack for Bounty Hunter", "CARDLIST_PEEK")
 
                 if(not isNullCARD(chosen)) then
@@ -68,7 +68,7 @@ ZTCG_CARD
                         -- won
 
                         -- at the moment the 'chosen' card gets extracted from the list, a NEW linked list is made
-                        chosen = takeTargetCardFromDeck(chosen,deck)
+                        chosen = takeTargetCardFromDeck(player,chosen,deck)
 
                         -- inate skill of Bounty Hunter: first card under it gives bonus attack based on it's attack attribute
                         chosen = putCardUnder(src, chosen)

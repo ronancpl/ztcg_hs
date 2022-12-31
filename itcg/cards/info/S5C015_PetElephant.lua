@@ -35,9 +35,10 @@ ZTCG_CARD
 
             if card ~= 0 then
                 card_list = takeTargetCardFromList(card,card_list)
-                putCardUnder(src,card)
+                card = putCardUnder(src,card)
             end
 
+            destroyList(card)
             destroyList(card_list)
         end
 
@@ -50,7 +51,7 @@ ZTCG_CARD
                 local hand = getPlayerDeck(player, "DECK_HAND")
                 pet_spawns = takeTargetCardFromListToDeck(player,hand,pet_spawns,pet_spawn,"DECK_BOTTOM")
 
-                levelUpScout(player)
+                levelUpScout(player,false)
             end
 
             pickCardOrder(player,pet_spawns)

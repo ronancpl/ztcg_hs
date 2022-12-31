@@ -24,7 +24,7 @@ ZTCG_CARD
         "TEXT" "Spawn 30 -- Play a monster of level 30 or less. "
     }
 
-    function onAttackMobDestroyed(player)
+    function onReceiveAttackAndDestroyed(player)
         local src = getSourceCARD()
         local target = getCardPointer(1)
 
@@ -34,10 +34,13 @@ ZTCG_CARD
             local grav = getPlayerDeck(player, "DECK_GRAV")
             local hand = getPlayerDeck(player, "DECK_HAND")
 
+            local qty
             local cards = takeTargetCardFromDeck(player,card,grav)
 
-            cards = moveCardsFromListToDeck(player,cards,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
-            levelUpScout(player)
+            cards, qty = moveCardsFromListToDeck(player,cards,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+            if qty > 0 then
+                levelUpScout(player,true)
+            end
 
             destroyList(cards)
             destroyList(card)

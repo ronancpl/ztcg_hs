@@ -14,14 +14,20 @@ ZTCG_CARD
         "LEVEL" "80"
         "ATTCK" "70"
         "HP" "130"
-        "TEXT" "Stealthy Blow -- Choose one: Do 40 damage to a character or your opponent discards a card at random from his or her hand."
-    }
 
-    LVL_ACTION
-    {
-        "LEVEL" "90"
-        "ATTRB" "3"
-        "TEXT" "Shadow Rip -- Destroy a monster or item."
+        LVL_ACTION
+        {
+            "LEVEL" "60"
+            "ATTRB" "1"
+            "TEXT" "Stealthy Blow -- Choose one: Do 40 damage to a character or your opponent discards a card at random from his or her hand."
+        }
+
+        LVL_ACTION
+        {
+            "LEVEL" "90"
+            "ATTRB" "3"
+            "TEXT" "Shadow Rip -- Destroy a monster or item."
+        }
     }
 
     function onActivateMobEffect(player)

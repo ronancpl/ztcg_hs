@@ -35,12 +35,14 @@ ZTCG_CARD
 
         local list, not_empty = makeFilteredTableList(player, "ONLY_ADVSRY", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
         if not_empty then
-            local menuCard = menuCards(player,list,"Select a monster to Stun for one turn.","CARDLIST_PEEK")
-            local card = getCARD(menuCard)
-            local cid = getCardIdFromCARD(card)
+            local menuCard = menuCards(player,list,"Select a monster to not attack your character for one turn.","CARDLIST_PEEK")
+            if menuCard ~= 0 then
+                local card = getCARD(menuCard)
+                local cid = getCardIdFromCARD(card)
 
-            local slot = getSlotIdFromCARD(not player, card)
-            editCardRegister(card, cid, 5, 1, 0, nil)
+                local slot = getSlotIdFromCARD(not player, card)
+                editCardRegister(card, cid, 5, 1, 0, nil)
+            end
         end
         destroyList(list)
 

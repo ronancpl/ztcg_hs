@@ -40,7 +40,7 @@ ZTCG_CARD
         local dmg = getCardRegister(src, cid, 0)
         local src = getSourceCARD()
 
-        attack(player, src, dmg, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_DONTCARE", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+        attack(player, src, dmg, "ATKRES_DONT_HIT_MOBS", "ATKSRC_ACT", "ZTCG_DONTCARE", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
         editCardRegister(src, cid, 0, 0, 0, nil)
     end
 

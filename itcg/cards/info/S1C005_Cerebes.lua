@@ -30,7 +30,7 @@ ZTCG_CARD
             local slot = getSlotIdFromCARD(not player, target)
 
             local src = getSourceCARD()
-            attack(player, src, 40, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB" .. tostring(slot), "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+            attack(player, src, 40, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB" .. tostring(slot), "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_COUNTER")
         end
     end
 

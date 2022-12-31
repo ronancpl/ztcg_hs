@@ -43,7 +43,7 @@ ZTCG_CARD
     function onActivateMobEffect(player)
         if (not hasFlag("ZTCG_PLAYERTYPE","IS_PLAYER")) then return end
         if(not matchRequirements(player, 70, 2, "ELEM_MAGE")) then return end
-        if(not makePrompt(player,true,"Use Time Tornado?","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
+        if(not makePrompt(player,true,"Use Time Tornado?","Each player re-shuffles deck and draw 5 cards.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
 
         resetDeck(player)
         drawFiveCards(player)

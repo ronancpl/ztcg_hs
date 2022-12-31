@@ -31,6 +31,7 @@ ZTCG_CARD
                 if getBaseAttackFromCARD(board_card) > 30 then
                     local card = makeTargetFromCARD(board_card)
                     mob_list, not_null = takeTargetCardFromList(card,mob_list)
+                    destroyList(card)
                 end
             end
         end

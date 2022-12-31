@@ -24,7 +24,7 @@ ZTCG_CARD
         "TEXT" "Expert Scout -- If you're level 70 or more, reveal the top 2 cards of your deck. If they're both monsters, draw them. Otherwise put them back in any order."
     }
 
-    function onAttackMobDestroyed(player)
+    function onReceiveAttackAndDestroyed(player)
         local src = getSourceCARD()
         local srcCard = makeTargetFromCARD(src)
 
@@ -44,12 +44,10 @@ ZTCG_CARD
 
         if qty >= 2 then
             local cards_taken = takeCardsFromDeck(player,deck, 2)
+            cards_taken, cards_taken2 = takeNextCardsFromList(cards_taken,1)
 
             local card1 = getCARD(cards_taken)
-            local cards_taken2 = makeTargetFromCARD(card1)
-
-            cards_taken = takeTargetCardFromList(cards_taken,cards_taken)
-            local card2 = getCARD(cards_taken)
+            local card2 = getCARD(cards_taken2)
 
             if(hasSharedFlagsCARD(card1, "FLAG_TYPE", "TYPE_ANYMOB")) and (hasSharedFlagsCARD(card2, "FLAG_TYPE", "TYPE_ANYMOB")) then
                 cards_taken = moveCardsFromListToDeck(player,cards_taken,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")

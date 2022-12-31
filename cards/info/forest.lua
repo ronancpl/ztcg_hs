@@ -22,7 +22,7 @@ ZTCG_CARD
     }
 
     function onActivateCharacterAction(player)
-        locate(player, "PLAY_NORMALFIELD")
+        locate(player, "PLAY_NORMALFIELD","ELEM_ANY")
     end
 
     function onStartTurn(player)
@@ -66,27 +66,27 @@ ZTCG_CARD
 
     function undoBuffs(player)
         local src = getSourceCARD()
-        removeAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,20,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_EARTH", "ZTCG_NIL")
-        removeAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,10,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_CHAR", "ELEM_EARTH", "ZTCG_NIL")
+        removeAuraBonus(player,"GLOBALAURA_PASS_ADVSRY",src,20,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_EARTH", "ZTCG_NIL")
+        removeAuraBonus(player,"GLOBALAURA_PASS_ADVSRY",src,10,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_CHAR", "ELEM_EARTH", "ZTCG_NIL")
 
         -- apply buffs on adversary mobs too if they dont have a field card
         local adv_field = getOnBoardCARD(player, "SLOT_ADVSRYFLD")
         if(not isNullCARD(adv_field)) then return end
 
-        removeAuraBonus(player, "GLOBALAURA_PASS_PLAYER",src,20,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_EARTH", "ZTCG_NIL")
-        removeAuraBonus(player, "GLOBALAURA_PASS_PLAYER",src,10,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_CHAR", "ELEM_EARTH", "ZTCG_NIL")
+        removeAuraBonus(player,"GLOBALAURA_PASS_PLAYER",src,20,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_EARTH", "ZTCG_NIL")
+        removeAuraBonus(player,"GLOBALAURA_PASS_PLAYER",src,10,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_CHAR", "ELEM_EARTH", "ZTCG_NIL")
     end
 
     function applyBuffs(player)
         local src = getSourceCARD()
-        applyAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,20,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_EARTH", "ZTCG_NIL")
-        applyAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,10,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_CHAR", "ELEM_EARTH", "ZTCG_NIL")
+        applyAuraBonus(player,"GLOBALAURA_PASS_ADVSRY","BUFF_ANY",src,20,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_EARTH", "ZTCG_NIL")
+        applyAuraBonus(player,"GLOBALAURA_PASS_ADVSRY","BUFF_ANY",src,10,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_CHAR", "ELEM_EARTH", "ZTCG_NIL")
 
         -- apply buffs on adversary mobs too if they dont have a field card
         local adv_field = getOnBoardCARD(player, "SLOT_ADVSRYFLD")
         if(not isNullCARD(adv_field)) then return end
 
-        applyAuraBonus(player, "GLOBALAURA_PASS_PLAYER",src,20,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_EARTH", "ZTCG_NIL")
-        applyAuraBonus(player, "GLOBALAURA_PASS_PLAYER",src,10,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_CHAR", "ELEM_EARTH", "ZTCG_NIL")
+        applyAuraBonus(player,"GLOBALAURA_PASS_PLAYER","BUFF_ANY",src,20,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_EARTH", "ZTCG_NIL")
+        applyAuraBonus(player,"GLOBALAURA_PASS_PLAYER","BUFF_ANY",src,10,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_CHAR", "ELEM_EARTH", "ZTCG_NIL")
     end
 }

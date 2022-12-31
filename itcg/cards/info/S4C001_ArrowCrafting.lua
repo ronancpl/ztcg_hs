@@ -25,10 +25,12 @@ ZTCG_CARD
     function onThinkAction(player)
         local src = getSourceCARD()
         local card = peekNextCard(player)
-        --revealCard(not player,"Next card...",card)
+        if card ~= 0 then
+            --revealCard(not player,"Next card...",card)
 
-        local dmg = getRoundedNearest(getCurrentLevelFromCARD(player, card))
-        attack(player,src,dmg,"ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+            local dmg = getRoundedNearest(getCurrentLevelFromCARD(player, card))
+            attack(player,src,dmg,"ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+        end
     end
 
     function onActivateCharacterAction(player)

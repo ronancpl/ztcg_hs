@@ -30,11 +30,15 @@ ZTCG_CARD
 
         local grav = getPlayerDeck(player, "DECK_GRAV")
         local hand = getPlayerDeck(player, "DECK_HAND")
-        card = takeTargetCardFromDeck(player,card,grav)
+        local cardList = takeTargetCardFromDeck(player,card,grav)
+        local qty
 
-        card = moveCardsFromListToDeck(player,card,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
-        summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
+        cardList, qty = moveCardsFromListToDeck(player,cardList,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+        if qty > 0 then
+            summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
+        end
 
+        destroyList(cardList)
         destroyList(card)
     end
 

@@ -32,6 +32,8 @@ ZTCG_CARD
             local hand = getPlayerDeck(player, "DECK_HAND")
             cards_taken = moveCardsFromListToDeck(player,cards_taken,hand,"TAKE_CARDID","PUT_BOTTOM",card)
         end
+
+        pickCardOrder(player,cards_taken)
         cards_taken = moveCardsFromListToDeck(player,cards_taken,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
 
         destroyList(mob_list)

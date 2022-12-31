@@ -41,6 +41,7 @@ ZTCG_CARD
                     destroyList(card)
                 end
             end
+            destroyList(clist)
         end
     end
 

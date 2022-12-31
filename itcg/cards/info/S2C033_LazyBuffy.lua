@@ -35,7 +35,7 @@ ZTCG_CARD
                 local card_list, qty = getListFromDeck(deckDeck)
                 if qty > 0 then
                     drawCard(not player)
-                    levelUpScout(not player)
+                    levelUpScout(not player,false)
                 end
             end
         end

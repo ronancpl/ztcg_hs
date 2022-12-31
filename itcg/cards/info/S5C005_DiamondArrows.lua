@@ -32,7 +32,7 @@ ZTCG_CARD
 
             local hand = getPlayerDeck(player, "DECK_HAND")
             list = takeTargetCardFromListToDeck(player,hand,list,list,"DECK_BOTTOM")
-            levelUpScout(player)
+            levelUpScout(player,false)
 
             destroyList(list)
         end

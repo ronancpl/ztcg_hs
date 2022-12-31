@@ -54,7 +54,7 @@ ZTCG_CARD
         local cid = getCardIdFromCARD(src)
         if(getCardRegister(src, cid, 0) ~= 10 or not matchRequirements(player, 50, 2, "Warrior")) then return end
 
-        removeAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,10 * getCardRegister(src, cid, 1),0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
+        removeAuraBonus(player,"GLOBALAURA_PASS_ADVSRY",src,10 * getCardRegister(src, cid, 1),0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
     end
 
     function applyBuffs(player)
@@ -62,7 +62,7 @@ ZTCG_CARD
         local cid = getCardIdFromCARD(src)
         if(getCardRegister(src, cid, 0) ~= 10 or not matchRequirements(player, 50, 2, "Warrior")) then return end
 
-        applyAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,10 * getCardRegister(src, cid, 1),0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
+        applyAuraBonus(player,"GLOBALAURA_PASS_ADVSRY","BUFF_ANY",src,10 * getCardRegister(src, cid, 1),0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
     end
 
 }

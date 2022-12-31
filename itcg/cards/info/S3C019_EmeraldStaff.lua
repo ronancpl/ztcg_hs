@@ -48,7 +48,7 @@ ZTCG_CARD
                     card = moveCardsFromListToDeck(player,card,hand,"TAKE_CARDID","PUT_BOTTOM",card)
                     destroyList(card)
 
-                    levelUpScout(player)
+                    levelUpScout(player,false)
                 end
             end
 

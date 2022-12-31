@@ -92,17 +92,18 @@ ZTCG_CARD
                 summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
 
                 local slotid = getSlotIdFromCARD(player, card)
-                card = getOnBoardCARD(player, "SLOT_PLAYERMOB"  .. tostring(slotid))
+                if slotid > 0 then
+                    card = getOnBoardCARD(player, "SLOT_PLAYERMOB"  .. tostring(slotid))
 
-                local cardid = getCardIdFromCARD(src)
-                editCardRegister(src,cardid,0,slotid,0,nil)
-                newBuff(card,src,0,20,0,1)
+                    local cardid = getCardIdFromCARD(src)
+                    editCardRegister(src,cardid,0,slotid,0,nil)
+                    newBuff(card,src,0,20,0,1)
+                end
 
                 destroyList(menuCard)
             end
         end
         destroyList(npcList)
     end
-
 
 }

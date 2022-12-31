@@ -25,7 +25,7 @@ ZTCG_CARD
     function onThinkAction(player)
         local d = drawCard(player)
         if d then
-            levelUpScout(player)
+            levelUpScout(player,false)
         end
     end
 

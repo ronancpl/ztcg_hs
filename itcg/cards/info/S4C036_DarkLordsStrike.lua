@@ -26,9 +26,10 @@ ZTCG_CARD
         local src = getSourceCARD()
 
         local card = destroyMonster(player)
-        local dmg = getBaseAttackFromCARD(card)
-
-        attack(player, src, dmg, "ATKRES_DONT_HIT_MOBS", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+        if card ~= 0 then
+            local dmg = getBaseAttackFromCARD(card)
+            attack(player, src, dmg, "ATKRES_DONT_HIT_MOBS", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+        end
     end
 
     function onLevelActionTrigger(player)

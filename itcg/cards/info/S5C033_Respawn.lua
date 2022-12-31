@@ -39,26 +39,24 @@ ZTCG_CARD
             local deck = getPlayerDeck(p, "DECK_DECK")
             local hand = getPlayerDeck(p, "DECK_HAND")
 
-            local list, hasCard
-            list, hasCard = takeCardFromTable(p, "SLOT_PLAYERMOB" .. tostring(slotid))
+            local list2, hasCard
+            list2, hasCard = takeCardFromTable(p, "SLOT_PLAYERMOB" .. tostring(slotid))
 
-            list = moveCardsFromListToDeck(p,list,deck,"TAKE_NEXT","PUT_BOTTOM", 1)
-            destroyList(list)
+            list2 = moveCardsFromListToDeck(p,list2,deck,"TAKE_NEXT","PUT_BOTTOM", 1)
+            destroyList(list2)
 
             local card
-            local list = takeCardsFromDeck(p,deck, 1)
-            if not hasSharedFlagsCARD(getCARD(list), "FLAG_TYPE", "TYPE_ANYMOB") then
+            local list3 = takeCardsFromDeck(p,deck, 1)
+            if not hasSharedFlagsCARD(getCARD(list3), "FLAG_TYPE", "TYPE_ANYMOB") then
                 while true do
-                    local list2 = takeCardsFromDeck(p,deck, 1)
-
-                    card = list2
-                    list = appendLists(list,list2)
-                    list2 = takeTargetCardFromList(list2,list2)
-                    destroyList(list2)
+                    card = takeCardsFromDeck(p,deck, 1)
+                    list3 = appendLists(list3,card)
 
                     if hasSharedFlagsCARD(getCARD(card), "FLAG_TYPE", "TYPE_ANYMOB") then
                         break
                     else
+                        destroyList(card)
+
                         local card_list, qty = getListFromDeck(deck)    -- shouldn't happen since 1 mob is present on deck
                         if qty == 0 then
                             break
@@ -66,17 +64,20 @@ ZTCG_CARD
                     end
                 end
             else
-                card = list
+                card = makeTargetFromCARD(getCARD(list3))
             end
 
-            list = takeTargetCardFromListToDeck(p,hand,list,card,"DECK_BOTTOM")
+            list3 = takeTargetCardFromListToDeck(p,hand,list3,card,"DECK_BOTTOM")
             summon(p,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
 
-            pickCardOrder(p, list)
-            list = moveCardsFromListToDeck(p,list,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+            pickCardOrder(p, list3)
+            list3 = moveCardsFromListToDeck(p,list3,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
 
-            destroyList(list)
+            destroyList(card)
+            destroyList(list3)
         end
+
+        destroyList(list)
     end
 
     function onActivateCharacterAction(player)

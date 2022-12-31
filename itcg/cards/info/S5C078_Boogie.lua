@@ -84,7 +84,7 @@ ZTCG_CARD
         applyBossesLevelDrop(player)
     end
 
-    function onAttackMobDestroyed(player)
+    function onReceiveAttackAndDestroyed(player)
         undoBossesLevelDrop(player)
     end
 
@@ -99,13 +99,15 @@ ZTCG_CARD
 
     function onActivateCharacterAction(player)
         local card = peekNextCard(player)
-        if isBossCARD(card) then
-            drawCard(player)
-        else
-            local deck_list = getPlayerDeck(player, "DECK_DECK")
-            local list_cards = takeCardsFromDeck(player,deck_list, 1)
-            list_cards = moveCardsFromListToDeck(player,list_cards,deck_list,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
-            destroyList(list_cards)
+        if card ~= 0 then
+            if isBossCARD(card) then
+                drawCard(player)
+            else
+                local deck_list = getPlayerDeck(player, "DECK_DECK")
+                local list_cards = takeCardsFromDeck(player,deck_list, 1)
+                list_cards = moveCardsFromListToDeck(player,list_cards,deck_list,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+                destroyList(list_cards)
+            end
         end
     end
 

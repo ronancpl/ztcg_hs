@@ -53,12 +53,10 @@ ZTCG_CARD
                     while getListLength(cards_taken) > 0 do
                         local card = makeTargetFromCARD(getCARD(cards_taken))
 
-                        if card ~= 0 then
-                            putCardUnder(getCARD(pet),card)
-                            cards_taken = takeTargetCardFromList(card,cards_taken)
-                        else
-                            break
-                        end
+                        cards_taken = takeTargetCardFromList(card,cards_taken)
+                        card = putCardUnder(getCARD(pet),card)
+
+                        destroyList(card)
                     end
 
                     destroyList(cards_taken)

@@ -60,18 +60,22 @@ ZTCG_CARD
 
     function onActivateCharacterAction(player)
         local src = getSourceCARD()
-        destroyCharacterAction(player, src,true)
+        local d = destroyCharacterAction(player, src,true)
 
-        local grav = getPlayerDeck(player, "DECK_GRAV")
-        local hand = getPlayerDeck(player, "DECK_HAND")
-
-        local target = makeTargetFromCARD(src)
-        moveCards(player,grav,hand,"TAKE_CARDID","PUT_BOTTOM",target)
-        destroyList(target)
-
-        local d = drawCard(player)
         if d then
-            levelUpScout(player)
+            local grav = getPlayerDeck(player, "DECK_GRAV")
+            local hand = getPlayerDeck(player, "DECK_HAND")
+
+            local target = makeTargetFromCARD(src)
+            local m = moveCards(player,grav,hand,"TAKE_CARDID","PUT_BOTTOM",target)
+            destroyList(target)
+
+            if m > 0 then
+                local d = drawCard(player)
+                if d then
+                    levelUpScout(player,false)
+                end
+            end
         end
     end
 

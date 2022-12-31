@@ -40,9 +40,10 @@ ZTCG_CARD
 
                 if card ~= 0 then
                     card_list = takeTargetCardFromList(card,card_list)
-                    putCardUnder(getCARD(pet),card)
+                    card = putCardUnder(getCARD(pet),card)
                 end
 
+                destroyList(card)
                 destroyList(card_list)
             end
         end

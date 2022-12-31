@@ -13,7 +13,7 @@ ZTCG_CARD
     {
         "LEVEL" "30"
         "ATTCK" "30"
-        "HP" "20"
+        "HP" "10"
         "TEXT" "Rescue -- Whenever your opponent levels up, you may return a monster of level 30 or less from your discard pile to your hand."
     }
 

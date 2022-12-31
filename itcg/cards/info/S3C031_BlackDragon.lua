@@ -48,9 +48,10 @@ ZTCG_CARD
 
             if card ~= 0 then
                 card_list = takeTargetCardFromList(card,card_list)
-                putCardUnder(src,card)
+                card = putCardUnder(src,card)
             end
 
+            destroyList(card)
             destroyList(card_list)
         end
 
@@ -75,10 +76,11 @@ ZTCG_CARD
 
                 local card = makeTargetFromCARD(getCARD(card_list))
                 if card ~= 0 then
-                    putCardUnder(getCARD(pet),card)
                     card_list = takeTargetCardFromList(card,card_list)
+                    card = putCardUnder(getCARD(pet),card)
                 end
 
+                destroyList(card)
                 destroyList(card_list)
             end
         end

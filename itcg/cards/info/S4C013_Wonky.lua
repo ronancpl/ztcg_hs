@@ -43,6 +43,7 @@ ZTCG_CARD
             local card_list = getListFromDeck(deckHand)
             local spawn_list, not_empty = makeFilteredList(player,card_list,0,0,level,"TYPE_ANYMOB","ELEM_ANY","ZTCG_NIL")
             if not not_empty then
+                destroyList(spawn_list)
                 break
             end
 

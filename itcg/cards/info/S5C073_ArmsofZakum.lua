@@ -29,7 +29,7 @@ ZTCG_CARD
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
         refreshHP(player,chr,80)
 
-        local clist = makeFilteredTableList(player, "ONLY_PLAYER", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_ANYMOB", "ELEM_ANY", "Zakum")
+        local clist = makeFilteredTableList(player, "ONLY_PLAYER", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_ANY", "ELEM_ANY", "Zakum")
         while not isEmptyList(clist) do
             local card
             clist, card = takeNextCardsFromList(clist,1)

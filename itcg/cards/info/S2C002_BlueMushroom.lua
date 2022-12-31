@@ -27,7 +27,7 @@ ZTCG_CARD
     function onThinkMob(player)
         local list, not_empty = makeFilteredTableList(player, "ANY_PLAYER", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
         if not_empty then
-            local menuCard = menuCards(player,list,"Select a monster to withdraw.","CARDLIST_PEEK")
+            local menuCard = menuCards(player,list,"Select a monster to withdraw from the table.","CARDLIST_PEEK")
             if menuCard ~= 0 then
                 local card = getCARD(menuCard)
                 local slotid = getSlotIdFromCARD(player, getCARD(menuCard))
@@ -49,7 +49,7 @@ ZTCG_CARD
 
                 if hasCard then
                     local deckHand = getPlayerDeck(p, "DECK_HAND")
-                    list2 = moveCardsFromListToDeck(player,list2, deckHand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+                    list2 = moveCardsFromListToDeck(p, list2, deckHand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
                 end
 
                 destroyList(list2)
@@ -60,6 +60,7 @@ ZTCG_CARD
     end
 
     function onActivateCharacterAction(player)
+        local str = "Spawn 30"
         summon(player,"PLAY_NORMALSUMMON","ELEM_ANY",30)
     end
 

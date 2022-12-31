@@ -21,7 +21,7 @@ ZTCG_CARD
     {
         "LEVEL" "ZTCG_MAXVALUE"
         "ATTRB" "0"
-        "TEXT" "Rouge's Revenge -- If you have 3 or more Thief cards under your character, destroy a non-Boss monster."
+        "TEXT" "Rogue's Revenge -- If you have 3 or more Thief cards under your character, destroy a non-Boss monster."
     }
 
     function afterOpponentApplyCharacterAction(player)

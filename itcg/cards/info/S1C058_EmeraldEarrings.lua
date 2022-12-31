@@ -26,11 +26,13 @@ ZTCG_CARD
         local deck = getPlayerDeck(player, "DECK_DECK")
 
         local card = peekNextCard(player)
-        --revealCard(not player,"Next card...",card)
+        if card ~= 0 then
+            --revealCard(not player,"Next card...",card)
 
-        if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_EQP") then   -- only draw card if its an item
-            local hand = getPlayerDeck(player, "DECK_HAND")
-            moveCards(player,deck,hand,"TAKE_NEXT","PUT_BOTTOM",1)
+            if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_EQP") then   -- only draw card if its an item
+                local hand = getPlayerDeck(player, "DECK_HAND")
+                moveCards(player,deck,hand,"TAKE_NEXT","PUT_BOTTOM",1)
+            end
         end
     end
 

@@ -22,43 +22,15 @@ ZTCG_CARD
         "TEXT" "Equip 60 -- Play an item of level 60 or less."
     }
 
-    function onStartTurn(player)
-        local src = getSourceCARD()
-        local cid = getCardIdFromCARD(src)
-
-        editCardRegister(src, cid, 0, 10, 0, nil)
-    end
-
-    function onThinkEquipment(player)
-        local src = getSourceCARD()
-        local cid = getCardIdFromCARD(src)
-
-        editCardRegister(src, cid, 0, 10, 0, nil)
-    end
-
-    function onPlayCard(player) -- after playing mob
-        local src = getSourceCARD()
-        local cid = getCardIdFromCARD(src)
-
-        editCardRegister(src, cid, 0, 10, 0, nil)
-    end
-
     function onPlayMob(player)
-        local src = getSourceCARD()
-        local cid = getCardIdFromCARD(src)
-
-        if getCardRegister(src, cid, 0) > 0 then
-            editCardRegister(src, cid, 0, 0, 0, nil)
-
+        if hasFlag("ZTCG_COUNTER","IS_STARTER") then
             if not scoutMob(player,"SCOUT_SUMMON","ELEM_ANY") then
                 local deck = getPlayerDeck(player, "DECK_DECK")
-                local deck_list = getListFromDeck(deck)
+                local deck_list, qty = getListFromDeck(deck)
 
-                if(hasSharedFlagsCARD(getCARD(deck_list), "FLAG_TYPE", "TYPE_ANYMOB")) then
+                if qty > 0 then
                     local list_cards = takeCardsFromDeck(player,deck, 1)
                     list_cards = moveCardsFromListToDeck(player,list_cards,deck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
-                    summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
-
                     destroyList(list_cards)
                 end
             end

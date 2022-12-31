@@ -25,6 +25,7 @@ ZTCG_CARD
     function onActivateMobEffect(player)
         if (not hasFlag("ZTCG_PLAYERTYPE","IS_PLAYER")) then return end
         if(not matchRequirements(player, 70, 2, "ELEM_WARRIOR")) then return end
+        if(not makePrompt(player,true,"Use Minion Attack?","Reveal 2 cards from the top of your deck: play any monsters temporarily and discard others.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
 
         local deck_list = getPlayerDeck(player, "DECK_DECK")
         local deck_hand = getPlayerDeck(player, "DECK_HAND")

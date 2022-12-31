@@ -24,29 +24,8 @@ ZTCG_CARD
         "TEXT" "Deadly Shot -- Do 30 damage to a character or monster."
     }
 
-    function onOpponentPlayActionCancel(player)
-        local src = getSourceCARD()
-        local cid = getCardIdFromCARD(src)
-
-        if getCardRegister(src, cid, 0) ~= 0 then
-            return 1
-        else
-            return 0
-        end
-    end
-
-    function onStartTurn(player)
-        local src = getSourceCARD()
-        local cid = getCardIdFromCARD(src)
-
-        editCardRegister(src, cid, 0, 0, 0, nil)
-    end
-
     function onThinkMob(player)
-        local src = getSourceCARD()
-        local cid = getCardIdFromCARD(src)
-
-        editCardRegister(src, cid, 0, 5, 0, nil)
+        turnAction(not player,false)
     end
 
     function onActivateCharacterAction(player)

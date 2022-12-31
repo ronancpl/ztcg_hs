@@ -28,7 +28,7 @@ ZTCG_CARD
         local src = getSourceCARD()
         if getSlotIdFromCARD(player,src) < 0 then return end
 
-        removeAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,20,20,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "Boar")
+        removeAuraBonus(player,"GLOBALAURA_PASS_ADVSRY",src,20,20,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "Boar")
     end
 
     function applyBuffs(player)
@@ -36,7 +36,7 @@ ZTCG_CARD
         if getSlotIdFromCARD(player,src) < 0 then return end
 
         local src = getSourceCARD()
-        applyAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,20,20,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "Boar")
+        applyAuraBonus(player,"GLOBALAURA_PASS_ADVSRY","BUFF_OTHER",src,20,20,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "Boar")
     end
 
     function onCalcAttack(player)

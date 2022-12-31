@@ -22,10 +22,30 @@ ZTCG_CARD
         "TEXT" "Spawn 120 -- Play a monster of level 120 or less. "
     }
 
+    function onOpponentTryPlayMob(player)
+        local src = getSourceCARD()
+        local cid = getCardIdFromCARD(src)
+
+        local target = getTargetCARD()
+        local targetCid = getCardIdFromCARD(target)
+
+        local cardid = getCardRegister(src,cid,0)
+        if cardid == targetCid then
+            updateGameValue(0, 0)
+        end
+    end
+
     function onThinkAction(player)
+        local src = getSourceCARD()
+        local cid = getCardIdFromCARD(src)
+        insertCardTurnAction(player)
+
         local clist = makeFilteredTableList(player, "ONLY_ADVSRY", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
         local card = menuCards(player,clist,"Select a card to withdraw from the table.","CARDLIST_PEEK")
         if card ~= 0 then
+            local cardid = getCardIdFromCARD(getCARD(card))
+            editCardRegister(src, cid, 0, cardid, 0, null)
+
             local slot = getSlotIdFromCARD(not player, getCARD(card))
 
             local list, hasCard

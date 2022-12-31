@@ -29,7 +29,9 @@ ZTCG_CARD
         local def_card = getCardPointer(1)
         if isInfoCARD(def_card, "Undead") then
             local slotid = getSlotIdFromCARD(not player, def_card)
-            destroySelf(player,"SLOT_ADVSRYMOB" .. tostring(slotid))
+            if slotid > 0 then
+                destroySelf(player,"SLOT_ADVSRYMOB" .. slotid)
+            end
         end
     end
 

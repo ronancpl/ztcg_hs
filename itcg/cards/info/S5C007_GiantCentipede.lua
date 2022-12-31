@@ -33,14 +33,19 @@ ZTCG_CARD
         if (not hasFlag("ZTCG_PLAYERTYPE","IS_PLAYER")) then return end
         if(not matchRequirements(player, 60, 2, "ELEM_BOWMAN")) then return end
 
+        if(not makePrompt(player,true,"Use Trample 30?","Do 30 damage to each other mob in play that isn't Flying.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
+
         local src = getSourceCARD()
-        attackNotInfo(player,src,30,"SLOT_ADVSRYMOB",1,"Flying")
-        attackNotInfo(player,src,30,"SLOT_ADVSRYMOB",2,"Flying")
-        attackNotInfo(player,src,30,"SLOT_ADVSRYMOB",3,"Flying")
-        attackNotInfo(player,src,30,"SLOT_ADVSRYMOB",4,"Flying")
-        attackNotInfo(player,src,30,"SLOT_ADVSRYMOB",5,"Flying")
-        attackNotInfo(player,src,30,"SLOT_ADVSRYMOB",6,"Flying")
-        attackNotInfo(player,src,30,"SLOT_ADVSRYMOB",7,"Flying")
+        for i = 1, 7, 1 do
+            attackNotInfo(player,src,30,"SLOT_ADVSRYMOB",i,"Flying")
+        end
+
+        local slotid = getSlotIdFromCARD(player,src)
+        for i = 1, 7, 1 do
+            if i ~= slotid then
+                attackNotInfo(player,src,30,"SLOT_PLAYERMOB",i,"Flying")
+            end
+        end
     end
 
 }

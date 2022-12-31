@@ -30,7 +30,7 @@ ZTCG_CARD
     function onActivateCharacterAction(player)
         -- copypaste here the text which defines the card lvaction
         local str = "Summon / Equip 70 "
-        playCard(player, str, "PLAY_MOB | PLAY_EQUIP", 70)
+        playCard(player, str, "ELEM_ANY", "PLAY_MOB | PLAY_EQUIP", 70)
     end
 
     function onStartAttack(player)

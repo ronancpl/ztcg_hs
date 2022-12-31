@@ -26,8 +26,6 @@ ZTCG_CARD
         local src = getSourceCARD()
         if getSlotIdFromCARD(player,src) < 0 then return end
 
-        local src = getSourceCARD()
-
         local equips, not_empty = makeFilteredTableList(player,"ONLY_PLAYER",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_EQP","ELEM_ANY","ZTCG_NIL")
         if not_empty then
             local menuCard = menuCards(player,equips,"Select an equip to destroy for its level in attack.","CARDLIST_PEEK")
@@ -39,6 +37,8 @@ ZTCG_CARD
                 attack(player, src, dmg, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
             end
         end
+
+        destroyList(equips)
     end
 
     function onActivateCharacterAction(player)

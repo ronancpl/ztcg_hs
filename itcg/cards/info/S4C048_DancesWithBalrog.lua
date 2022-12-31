@@ -14,13 +14,13 @@ ZTCG_CARD
         "LEVEL" "80"
         "ATTCK" "40"
         "HP" "160"
-    }
 
-    LVL_ACTION
-    {
-        "LEVEL" "90"
-        "ATTRB" "3"
-        "TEXT" "MegaSpawn -- Search your deck for a non-Boss monster and play it. Then shuffle your deck."
+        LVL_ACTION
+        {
+            "LEVEL" "90"
+            "ATTRB" "3"
+            "TEXT" "MegaSpawn -- Search your deck for a non-Boss monster and play it. Then shuffle your deck."
+        }
     }
 
     function onActivateMobEffect(player)

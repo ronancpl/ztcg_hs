@@ -14,13 +14,13 @@ ZTCG_CARD
         "LEVEL" "80"
         "ATTCK" "40"
         "HP" "150"
-    }
 
-    LVL_ACTION
-    {
-        "LEVEL" "70"
-        "ATTRB" "3"
-        "TEXT" "Fatal Attack -- For each Bowman card under your character, do 20 damage to a character or monster."
+        LVL_ACTION
+        {
+            "LEVEL" "70"
+            "ATTRB" "3"
+            "TEXT" "Fatal Attack -- For each Bowman card under your character, do 20 damage to a character or monster."
+        }
     }
 
     function onActivateMobEffect(player)

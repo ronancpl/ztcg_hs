@@ -45,14 +45,14 @@ ZTCG_CARD
         if(not matchRequirements(player, 50, 2, "ELEM_WARRIOR")) then return end
 
         local src = getSourceCARD()
-        removeAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,20,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
+        removeAuraBonus(player,"GLOBALAURA_PASS_ADVSRY",src,20,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
     end
 
     function applyBuffs(player)
         if(not matchRequirements(player, 50, 2, "ELEM_WARRIOR")) then return end
 
         local src = getSourceCARD()
-        applyAuraBonus(player, "GLOBALAURA_PASS_ADVSRY",src,20,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
+        applyAuraBonus(player,"GLOBALAURA_PASS_ADVSRY","BUFF_ANY",src,20,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
     end
 
     function onActivateCharacterAction3(player)

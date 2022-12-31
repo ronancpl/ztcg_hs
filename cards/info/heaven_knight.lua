@@ -51,7 +51,7 @@ ZTCG_CARD
     end
 
     function onInterceptAttack(player)
-        local def_card = getCardPointer(0)
+        local def_card = getCardPointer(1)
 
         if(hasSharedFlagsCARD(def_card, "FLAG_TYPE", "TYPE_CHAR | TYPE_EQP")) then
             local src = getSourceCARD()
@@ -74,7 +74,7 @@ ZTCG_CARD
 
             local atkr = getCardPointer(0)
             local atkr_slot = getSlotIdFromCARD(not player, atkr)
-            attack(player, src, dmg, "ATKRES_FIXED_SLOT_DAMAGE", "ATKSRC_NIL", atkr_slot, "ENABLE_PREVENT", "IS_COUNTER")
+            attack(player, src, dmg, "ATKRES_FIXED_SLOT_DAMAGE", "ATKSRC_NIL", atkr_slot, "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_COUNTER")
         end
     end
 }

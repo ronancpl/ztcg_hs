@@ -28,7 +28,7 @@ ZTCG_CARD
         }
     }
 
-    function onAttackMobDestroyed(player)
+    function onReceiveAttackAndDestroyed(player)
         local def_card = getCardPointer(1)
         if(hasSharedFlagsCARD(def_card, "FLAG_TYPE", "TYPE_BOS")) then
             local deck = getPlayerDeck(player, "DECK_DECK")
@@ -55,6 +55,8 @@ ZTCG_CARD
     function onActivateMobEffect(player)
         if (not hasFlag("ZTCG_PLAYERTYPE","IS_PLAYER")) then return end
         if(not matchRequirements(player, 40, 2, "ELEM_WARRIOR")) then return end
+
+        if(not makePrompt(player,true,"Use Shock Wave?","Do 10 damage to each opponent mobs. Do 10 damage to opponent character.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
 
         local src = getSourceCARD()
         attack(player, src, 10, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB1", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")

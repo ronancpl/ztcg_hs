@@ -28,17 +28,18 @@ ZTCG_CARD
         local def_card = getTargetCARD()
         if(hasSharedFlagsCARD(def_card, "FLAG_TYPE", "TYPE_CHAR") and getGameValue(0) > 0) then
             local card = peekNextCard(player)
+            if card ~= 0 then
+                local deck_list = getPlayerDeck(player, "DECK_DECK")
+                local list_cards = takeCardsFromDeck(player,deck_list, 1)
 
-            local deck_list = getPlayerDeck(player, "DECK_DECK")
-            local list_cards = takeCardsFromDeck(player,deck_list, 1)
+                if(makePrompt(player,false,"Draw " .. getNameFromCARD(card) .. "?","Or insert it on the bottom of the deck?","ZTCG_NIL","ZTCG_NIL","Top","Bottom")) then
+                    list_cards = moveCardsFromListToDeck(player,list_cards,deck_list,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
+                else
+                    list_cards = moveCardsFromListToDeck(player,list_cards,deck_list,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+                end
 
-            if(makePrompt(player,false,"Draw " .. getNameFromCARD(card) .. "?","Or insert it on the bottom of the deck?","ZTCG_NIL","ZTCG_NIL","Top","Bottom")) then
-                list_cards = moveCardsFromListToDeck(player,list_cards,deck_list,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
-            else
-                list_cards = moveCardsFromListToDeck(player,list_cards,deck_list,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+                destroyList(list_cards)
             end
-
-            destroyList(list_cards)
         end
     end
 

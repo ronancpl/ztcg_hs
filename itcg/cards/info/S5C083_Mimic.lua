@@ -64,6 +64,7 @@ ZTCG_CARD
                 attack(player, chr, dmg, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
             end
         end
+        destroyList(equips)
     end
 
 }

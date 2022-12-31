@@ -24,7 +24,7 @@ ZTCG_CARD
     function onActivateCharacterAction(player)
         -- copypaste here the text which defines the card lvaction
         local str = "Summon / Locate 60"
-        playCard(player, str, "PLAY_MOB | PLAY_FIELD", 60)
+        playCard(player, str, "ELEM_ANY", "PLAY_MOB | PLAY_FIELD", 60)
     end
 
     -- CARD REGISTER:
@@ -85,7 +85,6 @@ ZTCG_CARD
         end
 
         destroyList(clist)
-
     end
 
     function onDestroy(player)  -- this card has been destroyed, remove the block from the target

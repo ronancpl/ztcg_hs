@@ -26,13 +26,14 @@ ZTCG_CARD
 
     function onThinkMob(player)
         local card = peekNextCard(player)
+        if card ~= 0 then
+            drawCard(player)
+            --revealCard(not player,"Opponent has drawn card...",card)
 
-        drawCard(player)
-        revealCard(not player,"Opponent has drawn card...",card)
-
-        if(hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_ACT")) then
-            if(makePrompt(player,true,"Use " .. getNameFromCARD(card) .. "?","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then
-                action(player,card,"ELEM_ANY","ZTCG_MAXVALUE")
+            if(hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_ACT")) then
+                if(makePrompt(player,true,"Use " .. getNameFromCARD(card) .. "?","ZTCG_NIL","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then
+                    action(player,card,"ELEM_ANY","ZTCG_MAXVALUE")
+                end
             end
         end
     end

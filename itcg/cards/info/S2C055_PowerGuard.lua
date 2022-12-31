@@ -42,6 +42,7 @@ ZTCG_CARD
                 setCardPointer(3, preventMob)
             end
         end
+        destroyList(list)
     end
 
     function onActivateCharacterAction(player)

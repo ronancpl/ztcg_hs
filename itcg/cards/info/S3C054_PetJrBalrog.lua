@@ -40,9 +40,10 @@ ZTCG_CARD
 
             if card ~= 0 then
                 card_list = takeTargetCardFromList(card,card_list)
-                putCardUnder(src,card)
+                card = putCardUnder(src,card)
             end
 
+            destroyList(card)
             destroyList(card_list)
         end
     end
@@ -70,7 +71,7 @@ ZTCG_CARD
                     if not isEmptyList(cards_under) then
                         local card = menuCards(player,cards_under,"Pick a card from under the pet to use.","CARDLIST_HIDE")
                         if card ~= 0 then
-                            revealCard(not player,"Opponent has drawn card...",getCARD(card))
+                            revealCard(not player,"Opponent has card...",getCARD(card))
 
                             atk = getBaseAttackFromCARD(getCARD(card))
                             editCardRegister(src, cid, 0, slot, 0, nil)

@@ -66,6 +66,7 @@ ZTCG_CARD
             local card_list = getListFromDeck(deckHand)
             local spawn_list, not_empty = makeFilteredList(player,card_list,0,0,level,"TYPE_ANY","ELEM_ANY","ZTCG_NIL")
             if not not_empty then
+                destroyList(spawn_list)
                 break
             end
 
@@ -88,6 +89,7 @@ ZTCG_CARD
                 local cardLevel = getCurrentLevelFromCARD(card)
                 editCardRegister(src, cardid, 0, level - cardLevel, 0, nil)
 
+                destroyList(cardList)
                 destroyList(spawn_list)
             else
                 destroyList(spawn_list)
