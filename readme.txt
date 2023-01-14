@@ -14,7 +14,7 @@ their respective staff.
 Extract the ZIP folder.
 On Windows OS: run "ztcg_hs.exe".
 
-On Unix: run "ztcg_hs_unix".
+On Unix: run "ztcg_hs_posix".
 If at first it doesn't run, go Properties -> check "Is executable", and try running again.
 
 3) Game Patches

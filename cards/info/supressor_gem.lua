@@ -39,28 +39,32 @@ ZTCG_CARD
 
     function undoBuffs(player)
         local src = getSourceCARD()
+        if getSlotIdFromCARD(player,src) < 0 then return end
+
         local cardid = getCardIdFromCARD(src)
 
         local slot = getCardRegister(src, cardid, 0)
         local affected_mob = getOnBoardCARD(not player, slot)  -- the affected mob card
 
-        print("AFFECTED_MOB: ", slot)
-        print("NAME is ", getNameFromCARD(affected_mob))
+        -- print("AFFECTED_MOB: ", slot)
+        -- print("NAME is ", getNameFromCARD(affected_mob))
 
-        removeBlockAura(affected_mob, "AURA_SILENCE", src);
+        removeBlockAura(affected_mob, "AURA_SILENCE", src)
     end
 
     function applyBuffs(player)
         local src = getSourceCARD()
+        if getSlotIdFromCARD(player,src) < 0 then return end
+
         local cardid = getCardIdFromCARD(src)
 
         local slot = getCardRegister(src, cardid, 0)
         local affected_mob = getOnBoardCARD(not player, slot)  -- the affected mob card
 
-        print("RE AFFECTED_MOB: ", slot)
-        print("RE NAME is ", getNameFromCARD(affected_mob))
+        -- print("RE AFFECTED_MOB: ", slot)
+        -- print("RE NAME is ", getNameFromCARD(affected_mob))
 
-        applyBlockAura(affected_mob, "AURA_SILENCE", src);
+        applyBlockAura(affected_mob, "AURA_SILENCE", src)
     end
 
     function onThinkEquipment(player)
@@ -77,7 +81,7 @@ ZTCG_CARD
                 applyBlockAura(target, "AURA_SILENCE", src)
 
                 local val = getSlotIdFromCARD(not player, target)   -- saving the slot this equipment is targeting
-                print("TARGET SGEM:", val)
+                -- print("TARGET SGEM:", val)
 
                 local cardid = getCardIdFromCARD(src)
                 editCardRegister(src, cardid, 0, val, 0, null)
@@ -94,15 +98,15 @@ ZTCG_CARD
         local slot = getCardRegister(src, cardid, 0)
         local affected_mob = getOnBoardCARD(not player, slot)  -- the affected mob card
 
-        removeBlockAura(affected_mob, "AURA_SILENCE", src);
+        removeBlockAura(affected_mob, "AURA_SILENCE", src)
     end
 
-    function onOpponentCardDestroyed(player)
+    function effect_onMobDestroyed(player)
         local target = getTargetCARD()
 
         local src = getSourceCARD()
-        local id = getCardIdFromCARD(src)
-        local slot = getCardRegister(src, id, 0)
+        local cardid = getCardIdFromCARD(src)
+        local slot = getCardRegister(src, cardid, 0)
 
         local affected_mob = getOnBoardCARD(not player, slot)  -- the affected mob card
 
@@ -111,13 +115,23 @@ ZTCG_CARD
         -- print("match", isSameCARD(target, affected_mob))
 
         if(isSameCARD(target, affected_mob)) then
-            removeBlockAura(affected_mob, "AURA_SILENCE", src);
-            editCardRegister(src, id, 0, -1, 0, null)  -- target has been destroyed, ready to affect another
+            removeBlockAura(affected_mob, "AURA_SILENCE", src)
+            editCardRegister(src, cardid, 0, -1, 0, null)  -- target has been destroyed, ready to affect another
         end
+    end
+
+    function onOpponentMobSentToDiscardPile(player)
+        effect_onMobDestroyed(player)
+    end
+
+    function onOpponentCardDestroyed(player)
+        effect_onMobDestroyed(player)
     end
 
     function onStartTurn(player)
         local src = getSourceCARD()
+        if getSlotIdFromCARD(player,src) < 0 then return end
+
         local cardid = getCardIdFromCARD(src)
 
         if(getCardRegister(src, cardid, 0) == -1) then

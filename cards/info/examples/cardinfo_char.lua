@@ -14,7 +14,7 @@ ZTCG_CARD
         {
             "LEVEL" "10"
             "ATTRB" "0"
-            "TEXT" "Mission - Draw Card"
+            "TEXT" "Mission - Draw a card."
         }
 
         LVL_ACTION

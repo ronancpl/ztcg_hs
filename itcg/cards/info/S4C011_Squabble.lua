@@ -57,6 +57,9 @@ ZTCG_CARD
                     attack(player, getCARD(cardA), atkA, "ATKRES_FIXED_SLOT_DAMAGE", "ATKSRC_NIL", slotStrB, "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_COUNTER")
                 end
             end
+
+            destroyList(mobs)
+            destroyList(opposingMobs)
         end
     end
 

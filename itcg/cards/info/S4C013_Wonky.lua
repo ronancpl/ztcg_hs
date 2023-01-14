@@ -56,6 +56,7 @@ ZTCG_CARD
                 local mobLevel = getBaseLevelFromCARD(getCARD(card))
                 editCardRegister(src, cardid, 0, level - mobLevel, 0, nil)
 
+                destroyList(cardList)
                 destroyList(spawn_list)
             else
                 destroyList(spawn_list)

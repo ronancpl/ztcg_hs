@@ -46,6 +46,8 @@ ZTCG_CARD
                 destroyList(card)
                 destroyList(card_list)
             end
+
+            destroyList(pet)
         end
 
         destroyList(list)

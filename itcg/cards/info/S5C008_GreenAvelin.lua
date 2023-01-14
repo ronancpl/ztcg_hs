@@ -23,7 +23,7 @@ ZTCG_CARD
     }
 
     function doRepeatLevelActionTrigger(player)
-        return 1
+        return 2
     end
 
     function onLevelActionTrigger(player)

@@ -22,7 +22,7 @@ ZTCG_CARD
         "TEXT" "Dances with Balrogs Team Up -- Get +20 HP. If you're level 60 or more, you may play Dances with Balrogs."
     }
 
-    function onCalcAttack(player)
+    function onCalcNextAttack(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
@@ -36,7 +36,7 @@ ZTCG_CARD
         end
     end
 
-    function onExecuteAttack(player)
+    function onExecuteNextAttack(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 

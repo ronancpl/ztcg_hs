@@ -31,6 +31,7 @@ ZTCG_CARD
     function effect_dw(player)
         if(not matchRequirements(player, 70, 3, "ELEM_MAGE")) then return end
 
+        local hand = getPlayerDeck(player, "DECK_HAND")
         local deck = getPlayerDeck(player, "DECK_DECK")
         local cards = takeCardsFromDeck(player,deck, 3)
 
@@ -39,7 +40,7 @@ ZTCG_CARD
             local card = menuCards(player,actions,"Select a tactic to use.","CARDLIST_PEEK")
             if card ~= 0 then
                 actions = takeTargetCardFromList(card,actions)
-                cards = takeTargetCardFromList(card,cards)
+                cards = moveCardsFromListToDeck(player,cards,hand,"TAKE_CARDID","PUT_BOTTOM",card)
                 action(player,getCARD(card),"ELEM_ANY","ZTCG_DONTCARE")
             else
                 break

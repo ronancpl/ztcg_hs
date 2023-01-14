@@ -22,7 +22,7 @@ ZTCG_CARD
         "TEXT" "Astonish -- Name a card. Reveal the top card of your deck. If you named that card, level up with it. "
     }
 
-    function onCalcAttack(player)
+    function onCalcNextAttack(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
@@ -38,7 +38,7 @@ ZTCG_CARD
         end
     end
 
-    function onExecuteAttack(player)
+    function onExecuteNextAttack(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 

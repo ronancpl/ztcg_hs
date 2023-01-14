@@ -22,11 +22,11 @@ ZTCG_CARD
         "TEXT" "Multi Sneak 20 -- Play any number of cards with combined levels of 20 or less."
     }
 
-    function tsbAction(player)
+    function tsbAction(p,player)
         local src = getSourceCARD()
 
         local def_card = getCardPointer(1)
-        if getSlotIdFromCARD(not player,def_card) < 0 and getCurrentLevelFromCARD(not player,def_card) <= 10 then
+        if getSlotIdFromCARD(p,def_card) < 0 and getCurrentLevelFromCARD(p,def_card) <= 10 then
             local srcCard = makeTargetFromCARD(src)
 
             local deckGrav = getPlayerDeck(player, "DECK_GRAV")
@@ -41,11 +41,11 @@ ZTCG_CARD
     end
 
     function onExecuteAttackViewGraveyard(player)
-        tsbAction(player)
+        tsbAction(not player,player)
     end
 
     function onReceiveAttackViewGraveyard(player)
-        tsbAction(player)
+        tsbAction(player,player)
     end
 
     function onThinkAction(player)

@@ -53,13 +53,8 @@ ZTCG_CARD
         if not_empty then
             local menuCard = menuCards(player,mobList,"Select a Flying mob to spawn.","CARDLIST_PEEK")
             if menuCard ~= 0 then
-                local card = getCARD(menuCard)
-
-                menuCard = takeTargetCardFromDeck(player,menuCard,deckHand)
-                menuCard = moveCardsFromListToDeck(player,menuCard,deckHand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
+                moveCards(player,deckHand,deckHand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
                 summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
-
-                destroyList(menuCard)
             end
         end
         destroyList(mobList)

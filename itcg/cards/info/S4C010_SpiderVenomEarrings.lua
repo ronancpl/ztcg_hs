@@ -49,7 +49,7 @@ ZTCG_CARD
 
         if not same then
             editCardRegister(src,cid,n,slotid,0,nil)
-            editCardRegister(src,cid,0,n+1,0,nil)
+            editCardRegister(src,cid,0,n,0,nil)
         end
     end
 
@@ -72,7 +72,8 @@ ZTCG_CARD
         end
     end
 
-    function onActivateCharacterAction2(player)
+    function onActivateCharacterAction(player)
+        local str = "Equip 50"
         equip(player, "PLAY_NORMALEQUIP","ELEM_ANY",50)
     end
 

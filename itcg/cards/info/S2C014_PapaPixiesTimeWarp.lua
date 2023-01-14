@@ -24,7 +24,9 @@ ZTCG_CARD
 
     function onThinkAction(player)
         local card = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-        local cardid = getCardIdFromCARD(card)
+
+        local src = getSourceCARD()
+        local cardid = getCardIdFromCARD(src)
 
         if getCardRegister(card, cardid, 6) == 0 then
             editCardRegister(card, cardid, 6, 1, 0, 0)
@@ -36,7 +38,9 @@ ZTCG_CARD
 
     function onEndTurn(player)
         local card = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-        local cardid = getCardIdFromCARD(card)
+
+        local src = getSourceCARD()
+        local cardid = getCardIdFromCARD(src)
 
         editCardRegister(card, cardid, 6, 0, 0, 0)
     end

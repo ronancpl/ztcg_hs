@@ -39,7 +39,7 @@ ZTCG_CARD
         applyAuraBonus(player,"GLOBALAURA_PASS_ADVSRY","BUFF_OTHER",src,20,20,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "Boar")
     end
 
-    function onCalcAttack(player)
+    function onCalcNextAttack(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
@@ -53,7 +53,7 @@ ZTCG_CARD
         end
     end
 
-    function onExecuteAttack(player)
+    function onExecuteNextAttack(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 

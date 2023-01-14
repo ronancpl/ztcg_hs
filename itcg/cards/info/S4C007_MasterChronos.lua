@@ -27,10 +27,13 @@ ZTCG_CARD
     function onThinkMob(player)
         local list, not_empty = makeFilteredTableList(player,"ONLY_ADVSRY",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB","ELEM_ANY","ZTCG_NIL")
         if not_empty then
-            local card = menuCards(player,list,"Select a mob to attack itself.","CARDLIST_PEEK")
-            if card ~= 0 then
-                local slotid = getSlotIdFromCARD(not player, getCARD(card))
-                attack(player, getCARD(card), 50, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB" .. tostring(slotid), "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+            local menuCard = menuCards(player,list,"Select a mob to attack itself.","CARDLIST_PEEK")
+            if menuCard ~= 0 then
+                local card = getCARD(menuCard)
+                local slotid = getSlotIdFromCARD(not player, card)
+                local dmg = getBaseAttackFromCARD(card)
+
+                attack(player, card, dmg, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", "SLOT_ADVSRYMOB" .. tostring(slotid), "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
             end
         end
         destroyList(list)
@@ -44,9 +47,11 @@ ZTCG_CARD
 
         local menu, not_empty = makeFilteredList(player,deck_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "Spook")
         if not_empty then
-            local card = menuCards(player,menu,"Select a mob to revive.","CARDLIST_PEEK")
-            if card ~= 0 then
-                recoverDestroyedCard(player,getCARD(card))
+            local menuCard = menuCards(player,menu,"Select a mob to revive.","CARDLIST_PEEK")
+            if menuCard ~= 0 then
+                local card = getCARD(menuCard)
+
+                recoverDestroyedCard(player,card)
             end
         end
         destroyList(menu)

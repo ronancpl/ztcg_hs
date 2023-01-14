@@ -40,7 +40,7 @@ ZTCG_CARD
         end
     end
 
-    function onCalcAttack(player)
+    function onCalcNextAttack(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
@@ -54,7 +54,7 @@ ZTCG_CARD
         end
     end
 
-    function onExecuteAttack(player)
+    function onExecuteNextAttack(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 

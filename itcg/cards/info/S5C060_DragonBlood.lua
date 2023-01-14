@@ -34,7 +34,7 @@ ZTCG_CARD
         editCardRegister(src, cid, 1, n, 0, nil)
     end
 
-    function onStartTurn(player)
+    function onPrepareStartTurn(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
         editCardRegister(src, cid, 0, 0, 0, nil)

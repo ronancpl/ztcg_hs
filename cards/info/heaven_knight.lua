@@ -37,15 +37,19 @@ ZTCG_CARD
     end
 
     function applyBuffs(player)
+        local src = getSourceCARD()
+        if getSlotIdFromCARD(player,src) < 0 then return end
+
         if(matchRequirements(player, 70, 2, "ELEM_LIGHT")) then
-            local src = getSourceCARD()
             addExtraMobAttack(src, src, 3)  -- game environment HAS BEEN CHANGED, apply attack bonus
         end
     end
 
     function undoBuffs(player)
+        local src = getSourceCARD()
+        if getSlotIdFromCARD(player,src) < 0 then return end
+
         if(matchRequirements(player, 70, 2, "ELEM_LIGHT")) then
-            local src = getSourceCARD()
             removeExtraMobAttack(src, src)      -- THIS FUNCTION ALWAYS UNDOES WHAT 'APPLYBUFFS' DOES, ALWAYS!
         end
     end
@@ -57,13 +61,12 @@ ZTCG_CARD
             local src = getSourceCARD()
             local cid = getCardIdFromCARD(src)
 
-            setCardPointer(0, src)
+            setCardPointer(1, src)
             editCardRegister(src, cid, 0, 777, 0, null)  -- prepare counter!
         end
-
     end
 
-    function onReceiveNormalAttack(player)
+    function onReceiveAttackCard(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
@@ -74,7 +77,7 @@ ZTCG_CARD
 
             local atkr = getCardPointer(0)
             local atkr_slot = getSlotIdFromCARD(not player, atkr)
-            attack(player, src, dmg, "ATKRES_FIXED_SLOT_DAMAGE", "ATKSRC_NIL", atkr_slot, "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_COUNTER")
+            attack(player, src, dmg, "ATKRES_FIXED_SLOT_DAMAGE", "ATKSRC_NIL", "SLOT_ADVSRYMOB" .. tostring(atkr_slot), "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_COUNTER")
         end
     end
 }

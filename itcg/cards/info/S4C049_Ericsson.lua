@@ -24,6 +24,11 @@ ZTCG_CARD
         "TEXT" "Spawn 100 -- Play a monster of level 100 or less."
     }
 
+    function onReceiveAttackAndSentToDiscardPile(player)
+        local src = getSourceCARD()
+        attack(player,src,30,"ATKRES_NIL", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+    end
+
     function onCardDestroyed(player)
         local target = getTargetCARD()
         if hasSharedFlagsCARD(target,"FLAG_TYPE", "TYPE_ANYMOB") then

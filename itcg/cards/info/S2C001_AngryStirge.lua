@@ -26,7 +26,7 @@ ZTCG_CARD
 
     function preventTargetMob(player)
         local atkr = getCardPointer(0)
-        local level = getCurrentLevelFromCARD(player,atkr)
+        local level = getCurrentLevelFromCARD(not player,atkr)
 
         if hasFlag("ZTCG_ATKSRC", "ATKSRC_MOB | ATKSRC_CHA") and level <= 40 then
             return 1

@@ -29,11 +29,23 @@ ZTCG_CARD
         end
     end
 
+    function hasTrampleMob(player)
+        local fliers = makeFilteredTableList(player,"ONLY_ADVSRY",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB","ELEM_ANY","Flying")
+        local mobs = makeFilteredTableList(player,"ONLY_ADVSRY",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB","ELEM_ANY","ZTCG_NIL")
+
+        local ret = getListLength(mobs) - getListLength(fliers)
+
+        destroyList(mobs)
+        destroyList(fliers)
+
+        return ret > 0
+    end
+
     function onActivateMobEffect(player)
         if (not hasFlag("ZTCG_PLAYERTYPE","IS_PLAYER")) then return end
         if(not matchRequirements(player, 60, 2, "ELEM_BOWMAN")) then return end
 
-        if(not makePrompt(player,true,"Use Trample 30?","Do 30 damage to each other mob in play that isn't Flying.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
+        if(not hasTrampleMob(player) or not makePrompt(player,true,"Use Trample 30?","Do 30 damage to each other mob in play that isn't Flying.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
 
         local src = getSourceCARD()
         for i = 1, 7, 1 do

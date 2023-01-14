@@ -40,7 +40,7 @@ ZTCG_CARD
         applyAuraBonus(player,"GLOBALAURA_PASS_ADVSRY","BUFF_ANY",src,30,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
     end
 
-    function onStartTurn(player)
+    function onPrepareStartTurn(player)
         local src = getSourceCARD()
         local cardid = getCardIdFromCARD(src)
         editCardRegister(src,cardid,0,0,0,nil)

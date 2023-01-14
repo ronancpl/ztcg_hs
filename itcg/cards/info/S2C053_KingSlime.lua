@@ -40,7 +40,7 @@ ZTCG_CARD
                     local card = menuCards(player,cards,"Select a mob to play.","CARDLIST_PEEK")
                     if card ~= 0 then
                         local hand = getPlayerDeck(player, "DECK_HAND")
-                        cards = moveCardsFromListToDeck(player,cards,hand,"TAKE_CARDID","PUT_BOTTOM",card)
+                        moveCards(player,deck,hand,"TAKE_CARDID","PUT_BOTTOM",card)
                         summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
                     end
                 end

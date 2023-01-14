@@ -45,8 +45,10 @@ ZTCG_CARD
                 summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
 
                 local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-                local cardid = getCardIdFromCARD(chr)
                 local slotid = getSlotIdFromCARD(player,cardp)
+
+                local src = getSourceCARD()
+                local cardid = getCardIdFromCARD(src)
 
                 editCardRegister(chr, cardid, i,slotid,0,0)
                 i = i + 1
@@ -63,7 +65,9 @@ ZTCG_CARD
 
     function onStartTurn(player)
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-        local cardid = getCardIdFromCARD(chr)
+
+        local src = getSourceCARD()
+        local cardid = getCardIdFromCARD(src)
 
         editCardRegister(chr,cardid,0,0,0,0)
         editCardRegister(chr,cardid,1,0,0,0)
@@ -71,7 +75,9 @@ ZTCG_CARD
 
     function onEndTurn(player)
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-        local cardid = getCardIdFromCARD(chr)
+
+        local src = getSourceCARD()
+        local cardid = getCardIdFromCARD(src)
 
         local slotid
         slotid = getCardRegister(chr, cardid, 0)

@@ -32,7 +32,7 @@ ZTCG_CARD
         "HP" "210"
     }
 
-    function onCalcAttackCard(player)
+    function onCalcNextAttack(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
@@ -45,7 +45,7 @@ ZTCG_CARD
         end
     end
 
-    function onExecuteAttackCard(player)
+    function onExecuteNextAttack(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
@@ -62,6 +62,8 @@ ZTCG_CARD
 
         editCardRegister(src, cid, 0, 10, 0, nil)
         editCardRegister(src, cid, 1, 20, 0, nil)
+
+        insertCardNextAction(player)  -- card pointer : next attack
     end
 
     function onActivateCharacterAction2(player)

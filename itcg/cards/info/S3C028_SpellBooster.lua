@@ -36,6 +36,7 @@ ZTCG_CARD
                 if menuCard ~= 0 then
                     local card = takeTargetCardFromDeck(player,menuCard,hand)
                     card = moveCardsFromListToDeck(player,card,deck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
+                    destroyList(card)
 
                     break
                 end

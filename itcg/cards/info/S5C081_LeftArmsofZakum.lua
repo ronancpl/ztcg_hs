@@ -30,6 +30,7 @@ ZTCG_CARD
         if card ~= 0 then
             refreshHP(player,getCARD(card),50)
         end
+        destroyList(list)
     end
 
     function onActivateCharacterAction(player)

@@ -40,8 +40,25 @@ ZTCG_CARD
         equip(player, "PLAY_NORMALEQUIP","ELEM_ANY",30)
     end
 
+    function makeFilteredPetFeedList(player)
+        local menu = makeFilteredTableList(player, "ONLY_PLAYER", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_EQP", "ELEM_ANY", "Pet")
+
+        local petMenu = makeFilteredTableList(player, "ONLY_PLAYER", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_EQP", "ELEM_ANY", "Pet")
+        local pet
+        while not isEmptyList(petMenu) do
+            petMenu, pet = takeNextCardsFromList(petMenu,1)
+            if countCardsUnder(player, getCARD(pet)) >= 3 then
+                menu = takeTargetCardFromList(pet,menu)
+            end
+            destroyList(pet)
+        end
+        destroyList(petMenu)
+
+        return menu, not isEmptyList(menu)
+    end
+
     function onActivateCharacterAction3(player)
-        local menu, notEmpty = makeFilteredTableList(player, "ONLY_PLAYER", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_EQP", "ELEM_ANY", "Pet")
+        local menu, notEmpty = makeFilteredPetFeedList(player)
         if notEmpty then
             local pet = menuCards(player,menu,"Select a pet to feed.","CARDLIST_PEEK")
             if pet ~= 0 then
