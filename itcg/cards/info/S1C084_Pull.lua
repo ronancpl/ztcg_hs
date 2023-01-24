@@ -37,7 +37,7 @@ ZTCG_CARD
                 list_card = moveCardsFromListToDeck(player,list_card,hand,"TAKE_NEXT","PUT_BOTTOM",1)
                 destroyList(list_card)
 
-                shuffleDeck(deck)
+                shuffleDeck(player,"DECK_DECK")
             end
         end
 

@@ -28,7 +28,19 @@ ZTCG_CARD
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
-        local cardType = selectCardType(player)
+        local cardType = selectCardType(player,"TYPE_ANYMOB | TYPE_EQP | TYPE_ACT | TYPE_CHAR")
+        if cardType == 4 then
+            cardType = 1
+        elseif cardType == 0 then
+            cardType = 2
+        elseif cardType == 1 then
+            cardType = 3
+        elseif cardType == 2 then
+            cardType = 4
+        else
+            cardType = 0
+        end
+
         editCardRegister(src, cid, 0, cardType, 0, nil)
     end
 

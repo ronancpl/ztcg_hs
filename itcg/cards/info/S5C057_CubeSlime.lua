@@ -14,7 +14,7 @@ ZTCG_CARD
         "LEVEL" "32"
         "ATTCK" "20"
         "HP" "30"
-        "TEXT" "Gelatinous -- Whenever Cube Slime attacks, clash with your opponent. If you win, you may destroy an item. (To clash, each player reveals the top card of their deck, then puts it on top or bottom. Whoever reveawled the highest-level card wins.)"
+        "TEXT" "Gelatinous -- Whenever Cube Slime attacks, clash with your opponent. If you win, you may destroy an item. (To clash, each player reveals the top card of their deck, then puts it on top or bottom. Whoever revealed the highest-level card wins.)"
     }
 
     LVL_ACTION

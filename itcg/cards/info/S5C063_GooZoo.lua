@@ -41,7 +41,7 @@ ZTCG_CARD
         end
 
         destroyList(goo_list)
-        shuffleDeck(deck)
+        shuffleDeck(player,"DECK_DECK")
     end
 
 }

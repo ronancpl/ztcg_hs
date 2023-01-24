@@ -39,7 +39,7 @@ ZTCG_CARD
                     moveCards(player,deck,hand,"TAKE_CARDID","PUT_BOTTOM",card)
 
                     summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
-                    shuffleDeck(deck)
+                    shuffleDeck(player,"DECK_DECK")
                 end
             end
 

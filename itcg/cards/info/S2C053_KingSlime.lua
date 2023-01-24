@@ -48,7 +48,7 @@ ZTCG_CARD
                 destroyList(cards)
             end
 
-            shuffleDeck(deck)
+            shuffleDeck(player,"DECK_DECK")
         end
     end
 

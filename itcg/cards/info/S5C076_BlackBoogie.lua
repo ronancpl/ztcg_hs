@@ -45,7 +45,7 @@ ZTCG_CARD
                 moveCards(player,deck,hand,"TAKE_CARDID","PUT_BOTTOM",card)
 
                 revealCard(not player,"Opponent has drawn card...",getCARD(card))
-                shuffleDeck(deck)
+                shuffleDeck(player,"DECK_DECK")
             end
 
             destroyList(cards)

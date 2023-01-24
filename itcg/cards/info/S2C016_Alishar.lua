@@ -31,7 +31,7 @@ ZTCG_CARD
         local deckHand = getPlayerDeck(player, "DECK_HAND")
         moveCards(player,deckHand,deckDeck,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
 
-        shuffleDeck(deckDeck)
+        shuffleDeck(player,"DECK_DECK")
     end
 
     function drawFiveCards(player)

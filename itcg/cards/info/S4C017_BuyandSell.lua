@@ -36,8 +36,8 @@ ZTCG_CARD
         local card_list, qty = getListFromDeck(deckHand)
         local n = qty
 
-        moveCards(player,deckHand,deckDeck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
-        shuffleDeck(deckDeck)
+        moveCards(p,deckHand,deckDeck,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+        shuffleDeck(p,"DECK_DECK")
 
         for i = 1, n + 1, 1 do
             drawCard(p)
