@@ -84,7 +84,7 @@ ZTCG_CARD
         applyBossesLevelDrop(player)
     end
 
-    function onReceiveAttackAndDestroyed(player)
+    function onDestroy(player)
         undoBossesLevelDrop(player)
     end
 

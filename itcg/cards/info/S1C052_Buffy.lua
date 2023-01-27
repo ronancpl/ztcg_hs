@@ -29,7 +29,7 @@ ZTCG_CARD
         if list_sz > 0 then
             local card = menuCards(player,cards,"Select a card to remove from the opponent's character actions.","CARDLIST_PEEK")
             if card ~= 0 then
-                destroyCharacterAction(player, getCARD(card),false)
+                destroyCharacterAction(player,getCARD(card),false)
             end
         end
 

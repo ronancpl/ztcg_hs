@@ -24,7 +24,7 @@ ZTCG_CARD
         "TEXT" "Spawn 30 -- Play a monster of level 30 or less. "
     }
 
-    function onReceiveAttackAndDestroyed(player)
+    function onDestroy(player)
         local src = getSourceCARD()
         local target = getCardPointer(1)
 

@@ -28,7 +28,7 @@ ZTCG_CARD
         }
     }
 
-    function onReceiveAttackAndDestroyed(player)
+    function onDestroy(player)
         local def_card = getCardPointer(1)
         if(hasSharedFlagsCARD(def_card, "FLAG_TYPE", "TYPE_BOS")) then
             local deck = getPlayerDeck(player, "DECK_DECK")

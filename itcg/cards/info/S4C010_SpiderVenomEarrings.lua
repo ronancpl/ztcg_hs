@@ -30,26 +30,29 @@ ZTCG_CARD
     end
 
     function onExecuteAttackAndSurvived(player)
-        local src = getSourceCARD()
-        local cid = getCardIdFromCARD(src)
+        local def_card = getCardPointer(1)
+        if hasSharedFlagsCARD(def_card, "FLAG_TYPE", "TYPE_CHAR | TYPE_ANYMOB") then
+            local src = getSourceCARD()
+            local cid = getCardIdFromCARD(src)
 
-        local n = getCardRegister(src,cid,0) + 1
+            local n = getCardRegister(src,cid,0) + 1
 
-        local card = getTargetCARD()
-        local slotid = getSlotIdFromCARD(not player, card)
+            local card = getTargetCARD()
+            local slotid = getSlotIdFromCARD(not player, card)
 
-        local same = false
-        for i = 1,n - 1,1 do
-            local sid = getCardRegister(src,cid,i)
-            if slotid == sid then
-                same = true
-                break
+            local same = false
+            for i = 1,n - 1,1 do
+                local sid = getCardRegister(src,cid,i)
+                if slotid == sid then
+                    same = true
+                    break
+                end
             end
-        end
 
-        if not same then
-            editCardRegister(src,cid,n,slotid,0,nil)
-            editCardRegister(src,cid,0,n,0,nil)
+            if not same then
+                editCardRegister(src,cid,n,slotid,0,nil)
+                editCardRegister(src,cid,0,n,0,nil)
+            end
         end
     end
 

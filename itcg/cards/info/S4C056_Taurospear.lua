@@ -24,7 +24,7 @@ ZTCG_CARD
         "TEXT" "Expert Scout -- If you're level 70 or more, reveal the top 2 cards of your deck. If they're both monsters, draw them. Otherwise put them back in any order."
     }
 
-    function onReceiveAttackAndDestroyed(player)
+    function onDestroy(player)
         local src = getSourceCARD()
         local srcCard = makeTargetFromCARD(src)
 

@@ -60,7 +60,7 @@ ZTCG_CARD
 
     function onActivateCharacterAction(player)
         local src = getSourceCARD()
-        local d = destroyCharacterAction(player, src,true)
+        local d = destroyCharacterAction(player,src,true)
 
         if d then
             local grav = getPlayerDeck(player, "DECK_GRAV")

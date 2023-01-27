@@ -24,7 +24,7 @@ ZTCG_CARD
         "TEXT" "Train Hard -- If you have 3 or more Warrior cards under your character, you may level up with another card. "
     }
 
-    function onReceiveAttackAndDestroyed(player)
+    function onDestroy(player)
         local src = getSourceCARD()
         local srcCard = makeTargetFromCARD(src)
 

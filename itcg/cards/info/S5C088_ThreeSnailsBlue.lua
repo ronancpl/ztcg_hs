@@ -26,7 +26,7 @@ ZTCG_CARD
         local src = getSourceCARD()
 
         local def_card = getCardPointer(1)
-        if getSlotIdFromCARD(p,def_card) < 0 and getCurrentLevelFromCARD(p,def_card) <= 10 then
+        if getSlotIdFromCARD(p,def_card) < 0 and getCurrentLevelFromCARD(p,def_card) <= 10 and hasSharedFlagsCARD(def_card, "FLAG_TYPE", "TYPE_ANYMOB") then
             local srcCard = makeTargetFromCARD(src)
 
             local deckGrav = getPlayerDeck(player, "DECK_GRAV")

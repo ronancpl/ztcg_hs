@@ -13,7 +13,7 @@ ZTCG_CARD
     {
         "HP" "90"
         "ATTCK" "40"
-        "LEVEL" "59"
+        "LEVEL" "50"
         LVL_ACTION
         {
             "LEVEL" "60"
