@@ -47,6 +47,7 @@ ZTCG_CARD
 
         editCardRegister(src, cid, 0, 10, 0, nil)
         editCardRegister(src, cid, 1, 1, 0, nil)
+        incrementBuffEffect(player,src)
     end
 
     function undoBuffs(player)

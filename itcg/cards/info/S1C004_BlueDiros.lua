@@ -22,27 +22,18 @@ ZTCG_CARD
         "TEXT" "Equip 30 -- Play an equip of level 30 or less. "
     }
 
-    function onEquipmentDestroyed(player)
-        local src = getSourceCARD()
-        local atkr = getCardPointer(3)
-        if atkr ~= 0 then
-            removeBuff(atkr,src,-10,0,0)
-        end
-    end
-
-    function onCalcDefenseCard(player)
+    function onEquipBlockDamage(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
         if hasFlag("ZTCG_ATKSRC", "ATKSRC_MOB") then
             if(getCardRegister(src, cid, 0) ~= 777) then
-                local block = getGameValue(0)
-                updateGameValue(0, block + 10)
+                return 10
             end
         end
     end
 
-    function onEquipBlockDamage(player)
+    function onInterceptAttack(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
@@ -51,8 +42,6 @@ ZTCG_CARD
                 editCardRegister(src, cid, 0, 777, 0, nil)
 
                 local atkr = getCardPointer(0)
-                setCardPointer(3, atkr)
-
                 newBuff(atkr,src,-10,0,0,1)
             end
         end

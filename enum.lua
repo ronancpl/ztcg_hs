@@ -194,6 +194,10 @@ ztcg_enum =
     {"PUT_TOP"},
     {"PUT_BOTTOM"},
 
+    -- ZTCG_TRYPLAY
+    {"IS_TRY_PREPARE", 0},
+    {"IS_TRY_TABLE"},
+
     -- ZTCG_SCOUTMODE
     {"SCOUT_NORMAL", 0},
     {"SCOUT_SUMMON"},
@@ -319,6 +323,7 @@ ztcg_enum =
     {"ZTCG_PEEK"},
     {"ZTCG_DECKORIENT"},
     {"ZTCG_DECKMOVE"},
+    {"ZTCG_TRYPLAY"},
     {"ZTCG_SCOUTMODE"},
     {"ZTCG_SUMMONMODE"},
     {"ZTCG_EQUIPMODE"},
@@ -380,6 +385,8 @@ ztcg_enum =
     {"onOpponentThrowCoin"},
     {"onThrowCoinFixed"},
     {"onOpponentThrowCoinFixed"},
+    {"onThrowDie"},
+    {"onOpponentThrowDie"},
     {"onPlayRps"},
     {"onPrompt"},
     {"onOpponentPrompt"},

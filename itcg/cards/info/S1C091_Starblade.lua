@@ -57,6 +57,9 @@ ZTCG_CARD
 
     function onActivateCharacterAction3(player)
         -- action buff
+
+        local src = getSourceCARD()
+        incrementBuffEffect(player,src)
     end
 
 }

@@ -43,6 +43,7 @@ ZTCG_CARD
         local cid = getCardIdFromCARD(src)
 
         editCardRegister(src, cid, 0, 10, 0, nil)
+        incrementBuffEffect(player,src)
     end
 
     function undoBuffs(player)

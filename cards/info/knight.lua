@@ -62,6 +62,9 @@ ZTCG_CARD
 
     function onActivateCharacterAction3(player)
         -- aura effect: "applyBuffs" , "undoBuffs" , "onPlayMob"
+
+        local src = getSourceCARD()
+        incrementBuffEffect(player,src)
     end
 
 }

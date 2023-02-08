@@ -75,6 +75,7 @@ ZTCG_CARD
         editCardRegister(src, cid, 0, 10, 0, nil)
         editCardRegister(src, cid, 1, 30, 0, nil)
 
+        incrementBuffEffect(player,src)
         insertCardTurnAction(player)  -- card pointer : next attack
     end
 
