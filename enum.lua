@@ -745,7 +745,7 @@ ztcg_enum =
     {"LAKE_SCIENTIST"},
     {"KOKIRI_SWORD"},
     {"POACHERS_SAW"},
-    {"BIOELETRIC_CUBE"},
+    {"BIOELECTRIC_CUBE"},
     {"ZORAS_FOUNTAIN"},
     {"ZORA_TUNIC"},
     {"GIANT_QUIVER"},

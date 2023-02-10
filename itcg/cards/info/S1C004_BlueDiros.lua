@@ -36,9 +36,8 @@ ZTCG_CARD
     function onInterceptAttack(player)
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
-
         if hasFlag("ZTCG_ATKSRC", "ATKSRC_MOB") then
-            if(getCardRegister(src, cid, 0) ~= 777) then
+            if getCardRegister(src, cid, 0) ~= 777 then
                 editCardRegister(src, cid, 0, 777, 0, nil)
 
                 local atkr = getCardPointer(0)

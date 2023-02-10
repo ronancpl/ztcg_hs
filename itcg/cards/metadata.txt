@@ -202,7 +202,7 @@ S3C045_ZombieMushroom.lua
 S3C046_Bain.lua
 S3C047_BattleFury.lua
 S3C048_Beetle.lua
-S3C049_Blocktopus.lua
+S3C049_Bloctopus.lua
 S3C050_FireTusk.lua
 S3C051_GreenCornian.lua
 S3C052_JrCerebes.lua

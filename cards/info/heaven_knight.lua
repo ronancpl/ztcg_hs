@@ -77,7 +77,15 @@ ZTCG_CARD
 
             local atkr = getCardPointer(0)
             local atkr_slot = getSlotIdFromCARD(not player, atkr)
-            attack(player, src, dmg, "ATKRES_FIXED_SLOT_DAMAGE", "ATKSRC_NIL", "SLOT_ADVSRYMOB" .. tostring(atkr_slot), "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_COUNTER")
+
+            local atkr_slot_str
+            if atkr_slot == 0 then
+                atkr_slot_str = "SLOT_ADVSRYCHAR"
+            else
+                atkr_slot_str = "SLOT_ADVSRYMOB" .. tostring(atkr_slot)
+            end
+
+            attack(player, src, dmg, "ATKRES_FIXED_SLOT_DAMAGE", "ATKSRC_NIL", atkr_slot_str, "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_COUNTER")
         end
     end
 }

@@ -44,17 +44,22 @@ ZTCG_CARD
     end
 
     function onEndTurn(player)
-        local src = getSourceCARD()
-        if(not makePrompt(player,true,"Use " .. getNameFromCARD(src) .. "?","Get +HP equal to your level and draw cards.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then return end
+        local hand = getPlayerDeck(player, "DECK_HAND")
+        local card_list, qty = getListFromDeck(hand)
+        local c = 5 - qty
+        if c < 0 then c = 0 end
 
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
         local level = getCurrentLevelFromCARD(player,chr)
+
+        local src = getSourceCARD()
+        local hp_val = level
+        local draw_val = c
+
+        if(not makePrompt(player,true,"Use " .. getNameFromCARD(src) .. "?","%d HP restoration, draw %d cards.",hp_val,draw_val,"OK","Cancel")) then return end
+
         refreshHP(player,chr,level)
 
-        local hand = getPlayerDeck(player, "DECK_HAND")
-        local card_list, qty = getListFromDeck(hand)
-
-        local c = 5 - qty
         for i = 1, c, 1 do
             drawCard(player)
         end

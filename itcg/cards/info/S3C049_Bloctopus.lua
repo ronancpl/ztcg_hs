@@ -1,8 +1,8 @@
 ZTCG_CARD
 {
 
-    "NAME" "Blocktopus"
-    "IMAGE" "S3C049_Blocktopus.png"
+    "NAME" "Bloctopus"
+    "IMAGE" "S3C049_Bloctopus.png"
     "TYPE" "MOB"
     "ELEMENT" "Warrior"
     "RARITY" "RARITY_UNIQUE"

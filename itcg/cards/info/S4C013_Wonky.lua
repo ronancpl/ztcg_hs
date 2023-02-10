@@ -37,12 +37,16 @@ ZTCG_CARD
 
         local deckHand = getPlayerDeck(player, "DECK_HAND")
 
+        local spawned_list = createList()
+
         while true do
             local level = getCardRegister(src, cardid, 0)
 
             local card_list = getListFromDeck(deckHand)
-            local spawn_list, not_empty = makeFilteredList(player,card_list,0,0,level,"TYPE_ANYMOB","ELEM_ANY","ZTCG_NIL")
-            if not not_empty then
+            local spawn_list = makeFilteredList(player,card_list,0,0,level,"TYPE_ANYMOB","ELEM_ANY","ZTCG_NIL")
+            spawn_list = takeCardsFromList(spawned_list,spawn_list)
+
+            if getListLength(spawn_list) == 0 then
                 destroyList(spawn_list)
                 break
             end
@@ -50,6 +54,8 @@ ZTCG_CARD
             local card = menuCards(player,spawn_list,"Select a mob to spawn.","CARDLIST_PEEK")
             if card ~= 0 then
                 local cardList = takeTargetCardFromDeck(player,card,deckHand)
+                spawned_list = appendLists(spawned_list,cardList)
+
                 cardList = moveCardsFromListToDeck(player,cardList,deckHand,"TAKE_CARDID","PUT_BOTTOM",card)
                 summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
 
@@ -63,6 +69,8 @@ ZTCG_CARD
                 break
             end
         end
+
+        destroyList(spawned_list)
     end
 
 }

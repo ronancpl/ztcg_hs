@@ -28,7 +28,7 @@ ZTCG_CARD
         return makeFilteredTableList(player,"ONLY_PLAYER",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB","ELEM_ANY",info)
     end
 
-    function destroyCardUnder(player,mob)
+    function summonCardUnder(player,mob)
         local deck = getPlayerDeck(player, "DECK_DECK")
         local hand = getPlayerDeck(player, "DECK_HAND")
 
@@ -36,16 +36,7 @@ ZTCG_CARD
         moveCards(player,deck,hand,"TAKE_CARDID","PUT_BOTTOM",mob_target)
         destroyList(mob_target)
 
-        if summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE") then
-            local slotid = getSlotIdFromCARD(player, mob)
-            destroySelf(player,"SLOT_PLAYERMOB" .. slotid)
-
-            local src = getSourceCARD()
-            local src_target = makeTargetFromCARD(src)
-            local grav = getPlayerDeck(player, "DECK_GRAV")
-            moveCards(player,grav,grav,"TAKE_CARDID","PUT_TOP",src_target)
-            destroyList(src_target)
-        end
+        summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
     end
 
     function onReceiveAttackAndSentToDiscardPile(player)
@@ -58,7 +49,9 @@ ZTCG_CARD
 
     function onReceiveAttackAndDestroyed(player)
         local mob = getCardPointer(3)
-        destroyCardUnder(player,mob)
+        if mob ~= 0 then
+            summonCardUnder(player,mob)
+        end
     end
 
     function onTryPlay(player)

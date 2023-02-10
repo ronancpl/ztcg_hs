@@ -28,8 +28,10 @@ ZTCG_CARD
 
         local grav = getPlayerDeck(player, "DECK_GRAV")
         local hand = getPlayerDeck(player, "DECK_HAND")
-        moveCards(player,grav,hand,"TAKE_CARDID","PUT_BOTTOM",card)
-        levelUpScout(player,false)
+        local m = moveCards(player,grav,hand,"TAKE_CARDID","PUT_BOTTOM",card)
+        if m > 0 then
+            levelUpScout(player,false)
+        end
 
         destroyList(card)
     end

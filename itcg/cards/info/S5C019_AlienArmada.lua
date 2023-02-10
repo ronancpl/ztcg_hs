@@ -58,7 +58,9 @@ ZTCG_CARD
 
     function onReceiveAttackAndDestroyed(player)
         local mob = getCardPointer(3)
-        destroyCardUnder(player,mob)
+        if mob ~= 0 then
+            destroyCardUnder(player,mob)
+        end
     end
 
     function onTryPlay(player)
