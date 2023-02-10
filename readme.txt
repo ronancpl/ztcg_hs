@@ -1,4 +1,4 @@
-﻿---- Zelda Trading Card Game : Hyrule Showdown V3.1b ----
+﻿---- Zelda Trading Card Game : Hyrule Showdown V4.0 ----
 By Ronan C. P. Lana
 Undergraduate @ DCC-UFMG
 Email: rcpl2010@gmail.com
@@ -8,6 +8,10 @@ Email: rcpl2010@gmail.com
 This TCG is themed around Nintendo®'s best-seller "The Legend of Zelda®: Ocarina of Time®".
 Card images, names and theme concepts are "borrowed", and therefore these are property of
 their respective staff.
+
+The MapleStory iTCG, added as a separate game set of cards, also have the card images, names
+and theme concepts which are "borrowed", and therefore these are property of their respective
+staff.
 
 2) Running on your machine
 
@@ -69,6 +73,7 @@ v3.0a: minor game patch and card rebalances.
 v3.1:  new effects and animations can be inserted using the Particles engine. Game patches and card rebalances.
 v3.1a: incremented funcionalities for Particles engine. Minor game patches.
 v3.1b: card rebalances.
+v4.0: added MapleStory iTCG Sets 1 to 5. Arranged online matches.
 
 4) Instruction on how to run the application first-time
   On Windows: start the .exe file.
