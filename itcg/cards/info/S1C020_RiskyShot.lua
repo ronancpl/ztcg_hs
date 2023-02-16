@@ -27,7 +27,7 @@ ZTCG_CARD
         if res then
             local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
             local level = getCurrentLevelFromCARD(player,chr)
-            attack(player, chr, level, "ATKRES_DONT_HIT_MOBS", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+            attack(player, chr, level, "ATKRES_DONT_HIT_MOBS", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
 
             drawCard(player)
         end
