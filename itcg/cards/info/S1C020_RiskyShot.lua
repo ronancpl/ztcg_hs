@@ -25,9 +25,10 @@ ZTCG_CARD
     function onThinkAction(player)
         local res = throwCoin(player)
         if res then
+            local src = getSourceCARD()
             local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
             local level = getCurrentLevelFromCARD(player,chr)
-            attack(player, chr, level, "ATKRES_DONT_HIT_MOBS", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+            attack(player, src, level, "ATKRES_DONT_HIT_MOBS", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
 
             drawCard(player)
         end

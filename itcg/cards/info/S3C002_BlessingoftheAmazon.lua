@@ -32,8 +32,8 @@ ZTCG_CARD
     end
 
     function onThinkAction(player)
-        local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
-        attack(player, chr, 40, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "DISABLE_PREVENT", "IS_STARTER")
+        local src = getSourceCARD()
+        attack(player, src, 40, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "DISABLE_PREVENT", "IS_STARTER")
     end
 
     function onStartTurn(player)
