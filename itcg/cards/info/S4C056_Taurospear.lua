@@ -39,6 +39,10 @@ ZTCG_CARD
     end
 
     function onLevelActionTrigger(player)
+        local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
+        local level = getCurrentLevelFromCARD(player,chr)
+        if level < 70 then return end
+
         local deck = getPlayerDeck(player, "DECK_DECK")
         local cards, qty = getListFromDeck(deck)
 

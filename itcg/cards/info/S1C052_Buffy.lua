@@ -25,7 +25,7 @@ ZTCG_CARD
     }
 
     function onThinkMob(player)
-        local cards, list_sz = getListFromCharacterActions(not player, true)
+        local cards, list_sz = makeListFromCharacterActions(not player, true)
         if list_sz > 0 then
             local card = menuCards(player,cards,"Select a card to remove from the opponent's character actions.","CARDLIST_PEEK")
             if card ~= 0 then

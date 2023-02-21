@@ -16,7 +16,8 @@ ZTCG_SPRITE
     }
 
     function onEffectStart()
-        setNewEffectDuration(1000)
+        setNewEffectDuration(10000)
+        setNewEffectSpriteDuration(500)
 
         setNewEffectTint(255,255,255,255) -- RGBA
 

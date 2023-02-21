@@ -22,14 +22,9 @@ ZTCG_CARD
         "TEXT" "Jump Quest -- If you're level 70 or more, draw 2 cards. "
     }
 
-    function onOpponentStartAttack(player)
+    function preventIntercomeTargetCharacter(player)
         if hasFlag("ZTCG_ATKSRC", "ATKSRC_MOB") then
-            local res = getGameValue(2)     -- no target if already cannot hit mobs
-            if res >= 2 then
-                updateGameValue(2, "ATKRES_NO_TARGET")
-            else
-                updateGameValue(2, "ATKRES_DONT_HIT_CHAR")
-            end
+            return 1
         end
     end
 

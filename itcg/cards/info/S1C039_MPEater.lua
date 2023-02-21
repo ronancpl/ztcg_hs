@@ -32,7 +32,7 @@ ZTCG_CARD
     function onLevelActionTrigger(player)
         local cardA = getSourceCARD()
 
-        local cards = getListFromCharacterActions(player, true)
+        local cards = makeListFromCharacterActions(player, true)
         local cardB = menuCards(player,cards,"Select a card to swap its character action.","CARDLIST_PEEK")
 
         if cardB ~= 0 then

@@ -32,10 +32,16 @@ ZTCG_CARD
     end
 
     function onLevelActionTrigger(player)
-        local list, list_sz = getListFromCharacterActions(player, true)
+        local list, list_sz = makeListFromCharacterActions(player, true)
         if list_sz > 0 then
-            local mg_list, not_empty = makeFilteredList(player,list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY","ELEM_MAGE","ZTCG_NIL")
-            if not_empty then
+            local mg_list = makeFilteredList(player,list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY","ELEM_MAGE","ZTCG_NIL")
+            local target = makeTargetFromCARD(getSourceCARD())
+            if target ~= 0 then
+                mg_list = takeTargetCardFromList(target,mg_list)
+            end
+            destroyList(target)
+
+            if not isEmptyList(mg_list) then
                 while true do
                     local menuCard = menuCards(player,mg_list,"Select a card to draw.","CARDLIST_PEEK")
                     if menuCard ~= 0 then

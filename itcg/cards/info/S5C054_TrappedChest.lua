@@ -22,15 +22,70 @@ ZTCG_CARD
         "TEXT" "Thief Prowess -- Play a Thief card of your level or less."
     }
 
-    function afterCharacterActions(player)
-        local card = getSourceCARD()
-        if(makePrompt(player,true,"Use " .. getNameFromCARD(card) .. "?","Draw a card. Choose one to discard.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then
-            drawCard(player)
-            discardCard(player)
+    function onOpponentTryPlayVerifyChest(player)
+        local src = getSourceCARD()
+        local cid = getCardIdFromCARD(src)
 
-            local slotid = getSlotIdFromCARD(player,card) - 7
-            destroySelf(player,"SLOT_PLAYEREQP" .. slotid)
+        local target = getTargetCARD()
+        local targetCid = getCardIdFromCARD(target)
+
+        local cardid = getCardRegister(src,cid,0)
+        if cardid == targetCid then
+            updateGameValue(0, 0)
         end
+    end
+
+    function onOpponentTryPlayAction(player)
+        onOpponentTryPlayVerifyChest(player)
+    end
+
+    function onOpponentTryPlayEquipment(player)
+        onOpponentTryPlayVerifyChest(player)
+    end
+
+    function onOpponentTryPlayField(player)
+        onOpponentTryPlayVerifyChest(player)
+    end
+
+    function onOpponentTryPlayMob(player)
+        onOpponentTryPlayVerifyChest(player)
+    end
+
+    function makeListFromOpponentDeck(player,deckName)
+        local deck = getPlayerDeck(not player,deckName)
+        local card_list = getListFromDeck(deck)
+
+        return makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY","ELEM_ANY","ZTCG_NIL")
+    end
+
+    function onThinkEquipment(player)
+        local list = makeFilteredTableList(player,"ONLY_ADVSRY",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB | TYPE_EQP | TYPE_ACT | TYPE_FLD","ELEM_ANY","ZTCG_NIL")
+
+        local list1 = makeListFromOpponentDeck(player,"DECK_HAND")
+        list = appendLists(list,list1)
+
+        local list2 = makeListFromOpponentDeck(player,"DECK_DECK")
+        list = appendLists(list,list2)
+
+        local list3 = makeListFromOpponentDeck(player,"DECK_GRAV")
+        list = appendLists(list,list3)
+
+        shuffleList(player,list)
+
+        local card = menuCards(player,list,"Select one to prevent your opponent to play.","CARDLIST_PEEK")
+        if card ~= 0 then
+            revealCard(not player,"This card has been locked...",getCARD(card))
+
+            local src = getSourceCARD()
+            local cid = getCardIdFromCARD(src)
+
+            editCardRegister(src,cid,0,getCardIdFromCARD(getCARD(card)),0,nil)
+        end
+
+        destroyList(list3)
+        destroyList(list2)
+        destroyList(list1)
+        destroyList(list)
     end
 
     function onLevelActionTrigger(player)

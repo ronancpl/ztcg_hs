@@ -44,7 +44,7 @@ ZTCG_CARD
     function onActivateCharacterAction3(player)
         if getMobsOnTable(player,"ONLY_PLAYER") > 0 then
             if(makePrompt(player,true,"Use Bloodthirsty?","One of your monsters get Fierce.","ZTCG_NIL","ZTCG_NIL","Yes","No")) then
-                local cards, list_sz = getListFromCharacterActions(player, true)
+                local cards, list_sz = makeListFromCharacterActions(player, true)
                 if list_sz > 0 then
                     local menuCard = menuCards(player,cards,"Select a card to remove from your character actions.","CARDLIST_PEEK")
 

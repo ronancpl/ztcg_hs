@@ -32,7 +32,7 @@ ZTCG_CARD
         local level2 = getCurrentLevelFromCARD(not player,adv)
 
         if level1 < level2 then
-            local cardList, qty = getListFromCharacterActions(not player, true)
+            local cardList, qty = makeListFromCharacterActions(not player, true)
             if qty > 0 then
                 while true do
                     local card = menuCards(player,cardList,"Select a card to remove from your character actions.","CARDLIST_PEEK")
