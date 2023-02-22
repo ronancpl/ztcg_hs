@@ -30,19 +30,10 @@ ZTCG_CARD
 
     function destroyCardUnder(player,mob)
         local deck = getPlayerDeck(player, "DECK_DECK")
-        local hand = getPlayerDeck(player, "DECK_HAND")
         local grav = getPlayerDeck(player, "DECK_GRAV")
 
         local mob_target = makeTargetFromCARD(mob)
-        moveCards(player,deck,hand,"TAKE_CARDID","PUT_BOTTOM",mob_target)
-
-        if summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE") then
-            local slotid = getSlotIdFromCARD(player, mob)
-            destroySelf(player,"SLOT_PLAYERMOB" .. slotid)
-        else
-            moveCards(player,hand,grav,"TAKE_CARDID","PUT_TOP",mob_target)
-        end
-
+        moveCards(player,deck,grav,"TAKE_CARDID","PUT_TOP",mob_target)
         destroyList(mob_target)
 
         local src = getSourceCARD()
