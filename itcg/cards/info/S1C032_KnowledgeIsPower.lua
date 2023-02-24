@@ -34,7 +34,7 @@ ZTCG_CARD
                 local hand = getPlayerDeck(player, "DECK_HAND")
                 moveCards(player,deck,hand,"TAKE_CARDID","PUT_BOTTOM",card)
 
-                revealCard(not player,"This card has been drawn.",getCARD(card))
+                revealCard(not player,"This card has been drawn...",getCARD(card))
                 shuffleDeck(player,"DECK_DECK")
             end
 

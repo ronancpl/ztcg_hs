@@ -65,7 +65,7 @@ ZTCG_CARD
                 elseif hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_ACT") then
                     ret = action(player,card, "ELEM_ANY","ZTCG_MAXVALUE")
                 elseif hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_FLD") then
-                    ret = locate(player,"PLAY_FIRSTCARDFIELD", "ELEM_ANY")
+                    ret = locate(player,"PLAY_SCOUTFIELD", "ELEM_ANY")
                 end
             end
         end

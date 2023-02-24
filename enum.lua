@@ -214,7 +214,7 @@ ztcg_enum =
 
     -- ZTCG_LOCATEMODE
     {"PLAY_NORMALFIELD", 0},
-    {"PLAY_FIRSTCARDFIELD"},    --NOTE: this only plays a field if the first card of the hand is a FIELD-type.
+    {"PLAY_SCOUTFIELD"},
 
     -- ZTCG_PLAYCARDMODE
     {"PLAY_MOB", 0},
