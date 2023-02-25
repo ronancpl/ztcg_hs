@@ -69,7 +69,7 @@ ZTCG_CARD
                 if menuCard ~= 0 then
                     menuCard = takeTargetCardFromDeck(player,menuCard,deckHand)
                     menuCard = moveCardsFromListToDeck(player,menuCard,deckHand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
-                    summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
+                    summon(player,"PLAY_SCOUTSUMMON","ELEM_ANY","ZTCG_MAXVALUE")
 
                     destroyList(menuCard)
                 end

@@ -77,7 +77,7 @@ ZTCG_CARD
             local card = menuCards(player,list,"Select a mob to spawn.","CARDLIST_PEEK")
             if card ~= 0 then
                 moveCards(player,deckHand,deckHand,"TAKE_CARDID","PUT_BOTTOM",card)
-                summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
+                summon(player,"PLAY_SCOUTSUMMON","ELEM_ANY","ZTCG_MAXVALUE")
             end
         end
         destroyList(list)

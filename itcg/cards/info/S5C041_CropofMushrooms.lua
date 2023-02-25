@@ -100,7 +100,7 @@ ZTCG_CARD
 
                 card = takeTargetCardFromDeck(player,card,grav)
                 card = moveCardsFromListToDeck(player,card,hand,"TAKE_CARDID","PUT_BOTTOM",card)
-                summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
+                summon(player,"PLAY_SCOUTSUMMON","ELEM_ANY","ZTCG_MAXVALUE")
 
                 destroyList(card)
             end

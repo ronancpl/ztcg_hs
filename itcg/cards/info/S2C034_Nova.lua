@@ -45,9 +45,9 @@ ZTCG_CARD
 
         local card_list = getListFromDeck(hand)
 
-        local wList, w_not_empty = makeFilteredList(player,card_list,"ZTCG_DONTCARE","ZTCG_DONTCARE",level,"TYPE_ANY", "ELEM_ANY", "Weapon")
-        local sList, s_not_empty = makeFilteredList(player,card_list,"ZTCG_DONTCARE","ZTCG_DONTCARE",level,"TYPE_ANY", "ELEM_ANY", "Strategy")
-        local uList, u_not_empty = makeFilteredList(player,card_list,"ZTCG_DONTCARE","ZTCG_DONTCARE",level,"TYPE_ANY", "ELEM_ANY", "Undead")
+        local wList, w_not_empty = makeFilteredList(player,card_list,1,"ZTCG_DONTCARE",level,"TYPE_ANY", "ELEM_ANY", "Weapon")
+        local sList, s_not_empty = makeFilteredList(player,card_list,1,"ZTCG_DONTCARE",level,"TYPE_ANY", "ELEM_ANY", "Strategy")
+        local uList, u_not_empty = makeFilteredList(player,card_list,1,"ZTCG_DONTCARE",level,"TYPE_ANY", "ELEM_ANY", "Undead")
         if w_not_empty or s_not_empty or u_not_empty then
             local cards = wList
             cards = appendLists(cards,sList)
@@ -59,7 +59,7 @@ ZTCG_CARD
 
                 local card = getCARD(menuCard)
                 if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_ANYMOB") then
-                    ret = summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
+                    ret = summon(player,"PLAY_SCOUTSUMMON","ELEM_ANY","ZTCG_MAXVALUE")
                 elseif hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_EQP") then
                     ret = equip(player,"PLAY_SCOUTEQUIP", "ELEM_ANY","ZTCG_MAXVALUE")
                 elseif hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_ACT") then

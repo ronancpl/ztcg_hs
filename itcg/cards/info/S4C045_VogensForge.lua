@@ -36,7 +36,7 @@ ZTCG_CARD
                 local card = menuCards(player,card_list,"Select a card to play.","CARDLIST_PEEK")
                 if card ~= 0 then
                     moveCards(player,player_grav,player_hand,"TAKE_CARDID","PUT_BOTTOM",card)
-                    equip(player,"PLAY_SCOUTEQUIP", "ELEM_ANY","ZTCG_MAXVALUE")
+                    equip(player,"PLAY_FORCEEQUIP", "ELEM_ANY","ZTCG_MAXVALUE")
                 end
             end
 

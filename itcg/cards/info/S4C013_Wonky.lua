@@ -57,7 +57,7 @@ ZTCG_CARD
                 spawned_list = appendLists(spawned_list,cardList)
 
                 cardList = moveCardsFromListToDeck(player,cardList,deckHand,"TAKE_CARDID","PUT_BOTTOM",card)
-                summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
+                summon(player,"PLAY_SCOUTSUMMON","ELEM_ANY","ZTCG_MAXVALUE")
 
                 local mobLevel = getBaseLevelFromCARD(getCARD(card))
                 editCardRegister(src, cardid, 0, level - mobLevel, 0, nil)

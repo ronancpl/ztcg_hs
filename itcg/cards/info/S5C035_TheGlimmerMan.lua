@@ -45,7 +45,7 @@ ZTCG_CARD
                 moveCards(player,deck,hand,"TAKE_CARDID","PUT_BOTTOM",card)
 
                 editCardRegister(src,cardid,0,1,0,nil)
-                equip(player,"PLAY_SCOUTEQUIP", "ELEM_ANY","ZTCG_MAXVALUE")
+                equip(player,"PLAY_FORCEEQUIP", "ELEM_ANY","ZTCG_MAXVALUE")
                 editCardRegister(src,cardid,0,0,0,nil)
             end
 

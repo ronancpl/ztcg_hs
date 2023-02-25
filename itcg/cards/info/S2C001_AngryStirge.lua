@@ -47,7 +47,7 @@ ZTCG_CARD
 
                 local hand = getPlayerDeck(player, "DECK_HAND")
                 card_taken = moveCardsFromListToDeck(player,card_taken,hand,"TAKE_NEXT","PUT_BOTTOM", 1)
-                summon(player,"PLAY_FORCESUMMON","ELEM_ANY",20)
+                summon(player,"PLAY_SCOUTSUMMON","ELEM_ANY",20)
 
                 destroyList(card_taken)
             end

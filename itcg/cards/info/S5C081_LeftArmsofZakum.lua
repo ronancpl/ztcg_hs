@@ -44,7 +44,7 @@ ZTCG_CARD
             local card = menuCards(player,new_list2,"Select a monster to spawn.","CARDLIST_PEEK")
             if card ~= 0 then
                 moveCards(player,hand,hand,"TAKE_CARDID","PUT_BOTTOM",card)
-                summon(player,"PLAY_FORCESUMMON","ELEM_ANY",90)
+                summon(player,"PLAY_SCOUTSUMMON","ELEM_ANY",90)
             end
         else
             local str = "Spawn 60"

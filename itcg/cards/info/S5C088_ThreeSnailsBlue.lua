@@ -64,7 +64,7 @@ ZTCG_CARD
             local level = getCardRegister(src, cardid, 0)
 
             local card_list = getListFromDeck(deckHand)
-            local spawn_list, not_empty = makeFilteredList(player,card_list,0,0,level,"TYPE_ANY","ELEM_ANY","ZTCG_NIL")
+            local spawn_list, not_empty = makeFilteredList(player,card_list,1,0,level,"TYPE_ANY","ELEM_ANY","ZTCG_NIL")
             if not not_empty then
                 destroyList(spawn_list)
                 break
@@ -77,7 +77,7 @@ ZTCG_CARD
 
                 local card = getCARD(menuCard)
                 if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_ANYMOB") then
-                    ret = summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
+                    ret = summon(player,"PLAY_SCOUTSUMMON","ELEM_ANY","ZTCG_MAXVALUE")
                 elseif hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_EQP") then
                     ret = equip(player,"PLAY_SCOUTEQUIP", "ELEM_ANY","ZTCG_MAXVALUE")
                 elseif hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_ACT") then

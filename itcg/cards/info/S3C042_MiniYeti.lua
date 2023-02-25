@@ -57,7 +57,7 @@ ZTCG_CARD
                 if pet_spawn ~= 0 then
                     card_list = takeTargetCardFromList(pet_spawn,card_list)
                     pet_spawns = takeTargetCardFromListToDeck(player,hand,pet_spawns,pet_spawn,"DECK_BOTTOM")
-                    equip(player,"PLAY_SCOUTEQUIP","ELEM_ANY","ZTCG_MAXVALUE")
+                    equip(player,"PLAY_FORCEEQUIP","ELEM_ANY","ZTCG_MAXVALUE")
                 end
             end
 
