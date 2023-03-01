@@ -25,21 +25,12 @@ ZTCG_CARD
     }
 
     function onExecuteAttack(player)
-        local target = getCardPointer(1)
-        if target ~= 0 then
-            if isBossCARD(target) then return end
+        local def_card = getCardPointer(1)
+        if isBossCARD(def_card) then return end
 
-            local slotid = getSlotIdFromCARD(not player, target)
-            if slotid > 0 then
-                local new_list, not_empty = takeCardFromTable(not player, "SLOT_PLAYERMOB" .. slotid)
-
-                if not_empty then
-                    local deckGrav = getPlayerDeck(not player, "DECK_GRAV")
-                    new_list = moveCardsFromListToDeck(player,new_list,deckGrav,"TAKE_NEXT","PUT_TOP","ZTCG_MAXVALUE")
-                end
-
-                destroyList(new_list)
-            end
+        local slotid = getSlotIdFromCARD(not player, def_card)
+        if slotid > 0 then
+            destroySelf(player,"SLOT_ADVSRYMOB" .. slotid)
         end
     end
 

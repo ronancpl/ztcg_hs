@@ -35,7 +35,7 @@ ZTCG_CARD
             local cardList, qty = makeListFromCharacterActions(not player, true)
             if qty > 0 then
                 while true do
-                    local card = menuCards(player,cardList,"Select a card to remove from your character actions.","CARDLIST_PEEK")
+                    local card = menuCards(not player,cardList,"Select a card to remove from your character actions.","CARDLIST_PEEK")
                     if card ~= 0 then
                         destroyCharacterAction(not player,getCARD(card),true)
                         break

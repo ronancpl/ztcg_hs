@@ -33,7 +33,7 @@ ZTCG_CARD
             local new_list, not_empty = makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_MOB","ELEM_ANY","Spook")
 
             if not_empty then
-                local card = menuCards(player,new_list,"Select a monster to draw.","CARDLIST_PEEK")
+                local card = menuCards(player,new_list,"Select a monster to play.","CARDLIST_PEEK")
                 if card ~= 0 then
                     local hand = getPlayerDeck(player, "DECK_HAND")
                     moveCards(player,deck,hand,"TAKE_CARDID","PUT_BOTTOM",card)

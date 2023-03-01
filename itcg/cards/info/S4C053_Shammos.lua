@@ -32,6 +32,7 @@ ZTCG_CARD
         if getListLength(menu) >= 4 then
             recoverCard(player, "DECK_HAND", "RECOVER_MOB", "LESSER", "ZTCG_MAXVALUE")
         end
+        destroyList(menu)
     end
 
     function onActivateCharacterAction(player)

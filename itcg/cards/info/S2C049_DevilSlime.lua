@@ -26,25 +26,21 @@ ZTCG_CARD
 
     function onDestroy(player)
         local src = getSourceCARD()
-        local target = getCardPointer(1)
+        local card = makeTargetFromCARD(src)
 
-        if isSameCARD(src,target) then
-            local card = makeTargetFromCARD(src)
+        local grav = getPlayerDeck(player, "DECK_GRAV")
+        local hand = getPlayerDeck(player, "DECK_HAND")
 
-            local grav = getPlayerDeck(player, "DECK_GRAV")
-            local hand = getPlayerDeck(player, "DECK_HAND")
+        local qty
+        local cards = takeTargetCardFromDeck(player,card,grav)
 
-            local qty
-            local cards = takeTargetCardFromDeck(player,card,grav)
-
-            cards, qty = moveCardsFromListToDeck(player,cards,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
-            if qty > 0 then
-                levelUpScout(player,true)
-            end
-
-            destroyList(cards)
-            destroyList(card)
+        cards, qty = moveCardsFromListToDeck(player,cards,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+        if qty > 0 then
+            levelUpScout(player,true)
         end
+
+        destroyList(cards)
+        destroyList(card)
     end
 
     function onActivateCharacterAction(player)

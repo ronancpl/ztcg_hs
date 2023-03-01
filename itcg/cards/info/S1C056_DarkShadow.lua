@@ -24,7 +24,7 @@ ZTCG_CARD
 
     function onEquipBlockDamage(player)
         local target = getCardPointer(1)
-        if hasFlag("ZTCG_ATKSRC", "ATKSRC_MOB") and  hasSharedFlagsCARD(target,"FLAG_TYPE","TYPE_CHAR") then
+        if hasFlag("ZTCG_ATKSRC", "ATKSRC_MOB") and hasSharedFlagsCARD(target,"FLAG_TYPE","TYPE_CHAR") then
             return 10
         else
             return 0

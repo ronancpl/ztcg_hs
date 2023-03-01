@@ -53,7 +53,6 @@ ZTCG_CARD
         local cid = getCardIdFromCARD(src)
 
         local atkr = getCardPointer(0)
-
         local slot = getCardRegister(src, cid, 2)
         if slot == getSlotIdFromCARD(player, atkr) then
             return
@@ -107,6 +106,12 @@ ZTCG_CARD
     function onExecuteAttackCard(player)
         local src = getSourceCARD()
         if getSlotIdFromCARD(player, src) < 0 then return end
+
+        local atkr = getCardPointer(0)
+        local slot = getCardRegister(src, cid, 2)
+        if slot ~= getSlotIdFromCARD(player, atkr) then
+            return
+        end
 
         local cid = getCardIdFromCARD(src)
         editCardRegister(src, cid, 0, 0, 0, nil)

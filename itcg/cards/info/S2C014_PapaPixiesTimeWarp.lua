@@ -22,6 +22,18 @@ ZTCG_CARD
         "TEXT" "Spawn / Think Fast 100 -- Play a monster or tactic of level 100 or less. "
     }
 
+    function onTryPlay(player)
+        local card = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
+
+        local src = getSourceCARD()
+        local cardid = getCardIdFromCARD(src)
+
+        local val = getCardRegister(card, cardid, 6)
+        if val ~= 0 then
+            updateGameValue(0, 0)
+        end
+    end
+
     function onThinkAction(player)
         local card = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
 

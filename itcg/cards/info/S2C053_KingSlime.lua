@@ -29,27 +29,24 @@ ZTCG_CARD
     }
 
     function onDestroy(player)
-        local def_card = getCardPointer(1)
-        if(hasSharedFlagsCARD(def_card, "FLAG_TYPE", "TYPE_BOS")) then
-            local deck = getPlayerDeck(player, "DECK_DECK")
-            local card_list, qty = getListFromDeck(deck)
+        local deck = getPlayerDeck(player, "DECK_DECK")
+        local card_list, qty = getListFromDeck(deck)
 
-            if qty > 0 then
-                local cards, not_empty = makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB","ELEM_ANY","Goo")
-                if not_empty then
-                    local card = menuCards(player,cards,"Select a mob to play.","CARDLIST_PEEK")
-                    if card ~= 0 then
-                        local hand = getPlayerDeck(player, "DECK_HAND")
-                        moveCards(player,deck,hand,"TAKE_CARDID","PUT_BOTTOM",card)
-                        summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
-                    end
+        if qty > 0 then
+            local cards, not_empty = makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB","ELEM_ANY","Goo")
+            if not_empty then
+                local card = menuCards(player,cards,"Select a mob to play.","CARDLIST_PEEK")
+                if card ~= 0 then
+                    local hand = getPlayerDeck(player, "DECK_HAND")
+                    moveCards(player,deck,hand,"TAKE_CARDID","PUT_BOTTOM",card)
+                    summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
                 end
-
-                destroyList(cards)
             end
 
-            shuffleDeck(player,"DECK_DECK")
+            destroyList(cards)
         end
+
+        shuffleDeck(player,"DECK_DECK")
     end
 
     function onActivateMobEffect(player)
