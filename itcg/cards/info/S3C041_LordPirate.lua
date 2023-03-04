@@ -28,6 +28,54 @@ ZTCG_CARD
         }
     }
 
+    function undoBuffs(player)
+        local src = getSourceCARD()
+        local srcid = getCardIdFromCARD(src)
+
+        local n = getCardRegister(src, srcid, 0)
+        for i = 1, n, 1 do
+            local reg = getCardRegister(src, srcid, i)
+            --local cardid = math.floor(reg / 14)
+            local slotid = (reg % 14) + 1
+
+            local strSlot
+            if slotid >= 8 then
+                strSlot = "SLOT_ADVSRYEQP" .. tostring(slotid - 7)
+            else
+                strSlot = "SLOT_ADVSRYMOB" .. tostring(slotid)
+            end
+
+            local card = getOnBoardCARD(player, strSlot)
+            if card ~= 0 and getCardRegister(card, srcid, 7) > 0 then
+                removeBlockAura(card, "AURA_AWAY", src)
+            end
+        end
+    end
+
+    function applyBuffs(player)
+        local src = getSourceCARD()
+        local srcid = getCardIdFromCARD(src)
+
+        local n = getCardRegister(src, srcid, 0)
+        for i = 1, n, 1 do
+            local reg = getCardRegister(src, srcid, i)
+            --local cardid = math.floor(reg / 14)
+            local slotid = (reg % 14) + 1
+
+            local strSlot
+            if slotid >= 8 then
+                strSlot = "SLOT_ADVSRYEQP" .. tostring(slotid - 7)
+            else
+                strSlot = "SLOT_ADVSRYMOB" .. tostring(slotid)
+            end
+
+            local card = getOnBoardCARD(player, strSlot)
+            if card ~= 0 and getCardRegister(card, srcid, 7) > 0 then
+                applyBlockAura(card, "AURA_AWAY", src)
+            end
+        end
+    end
+
     function effect_h(player,src)
         if(not matchRequirements(player, 70, 2, "ELEM_THIEF")) then return end
 
@@ -41,16 +89,18 @@ ZTCG_CARD
         local menuCard = menuCards(player,menu,"Select a card to take from table.","CARDLIST_PEEK")
         if menuCard ~= 0 then
             local card = getCARD(menuCard)
-            applyBlockAura(card,"AURA_AWAY", src)
+            applyBlockAura(card, "AURA_AWAY", src)
 
-            local cardid = getCardIdFromCARD(src)
+            local srcid = getCardIdFromCARD(src)
             local menuCardid = getCardIdFromCARD(card)
 
-            local n = (getCardRegister(src, cardid, 0) or 0) + 1
-            editCardRegister(src,cardid,0,n,0,nil)
+            local n = (getCardRegister(src, srcid, 0) or 0) + 1
+            editCardRegister(src,srcid,0,n,0,nil)
 
             local slotid = getSlotIdFromCARD(not player, card)
-            editCardRegister(src,cardid,n,14*menuCardid + (slotid - 1),0,nil)
+            editCardRegister(src,srcid,n,14*menuCardid + (slotid - 1),0,nil)
+
+            editCardRegister(card,srcid,7,1,0,nil)
         end
 
         destroyList(menu)
@@ -66,12 +116,12 @@ ZTCG_CARD
 
     function onReceiveAttackAndInterceptDestroyed(player)
         local src = getSourceCARD()
-        local cardid = getCardIdFromCARD(src)
+        local srcid = getCardIdFromCARD(src)
 
-        local n = getCardRegister(src, cardid, 0)
+        local n = getCardRegister(src, srcid, 0)
         for i = 1, n, 1 do
-            local reg = getCardRegister(src, cardid, i)
-            local cardid = math.floor(reg / 14)
+            local reg = getCardRegister(src, srcid, i)
+            --local cardid = math.floor(reg / 14)
             local slotid = (reg % 14) + 1
 
             local strSlot
@@ -82,8 +132,9 @@ ZTCG_CARD
             end
 
             local card = getOnBoardCARD(player, strSlot)
-            if card ~= 0 and getCardIdFromCARD(card) == cardid then
+            if card ~= 0 and hasBlockAura(card,"AURA_AWAY",src) then
                 removeBlockAura(card, "AURA_AWAY", src)
+                editCardRegister(card,srcid,7,0,0,nil)
 
                 local list2, hasCard
                 list2, hasCard = takeCardFromTable(player, strSlot)

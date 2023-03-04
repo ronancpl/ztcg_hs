@@ -26,6 +26,9 @@ ZTCG_CARD
     end
 
     function onStartTurn(player)
+        local src = getSourceCARD()
+        if getSlotIdFromCARD(player,src) < 0 then return end
+
         -- IF character CARD does not have the same element as the field, nothing happens
         local card = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
         if(hasSharedFlagsCARD(card, "FLAG_ELEM", "ELEM_EARTH")) then
@@ -35,6 +38,9 @@ ZTCG_CARD
     end
 
     function onOpponentStartTurn(player)    -- on onOpponent series, 'player' refers to the adversary
+        local src = getSourceCARD()
+        if getSlotIdFromCARD(player,src) < 0 then return end
+
         local op_field = getOnBoardCARD(player, "SLOT_PLAYERFLD")
 
         -- opponent does not have a field, share this player field effects
@@ -66,6 +72,9 @@ ZTCG_CARD
 
     function undoBuffs(player)
         local src = getSourceCARD()
+        if getSlotIdFromCARD(player,src) < 0 then return end
+
+        local src = getSourceCARD()
         removeAuraBonus(player,"GLOBALAURA_PASS_ADVSRY",src,20,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_EARTH", "ZTCG_NIL")
         removeAuraBonus(player,"GLOBALAURA_PASS_ADVSRY",src,10,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_CHAR", "ELEM_EARTH", "ZTCG_NIL")
 
@@ -78,6 +87,9 @@ ZTCG_CARD
     end
 
     function applyBuffs(player)
+        local src = getSourceCARD()
+        if getSlotIdFromCARD(player,src) < 0 then return end
+
         local src = getSourceCARD()
         applyAuraBonus(player,"GLOBALAURA_PASS_ADVSRY","BUFF_ANY",src,20,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_EARTH", "ZTCG_NIL")
         applyAuraBonus(player,"GLOBALAURA_PASS_ADVSRY","BUFF_ANY",src,10,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_CHAR", "ELEM_EARTH", "ZTCG_NIL")

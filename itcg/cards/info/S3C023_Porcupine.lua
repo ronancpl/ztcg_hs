@@ -87,7 +87,7 @@ ZTCG_CARD
 
         local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
         for i = 1, pet_count, 1 do
-            attack(player, chr, 10, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+            attack(player, chr, 10, "ATKRES_DONT_HIT_MOBS", "ATKSRC_CHA", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
         end
     end
 

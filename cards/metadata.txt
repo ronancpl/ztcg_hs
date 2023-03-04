@@ -1,6 +1,6 @@
 knight.lua
 forest.lua
-sattelite_beam.lua
+satellite_beam.lua
 supressor_gem.lua
 heaven_knight.lua
 blaze_dragon.lua

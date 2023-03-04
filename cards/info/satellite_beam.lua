@@ -1,7 +1,7 @@
 ZTCG_CARD
 {
-    "NAME" "Sattelite Beam"
-    "IMAGE" "sattelite_beam.png"
+    "NAME" "Satellite Beam"
+    "IMAGE" "satellite_beam.png"
     "TYPE" "ACTION"
     "ELEMENT" "WIND"
     "RARITY" "RARITY_SELDOM"
@@ -26,7 +26,7 @@ ZTCG_CARD
 
     function onLevelActionTrigger(player)
         local menu = makeFilteredTableList(player, "ONLY_ADVSRY", 0, "ZTCG_DONTCARE", "ZTCG_DONTCARE", "TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
-        local chosen = menuCards(player,menu,"SATTELITE BEAM: choose a monster to silence for 2 turns.", "ZTCG_PEEK")
+        local chosen = menuCards(player,menu,"SATELLITE BEAM: choose a monster to silence for 2 turns.", "ZTCG_PEEK")
 
         local card = getCARD(chosen)    -- get the game card descriptor from the cell list ('chosen')
         applySilence(player,card, 2)    -- apply silence on this game card descriptor
