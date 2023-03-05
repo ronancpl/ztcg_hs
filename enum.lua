@@ -124,7 +124,7 @@ ztcg_enum =
     {"LESSER", 0},
     {"GREATER"},
 
-    -- ZTCG_PREVENTTYPE --
+    -- ZTCG_PREVENTTYPE
     {"PREVENT_ANY", 0},
     {"PREVENT_CHARONLY"},
 
@@ -269,50 +269,50 @@ ztcg_enum =
     {"SLOT_ADVSRYEQP7"},
     {"SLOT_ADVSRYFLD"},
 
-    -- ZTCG_TARGETTYPE --
+    -- ZTCG_TARGETTYPE
     {"ATTACKED_CHAR", 0},
     {"ATTACKED_MOB"},
 
-    -- ZTCG_SBOXTYPE --
+    -- ZTCG_SBOXTYPE
     {"SBOX_MOB", 0},
     {"SBOX_CHAR"},
     {"SBOX_EQUIP"},
 
-    -- ZTCG_FILTER --
-    {"NO_FILTER", 0},
-    {"USE_FILTER"},
-
-    -- ZTCG_GAMEHUBTYPE --
+    -- ZTCG_GAMEHUBTYPE
     {"IS_P2", 0},
     {"IS_P1"},
 
-    -- ZTCG_PLAYERTYPE --
+    -- ZTCG_FILTER
+    {"NO_FILTER", 0},
+    {"USE_FILTER"},
+
+    -- ZTCG_PLAYERTYPE
     {"IS_ADVSRY", 0},
     {"IS_PLAYER"},
 
-    -- ZTCG_ATTACKSTATE --
+    -- ZTCG_ATTACKSTATE
     {"THINK_ATTACK", 0},
     {"APPLY_ATTACK"},
 
-    -- ZTCG_REMOVETYPE --
+    -- ZTCG_REMOVETYPE
     {"IS_DESTROYED", 0},
     {"IS_DISCARDED"},
 
-    -- ZTCG_BLOCKAURA --
+    -- ZTCG_BLOCKAURA
     {"AURA_STUN", 0},
     {"AURA_SILENCE"},
     {"AURA_HIJACK"},
     {"AURA_AWAY"},
 
-    -- ZTCG_BUFFMODE --
+    -- ZTCG_BUFFMODE
     {"BUFF_ANY", 0},
     {"BUFF_OTHER"},
 
-    -- ZTCG_FLAGTYPE --
+    -- ZTCG_FLAGTYPE
     {"FLAG_TYPE", 0},
     {"FLAG_ELEM"},
 
-    -- ZTCG FLAGS index --
+    -- ZTCG FLAGS index
     {"ZTCG_COMPARATOR", 0},
     {"ZTCG_PLAYERMODE"},
     {"ZTCG_RECOVERTYPE"},
@@ -341,9 +341,10 @@ ztcg_enum =
     {"ZTCG_ATTACKSTATE"},
     {"ZTCG_REMOVETYPE"},
     {"ZTCG_BLOCKAURA"},
+    {"ZTCG_BUFFMODE"},
     {"ZTCG_FLAGTYPE"},
 
-    -- ZTCG_POINTCUTID --
+    -- ZTCG_POINTCUTID
     {"preventTargetCharacter", 1},
     {"preventTargetMob"},
     {"preventTargetEquip"},
@@ -368,6 +369,8 @@ ztcg_enum =
     {"onEquipBlockDamage"},
     {"onBlockResultDamage"},
     {"onOpponentBlockResultDamage"},
+    {"undoBlocks"},
+    {"applyBlocks"},
     {"undoBuffs"},
     {"applyBuffs"},
     {"onSelectMenu"},
@@ -575,7 +578,7 @@ ztcg_enum =
     {"onActivateCharacterAction"},
     {"onCheckPreventAttack"},
 
-    -- ZTCG_CARDID --
+    -- ZTCG_CARDID
     {"LINK", 1},
     {"GREAT_DEKUS_BLESS"},
     {"GOHMA"},

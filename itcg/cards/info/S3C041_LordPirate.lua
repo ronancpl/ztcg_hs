@@ -28,7 +28,7 @@ ZTCG_CARD
         }
     }
 
-    function undoBuffs(player)
+    function undoBlocks(player)
         local src = getSourceCARD()
         local srcid = getCardIdFromCARD(src)
 
@@ -52,7 +52,7 @@ ZTCG_CARD
         end
     end
 
-    function applyBuffs(player)
+    function applyBlocks(player)
         local src = getSourceCARD()
         local srcid = getCardIdFromCARD(src)
 

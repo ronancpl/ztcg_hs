@@ -22,13 +22,13 @@ ZTCG_CARD
         "TEXT" "Spawn / Equip 30 -- Play a monster or item of level 30 or less. "
     }
 
-    function destroyCard(player, card, tableStr, isEqp)
+    function destroyCardSlot(player, card, tableStr, isEqp)
         if isBossCARD(card) then return end
 
         local ret = false
         local slotid = getSlotIdFromCARD(player, card)
         if slotid > 0 then
-            destroySelf(player,tableStr .. (isEqp and (slotid - 7) or slotid))
+            destroyCard(player,tableStr .. (isEqp and (slotid - 7) or slotid))
             ret = true
         end
 
@@ -40,8 +40,8 @@ ZTCG_CARD
         local src = getSourceCARD()
 
         if target ~= 0 then
-            if destroyCard(not player, target, "SLOT_PLAYERMOB", false) then
-                destroyCard(player, src, "SLOT_PLAYEREQP", true)
+            if destroyCardSlot(not player, target, "SLOT_PLAYERMOB", false) then
+                destroyCardSlot(player, src, "SLOT_PLAYEREQP", true)
             end
         end
     end

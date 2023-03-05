@@ -28,7 +28,7 @@ ZTCG_CARD
             local menuCard = menuCards(player,menu,"Select one monster to destroy.","CARDLIST_PEEK")
             if menuCard ~= 0 then
                 local slotid = getSlotIdFromCARD(not player,getCARD(menuCard))
-                destroySelf(player,"SLOT_ADVSRYMOB" .. slotid)
+                destroyCard(player,"SLOT_ADVSRYMOB" .. slotid)
             end
             destroyList(menu)
         end
@@ -38,7 +38,7 @@ ZTCG_CARD
             local menuCard = menuCards(player,menu,"Select one equipment to destroy.","CARDLIST_PEEK")
             if menuCard ~= 0 then
                 local slotid = getSlotIdFromCARD(not player,getCARD(menuCard))
-                destroySelf(player,"SLOT_ADVSRYEQP" .. (slotid - 7))
+                destroyCard(player,"SLOT_ADVSRYEQP" .. (slotid - 7))
             end
             destroyList(menu)
         end

@@ -22,13 +22,13 @@ ZTCG_CARD
         "TEXT" "Drink Potion -- You get +HP equal to your level."
     }
 
-    function destroyCard(player, card, tableStr, isEqp)
+    function destroyCardSlot(player, card, tableStr, isEqp)
         if isBossCARD(card) then return end
 
         local ret = false
         local slotid = getSlotIdFromCARD(player, card)
         if slotid > 0 then
-            destroySelf(player,tableStr .. (isEqp and (slotid - 7) or slotid))
+            destroyCard(player,tableStr .. (isEqp and (slotid - 7) or slotid))
             ret = true
         end
 
@@ -56,7 +56,7 @@ ZTCG_CARD
             drawCard(player)
         end
 
-        destroyCard(player, src, "SLOT_PLAYEREQP", true)
+        destroyCardSlot(player, src, "SLOT_PLAYEREQP", true)
     end
 
     function onLevelActionTrigger(player)

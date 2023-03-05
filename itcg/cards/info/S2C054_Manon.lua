@@ -83,13 +83,13 @@ ZTCG_CARD
         slotid = getCardRegister(chr, cardid, 0)
         if slotid > 0 then
             editCardRegister(chr,cardid,0,0,0,0)
-            destroySelf(player,"SLOT_PLAYERMOB" .. slotid)
+            destroyCard(player,"SLOT_PLAYERMOB" .. slotid)
         end
 
         slotid = getCardRegister(chr, cardid, 1)
         if slotid > 0 then
             editCardRegister(chr,cardid,1,0,0,0)
-            destroySelf(player,"SLOT_PLAYERMOB" .. slotid)
+            destroyCard(player,"SLOT_PLAYERMOB" .. slotid)
         end
     end
 

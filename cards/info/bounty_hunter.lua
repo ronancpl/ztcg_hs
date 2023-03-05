@@ -81,7 +81,7 @@ ZTCG_CARD
                         -- if opponent does not have a slot available, Bounty Hunter is destroyed
                         if(nextFreeMobSlot(not player) == -1) then
                             local src_slot = getSlotIdFromCARD(player, src)
-                            destroySelf(player,src_slot)
+                            destroyCard(player,src_slot)
                         else
                             -- dont need to define undoBuffs / applyBuffs because the nature of this effect is to change sides permanently, even if it gets silenced
                             applyBlockAura(src, "AURA_HIJACK", "ZTCG_NIL")

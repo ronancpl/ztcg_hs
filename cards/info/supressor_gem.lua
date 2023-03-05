@@ -37,7 +37,7 @@ ZTCG_CARD
         editCardRegister(src, cardid, 0, -1, 0, null)    -- informs the card does not have a target yet
     end
 
-    function undoBuffs(player)
+    function undoBlocks(player)
         local src = getSourceCARD()
         if getSlotIdFromCARD(player,src) < 0 then return end
 
@@ -52,7 +52,7 @@ ZTCG_CARD
         removeBlockAura(affected_mob, "AURA_SILENCE", src)
     end
 
-    function applyBuffs(player)
+    function applyBlocks(player)
         local src = getSourceCARD()
         if getSlotIdFromCARD(player,src) < 0 then return end
 

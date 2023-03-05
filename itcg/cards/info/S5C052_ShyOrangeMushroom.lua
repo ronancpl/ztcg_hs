@@ -28,14 +28,14 @@ ZTCG_CARD
         local src = getSourceCARD()
 
         local slotid = getSlotIdFromCARD(player,src)
-        destroySelf(player,"SLOT_PLAYERMOB" .. slotid)
+        destroyCard(player,"SLOT_PLAYERMOB" .. slotid)
     end
 
     function onOpponentPlayMob(player)
         local src = getSourceCARD()
 
         local slotid = getSlotIdFromCARD(player,src)
-        destroySelf(player,"SLOT_PLAYERMOB" .. slotid)
+        destroyCard(player,"SLOT_PLAYERMOB" .. slotid)
     end
 
     function onLevelActionTrigger(player)

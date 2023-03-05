@@ -30,7 +30,7 @@ ZTCG_CARD
         if isInfoCARD(def_card, "Undead") then
             local slotid = getSlotIdFromCARD(not player, def_card)
             if slotid > 0 then
-                destroySelf(player,"SLOT_ADVSRYMOB" .. slotid)
+                destroyCard(player,"SLOT_ADVSRYMOB" .. slotid)
             end
         end
     end

@@ -43,7 +43,7 @@ ZTCG_CARD
                 mob_list = takeTargetCardFromList(menuCard,mob_list)
 
                 local slotid = getSlotIdFromCARD(not player,getCARD(menuCard))
-                destroySelf(player,"SLOT_ADVSRYMOB" .. slotid)
+                destroyCard(player,"SLOT_ADVSRYMOB" .. slotid)
             else
                 break
             end

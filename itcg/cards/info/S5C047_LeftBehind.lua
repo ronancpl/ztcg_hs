@@ -29,7 +29,7 @@ ZTCG_CARD
                 local card = menuCards(not player,list,"Select one of your mobs to destroy.","CARDLIST_PEEK")
                 if card ~= 0 then
                     local slotid = getSlotIdFromCARD(not player, getCARD(card))
-                    destroySelf(player,"SLOT_ADVSRYMOB" .. slotid)
+                    destroyCard(player,"SLOT_ADVSRYMOB" .. slotid)
 
                     break
                 end

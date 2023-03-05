@@ -31,7 +31,7 @@ ZTCG_CARD
             local menuCard = menuCards(player,equips,"Select an equip to destroy for its level in attack.","CARDLIST_PEEK")
             if menuCard ~= 0 then
                 local slotid = getSlotIdFromCARD(player,getCARD(menuCard)) - 7
-                destroySelf(player,"SLOT_PLAYEREQP" .. slotid)
+                destroyCard(player,"SLOT_PLAYEREQP" .. slotid)
 
                 local dmg = getCurrentLevelFromCARD(player, getCARD(menuCard))
                 attack(player, src, dmg, "ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")

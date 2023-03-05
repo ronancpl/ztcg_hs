@@ -38,7 +38,7 @@ ZTCG_CARD
                 moveCards(player,deck,hand,"TAKE_CARDID","PUT_BOTTOM",menuCard)
 
                 local slotid = getSlotIdFromCARD(player, src) - 7
-                destroySelf(player,"SLOT_PLAYEREQP" .. slotid)
+                destroyCard(player,"SLOT_PLAYEREQP" .. slotid)
 
                 local card = getCARD(menuCard)
                 if hasSharedFlagsCARD(card, "FLAG_TYPE", "TYPE_ANYMOB") then

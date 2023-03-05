@@ -52,7 +52,7 @@ ZTCG_CARD
 
         if(getCardRegister(src, cid, 0) == 1) then
             local slotid = getSlotIdFromCARD(player,src)
-            destroySelf(player,"SLOT_PLAYERMOB" .. slotid)
+            destroyCard(player,"SLOT_PLAYERMOB" .. slotid)
         else
             editCardRegister(src, cid, 0, 1, 0, null)
         end

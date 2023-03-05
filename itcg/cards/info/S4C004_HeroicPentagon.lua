@@ -30,7 +30,7 @@ ZTCG_CARD
             updateGameValue(0, 0)
 
             local slotid = getSlotIdFromCARD(player, src) - 7
-            destroySelf(player,"SLOT_PLAYEREQP" .. slotid)
+            destroyCard(player,"SLOT_PLAYEREQP" .. slotid)
         end
     end
 
