@@ -22,10 +22,11 @@ ZTCG_CARD
         "TEXT" "Think Fast 90 -- Play a tactic of level 90 or less."
     }
 
-    function onThinkAction(player)
-        local src = getSourceCARD()
-        attack(player,src,30,"ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
+    function onCalcNextAttack(player)
+        return 1    -- notices bonus from next tactic
+    end
 
+    function onExecuteNextAttack(player)
         local def_card = getCardPointer(1)
         if isInfoCARD(def_card, "Undead") then
             local slotid = getSlotIdFromCARD(not player, def_card)
@@ -33,6 +34,15 @@ ZTCG_CARD
                 destroyCard(player,"SLOT_ADVSRYMOB" .. slotid)
             end
         end
+
+        return 1    -- finishes bonus from next tactic
+    end
+
+    function onThinkAction(player)
+        insertCardNextAction(player)  -- card pointer : next attack
+
+        local src = getSourceCARD()
+        attack(player,src,30,"ATKRES_NIL", "ATKSRC_ACT", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
     function onActivateCharacterAction(player)
