@@ -23,7 +23,7 @@ ZTCG_CARD
     }
 
     function attackNotInfo(player,src,dmg,slotStr,slotid,info)
-        local card = getOnBoardCARD(player, slotid + 16)
+        local card = getOnBoardCARD(player, slotStr == "SLOT_ADVSRYMOB" and slotid + 16 or slotid)
         if card ~= 0 and not isInfoCARD(card,info) then
             attack(player, src, 30, "ATKRES_FIXED_SLOT", "ATKSRC_MOB", slotStr .. tostring(slotid), "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
         end

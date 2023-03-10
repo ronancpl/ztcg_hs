@@ -157,16 +157,6 @@ ztcg_enum =
     {"ATKRES_FIXED_DAMAGE"},
     {"ATKRES_NO_TARGET"},
 
-    -- ZTCG_FIXEDTARGET
-    {"SLOT_CHAR", 0},
-    {"SLOT_MOB1"},
-    {"SLOT_MOB2"},
-    {"SLOT_MOB3"},
-    {"SLOT_MOB4"},
-    {"SLOT_MOB5"},
-    {"SLOT_MOB6"},
-    {"SLOT_MOB7"},
-
     -- ZTCG_PREVENT
     {"DISABLE_PREVENT", 0},
     {"ENABLE_PREVENT"},
@@ -318,7 +308,6 @@ ztcg_enum =
     {"ZTCG_RECOVERTYPE"},
     {"ZTCG_ATKSRC"},
     {"ZTCG_ATKRES"},
-    {"ZTCG_FIXEDTARGET"},
     {"ZTCG_PREVENT"},
     {"ZTCG_COUNTER"},
     {"ZTCG_GLOBALMODE"},
