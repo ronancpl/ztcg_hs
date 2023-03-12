@@ -12,7 +12,7 @@ ZTCG_CARD
     TYPE_EQP
     {
         "LEVEL" "60"
-        "TEXT" "When you would take more than 30 damage all at once take only 30 damage instead."
+        "TEXT" "When you would take more than 30 damage all at once, take only 30 damage instead."
     }
 
     LVL_ACTION

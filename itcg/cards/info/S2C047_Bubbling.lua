@@ -14,7 +14,7 @@ ZTCG_CARD
         "LEVEL" "12"
         "ATTCK" "10"
         "HP" "30"
-        "TEXT" "Ooze -- Whenever Bubbling is damaged prevent all other damage to it this turn."
+        "TEXT" "Ooze -- Whenever Bubbling is damaged, prevent all other damage to it this turn."
     }
 
     LVL_ACTION
