@@ -57,7 +57,7 @@ ZTCG_CARD
     end
 
     function onLevelActionTrigger(player)
-        local list, list_sz = makeListFromCharacterActions(player, true)
+        local list, list_sz = makeListFromCharacterActions(player, true, false)
         if list_sz > 0 then
             local mg_list = makeFilteredList(player,list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY","ELEM_MAGE","ZTCG_NIL")
             local target = makeTargetFromCARD(getSourceCARD())

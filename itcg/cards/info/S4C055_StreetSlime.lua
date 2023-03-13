@@ -26,6 +26,8 @@ ZTCG_CARD
 
     function onThinkMob(player)
         local src = getSourceCARD()
+        local cid = getCardIdFromCARD(src)
+        editCardRegister(src, cid, 1, 1, 0, nil)
 
         local grav = getPlayerDeck(player,"DECK_GRAV")
         local card_list = getListFromDeck(grav)
@@ -50,15 +52,17 @@ ZTCG_CARD
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
         if(getCardRegister(src, cid, 0) ~= 10) then
-            local grav = getPlayerDeck(player,"DECK_GRAV")
-            local card_list = getListFromDeck(grav)
-            local goo_list = makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY", "ELEM_ANY", "Goo")
-            local goo_table = makeFilteredTableList(player,"ONLY_PLAYER",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY", "ELEM_ANY", "Goo")
-            local len = getListLength(goo_list) + getListLength(goo_table) - 1
-            destroyList(goo_table)
-            destroyList(goo_list)
+            if(getCardRegister(src, cid, 1) == 1) then
+                local grav = getPlayerDeck(player,"DECK_GRAV")
+                local card_list = getListFromDeck(grav)
+                local goo_list = makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY", "ELEM_ANY", "Goo")
+                local goo_table = makeFilteredTableList(player,"ONLY_PLAYER",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY", "ELEM_ANY", "Goo")
+                local len = getListLength(goo_list) + getListLength(goo_table) - 1
+                destroyList(goo_table)
+                destroyList(goo_list)
 
-            removeBuff(src,src,10 * len,10 * len,0)
+                removeBuff(src,src,10 * len,10 * len,0)
+            end
         else
             local goo_table = makeFilteredTableList(player,"ONLY_PLAYER",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY", "ELEM_ANY", "Goo")
             local len = getListLength(goo_table)
@@ -72,15 +76,17 @@ ZTCG_CARD
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
         if(getCardRegister(src, cid, 0) ~= 10) then
-            local grav = getPlayerDeck(player,"DECK_GRAV")
-            local card_list = getListFromDeck(grav)
-            local goo_list = makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY", "ELEM_ANY", "Goo")
-            local goo_table = makeFilteredTableList(player,"ONLY_PLAYER",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY", "ELEM_ANY", "Goo")
-            local len = getListLength(goo_list) + getListLength(goo_table) - 1
-            destroyList(goo_table)
-            destroyList(goo_list)
+            if(getCardRegister(src, cid, 1) == 1) then
+                local grav = getPlayerDeck(player,"DECK_GRAV")
+                local card_list = getListFromDeck(grav)
+                local goo_list = makeFilteredList(player,card_list,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY", "ELEM_ANY", "Goo")
+                local goo_table = makeFilteredTableList(player,"ONLY_PLAYER",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY", "ELEM_ANY", "Goo")
+                local len = getListLength(goo_list) + getListLength(goo_table) - 1
+                destroyList(goo_table)
+                destroyList(goo_list)
 
-            newBuff(src,src,10 * len,10 * len,0,1)
+                newBuff(src,src,10 * len,10 * len,0,1)
+            end
         else
             local goo_table = makeFilteredTableList(player,"ONLY_PLAYER",0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANY", "ELEM_ANY", "Goo")
             local len = getListLength(goo_table)

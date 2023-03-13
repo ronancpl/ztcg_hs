@@ -44,27 +44,34 @@ ZTCG_CARD
         attack(player, attacker, 20, "ATKRES_NIL", "ATKSRC_CHA", "ZTCG_DONTCARE", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
     end
 
-    function undoBuffs(player)
-        -- aura only takes effect if character is LEVEL 60+ and has 3+ LIGHT-type cards under it.
-        if(not matchRequirements(player, 60, 3, "ELEM_LIGHT")) then return end
+    function onActivateCharacterAction3(player)
+        -- aura effect: "applyBuffs" , "undoBuffs"
 
         local src = getSourceCARD()
+        local cid = getCardIdFromCARD(src)
+
+        editCardRegister(src, cid, 0, 10, 0, nil)
+        incrementBuffEffect(player,src)
+    end
+
+    function undoBuffs(player)
+        -- aura only takes effect if character is LEVEL 60+ and has 3+ LIGHT-type cards under it.
+
+        local src = getSourceCARD()
+        local cid = getCardIdFromCARD(src)
+        if(getCardRegister(src, cid, 0) ~= 10 or not matchRequirements(player, 60, 3, "ELEM_LIGHT")) then return end
+
         removeAuraBonus(player,"GLOBALAURA_PASS_ADVSRY",src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_LIGHT", "ZTCG_NIL")
     end
 
     function applyBuffs(player)
         -- aura only takes effect if character is LEVEL 60+ and has 3+ LIGHT-type cards under it.
-        if(not matchRequirements(player, 60, 3, "ELEM_LIGHT")) then return end
 
         local src = getSourceCARD()
+        local cid = getCardIdFromCARD(src)
+        if(getCardRegister(src, cid, 0) ~= 10 or not matchRequirements(player, 60, 3, "ELEM_LIGHT")) then return end
+
         applyAuraBonus(player,"GLOBALAURA_PASS_ADVSRY","BUFF_ANY",src,10,10,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_LIGHT", "ZTCG_NIL")
-    end
-
-    function onActivateCharacterAction3(player)
-        -- aura effect: "applyBuffs" , "undoBuffs" , "onPlayMob"
-
-        local src = getSourceCARD()
-        incrementBuffEffect(player,src)
     end
 
 }

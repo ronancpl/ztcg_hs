@@ -33,7 +33,7 @@ ZTCG_CARD
                 break
             end
 
-            if not makePrompt(player,true,"Use Wizard Wand to draw a card?","You will have to throw a coin. If you lose, discard all cards from hand.","ZTCG_NIL","ZTCG_NIL","OK","Cancel") then
+            if(not makePrompt(player,true,"Use Wizard Wand to draw a card?","You will have to throw a coin. If you lose, discard all cards from hand.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then
                 break
             end
 

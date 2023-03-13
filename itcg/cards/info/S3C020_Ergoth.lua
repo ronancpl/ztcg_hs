@@ -57,7 +57,7 @@ ZTCG_CARD
     function effect_rk(player)
         if(not matchRequirements(player, 120, 3, "ELEM_MAGE")) then return end
 
-        if not makePrompt(player,true,"Use Reaper's Knock?","Opponent's HP goes to 10. Your turn ends.","ZTCG_NIL","ZTCG_NIL","OK","Cancel") then
+        if(not makePrompt(player,true,"Use Reaper's Knock?","Opponent's HP goes to 10. Your turn ends.","ZTCG_NIL","ZTCG_NIL","OK","Cancel")) then
             return
         end
 

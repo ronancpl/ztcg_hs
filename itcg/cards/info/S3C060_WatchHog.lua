@@ -41,8 +41,10 @@ ZTCG_CARD
         local cid = getCardIdFromCARD(src)
 
         if getCardRegister(src,cid,0) ~= 0 then return end
+        if (not hasFlag("ZTCG_ATKSRC", "ATKSRC_MOB | ATKSRC_CHA | ATKSRC_ACT")) then return end
+
         local dmg = getGameValue(0)
-        if not (makePrompt(player,true,"Use " .. getNameFromCARD(src) .. "?","Prevent one damage instance per turn... Prevent %d damage.",dmg,"ZTCG_NIL","OK","Cancel")) then return end
+        if(not makePrompt(player,true,"Use " .. getNameFromCARD(src) .. "?","Prevent one damage instance per turn... Prevent %d damage.",dmg,"ZTCG_NIL","OK","Cancel")) then return end
 
         editCardRegister(src,cid,0,1,0,nil)
         updateGameValue(0, 0)   -- block damage

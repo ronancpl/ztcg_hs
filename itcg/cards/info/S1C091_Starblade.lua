@@ -41,25 +41,29 @@ ZTCG_CARD
         drawCard(player)
     end
 
-    function undoBuffs(player)
-        if(not matchRequirements(player, 50, 2, "ELEM_WARRIOR")) then return end
-
+    function onActivateCharacterAction3(player)
         local src = getSourceCARD()
+        local cid = getCardIdFromCARD(src)
+
+        -- action buff
+        editCardRegister(src, cid, 0, 10, 0, nil)
+        incrementBuffEffect(player,src)
+    end
+
+    function undoBuffs(player)
+        local src = getSourceCARD()
+        local cid = getCardIdFromCARD(src)
+        if(getCardRegister(src, cid, 0) ~= 10 or not matchRequirements(player, 50, 2, "ELEM_WARRIOR")) then return end
+
         removeAuraBonus(player,"GLOBALAURA_PASS_ADVSRY",src,20,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
     end
 
     function applyBuffs(player)
-        if(not matchRequirements(player, 50, 2, "ELEM_WARRIOR")) then return end
-
         local src = getSourceCARD()
+        local cid = getCardIdFromCARD(src)
+        if(getCardRegister(src, cid, 0) ~= 10 or not matchRequirements(player, 50, 2, "ELEM_WARRIOR")) then return end
+
         applyAuraBonus(player,"GLOBALAURA_PASS_ADVSRY","BUFF_ANY",src,20,0,0,0,"ZTCG_DONTCARE","ZTCG_DONTCARE","TYPE_ANYMOB", "ELEM_ANY", "ZTCG_NIL")
-    end
-
-    function onActivateCharacterAction3(player)
-        -- action buff
-
-        local src = getSourceCARD()
-        incrementBuffEffect(player,src)
     end
 
 }
