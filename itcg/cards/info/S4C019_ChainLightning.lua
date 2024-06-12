@@ -29,7 +29,7 @@ ZTCG_CARD
 
         local dmg = 60
         while dmg > 0 and getListLength(list) > 0 do
-            local menuCard = menuCards(player,list,"Select a monster to apply Chain Lightning (damage: " .. tostring(dmg) .. " ).","CARDLIST_PEEK")
+            local menuCard = menuCards(player,list,"Select a target to apply Chain Lightning (damage: " .. tostring(dmg) .. " ).","CARDLIST_PEEK")
             if menuCard ~= 0 then
                 local slotid = getSlotIdFromCARD(not player, getCARD(menuCard))
                 list = takeTargetCardFromList(menuCard,list)
@@ -44,6 +44,8 @@ ZTCG_CARD
                 attack(player, src, dmg, "ATKRES_FIXED_SLOT", "ATKSRC_ACT", slotstr, "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
 
                 dmg = dmg - 20
+            else
+                break
             end
         end
 

@@ -19,7 +19,7 @@ ZTCG_CARD
     {
         "LEVEL" "30"
         "ATTRB" "2"
-        "TEXT" "Equip 30 -- Play an equip of level 30 or less. "
+        "TEXT" "Equip 30 -- Play an item of level 30 or less. "
     }
 
     function onEquipBlockDamage(player)
@@ -41,6 +41,7 @@ ZTCG_CARD
                 editCardRegister(src, cid, 0, 777, 0, nil)
 
                 local atkr = getCardPointer(0)
+                incrementBuffEffect(player,src)
                 newBuff(atkr,src,-10,0,0,1)
             end
         end

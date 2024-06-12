@@ -25,21 +25,23 @@ ZTCG_CARD
     }
 
     function onDiscard(player)
-        local src = getSourceCARD()
-        local card = makeTargetFromCARD(src)
+        if hasFlag("ZTCG_PLAYERTYPE", "IS_ADVSRY") then
+            local src = getSourceCARD()
+            local card = makeTargetFromCARD(src)
 
-        local grav = getPlayerDeck(player, "DECK_GRAV")
-        local hand = getPlayerDeck(player, "DECK_HAND")
-        local cardList = takeTargetCardFromDeck(player,card,grav)
-        local qty
+            local grav = getPlayerDeck(player, "DECK_GRAV")
+            local hand = getPlayerDeck(player, "DECK_HAND")
+            local cardList = takeTargetCardFromDeck(player,card,grav)
+            local qty
 
-        cardList, qty = moveCardsFromListToDeck(player,cardList,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
-        if qty > 0 then
-            summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
+            cardList, qty = moveCardsFromListToDeck(player,cardList,hand,"TAKE_NEXT","PUT_BOTTOM","ZTCG_MAXVALUE")
+            if qty > 0 then
+                summon(player,"PLAY_FORCESUMMON","ELEM_ANY","ZTCG_MAXVALUE")
+            end
+
+            destroyList(cardList)
+            destroyList(card)
         end
-
-        destroyList(cardList)
-        destroyList(card)
     end
 
     function onLevelActionTrigger(player)

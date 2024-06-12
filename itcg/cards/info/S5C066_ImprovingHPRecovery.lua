@@ -22,7 +22,7 @@ ZTCG_CARD
         "TEXT" "Nap -- You get +40 HP."
     }
 
-    function onOpponentBlockResultDamage(player)
+    function onExecuteAttackCard(player)
         if hasFlag("ZTCG_ATKSRC","ATKSRC_MOB") then
             local dmg = getGameValue(0)
 

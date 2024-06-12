@@ -14,7 +14,7 @@ ZTCG_CARD
         "LEVEL" "70"
         "ATTCK" "50"
         "HP" "40"
-        "TEXT" "Prevail -- When Tauromacis is destroyed return it to your hand."
+        "TEXT" "Prevail -- When Tauromacis is destroyed, return it to your hand."
     }
 
     LVL_ACTION

@@ -12,7 +12,7 @@ ZTCG_CARD
     TYPE_ACT
     {
         "LEVEL" "30"
-        "TEXT" "Choose a monster and prevent all damages to it next turn."
+        "TEXT" "Choose a monster and prevent all damage to it next turn."
     }
 
     LVL_ACTION
@@ -24,7 +24,10 @@ ZTCG_CARD
 
     function preventIntercomeTargetMob(player)
         local target = getTargetCARD()
-        if target == getCardPointer(3) then
+
+        local src = getSourceCARD()
+        local cid = getCardIdFromCARD(src)
+        if getCardRegister(target, cid, 0) ~= 0 then
             return 1
         else
             return 0
@@ -39,7 +42,10 @@ ZTCG_CARD
             local card = menuCards(player,list,"Select a card to prevent all damage to it.","CARDLIST_PEEK")
             if card ~= 0 then
                 local preventMob = getCARD(card)
-                setCardPointer(3, preventMob)
+
+                local src = getSourceCARD()
+                local cid = getCardIdFromCARD(src)
+                editCardRegister(preventMob, cid, 0, 1, 0, nil)
             end
         end
         destroyList(list)

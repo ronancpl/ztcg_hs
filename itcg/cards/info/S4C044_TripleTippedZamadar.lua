@@ -35,6 +35,8 @@ ZTCG_CARD
             destroyList(list)
 
             updateGameValue(0, dmg + bonus)
+            editCardRegister(src, cid, 1, bonus, 0, nil)
+
             return 1    -- notices bonus from next tactic
         end
     end
@@ -45,7 +47,12 @@ ZTCG_CARD
 
         local atkr = getCardPointer(0)
         if(hasSharedFlagsCARD(atkr, "FLAG_TYPE", "TYPE_ANYMOB") and getCardRegister(src, cid, 0) == 10) then
+            local bonus = getCardRegister(src, cid, 1)
+            incrementBuffEffect(player,atkr)
+            newBuff(atkr,atkr,bonus,0,0,1)
+
             editCardRegister(src, cid, 0, 0, 0, nil)
+            editCardRegister(src, cid, 1, 0, 0, nil)
 
             return 1    -- finishes bonus from next tactic
         end

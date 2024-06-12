@@ -26,6 +26,7 @@ ZTCG_CARD
 
     function onThinkMob(player)
         local src = getSourceCARD()
+        incrementBuffEffect(player,src)
         newBuff(src,src,40,0,0,1)
     end
 

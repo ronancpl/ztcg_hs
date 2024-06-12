@@ -23,7 +23,9 @@ ZTCG_CARD
     }
 
     function onEquipBuff(player)
-        return 10   -- any move apply equip bonus
+        if hasFlag("ZTCG_ATKSRC", "ATKSRC_MOB | ATKSRC_CHA | ATKSRC_ACT") then
+            return 10
+        end
     end
 
     function onActivateCharacterAction(player)

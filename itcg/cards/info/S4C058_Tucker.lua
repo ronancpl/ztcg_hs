@@ -97,6 +97,7 @@ ZTCG_CARD
 
                     local cardid = getCardIdFromCARD(src)
                     editCardRegister(src,cardid,0,slotid,0,nil)
+                    incrementBuffEffect(player,src)
                     newBuff(card,src,0,20,0,1)
                 end
 

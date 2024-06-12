@@ -21,7 +21,7 @@ ZTCG_CARD
     {
         "LEVEL" "ZTCG_MAXVALUE"
         "ATTRB" "0"
-        "TEXT" "Expert Scout -- If you're level 70 or more, reveal the top 2 cards of your deck. If they're both monsters, draw them. Otherwise put them back in any order."
+        "TEXT" "Expert Scout -- If you're level 70 or more, reveal the top 2 cards of your deck. If they're both monsters, draw them. Otherwise, put them back in any order."
     }
 
     function onDestroy(player)

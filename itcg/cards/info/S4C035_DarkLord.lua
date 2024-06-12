@@ -19,7 +19,7 @@ ZTCG_CARD
         {
             "LEVEL" "60"
             "ATTRB" "1"
-            "TEXT" "Stealthy Blow -- Choose one: Do 40 damage to a character or your opponent discards a card at random from his or her hand."
+            "TEXT" "Stealthy Blow -- Choose one: Do 40 damage to a character, or your opponent discards a card at random from his or her hand."
         }
 
         LVL_ACTION

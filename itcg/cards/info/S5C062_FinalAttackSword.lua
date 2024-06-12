@@ -18,7 +18,7 @@ ZTCG_CARD
     LVL_ACTION
     {
         "LEVEL" "50"
-        "ATTRB" "1"
+        "ATTRB" "2"
         "TEXT" "Crush -- Do 20 damage to a monster."
     }
 

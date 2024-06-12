@@ -36,6 +36,7 @@ ZTCG_CARD
         local atkrName = getNameFromCARD(atkr)
         if atkrName == "Cloto" or atkrName == "Lakelis" then
             local src = getSourceCARD()
+            incrementBuffEffect(player,src)
             newBuff(src,src,20,0,0,1)
         end
     end
@@ -50,6 +51,8 @@ ZTCG_CARD
             local bonus = getCardRegister(src, cid, 1)
             updateGameValue(0, dmg + bonus)
 
+            editCardRegister(src, cid, 1, bonus, 0, nil)
+
             return 1    -- notices bonus from next tactic
         end
     end
@@ -58,8 +61,14 @@ ZTCG_CARD
         local src = getSourceCARD()
         local cid = getCardIdFromCARD(src)
 
+        local atkr = getCardPointer(0)
         if(getCardRegister(src, cid, 0) == 10) then
+            local bonus = getCardRegister(src, cid, 1)
+            incrementBuffEffect(player,atkr)
+            newBuff(atkr,atkr,bonus,0,0,1)
+
             editCardRegister(src, cid, 0, 0, 0, nil)
+            editCardRegister(src, cid, 1, 0, 0, nil)
 
             return 1    -- finishes bonus from next tactic
         end

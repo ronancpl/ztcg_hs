@@ -19,7 +19,7 @@ ZTCG_CARD
         {
             "LEVEL" "90"
             "ATTRB" "3"
-            "TEXT" "MegaSpawn -- Search your deck for a non-Boss monster and play it. Then shuffle your deck."
+            "TEXT" "Mega Spawn -- Search your deck for a non-Boss monster and play it. Then shuffle your deck."
         }
     }
 

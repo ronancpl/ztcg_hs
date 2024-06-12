@@ -17,7 +17,7 @@ ZTCG_CARD
         LVL_ACTION
         {
             "LEVEL" "90"
-            "ATTRB" "2"
+            "ATTRB" "3"
             "TEXT" "White-Hot Doom Blast -- Pianus does 100 damage to a character or monster."
         }
     }

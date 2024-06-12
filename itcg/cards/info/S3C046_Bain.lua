@@ -29,6 +29,7 @@ ZTCG_CARD
         attack(player, src, 40, "ATKRES_DONT_HIT_CHAR", "ATKSRC_MOB", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
 
         if lastAttackKilled(player) then
+            incrementBuffEffect(player,src)
             newBuff(src,src,40,0,0,1)
         end
     end

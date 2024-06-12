@@ -23,7 +23,7 @@ ZTCG_CARD
         LVL_ACTION
         {
             "LEVEL" "100"
-            "ATTRB" "2"
+            "ATTRB" "3"
             "TEXT" "Meteor Slam -- Jr. Balrog does 30 damage to a character or monster. Then Jr. Balrog does another 30 damage to a character or monster. "
         }
     }

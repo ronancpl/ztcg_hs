@@ -12,7 +12,7 @@ ZTCG_CARD
     TYPE_EQP
     {
         "LEVEL" "90"
-        "TEXT" "Whenever you would do an action on a card under your character, you may instead treat it as if it says 60BB Tricky Shot -- Do 20 damage to a character or monster."
+        "TEXT" "Whenever you would do an action on a card under your character, you may instead treat it as if it says, \"60** Tricky Shot -- Do 20 damage to a character or monster.\""
     }
 
     LVL_ACTION

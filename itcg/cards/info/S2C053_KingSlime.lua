@@ -18,12 +18,12 @@ ZTCG_CARD
         {
             "LEVEL" "0"
             "ATTRB" "0"
-            "TEXT" "Split-- When King Slime is destroyed, you may search your deck for a Goo monster and play it. Then shuffle your deck."
+            "TEXT" "Splat -- When King Slime is destroyed, you may search your deck for a Goo monster and play it. Then shuffle your deck."
         }
         LVL_ACTION
         {
             "LEVEL" "40"
-            "ATTRB" "1"
+            "ATTRB" "2"
             "TEXT" "Shock Wave -- King Slime does 10 damage to each of your opponent's monsters. Then King Slime does 10 damage to your opponent's character. "
         }
     }

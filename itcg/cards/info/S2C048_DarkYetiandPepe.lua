@@ -14,7 +14,7 @@ ZTCG_CARD
         "LEVEL" "82"
         "ATTCK" "50"
         "HP" "70"
-        "TEXT" "Split-- When Dark Yeti and Pepe is destroyed, you may search your deck for the card Yeti or the card Pepe and play it. Then shuffle your deck."
+        "TEXT" "Split -- When Dark Yeti and Pepe is destroyed, you may search your deck for the card Yeti or the card Pepe and play it. Then shuffle your deck."
     }
 
     LVL_ACTION

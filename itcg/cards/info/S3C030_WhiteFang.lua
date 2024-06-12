@@ -14,7 +14,7 @@ ZTCG_CARD
         "LEVEL" "58"
         "ATTCK" "40"
         "HP" "40"
-        "TEXT" "Pet Defender -- White Fang gets +30 attack and +30 HP as long as you have a pet."
+        "TEXT" "Pet Defender -- White Fang gets +30 attack and +30 HP as long as you have a Pet."
     }
 
     LVL_ACTION

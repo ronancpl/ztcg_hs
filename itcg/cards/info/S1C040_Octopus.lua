@@ -14,7 +14,7 @@ ZTCG_CARD
         "LEVEL" "12"
         "ATTCK" "10"
         "HP" "10"
-        "TEXT" "Genius -- Draw a card."
+        "TEXT" "Genius -- When you play Octopus, draw a card."
     }
 
     LVL_ACTION

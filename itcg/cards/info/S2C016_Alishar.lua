@@ -17,7 +17,7 @@ ZTCG_CARD
         LVL_ACTION
         {
             "LEVEL" "70"
-            "ATTRB" "1"
+            "ATTRB" "2"
             "TEXT" "Time Tornado -- Each player shuffles his or her discard pile and hand into his or her deck. Then each player draws 5 cards."
         }
     }

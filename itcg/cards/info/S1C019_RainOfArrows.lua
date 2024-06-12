@@ -19,7 +19,7 @@ ZTCG_CARD
     {
         "LEVEL" "ZTCG_MAXVALUE"
         "ATTRB" "0"
-        "TEXT" "Steady Hand -- If you're level 50 or more, get +10 damage you do with character actions until the end of turn. "
+        "TEXT" "Steady Hand -- If you're level 50 or more, get +10 damage you do with character actions until end of turn. "
     }
 
     function onThinkAction(player)
@@ -38,6 +38,7 @@ ZTCG_CARD
         local level = getCurrentLevelFromCARD(player,chr)
         if level >= 50 then
             local src = getSourceCARD()
+            incrementBuffEffect(player,src)
             newBuff(chr,src,10,0,0,1)
         end
     end

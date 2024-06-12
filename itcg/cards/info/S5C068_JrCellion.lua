@@ -30,8 +30,9 @@ ZTCG_CARD
 
         if isSameCARD(src,atkr) then
             local def_card = getCardPointer(1)
-            if isInfoCARD(def_card, "Water") or isInfoCARD(def_card, "Ice") then
+            if (isInfoCARD(def_card, "Water") or isInfoCARD(def_card, "Ice")) and hasSharedFlagsCARD(def_card, "FLAG_TYPE", "TYPE_ANYMOB") then
                 local src = getSourceCARD()
+                incrementBuffEffect(player,src)
                 newBuff(src,src,40,0,0,1)
             end
         end

@@ -37,6 +37,7 @@ ZTCG_CARD
         destroyList(goo_table)
         destroyList(goo_list)
 
+        incrementBuffEffect(player,src)
         newBuff(src,src,10 * len,10 * len,0,1)
     end
 

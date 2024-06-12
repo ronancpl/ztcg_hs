@@ -17,7 +17,7 @@ ZTCG_CARD
         LVL_ACTION
         {
             "LEVEL" "60"
-            "ATTRB" "1"
+            "ATTRB" "2"
             "TEXT" "Spook Summon -- If Papa Pixie has 60 HP or less, you may search your deck for a Spook and play it. Then shuffle your deck."
         }
     }

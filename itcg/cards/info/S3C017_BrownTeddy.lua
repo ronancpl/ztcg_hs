@@ -26,6 +26,7 @@ ZTCG_CARD
 
     function onPlayAction(player)
         local src = getSourceCARD()
+        incrementBuffEffect(player,src)
         newBuff(src,src,20,0,0,1)
     end
 

@@ -60,6 +60,7 @@ ZTCG_CARD
         local atkr = getCardPointer(0)
         if(isInfoCARD(atkr, "Boar") and getCardRegister(src, cid, 0) == 10) then
             editCardRegister(src, cid, 0, 0, 0, nil)
+            incrementBuffEffect(player,src)
             newBuff(atkr,src,30,0,0,1)
 
             return 1    -- finishes bonus from next attack
@@ -75,7 +76,6 @@ ZTCG_CARD
         editCardRegister(src, cid, 0, 10, 0, nil)
         editCardRegister(src, cid, 1, 30, 0, nil)
 
-        incrementBuffEffect(player,src)
         insertCardTurnAction(player)  -- card pointer : next attack
     end
 
