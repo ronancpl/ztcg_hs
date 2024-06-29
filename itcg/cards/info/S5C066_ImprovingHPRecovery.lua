@@ -31,6 +31,15 @@ ZTCG_CARD
         end
     end
 
+    function onReceiveAttackCard(player)
+        if hasFlag("ZTCG_ATKSRC","ATKSRC_MOB") then
+            local dmg = getGameValue(0)
+
+            local chr = getOnBoardCARD(player, "SLOT_PLAYERCHAR")
+            refreshHP(player,chr,dmg)
+        end
+    end
+
     function onThinkAction(player)
         insertCardTurnAction(player)
     end
