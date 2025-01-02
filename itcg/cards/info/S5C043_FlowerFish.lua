@@ -14,7 +14,7 @@ ZTCG_CARD
         "LEVEL" "29"
         "ATTCK" "20"
         "HP" "30"
-        "TEXT" "Warrior Proof -- Warrior cards don't do damage to Flower Fish."
+        "TEXT" "Warrior Proof -- Warrior cards don't damage Flower Fish."
     }
 
     LVL_ACTION

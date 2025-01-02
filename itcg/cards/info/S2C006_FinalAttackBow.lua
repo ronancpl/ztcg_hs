@@ -1,7 +1,7 @@
 ZTCG_CARD
 {
 
-    "NAME" "Final Attack : Bow"
+    "NAME" "Final Attack: Bow"
     "IMAGE" "S2C006_FinalAttackBow.png"
     "TYPE" "ACTION"
     "ELEMENT" "Bowman"

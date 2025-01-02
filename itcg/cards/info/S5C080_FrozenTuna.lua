@@ -12,7 +12,7 @@ ZTCG_CARD
     TYPE_EQP
     {
         "LEVEL" "20"
-        "TEXT" "When you finish doing your character actions each turn, do 10 damage to a character or monster +10 If you played a Jobless card this turn."
+        "TEXT" "When you finish doing your character actions each turn, do 10 damage to a character or monster +10 if you played a Jobless card this turn."
     }
 
     LVL_ACTION

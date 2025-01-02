@@ -18,7 +18,7 @@ ZTCG_CARD
         {
             "LEVEL" "0"
             "ATTRB" "0"
-            "TEXT" "Soul Drain -- Whenver Elliza does damage, it gets that much +HP. It can't go over its starting HP with Soul Drain."
+            "TEXT" "Soul Drain -- Whenever Elliza does damage, it gets that much +HP. It can't go over its starting HP with Soul Drain."
         }
     }
 

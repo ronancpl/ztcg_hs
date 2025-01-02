@@ -12,7 +12,7 @@ ZTCG_CARD
     TYPE_ACT
     {
         "LEVEL" "10"
-        "TEXT" "Do 30 damage to a character or monster and clash with your opponent. If you win, do another 30 damage to a character or monster. (To clash, each player reveals the top card of their deck, then puts it on top or bottom. Whoever reveawled the highest-level card wins.)"
+        "TEXT" "Do 30 damage to a character or monster and clash with your opponent. If you win, do another 30 damage to a character or monster. (To clash, each player reveals the top card of their deck, then puts it on top or bottom. Whoever revealed the highest-level card wins.)"
     }
 
     LVL_ACTION

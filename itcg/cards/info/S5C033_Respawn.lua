@@ -12,7 +12,7 @@ ZTCG_CARD
     TYPE_ACT
     {
         "LEVEL" "50"
-        "TEXT" "Choose a monster. Its player puts it on the bottom of his or her deck. Then that player reveals the cards from the top of his or her deck until a monster card is revealed. He or she plays that monster, then puts the other cards revealed this way on the bottom of his or her deck in any order."
+        "TEXT" "Choose a monster. Its player puts it on the bottom of his or her deck. Then that player reveals cards from the top of his or her deck until a monster card is revealed. He or she plays that monster, then puts the other cards revealed this way on the bottom of his or her deck in any order."
     }
 
     LVL_ACTION

@@ -14,7 +14,7 @@ ZTCG_CARD
         "LEVEL" "55"
         "ATTCK" "50"
         "HP" "50"
-        "TEXT" "Raise Hackles -- When you play Angry Hector, clash with your opponent. If you win, monsters that attack this turn each get +30 attack until end of turn. (To clash, each player reveals the top card of their deck, then puts it on top or bottom. Whoever reveawled the highest-level card wins.)"
+        "TEXT" "Raise Hackles -- When you play Angry Hector, clash with your opponent. If you win, monsters that attack this turn each get +30 attack until end of turn. (To clash, each player reveals the top card of their deck, then puts it on top or bottom. Whoever revealed the highest-level card wins.)"
     }
 
     LVL_ACTION

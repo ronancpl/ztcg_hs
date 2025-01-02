@@ -12,7 +12,7 @@ ZTCG_CARD
     TYPE_EQP
     {
         "LEVEL" "10"
-        "TEXT" "When you play Red Apprentice Hat, draw a card. Whenever you level up get +10 HP."
+        "TEXT" "When you play Red Apprentice Hat, draw a card. Whenever you level up, get +10 HP."
     }
 
     LVL_ACTION

@@ -22,11 +22,24 @@ ZTCG_CARD
         "TEXT" "Quick Shot -- Do 20 damage to a character or monster."
     }
 
+    function onLaunchAttack(player)
+        local src = getSourceCARD()
+        local cid = getCardIdFromCARD(src)
+
+        local def_card = getCardPointer(1)
+        if hasSharedFlagsCARD(def_card, "FLAG_TYPE", "TYPE_ANYMOB") then
+            editCardRegister(src, cid, 0, 1, 0, nil)
+        end
+    end
+
     function afterCharacterActions(player)
         local src = getSourceCARD()
+        local cid = getCardIdFromCARD(src)
+        editCardRegister(src, cid, 0, 0, 0, nil)
+
         attack(player, src, 10, "ATKRES_NIL", "ATKSRC_EQP", "ZTCG_NIL", "STRIKE_NORMAL", "ENABLE_PREVENT", "IS_STARTER")
 
-        if lastAttackKilled(player) then
+        if lastAttackKilled(player) and getCardRegister(src, cid, 0) == 1 then
             local slotid = getSlotIdFromCARD(player, src) - 7
             local list = takeCardFromTable(player, "SLOT_PLAYEREQP" .. tostring(slotid))
 

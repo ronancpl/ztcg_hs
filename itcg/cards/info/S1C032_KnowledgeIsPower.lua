@@ -1,7 +1,7 @@
 ZTCG_CARD
 {
 
-    "NAME" "Knowledge Is Power"
+    "NAME" "Knowledge is Power"
     "IMAGE" "S1C032_KnowledgeIsPower.png"
     "TYPE" "ACTION"
     "ELEMENT" "Magician"

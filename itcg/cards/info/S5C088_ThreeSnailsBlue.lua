@@ -1,7 +1,7 @@
 ZTCG_CARD
 {
 
-    "NAME" "Three Snails : Blue"
+    "NAME" "Three Snails: Blue"
     "IMAGE" "S5C088_ThreeSnailsBlue.png"
     "TYPE" "ACTION"
     "ELEMENT" "Jobless"

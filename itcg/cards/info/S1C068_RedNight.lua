@@ -12,14 +12,14 @@ ZTCG_CARD
     TYPE_EQP
     {
         "LEVEL" "10"
-        "TEXT" "Whenever one of your monsters is destroyed, flip a coin, If you win your opponent chooses and discards a card from his or her hand."
+        "TEXT" "Whenever one of your monsters is destroyed, flip a coin. If you win, your opponent chooses and discards a card from his or her hand."
     }
 
     LVL_ACTION
     {
         "LEVEL" "ZTCG_MAXVALUE"
         "ATTRB" "0"
-        "TEXT" "Spy -- Draw a card. Then discard a card. "
+        "TEXT" "Spy -- Draw a card. Then discard a card from your hand."
     }
 
     function onAttackMobDestroyed(player)

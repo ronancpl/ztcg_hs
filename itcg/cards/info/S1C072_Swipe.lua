@@ -19,7 +19,7 @@ ZTCG_CARD
     {
         "LEVEL" "ZTCG_MAXVALUE"
         "ATTRB" "0"
-        "TEXT" "Spy -- Draw a card. Then discard a card. "
+        "TEXT" "Spy -- Draw a card. Then discard a card from your hand."
     }
 
     function onThinkAction(player)

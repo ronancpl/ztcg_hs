@@ -12,7 +12,7 @@ ZTCG_CARD
     TYPE_ACT
     {
         "LEVEL" "90"
-        "TEXT" "You may do each of your character actions at the top and working your way done. When you're done, resume your turn. You can't play more than one Papa Pixie's Time Warp each turn."
+        "TEXT" "You may do each of your character actions at the top and working your way down. When you're done, resume your turn. You can't play more than one Papa Pixie's Time Warp each turn."
     }
 
     LVL_ACTION

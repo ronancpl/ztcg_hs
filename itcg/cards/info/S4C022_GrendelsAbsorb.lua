@@ -12,7 +12,7 @@ ZTCG_CARD
     TYPE_ACT
     {
         "LEVEL" "80"
-        "TEXT" "If you have fewer cards in hand than your opponent, draw cards until you have the same number of cards as your opponent. Then your opponent chooses and discards as many cards from his or her hand you drew."
+        "TEXT" "If you have fewer cards in hand than your opponent, draw cards until you have the same number of cards as your opponent. Then your opponent chooses and discards as many cards from his or her hand as you drew."
     }
 
     LVL_ACTION

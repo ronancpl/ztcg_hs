@@ -14,7 +14,7 @@ ZTCG_CARD
         "LEVEL" "23"
         "ATTCK" "30"
         "HP" "10"
-        "TEXT" "Lucky Day -- When Surprised Seacle is destroyed, clash with your opponent. If you win, return it to play. (To clash, each player reveals the top card of their deck, then puts it on top or bottom. Whoever reveawled the highest-level card wins.)"
+        "TEXT" "Lucky Day -- When Surprised Seacle is destroyed, clash with your opponent. If you win, return it to play. (To clash, each player reveals the top card of their deck, then puts it on top or bottom. Whoever revealed the highest-level card wins.)"
     }
 
     LVL_ACTION

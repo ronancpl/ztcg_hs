@@ -1,7 +1,7 @@
 ZTCG_CARD
 {
 
-    "NAME" "Final Attack : Sword"
+    "NAME" "Final Attack: Sword"
     "IMAGE" "S5C062_FinalAttackSword.png"
     "TYPE" "ACTION"
     "ELEMENT" "Warrior"

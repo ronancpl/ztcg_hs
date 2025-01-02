@@ -14,7 +14,7 @@ ZTCG_CARD
         "LEVEL" "99"
         "ATTCK" "80"
         "HP" "80"
-        "TEXT" "Clock Tick -- Whenever Grim Phantom Watch attacks, clash with your opponent. If you win, you may play the top card of your deck. (To clash, each player reveals the top card of their deck, then puts it on top or bottom. Whoever reveawled the highest-level card wins.)"
+        "TEXT" "Clock Tick -- Whenever Grim Phantom Watch attacks, clash with your opponent. If you win, you may play the top card of your deck. (To clash, each player reveals the top card of their deck, then puts it on top or bottom. Whoever revealed the highest-level card wins.)"
     }
 
     LVL_ACTION

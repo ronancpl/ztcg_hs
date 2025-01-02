@@ -12,7 +12,7 @@ ZTCG_CARD
     TYPE_ACT
     {
         "LEVEL" "35"
-        "TEXT" "For Each Magician card under your character, you get +20 HP. You can't go over your starting HP with Boosted Heal."
+        "TEXT" "For each Magician card under your character, you get +20 HP. You can't go over your starting HP with Boosted Heal."
     }
 
     LVL_ACTION
