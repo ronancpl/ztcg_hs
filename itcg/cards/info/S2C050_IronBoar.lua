@@ -21,7 +21,7 @@ ZTCG_CARD
     {
         "LEVEL" "20"
         "ATTRB" "1"
-        "TEXT" "Boar Buff -- One Boar that attacks this turn gets +30 attack until the end of the turn. "
+        "TEXT" "Boar Buff -- One Boar that attacks this turn gets +30 attack until end of turn. "
     }
 
     function undoBuffs(player)

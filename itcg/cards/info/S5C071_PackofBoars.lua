@@ -14,14 +14,14 @@ ZTCG_CARD
         "LEVEL" "42"
         "ATTCK" "70"
         "HP" "70"
-        "TEXT" "Boar Upgrade -- Put on one of your Boar monsters. Scout -- When you play Pack of Boars, reveal the top card of your deck. If it's a monster, put it into your hand. Otherwise, put it back."
+        "TEXT" "Boar Upgrade -- Put on one of your Boar monsters. Scout -- When you play Pack of Boars, reveal the top card of your deck. If it's a monster, put it into your hand. Otherwise put it back."
     }
 
     LVL_ACTION
     {
         "LEVEL" "50"
         "ATTRB" "2"
-        "TEXT" "Boar Scout -- Reveal the top card of your deck. If it's a Boar card, put it into your hand. Otherwise, put it back."
+        "TEXT" "Boar Scout -- Reveal the top card of your deck. If it's a Boar card, put it into your hand. Otherwise put it back."
     }
 
     function makeInfoTableList(player,info)

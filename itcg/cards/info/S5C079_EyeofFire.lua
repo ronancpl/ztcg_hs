@@ -12,7 +12,7 @@ ZTCG_CARD
     TYPE_EQP
     {
         "LEVEL" "60"
-        "TEXT" "Whenever you play a monster from your hand, reveal the top card of your deck. If it's a monster, play it. Otherwise, put it on the bottom of your deck."
+        "TEXT" "Whenever you play a monster from your hand, reveal the top card of your deck. If it's a monster, play it. Otherwise put it on the bottom of your deck."
     }
 
     LVL_ACTION

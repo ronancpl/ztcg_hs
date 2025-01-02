@@ -21,7 +21,7 @@ ZTCG_CARD
     {
         "LEVEL" "30"
         "ATTRB" "0"
-        "TEXT" "Boss Hunting 1 -- Reveal the top card of your deck. If it's a Boss, draw it. Otherwise, put it on the bottom of your deck."
+        "TEXT" "Boss Hunting 1 -- Reveal the top card of your deck. If it's a Boss, draw it. Otherwise put it on the bottom of your deck."
     }
 
     function bossLevelDrop(player,card,src)

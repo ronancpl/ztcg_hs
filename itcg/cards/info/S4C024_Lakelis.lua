@@ -14,7 +14,7 @@ ZTCG_CARD
         "LEVEL" "30"
         "ATTCK" "30"
         "HP" "20"
-        "TEXT" "NPC Quest -- You have a boss when your turn ends. Reward -- Draw a card for each boss that each player has."
+        "TEXT" "NPC Quest -- You have a Boss when your turn ends. Reward -- Draw a card for each Boss that each player has."
     }
 
     LVL_ACTION

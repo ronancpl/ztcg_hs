@@ -21,7 +21,7 @@ ZTCG_CARD
     {
         "LEVEL" "ZTCG_MAXVALUE"
         "ATTRB" "0"
-        "TEXT" "Scout -- Reveal the top card of your deck. If it's a monster card, put it into your hand. Otherwise, put it back."
+        "TEXT" "Scout -- Reveal the top card of your deck. If it's a monster card, put it into your hand. Otherwise put it back."
     }
 
     function preventTargetMob(player)
